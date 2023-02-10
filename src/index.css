@@ -1,0 +1,44 @@
+@font-face {
+  font-family: "Univers LT W02 55 Roman";
+  src:  url(./assets/fonts/font.woff2) format("woff2");
+  /* other formats include: 'woff2', 'truetype, 'opentype',
+                              'embedded-opentype', and 'svg' */
+}
+body {
+  margin: 0;
+  font-family: "Univers LT W02 55 Roman";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+    font-family: "Univers LT W02 55 Roman" 
+}
+
+.hideScrollbar::-webkit-scrollbar {
+  display: none;
+  /* Safari and Chrome browsers */
+}
+
+.hideScrollbar {
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* mozilla */
+}
+.leaflet-container {
+  height: 500px;
+  width: 100%;
+}
+
+.markercluster-map {
+  height: 500px;
+}
+
+.MuiMobileStepper-dot {
+    background:white !important;
+}
+
+.MuiMobileStepper-dotActive {
+    background:green !important;
+}
