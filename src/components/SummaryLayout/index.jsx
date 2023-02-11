@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { Grid, Paper } from "@mui/material";
 import { styled } from "@mui/material/styles";
@@ -9,6 +9,13 @@ import SummarySubHeader from "./SummarySubHeader";
 import SummaryRecordsView from "./SummaryRecordsView";
 const SummaryLayout = (props) => {
   const { filter, displayField } = props;
+
+  const [grid, setGrid] = useState(localStorage.getItem("grid") === "true");
+
+  const toggleGrid = () => {
+    localStorage.setItem("grid", !grid);
+    setGrid(!grid);
+  };
   return (
     <div>
       <SummaryContainer
@@ -25,10 +32,10 @@ const SummaryLayout = (props) => {
           <Grid item xs={12} md={9}>
             <Grid container rowSpacing={2}>
               <Grid item xs={12}>
-                <SummarySubHeader />
+                <SummarySubHeader toggleGrid={toggleGrid} isGrid={grid} />
               </Grid>
-              <Grid item xs={12}>
-                <SummaryRecordsView data={displayField} />
+              <Grid container item xs={12}>
+                <SummaryRecordsView isGrid={grid} data={displayField} />
               </Grid>
             </Grid>
           </Grid>

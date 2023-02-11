@@ -1,20 +1,15 @@
 import * as React from "react";
 import Box from "@mui/joy/Box";
-import Tabs from "@mui/joy/Tabs";
-import TabList from "@mui/joy/TabList";
-import Tab from "@mui/joy/Tab";
 import { Item } from "./SummaryLayout.style";
-import Button from "@mui/material/Button";
-import ButtonGroup from "@mui/material/ButtonGroup";
 import { Typography } from "@mui/material";
 import Select from "@mui/joy/Select";
 import Option from "@mui/joy/Option";
 import ViewListIcon from "@mui/icons-material/ViewList";
 import ViewModuleIcon from "@mui/icons-material/ViewModule";
-import ViewQuiltIcon from "@mui/icons-material/ViewQuilt";
 import ToggleButton from "@mui/material/ToggleButton";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
-export default function TabsVariants() {
+import PropTypes from "prop-types";
+export default function SummarySubHeader(props) {
   const [view, setView] = React.useState("list");
   const handleChange = (event, nextView) => {
     setView(nextView);
@@ -52,14 +47,14 @@ export default function TabsVariants() {
             {" "}
             <ToggleButtonGroup
               orientation="horizontal"
-              value={view}
+              value={props.isGrid === true ? "grid" : "list"}
               exclusive
-              onChange={handleChange}
+              onChange={props.toggleGrid}
             >
               <ToggleButton value="list" aria-label="list">
                 <ViewListIcon />
               </ToggleButton>
-              <ToggleButton value="module" aria-label="module">
+              <ToggleButton value="grid" aria-label="grid">
                 <ViewModuleIcon />
               </ToggleButton>
             </ToggleButtonGroup>
@@ -91,3 +86,8 @@ export default function TabsVariants() {
     </Item>
   );
 }
+
+SummarySubHeader.PropTypes = {
+  toggleGrid: PropTypes.func,
+  isGrid: PropTypes.bool,
+};

@@ -11,8 +11,10 @@ import ImageNotSupportedOutlinedIcon from "@mui/icons-material/ImageNotSupported
 import { deepSearch } from "../../utils/functions";
 import SummaryTextField from "../SummaryTextField";
 import Component from "../Component";
-export default function SummaryRecordsView(props) {
-  const { data } = props;
+import { Grid } from "@mui/material";
+import PropTypes from "prop-types";
+const SummaryRecordsView = (props) => {
+  const { data, isGrid } = props;
   let xmlDOM = document.querySelector("#xml_record");
   let x2js = new X2JS();
   let xml = x2js.xml_str2json(new XMLSerializer().serializeToString(xmlDOM));
@@ -26,66 +28,85 @@ export default function SummaryRecordsView(props) {
         let displayFields = data.find((e) => e.database === database).fields;
 
         return (
-          <Item sx={{ padding: "16px", borderRadius: "0" }}>
-            <Card sx={{ display: "flex" }} variant="outlined" elevation={8}>
-              <Box>
-                {" "}
-                <CardMedia
-                  onClick={(_) => (window.location = recordLink)}
-                  component="img"
-                  sx={{ width: "25vw", maxWidth: "200px", cursor: "pointer" }}
-                  image="https://picsum.photos/500"
-                  alt=""
-                />
-                {/* <ImageNotSupportedOutlinedIcon /> */}
-              </Box>
-              <Box
+          <Grid item xs={isGrid ? 4 : 12}>
+            <Item sx={{ padding: "16px", borderRadius: "0" }}>
+              <Card
                 sx={{
                   display: "flex",
-                  flexDirection: "column",
-                  textAlign: "left",
+                  flexDirection: isGrid ? "column" : "row",
+                  textAlign: isGrid ? "center" : "left",
                 }}
+                variant="outlined"
+                elevation={8}
               >
-                <CardContent sx={{ flex: "1 0 auto" }}>
-                  {displayFields.map((field) => {
-                    let fieldValue = deepSearch(
-                      recordData,
-                      field.name.toLowerCase()
-                    );
-                    if (fieldValue.length === 0) {
-                      return;
-                    }
-                    let fieldLabel = field.label;
-                    if (field.component !== undefined) {
-                      return Component(field);
-                    }
-                    if (field.main) {
+                <Box>
+                  <CardMedia
+                    onClick={(_) => (window.location = recordLink)}
+                    component="img"
+                    sx={{ width: "25vw", maxWidth: "200px", cursor: "pointer" }}
+                    image="https://picsum.photos/500"
+                    alt=""
+                  />
+                  {/* <ImageNotSupportedOutlinedIcon /> */}
+                </Box>
+                <Box
+                  sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                    textAlign: "left",
+                  }}
+                >
+                  <CardContent sx={{ flex: "1 0 auto" }}>
+                    {displayFields.map((field) => {
+                      let fieldValue = deepSearch(
+                        recordData,
+                        field.name.toLowerCase()
+                      );
+                      if (fieldValue.length === 0) {
+                        return;
+                      }
+
+                      let fieldLabel = field.label;
+                      if (isGrid && field.gridDisplay === false) {
+                        return;
+                      }
+                      if (field.component !== undefined) {
+                        return Component(field);
+                      }
+                      if (field.main) {
+                        return (
+                          <SummaryTextField
+                            main={field.main}
+                            onClick={(_) => (window.location = recordLink)}
+                          >
+                            {fieldValue.join(",")}
+                          </SummaryTextField>
+                        );
+                      }
+
                       return (
-                        <SummaryTextField
-                          main={field.main}
-                          onClick={(_) => (window.location = recordLink)}
-                        >
-                          {fieldValue.join(",")}
+                        <SummaryTextField>
+                          <strong>{fieldLabel}</strong>: {fieldValue.join(",")}
                         </SummaryTextField>
                       );
-                    }
-
-                    return (
-                      <SummaryTextField>
-                        <strong>{fieldLabel}</strong>: {fieldValue.join(",")}
-                      </SummaryTextField>
-                    );
-                  })}
-                </CardContent>
-                <Box
-                  sx={{ display: "flex", alignItems: "center", pl: 1, pb: 1 }}
-                ></Box>
-              </Box>
-            </Card>
-          </Item>
+                    })}
+                  </CardContent>
+                  <Box
+                    sx={{ display: "flex", alignItems: "center", pl: 1, pb: 1 }}
+                  ></Box>
+                </Box>
+              </Card>
+            </Item>
+          </Grid>
         );
-      })}{" "}
+      })}
       <SummaryPagination />
     </>
   );
-}
+};
+SummaryRecordsView.propTypes = {
+  data: PropTypes.array,
+  isGrid: PropTypes.bool,
+};
+
+export default SummaryRecordsView;

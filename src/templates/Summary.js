@@ -222,6 +222,7 @@ const Summary = [
                 {
                   name: "OBJ_DESCRIPTION",
                   label: "Description",
+                  gridDisplay: false,
                 },
               ],
             },
