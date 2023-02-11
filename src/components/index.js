@@ -34,3 +34,9 @@ export { default as Accordion }
 from './Accordion'
 export { default as SummaryLayout }
 from './SummaryLayout'
+export { default as SummaryTextField }
+from './SummaryTextField'
+export { default as SummaryChipTag }
+from './SummaryChipTag'
+
+

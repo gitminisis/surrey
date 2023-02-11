@@ -15,6 +15,8 @@ import {
   DescriptionBox,
   Accordion,
   SummaryLayout,
+  SummaryTextField,
+  SummaryChipTag,
 } from "./index";
 
 const KeysToComponentMap = {
@@ -33,6 +35,8 @@ const KeysToComponentMap = {
   DescriptionBox,
   Accordion,
   SummaryLayout,
+  SummaryTextField,
+  SummaryChipTag,
 };
 
 function Component(block) {

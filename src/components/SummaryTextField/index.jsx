@@ -10,13 +10,14 @@ const index = (props) => {
         component="div"
         variant="h3"
         sx={{
-          color: "primary.light",
+          color: "primary.main",
           fontWeight: "bold",
           fontSize: "1.3rem",
           cursor: "pointer",
+          marginBottom:'5px',
           "&:hover": {
             textDecoration: "underline",
-            color: "text.secondary",
+            color: "primary.dark",
           },
         }}
       >
@@ -25,7 +26,7 @@ const index = (props) => {
     );
   }
   return (
-    <Typography variant="subtitle1" color="text.secondary" component="div">
+    <Typography variant="subtitle1" color="text.primary" component="div">
       {props.children}
     </Typography>
   );

@@ -10,6 +10,7 @@ import Box from "@mui/material/Box";
 import ImageNotSupportedOutlinedIcon from "@mui/icons-material/ImageNotSupportedOutlined";
 import { deepSearch } from "../../utils/functions";
 import SummaryTextField from "../SummaryTextField";
+import Component from "../Component";
 export default function SummaryRecordsView(props) {
   const { data } = props;
   let xml_record = document.querySelector("#xml_record");
@@ -51,11 +52,16 @@ export default function SummaryRecordsView(props) {
                       recordData,
                       field.name.toLowerCase()
                     );
+                    if (fieldValue.length === 0) {
+                      return;
+                    }
                     let fieldLabel = field.label;
-                    console.log(fieldValue, field.name.toLowerCase());
+                    if (field.component !== undefined) {
+                      return Component(field);
+                    }
                     if (field.main) {
                       return (
-                        <SummaryTextField main={true}>
+                        <SummaryTextField main={field.main}>
                           {fieldValue.join(",")}
                         </SummaryTextField>
                       );
