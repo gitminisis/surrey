@@ -7,9 +7,9 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Box from "@mui/material/Box";
-import NoPhotographyIcon from "@mui/icons-material/NoPhotography";
-
+import ImageNotSupportedOutlinedIcon from "@mui/icons-material/ImageNotSupportedOutlined";
 import { deepSearch } from "../../utils/functions";
+import SummaryTextField from "../SummaryTextField";
 export default function SummaryRecordsView(props) {
   const { data } = props;
   let xml_record = document.querySelector("#xml_record");
@@ -26,16 +26,17 @@ export default function SummaryRecordsView(props) {
         let displayFields = data.find((e) => e.database === database).fields;
 
         return (
-          <Item sx={{ padding: "16px" }}>
-            <Card sx={{ display: "flex" }}>
+          <Item sx={{ padding: "16px", borderRadius: "0" }}>
+            <Card sx={{ display: "flex" }} variant="outlined" elevation={8}>
               <Box>
                 {" "}
                 <CardMedia
                   component="img"
-                  sx={{ width: 151 }}
-                  image="/static/images/cards/live-from-space.jpg"
+                  sx={{ width: "25vw", maxWidth: "200px", cursor: "pointer" }}
+                  image="https://picsum.photos/500"
                   alt=""
                 />
+                {/* <ImageNotSupportedOutlinedIcon /> */}
               </Box>
               <Box
                 sx={{
@@ -54,36 +55,16 @@ export default function SummaryRecordsView(props) {
                     console.log(fieldValue, field.name.toLowerCase());
                     if (field.main) {
                       return (
-                        <Typography
-                          component="div"
-                          variant="h3"
-                          sx={{
-                            color: "text.primary",
-                            fontWeight: "bold",
-                            fontSize: "1.3rem",
-                            
-                            cursor: "pointer",
-                            "&:hover": {
-                              textDecoration: "underline",
-                              color: "text.secondary",
-                            },
-                          }}
-                        >
+                        <SummaryTextField main={true}>
                           {fieldValue.join(",")}
-                        </Typography>
+                        </SummaryTextField>
                       );
                     }
 
                     return (
-                      fieldValue.length > 0 && (
-                        <Typography
-                          variant="subtitle1"
-                          color="text.secondary"
-                          component="div"
-                        >
-                          <strong>{fieldLabel}</strong>: {fieldValue.join(",")}
-                        </Typography>
-                      )
+                      <SummaryTextField>
+                        <strong>{fieldLabel}</strong>: {fieldValue.join(",")}
+                      </SummaryTextField>
                     );
                   })}
                 </CardContent>
