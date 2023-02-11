@@ -13,16 +13,15 @@ import SummaryTextField from "../SummaryTextField";
 import Component from "../Component";
 export default function SummaryRecordsView(props) {
   const { data } = props;
-  let xml_record = document.querySelector("#xml_record");
+  let xmlDOM = document.querySelector("#xml_record");
   let x2js = new X2JS();
-  let xml = x2js.xml_str2json(
-    new XMLSerializer().serializeToString(xml_record)
-  );
+  let xml = x2js.xml_str2json(new XMLSerializer().serializeToString(xmlDOM));
 
   return (
     <>
       {xml.xml.xml_record.map((record) => {
         let database = record.database_name;
+        let recordLink = record.record_link.replace(/\n/g, "");
         let recordData = record.record;
         let displayFields = data.find((e) => e.database === database).fields;
 
@@ -32,6 +31,7 @@ export default function SummaryRecordsView(props) {
               <Box>
                 {" "}
                 <CardMedia
+                  onClick={(_) => (window.location = recordLink)}
                   component="img"
                   sx={{ width: "25vw", maxWidth: "200px", cursor: "pointer" }}
                   image="https://picsum.photos/500"
@@ -61,7 +61,10 @@ export default function SummaryRecordsView(props) {
                     }
                     if (field.main) {
                       return (
-                        <SummaryTextField main={field.main}>
+                        <SummaryTextField
+                          main={field.main}
+                          onClick={(_) => (window.location = recordLink)}
+                        >
                           {fieldValue.join(",")}
                         </SummaryTextField>
                       );
