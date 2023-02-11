@@ -34,7 +34,6 @@ const SummaryRecordsView = (props) => {
                 sx={{
                   display: "flex",
                   flexDirection: isGrid ? "column" : "row",
-                  textAlign: isGrid ? "center" : "left",
                 }}
                 variant="outlined"
                 elevation={8}
@@ -43,7 +42,12 @@ const SummaryRecordsView = (props) => {
                   <CardMedia
                     onClick={(_) => (window.location = recordLink)}
                     component="img"
-                    sx={{ width: "25vw", maxWidth: "200px", cursor: "pointer" }}
+                    sx={{
+                      margin: isGrid ? "0 auto" : "0 0",
+                      width: "25vw",
+                      maxWidth: "200px",
+                      cursor: "pointer",
+                    }}
                     image="https://picsum.photos/500"
                     alt=""
                   />
@@ -53,7 +57,8 @@ const SummaryRecordsView = (props) => {
                   sx={{
                     display: "flex",
                     flexDirection: "column",
-                    textAlign: "left",
+                    textAlign: isGrid ? "center" : "left",
+                    minHeight: "160",
                   }}
                 >
                   <CardContent sx={{ flex: "1 0 auto" }}>
