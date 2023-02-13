@@ -84,8 +84,8 @@ const Banner = (props) => {
                     name="KEYWORD_CL"
                     style={{ height: "55px", fontSize: "1.2rem" }}
                     sx={{ ml: 1, flex: 1 }}
-                    placeholder="Enter your search"
-                    inputProps={{ "aria-label": "Enter your search" }}
+                    placeholder="Search By Keyword"
+                    inputProps={{ "aria-label": "Search By Keyword" }}
                   />
                   <Button
                     style={{

@@ -7,6 +7,7 @@ import SummaryFilter from "./SummaryFilter";
 import SummarySubHeader from "./SummarySubHeader";
 import SummaryRecordsView from "./SummaryRecordsView";
 import GeneralSearchBox from "../GeneralSearchBox";
+import SummaryMasonryView from "./SummaryMasonryView";
 const SummaryLayout = (props) => {
   const { filter, displayField } = props;
   if (!localStorage.getItem("grid")) {
@@ -37,7 +38,11 @@ const SummaryLayout = (props) => {
                 <SummarySubHeader toggleGrid={toggleGrid} isGrid={grid} />
               </Grid>
               <Grid container item xs={12}>
-                <SummaryRecordsView isGrid={grid} data={displayField} />
+                {grid ? (
+                  <SummaryMasonryView data={displayField} />
+                ) : (
+                  <SummaryRecordsView data={displayField} />
+                )}
               </Grid>
             </Grid>
           </Grid>

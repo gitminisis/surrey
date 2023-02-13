@@ -13,7 +13,7 @@ import Component from "../Component";
 import { Grid } from "@mui/material";
 import PropTypes from "prop-types";
 const SummaryRecordsView = (props) => {
-  const { data, isGrid } = props;
+  const { data } = props;
   const xml = getXMLRecord();
   return (
     <>
@@ -24,12 +24,12 @@ const SummaryRecordsView = (props) => {
         let displayFields = data.find((e) => e.database === database).fields;
 
         return (
-          <Grid item xs={isGrid ? 4 : 12}>
+          <Grid item xs={12}>
             <Item sx={{ padding: "16px", borderRadius: "0" }}>
               <Card
                 sx={{
                   display: "flex",
-                  flexDirection: isGrid ? "column" : "row",
+                  flexDirection: "row",
                 }}
                 variant="outlined"
                 elevation={8}
@@ -39,7 +39,7 @@ const SummaryRecordsView = (props) => {
                     onClick={(_) => (window.location = recordLink)}
                     component="img"
                     sx={{
-                      margin: isGrid ? "0 auto" : "0 0",
+                      margin: "0 0",
                       width: "25vw",
                       maxWidth: "200px",
                       cursor: "pointer",
@@ -53,7 +53,7 @@ const SummaryRecordsView = (props) => {
                   sx={{
                     display: "flex",
                     flexDirection: "column",
-                    textAlign: isGrid ? "center" : "left",
+                    textAlign: "left",
                     minHeight: "160",
                   }}
                 >
@@ -67,9 +67,7 @@ const SummaryRecordsView = (props) => {
                         return;
                       }
                       let fieldLabel = field.label;
-                      if (isGrid && field.gridDisplay === false) {
-                        return;
-                      }
+
                       if (field.component !== undefined) {
                         return Component(field);
                       }

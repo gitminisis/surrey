@@ -208,20 +208,23 @@ const Summary = [
                 },
                 {
                   name: "ACCESSION_NUMBER",
-                  label: "Accession Number",
+                  label: "ID",
                 },
 
                 {
                   name: "EARLY",
                   label: "Dates",
+                  gridDisplay: false,
                 },
                 {
                   name: "OBJECT_NAME",
                   label: "Object Name(s)",
+                  gridDisplay: false,
                 },
                 {
                   name: "MATERIAL",
                   label: "Object Name(s)",
+                  gridDisplay: false,
                 },
                 {
                   name: "OBJ_DESCRIPTION",

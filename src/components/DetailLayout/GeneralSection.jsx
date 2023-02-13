@@ -55,11 +55,11 @@ const GeneralSecion = (props) => {
                   );
                 })}
               </Grid>
-              <Grid item>
+              {/* <Grid item>
                 <Typography sx={{ cursor: "pointer" }} variant="body2">
                   Remove
                 </Typography>
-              </Grid>
+              </Grid> */}
             </Grid>
             <Grid item>
               <ButtonBase sx={{ width: 300, height: 300 }}>
