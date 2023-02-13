@@ -3,10 +3,10 @@ import PropTypes from "prop-types";
 import { Grid, Paper } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { SummaryContainer, Item } from "./SummaryLayout.style";
-import SummaryHeader from "./SummaryHeader";
 import SummaryFilter from "./SummaryFilter";
 import SummarySubHeader from "./SummarySubHeader";
 import SummaryRecordsView from "./SummaryRecordsView";
+import GeneralSearchBox from "../GeneralSearchBox";
 const SummaryLayout = (props) => {
   const { filter, displayField } = props;
 
@@ -24,7 +24,7 @@ const SummaryLayout = (props) => {
       >
         <Grid container spacing={2} rowSpacing={2}>
           <Grid item xs={12}>
-            <SummaryHeader />
+            <GeneralSearchBox />
           </Grid>
           <Grid item xs={0} md={3} display={{ xs: "none", md: "block" }}>
             <SummaryFilter data={filter} />

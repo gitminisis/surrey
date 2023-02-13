@@ -15,7 +15,7 @@ export default function SummarySubHeader(props) {
     setView(nextView);
   };
   return (
-    <Item sx={{ hight: "80px", padding: "10px 16px" }} elevation={6}>
+    <Item sx={{  padding: "10px 16px" }} elevation={6}>
       <Box
         sx={{
           display: "flex",

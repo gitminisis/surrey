@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Item } from "./SummaryLayout.style";
 import Input from "@mui/joy/Input";
 import Chip from "@mui/joy/Chip";
 import SearchIcon from "@mui/icons-material/Search";
@@ -14,8 +13,14 @@ import {
   Grid,
   Typography,
 } from "@mui/material";
-
-const SummaryHeader = (props) => {
+import { styled } from "@mui/material/styles";
+export const Item = styled(Paper)(({ theme }) => ({
+    backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
+    padding: theme.spacing(1),
+    textAlign: "center",
+  }));
+  
+const GeneralSearchBox = (props) => {
   return (
     <Item elevation={6} sx={{ padding: "16px" }}>
       <div>
@@ -51,13 +56,12 @@ const SummaryHeader = (props) => {
               startDecorator={<SearchIcon />}
             />
           </Grid>
-      
         </Grid>
       </div>
     </Item>
   );
 };
 
-SummaryHeader.propTypes = {};
+GeneralSearchBox.propTypes = {};
 
-export default SummaryHeader;
+export default GeneralSearchBox;

@@ -1,4 +1,6 @@
 import _ from "lodash";
+import X2JS from "../libs/xml2json.min.js";
+
 export const deepSearch = (obj, key) => {
   if (_.has(obj, key))
     // or just (key in obj)
@@ -14,7 +16,15 @@ export const deepSearch = (obj, key) => {
   // or efficient:
   var res = [];
   _.forEach(obj, function (v) {
-    if (typeof v == "object" && (v = deepSearch(v, key)).length) res.push.apply(res, v);
+    if (typeof v == "object" && (v = deepSearch(v, key)).length)
+      res.push.apply(res, v);
   });
   return res;
+};
+
+export const getXMLRecord = () => {
+  let xmlDOM = document.querySelector("#xml_record");
+  let x2js = new X2JS();
+  let xml = x2js.xml_str2json(new XMLSerializer().serializeToString(xmlDOM));
+  return xml;
 };

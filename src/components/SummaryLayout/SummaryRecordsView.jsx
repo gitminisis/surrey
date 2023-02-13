@@ -2,23 +2,19 @@ import * as React from "react";
 import Typography from "@mui/joy/Typography";
 import { Item } from "./SummaryLayout.style";
 import SummaryPagination from "./SummaryPagination";
-import X2JS from "../../libs/xml2json.min.js";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Box from "@mui/material/Box";
 import ImageNotSupportedOutlinedIcon from "@mui/icons-material/ImageNotSupportedOutlined";
-import { deepSearch } from "../../utils/functions";
+import { deepSearch, getXMLRecord } from "../../utils/functions";
 import SummaryTextField from "../SummaryTextField";
 import Component from "../Component";
 import { Grid } from "@mui/material";
 import PropTypes from "prop-types";
 const SummaryRecordsView = (props) => {
   const { data, isGrid } = props;
-  let xmlDOM = document.querySelector("#xml_record");
-  let x2js = new X2JS();
-  let xml = x2js.xml_str2json(new XMLSerializer().serializeToString(xmlDOM));
-
+  const xml = getXMLRecord();
   return (
     <>
       {xml.xml.xml_record.map((record) => {
@@ -70,7 +66,6 @@ const SummaryRecordsView = (props) => {
                       if (fieldValue.length === 0) {
                         return;
                       }
-
                       let fieldLabel = field.label;
                       if (isGrid && field.gridDisplay === false) {
                         return;
