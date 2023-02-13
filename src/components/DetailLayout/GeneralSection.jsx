@@ -4,9 +4,8 @@ import { Item } from "./DetailLayout.style";
 import { Box, Typography, Grid, ButtonBase, Container } from "@mui/material";
 import { deepSearch, getXMLRecord } from "../../utils/functions";
 import GeneralDetailTextField from "./GeneralDetailTextField";
-const GeneralDetailSection = (props) => {
+const GeneralSecion = (props) => {
   const { data } = props;
-  console.log(data);
   const xml = getXMLRecord();
   let record = xml.xml.xml_record;
   let database = record.database_name;
@@ -49,7 +48,6 @@ const GeneralDetailSection = (props) => {
                       </GeneralDetailTextField>
                     );
                   }
-
                   return (
                     <GeneralDetailTextField>
                       <strong>{fieldLabel}</strong>: {fieldValue.join(",")}
@@ -83,6 +81,6 @@ const GeneralDetailSection = (props) => {
   );
 };
 
-GeneralDetailSection.propTypes = {};
+GeneralSecion.propTypes = {};
 
-export default GeneralDetailSection;
+export default GeneralSecion;

@@ -9,7 +9,9 @@ import SummaryRecordsView from "./SummaryRecordsView";
 import GeneralSearchBox from "../GeneralSearchBox";
 const SummaryLayout = (props) => {
   const { filter, displayField } = props;
-
+  if (!localStorage.getItem("grid")) {
+    localStorage.setItem("grid", true);
+  }
   const [grid, setGrid] = useState(localStorage.getItem("grid") === "true");
 
   const toggleGrid = () => {

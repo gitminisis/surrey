@@ -10,12 +10,11 @@ import ToggleButton from "@mui/material/ToggleButton";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import PropTypes from "prop-types";
 export default function SummarySubHeader(props) {
-  const [view, setView] = React.useState("list");
   const handleChange = (event, nextView) => {
     setView(nextView);
   };
   return (
-    <Item sx={{  padding: "10px 16px" }} elevation={6}>
+    <Item sx={{ padding: "10px 16px" }} elevation={6}>
       <Box
         sx={{
           display: "flex",
@@ -51,11 +50,11 @@ export default function SummarySubHeader(props) {
               exclusive
               onChange={props.toggleGrid}
             >
-              <ToggleButton value="list" aria-label="list">
-                <ViewListIcon />
-              </ToggleButton>
               <ToggleButton value="grid" aria-label="grid">
                 <ViewModuleIcon />
+              </ToggleButton>
+              <ToggleButton value="list" aria-label="list">
+                <ViewListIcon />
               </ToggleButton>
             </ToggleButtonGroup>
           </Box>

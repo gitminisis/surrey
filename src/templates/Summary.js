@@ -219,7 +219,10 @@ const Summary = [
                   name: "OBJECT_NAME",
                   label: "Object Name(s)",
                 },
-
+                {
+                  name: "MATERIAL",
+                  label: "Object Name(s)",
+                },
                 {
                   name: "OBJ_DESCRIPTION",
                   label: "Description",
