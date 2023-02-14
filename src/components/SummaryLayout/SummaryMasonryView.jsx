@@ -30,6 +30,12 @@ const SummaryMasonryView = (props) => {
                 flexDirection: "column",
                 justifyContent: "center",
                 border: "none",
+                cursor: "pointer",
+                transition: "all .2s ease-in-out",
+                "&:hover": {
+                  transform: " scale(1.05)",
+                  backgroundColor: "primary.light",
+                },
               }}
             >
               <Box
