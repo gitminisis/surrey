@@ -13,10 +13,15 @@ import Component from "../Component";
 
 const SummaryMasonryView = (props) => {
   const { data } = props;
+
   const xml = getXMLRecord();
   return (
-    <Box sx={{ width: "100%" }}>
-      <Masonry columns={3} spacing={4}>
+    <Box sx={{ width: "100%" }}> 
+      <Masonry
+        columns={{ xs: 1, sm: 3 }}
+        spacing={4}
+        style={{ margin: "0 auto" }}
+      >
         {xml.xml.xml_record.map((record) => {
           let database = record.database_name;
           let recordLink = record.record_link.replace(/\n/g, "");
@@ -24,6 +29,7 @@ const SummaryMasonryView = (props) => {
           let displayFields = data.find((e) => e.database === database).fields;
           return (
             <Card
+              onClick={(_) => (window.location = recordLink)}
               sx={{
                 padding: "16px",
                 display: "flex",
@@ -33,8 +39,8 @@ const SummaryMasonryView = (props) => {
                 cursor: "pointer",
                 transition: "all .2s ease-in-out",
                 "&:hover": {
-                  transform: " scale(1.05)",
-                  backgroundColor: "primary.light",
+                  // transform: " scale(1.04)",
+                  backgroundColor: "transparent",
                 },
               }}
             >

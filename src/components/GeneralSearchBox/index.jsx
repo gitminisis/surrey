@@ -15,11 +15,11 @@ import {
 } from "@mui/material";
 import { styled } from "@mui/material/styles";
 export const Item = styled(Paper)(({ theme }) => ({
-    backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
-    padding: theme.spacing(1),
-    textAlign: "center",
-  }));
-  
+  backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
+  padding: theme.spacing(1),
+  textAlign: "center",
+}));
+
 const GeneralSearchBox = (props) => {
   return (
     <Item elevation={6} sx={{ padding: "16px" }}>
@@ -55,6 +55,12 @@ const GeneralSearchBox = (props) => {
               placeholder="Search…"
               startDecorator={<SearchIcon />}
             />
+          </Grid>
+          <Grid item xs={12} style={{ textAlign: "center", marginTop: "20px" }}>
+            <a variant="a" href="/FAQ" className="generalSearchBoxLink">
+              Didn't find what you're looking for? Check our FAQ page for search
+              tips
+            </a>
           </Grid>
         </Grid>
       </div>

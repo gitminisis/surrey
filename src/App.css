@@ -64,3 +64,13 @@
   left: 0;
   z-index: -1;
 }
+
+.generaLSearchBoxLink {
+  color: grey;
+  cursor: pointer;
+}
+
+.generaLSearchBoxLink:hover {
+  color: #538000;
+  text-decoration: underline;
+}

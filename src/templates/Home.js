@@ -5,8 +5,8 @@ const Home = [{
             data: {
                 
                 bannerURL: "https://www.surrey.ca/sites/default/files/styles/21x9_1920w/public/2022-10/fall-trees-in-surrey.jpg?h=56d0ca2e&itok=YzKjACHG",
-                heading: "Surrey Archives and Museums Online Access",
-                description: "Browse all of the City's Heritage Collections with a union search, or search the Archives or Artifact Collections separately. Don't miss the featured items from both the Archives and Artifact collection below.",
+                heading: "Surrey Online Heritage Search",
+                description: "More than 100,000 archival photos, maps, documents and oral histories, as well as over 5,000 artifacts are at your fingertips. Browse the categories, neighbourhoods, or new additions below, or search for specific records using the keyword search.",
                 bannerCarousel: [
                     "https://www.surrey.ca/sites/default/files/styles/21x9_1920w/public/2022-10/fall-trees-in-surrey.jpg?h=56d0ca2e&itok=YzKjACHG",
                     "https://www.surrey.ca/sites/default/files/styles/21x9_1100w/public/2023-01/whalley-aerial.jpg?h=7c4e7980&itok=w8lHERMH",
@@ -21,8 +21,6 @@ const Home = [{
             data: {
                 heading: "Browse by category",
 
-                btnURL: '/archive',
-                btnTitle: "Explore"
 
             },
             children: [{

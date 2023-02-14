@@ -223,7 +223,7 @@ const Summary = [
                 },
                 {
                   name: "MATERIAL",
-                  label: "Object Name(s)",
+                  label: "Material(s)",
                   gridDisplay: false,
                 },
                 {
@@ -237,16 +237,26 @@ const Summary = [
               database: "DESCRIPTION",
               fields: [
                 {
-                  name: "REF_CODE",
-                  label: "Reference Code",
-                },
-                {
                   name: "TITLE",
                   label: "Title",
+                  main: true,
                 },
+
                 {
-                  name: "EARLY",
+                  name: "DATE_SEARCH",
                   label: "Dates",
+                  gridDisplay: false,
+                },
+
+                {
+                  name: "GMD",
+                  label: "Type",
+                  gridDisplay: false,
+                },
+
+                {
+                  name: "REFD",
+                  label: "ID",
                 },
               ],
             },
