@@ -39,7 +39,6 @@ const SummaryMasonryView = (props) => {
                 cursor: "pointer",
                 transition: "all .2s ease-in-out",
                 "&:hover": {
-                  // transform: " scale(1.04)",
                   backgroundColor: "transparent",
                 },
               }}

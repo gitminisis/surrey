@@ -249,7 +249,7 @@ const Summary = [
                 },
 
                 {
-                  name: "GMD",
+                  name: "gmd_occurrence",
                   label: "Type",
                   gridDisplay: false,
                 },

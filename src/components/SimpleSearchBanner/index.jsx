@@ -24,11 +24,11 @@ import PropTypes from "prop-types";
 
 import MobileStepper from "@mui/material/MobileStepper";
 
-const SEARCH_URL =
-  "/scripts/mwimain.dll?UNIONSEARCH&KEEP=Y&APPLICATION=UNION_VIEW&language=144&REPORT=WEB_UNION_SUM";
+
 const Banner = (props) => {
   const {
     bannerURL,
+    searchURL,
     heading,
     description,
     noSearchBox,
@@ -69,7 +69,7 @@ const Banner = (props) => {
                 <Paper
                   method="POST"
                   component="form"
-                  action={SEARCH_URL}
+                  action={searchURL}
                   sx={{
                     display: "flex",
                     alignItems: "center",
@@ -132,5 +132,6 @@ Banner.propTypes = {
   description: PropTypes.string,
   noSearchBox: PropTypes.bool,
   bannerCarousel: PropTypes.arrayOf(PropTypes.string),
+  searchURL: PropTypes.string,
 };
 export default Banner;
