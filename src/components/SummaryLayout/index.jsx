@@ -14,10 +14,18 @@ const SummaryLayout = (props) => {
     localStorage.setItem("grid", true);
   }
   const [grid, setGrid] = useState(localStorage.getItem("grid") === "true");
+  const [showFilter, setShowFilter] = useState(true);
+  const toggleGrid = (a, b) => {
+    if (!b || b === undefined) {
+      return;
+    }
 
-  const toggleGrid = () => {
-    localStorage.setItem("grid", !grid);
-    setGrid(!grid);
+    localStorage.setItem("grid", b === "grid");
+    setGrid(b === "grid");
+  };
+
+  const toggleFilter = () => {
+    setShowFilter(!showFilter);
   };
   return (
     <div>
@@ -29,13 +37,19 @@ const SummaryLayout = (props) => {
           <Grid item xs={12}>
             <GeneralSearchBox />
           </Grid>
-          <Grid item xs={0} md={3} display={{ xs: "none", md: "block" }}>
-            <SummaryFilter data={filter} />
-          </Grid>
-          <Grid item xs={12} md={9}>
+          {filter && showFilter && (
+            <Grid item xs={0} md={3} display={{ xs: "none", md: "block" }}>
+              <SummaryFilter data={filter} />
+            </Grid>
+          )}
+          <Grid item xs={12} md={filter ? 9 : 12}>
             <Grid container rowSpacing={2}>
               <Grid item xs={12}>
-                <SummarySubHeader toggleGrid={toggleGrid} isGrid={grid} />
+                <SummarySubHeader
+                  toggleFilter={toggleFilter}
+                  toggleGrid={toggleGrid}
+                  isGrid={grid}
+                />
               </Grid>
               <Grid container item xs={12}>
                 {grid ? (

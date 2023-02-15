@@ -9,14 +9,14 @@ const SiteLayout = {
             title: "Home"
         },
         {
-            url: "/archives",
+            url: "/archives.html",
             title: "Archives"
         }, {
-            url: "/artifact",
+            url: "/artifact.html",
             title: "Artifact"
         },
         {
-            url: "/faq",
+            url: "/faq.html",
             title: "FAQ"
         }
     ]

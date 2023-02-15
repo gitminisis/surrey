@@ -27,7 +27,6 @@ export default function SummarySubHeader(props) {
             variant="body1"
             sx={{ fontWeight: "bold", fontSize: "1.2rem" }}
           >
-            {" "}
             50 Search results for "Test"
           </Typography>
         </Box>
@@ -54,6 +53,9 @@ export default function SummarySubHeader(props) {
                 <ViewModuleIcon />
               </ToggleButton>
               <ToggleButton value="list" aria-label="list">
+                <ViewListIcon />
+              </ToggleButton>
+              <ToggleButton  aria-label="list">
                 <ViewListIcon />
               </ToggleButton>
             </ToggleButtonGroup>

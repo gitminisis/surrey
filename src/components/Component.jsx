@@ -17,7 +17,8 @@ import {
   SummaryLayout,
   SummaryTextField,
   SummaryChipTag,
-  DetailLayout
+  DetailLayout,
+  PhotoCoverCard,
 } from "./index";
 
 const KeysToComponentMap = {
@@ -38,7 +39,8 @@ const KeysToComponentMap = {
   SummaryLayout,
   SummaryTextField,
   SummaryChipTag,
-  DetailLayout
+  DetailLayout,
+  PhotoCoverCard,
 };
 
 function Component(block) {
