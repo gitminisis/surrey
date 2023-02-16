@@ -19,6 +19,7 @@ import {
   SummaryChipTag,
   DetailLayout,
   PhotoCoverCard,
+  CoverFlowCarousel
 } from "./index";
 
 const KeysToComponentMap = {
@@ -41,6 +42,8 @@ const KeysToComponentMap = {
   SummaryChipTag,
   DetailLayout,
   PhotoCoverCard,
+  CoverFlowCarousel
+  
 };
 
 function Component(block) {

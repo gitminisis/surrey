@@ -1,3 +1,17 @@
+import pic1 from "../assets/images/Union Background 1.png";
+import pic2 from "../assets/images/Union Background 2.png";
+import pic3 from "../assets/images/Union Background 3.png";
+import pic4 from "../assets/images/Union Background 4.png";
+import pic5 from "../assets/images/Union Background 5.png";
+import pic6 from "../assets/images/Union Background 6.png";
+import pic7 from "../assets/images/Union Background 7.png";
+
+import Category1 from "../assets/images/Photos.png";
+import Category2 from "../assets/images/Maps.png";
+import Category3 from "../assets/images/Audio-Visual.png";
+import Category4 from "../assets/images/Artifacts.png";
+import Category5 from "../assets/images/Textual Records.png";
+
 const Home = [
   {
     component: "Layout",
@@ -7,17 +21,11 @@ const Home = [
         data: {
           searchURL:
             "/scripts/mwimain.dll?UNIONSEARCH&KEEP=Y&APPLICATION=UNION_VIEW&language=144&REPORT=WEB_UNION_SUM",
-          bannerURL:
-            "https://www.surrey.ca/sites/default/files/styles/21x9_1920w/public/2022-10/fall-trees-in-surrey.jpg?h=56d0ca2e&itok=YzKjACHG",
+          bannerURL: pic1,
           heading: "Surrey Online Heritage Search",
           description:
-            "Over 100,000 pieces of Surrey’s history are at your fingertips. Search for specific items below, or browse by category, neighborhood, or new content.",
-          bannerCarousel: [
-            "https://www.surrey.ca/sites/default/files/styles/21x9_1920w/public/2022-10/fall-trees-in-surrey.jpg?h=56d0ca2e&itok=YzKjACHG",
-            "https://www.surrey.ca/sites/default/files/styles/21x9_1100w/public/2023-01/whalley-aerial.jpg?h=7c4e7980&itok=w8lHERMH",
-            "https://www.surrey.ca/sites/default/files/styles/21x9_1920w/public/2020-08/COSMOS.PNG?h=2f89500c&itok=7TuiVftj",
-            "https://www.surrey.ca/sites/default/files/styles/21x9_1920w/public/2022-12/two-people-report-a-problem-laptop.png?h=735bdc0a&itok=S3KTW-GJ",
-          ],
+            "Over 100,000 pieces of Surrey's history are at your fingertips. Search for specific items below, or browse by category, neighborhood, or new content.",
+          bannerCarousel: [pic1, pic2, pic3, pic4, pic5, pic6, pic7],
         },
       },
 
@@ -32,23 +40,23 @@ const Home = [
             data: {
               data: [
                 {
-                  thumbnail: "https://picsum.photos/400",
-                  title: "Photos",
+                  thumbnail: Category1,
+                  title: "Photographs",
                 },
                 {
-                  thumbnail: "https://picsum.photos/450",
+                  thumbnail: Category2,
                   title: "Maps",
                 },
                 {
-                  thumbnail: "https://picsum.photos/500",
+                  thumbnail: Category3,
                   title: "Audio/Video",
                 },
                 {
-                  thumbnail: "https://picsum.photos/550",
+                  thumbnail: Category4,
                   title: "Artifacts",
                 },
                 {
-                  thumbnail: "https://picsum.photos/600",
+                  thumbnail: Category5,
                   title: "Textual Records",
                 },
               ],

@@ -20,3 +20,4 @@ export { default as SummaryTextField } from "./SummaryTextField";
 export { default as SummaryChipTag } from "./SummaryChipTag";
 export { default as DetailLayout } from "./DetailLayout";
 export { default as PhotoCoverCard } from "./PhotoCoverCard";
+export { default as CoverFlowCarousel } from "./CoverFlowCarousel";

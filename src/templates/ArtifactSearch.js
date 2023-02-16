@@ -21,11 +21,6 @@ const ArtifactSearch = [
                   data: [
                     { label: "Test 1", value: "123" },
                     { label: "Test 2", value: "123" },
-                    { label: "Test 3", value: "123" },
-                    { label: "Test 4", value: "123" },
-                    { label: "Test 5", value: "123" },
-                    { label: "Test 6", value: "123" },
-                    { label: "Test 7", value: "123" },
                   ],
                 },
 
@@ -35,11 +30,6 @@ const ArtifactSearch = [
                   data: [
                     { label: "Test 1", value: "123" },
                     { label: "Test 2", value: "123" },
-                    { label: "Test 3", value: "123" },
-                    { label: "Test 4", value: "123" },
-                    { label: "Test 5", value: "123" },
-                    { label: "Test 6", value: "123" },
-                    { label: "Test 7", value: "123" },
                   ],
                 },
                 {
@@ -48,25 +38,12 @@ const ArtifactSearch = [
                   data: [
                     { label: "Test 1", value: "123" },
                     { label: "Test 2", value: "123" },
-                    { label: "Test 3", value: "123" },
-                    { label: "Test 4", value: "123" },
-                    { label: "Test 5", value: "123" },
-                    { label: "Test 6", value: "123" },
-                    { label: "Test 7", value: "123" },
                   ],
                 },
                 {
                   title: "Field 4",
                   field: "",
-                  data: [
-                    { label: "Test 1", value: "123" },
-                    { label: "Test 2", value: "123" },
-                    { label: "Test 3", value: "123" },
-                    { label: "Test 4", value: "123" },
-                    { label: "Test 5", value: "123" },
-                    { label: "Test 6", value: "123" },
-                    { label: "Test 7", value: "123" },
-                  ],
+                  data: [{ label: "Test 1", value: "123" }],
                 },
               ],
             },

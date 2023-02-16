@@ -33,37 +33,40 @@ const SummaryMasonryView = (props) => {
           let displayFields = data.find((e) => e.database === database).fields;
           return (
             <Card variant="outlined">
-              {displayFields.map((field) => {
-                let fieldValue = deepSearch(
-                  recordData,
-                  field.name.toLowerCase()
-                );
-                if (fieldValue.length === 0 || field.gridDisplay === false) {
-                  return;
-                }
-                let fieldLabel = field.label;
+              <div style={{ width: "90%" }}>
+                {" "}
+                {displayFields.map((field) => {
+                  let fieldValue = deepSearch(
+                    recordData,
+                    field.name.toLowerCase()
+                  );
+                  if (fieldValue.length === 0 || field.gridDisplay === false) {
+                    return;
+                  }
+                  let fieldLabel = field.label;
 
-                if (field.component !== undefined) {
-                  return Component(field);
-                }
+                  if (field.component !== undefined) {
+                    return Component(field);
+                  }
 
-                if (field.main) {
+                  if (field.main) {
+                    return (
+                      <SummaryTextField
+                        main={field.main}
+                        onClick={(_) => (window.location = recordLink)}
+                      >
+                        {fieldValue.join(",")}
+                      </SummaryTextField>
+                    );
+                  }
+
                   return (
-                    <SummaryTextField
-                      main={field.main}
-                      onClick={(_) => (window.location = recordLink)}
-                    >
-                      {fieldValue.join(",")}
+                    <SummaryTextField>
+                      <strong>{fieldLabel}</strong>: {fieldValue.join(",")}
                     </SummaryTextField>
                   );
-                }
-
-                return (
-                  <SummaryTextField>
-                    <strong>{fieldLabel}</strong>: {fieldValue.join(",")}
-                  </SummaryTextField>
-                );
-              })}
+                })}
+              </div>
               <AspectRatio minHeight="120px" maxHeight="200px" sx={{ my: 2 }}>
                 <img
                   src="https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&fit=crop&w=286"
@@ -73,7 +76,7 @@ const SummaryMasonryView = (props) => {
                 />
               </AspectRatio>
               <IconButton
-                aria-label="bookmark Bahamas Islands"
+                aria-label="bookmark"
                 variant="plain"
                 color="neutral"
                 size="sm"

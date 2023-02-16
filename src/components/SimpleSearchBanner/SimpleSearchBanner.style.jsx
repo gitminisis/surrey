@@ -3,13 +3,11 @@ import { styled } from "@mui/material/styles";
 
 const BANNER_HEIGHT = "100vh";
 export const BannerContainer = styled(Container)(({ theme, banner }) => ({
-  paddingTop: "20%",
+  padding: "0 0",
   height: BANNER_HEIGHT,
   position: "relative",
-  backgroundImage: `url('${banner}')`,
-  backgroundPosition: "center",
-  backgroundRepeat: "no-repeat",
-  backgroundSize: "cover",
+  // backgroundImage: `url('${banner}')`,
+  background: "transparent",
   minHeight: "750px",
   color: "white",
   textAlign: "center",
@@ -21,14 +19,17 @@ export const BannerContainer = styled(Container)(({ theme, banner }) => ({
   transition: "opacity 1s ease-out",
 }));
 
-export const ShadowLayerBox = styled(Box)((_) => ({
+export const ShadowLayerBox = styled(Box)(({ banner }) => ({
   position: "absolute",
   top: "0",
   left: "0",
   width: "100%",
   height: BANNER_HEIGHT,
-  backgroundColor: "rgba(12, 12, 12, 0.9)",
   zIndex: "-1",
+  backgroundImage: `url('${banner}')`,
+  backgroundPosition: "center",
+  backgroundRepeat: "no-repeat",
+  backgroundSize: "cover",
 }));
 
 export const SearchBar = styled(Box)(({ theme }) => ({
@@ -57,7 +58,7 @@ export const SubmitSearch = styled(Button)((_) => ({
 export const SiteHeading = styled(Typography)(({ theme }) => ({
   fontSize: "4.5rem",
   marginBottom: "20px",
-  color:'white',
+  color: "white",
   fontWeight: "900",
   [theme.breakpoints.down("md")]: {
     fontSize: "2.5rem",

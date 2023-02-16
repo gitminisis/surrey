@@ -24,7 +24,6 @@ import PropTypes from "prop-types";
 
 import MobileStepper from "@mui/material/MobileStepper";
 
-
 const Banner = (props) => {
   const {
     bannerURL,
@@ -40,23 +39,35 @@ const Banner = (props) => {
   useEffect(() => {
     const interval = setInterval(() => {
       setActiveStep((prev) => {
-        if (prev === 5) {
+        if (prev === bannerCarousel.length - 1) {
           return 0;
         }
         return prev + 1;
       });
-    }, 2000);
+    }, 5000);
 
     return () => clearInterval(interval);
   }, []);
   return (
     <>
       <BannerContainer
+        style={{ padding: "0 0" }}
         maxWidth={"true"}
         className="bannerContainer"
-        banner={bannerURL}
+        banner={bannerCarousel[activeStep]}
       >
-        <Container maxWidth={"xl"}>
+        <ShadowLayerBox banner={bannerCarousel[activeStep]} />
+        <Container
+          maxWidth={false}
+          style={{
+            width: "100%",
+            height: "100%",
+            paddingTop: "20%",
+            margin: "0 0",
+            background: "rgb(0, 0, 0, 0.4)",
+            zIndex: "4",
+          }}
+        >
           <Grid container spacing={2}>
             <Grid item sm={12}>
               <SiteHeading variant="h1">{heading}</SiteHeading>
@@ -105,12 +116,11 @@ const Banner = (props) => {
             </Grid>
           ) : null}
         </Container>
-
         {children}
       </BannerContainer>
       <MobileStepper
         variant="dots"
-        steps={6}
+        steps={bannerCarousel.length}
         position="static"
         activeStep={activeStep}
         sx={{

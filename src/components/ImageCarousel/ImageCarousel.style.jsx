@@ -10,6 +10,8 @@ export const CarouselText = styled(Typography)((description) => ({
   bottom: "16px",
   left: "16px",
   fontWeight: "600",
+  background: "#2a4408",
+  padding: "2px 4px",
 }));
 export const CarouselBox = styled(Box)(({ theme, dimension, thumbnail }) => {
   let { width, height } = dimension;
@@ -22,11 +24,11 @@ export const CarouselBox = styled(Box)(({ theme, dimension, thumbnail }) => {
     backgroundSize: "cover",
     backgroundRepeat: "no-repeat",
     cursor: "pointer",
-    filter: "brightness(0.8)",
+    filter: "brightness(1)",
     position: "relative",
-    boxShadow: "6px 6px 6px 0px rgba(0,0,0,0.6)",
+    boxShadow: "6px 6px 6px 0px rgba(0,0,0,0.2)",
     ":hover": {
-      filter: "brightness(0.6)",
+      filter: "brightness(0.9)",
     },
     height: ((_) => {
       if (width < 600) return `${width - 32}px`;
