@@ -27,6 +27,7 @@ export const CarouselBox = styled(Box)(({ theme, dimension, thumbnail }) => {
     filter: "brightness(1)",
     position: "relative",
     boxShadow: "6px 6px 6px 0px rgba(0,0,0,0.2)",
+    transition: "all 0.5 linear",
     ":hover": {
       filter: "brightness(0.9)",
     },

@@ -1,12 +1,14 @@
+import pic1 from "../assets/images/Artifacts Main Background.png";
 const ArtifactSearch = [
   {
     component: "Layout",
     children: [
       {
-        component: "AdvancedSearchBanner",
+        component: "SimpleSearchBanner",
         data: {
-          bannerURL:
-            "https://www.surrey.ca/sites/default/files/styles/21x9_1920w/public/2022-05/The%202022%20Re-enactors.jpg?h=120c397f&itok=S0uTZH8E",
+          searchURL:
+            "/scripts/mwimain.dll?UNIONSEARCH&KEEP=Y&APPLICATION=UNION_VIEW&&DATABASE=COLLECTIONS&language=144&REPORT=WEB_UNION_SUM",
+          bannerCarousel: [pic1],
           heading: "Search the Artifacts",
           description:
             "The Heritage Artifact Collection is made up of material culture that holds social and cultural significance to Surrey's diverse communities. Examples include clothing, tools, and memorabilia.",
@@ -65,7 +67,7 @@ const ArtifactSearch = [
       {
         component: "Section",
         data: {
-          heading: "Related Link",
+          heading: "Artifacts on Display",
         },
         children: [
           {

@@ -1,14 +1,17 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import { Grid, CardActionArea, CardMedia } from "@mui/material";
+import {
+  Grid,
+  CardActionArea,
+  CardMedia,
+  Card,
+  CardActions,
+  Typography,
+  Button,
+  CardContent,
+} from "@mui/material";
 import AspectRatio from "@mui/joy/AspectRatio";
 import Box from "@mui/joy/Box";
-import Button from "@mui/joy/Button";
-import Card from "@mui/joy/Card";
-import CardCover from "@mui/joy/CardCover";
-import CardContent from "@mui/joy/CardContent";
-import IconButton from "@mui/joy/IconButton";
-import Typography from "@mui/joy/Typography";
 import LocationOnRoundedIcon from "@mui/icons-material/LocationOnRounded";
 import BookmarkAdd from "@mui/icons-material/BookmarkAddOutlined";
 const PhotoCoverCard = (props) => {
@@ -19,49 +22,26 @@ const PhotoCoverCard = (props) => {
     thumbnail: "https://picsum.photos/900",
   };
   return (
-    <Grid xs={12} md={6}>
-      <Card
-        sx={{ width: "100%", height: "500px", borderRadius: "0" }}
-        style={{ cursor: "pointer" }}
-      >
-        <CardCover
-          onMouseLeave={(_) => setHover(false)}
-          onMouseEnter={(_) => setHover(true)}
-        >
-          <img
-            style={{
-              "&:hover": {
-                transform: "scale(1.02)",
-                objectFit: "cover",
-              },
-            }}
-            src={thumbnail}
-            srcSet={thumbnail}
-            loading="lazy"
-            alt=""
-          />
-        </CardCover>
-        <CardCover
-          sx={{
-            background:
-              "linear-gradient(to top, rgba(0,0,0,0.4), rgba(0,0,0,0) 200px), linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0) 300px)",
-          }}
+    <Grid item xs={12} md={6}>
+      <Card sx={{ height: "600px" }} style={{ cursor: "pointer" }}>
+        <CardMedia
+          sx={{ height: 500 }}
+          image="https://picsum.photos/600"
+          title="green iguana"
         />
-        <CardContent sx={{ justifyContent: "flex-end" }}>
-          {title && (
-            <Typography level="h2" fontSize="lg" textColor="#fff" mb={1}>
-              {title}
-            </Typography>
-          )}
-          {description && (
-            <Typography
-              startDecorator={<LocationOnRoundedIcon />}
-              textColor="neutral.300"
-            >
-              {description}
-            </Typography>
-          )}
+        <CardContent>
+          <Typography gutterBottom variant="h5" component="div">
+            Lizard
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+            Lizards are a widespread group of squamate reptiles, with over 6,000
+            species, ranging across all continents except Antarctica
+          </Typography>
         </CardContent>
+        <CardActions>
+          <Button size="small">Share</Button>
+          <Button size="small">Learn More</Button>
+        </CardActions>
       </Card>
     </Grid>
   );
