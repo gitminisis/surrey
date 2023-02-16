@@ -5,6 +5,8 @@ import { Typography } from "@mui/material";
 import Select from "@mui/joy/Select";
 import Option from "@mui/joy/Option";
 import ViewListIcon from "@mui/icons-material/ViewList";
+
+import TuneIcon from "@mui/icons-material/Tune";
 import ViewModuleIcon from "@mui/icons-material/ViewModule";
 import ToggleButton from "@mui/material/ToggleButton";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
@@ -55,8 +57,11 @@ export default function SummarySubHeader(props) {
               <ToggleButton value="list" aria-label="list">
                 <ViewListIcon />
               </ToggleButton>
-              <ToggleButton  aria-label="list">
-                <ViewListIcon />
+              <ToggleButton
+                onClick={props.toggleFilter}
+                aria-label="filter toggle"
+              >
+                <TuneIcon />
               </ToggleButton>
             </ToggleButtonGroup>
           </Box>

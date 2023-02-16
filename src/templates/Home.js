@@ -11,7 +11,7 @@ const Home = [
             "https://www.surrey.ca/sites/default/files/styles/21x9_1920w/public/2022-10/fall-trees-in-surrey.jpg?h=56d0ca2e&itok=YzKjACHG",
           heading: "Surrey Online Heritage Search",
           description:
-            "More than 100,000 archival photos, maps, documents and oral histories, as well as over 5,000 artifacts are at your fingertips. Browse the categories, neighbourhoods, or new additions below, or search for specific records using the keyword search.",
+            "Over 100,000 pieces of Surrey’s history are at your fingertips. Search for specific items below, or browse by category, neighborhood, or new content.",
           bannerCarousel: [
             "https://www.surrey.ca/sites/default/files/styles/21x9_1920w/public/2022-10/fall-trees-in-surrey.jpg?h=56d0ca2e&itok=YzKjACHG",
             "https://www.surrey.ca/sites/default/files/styles/21x9_1100w/public/2023-01/whalley-aerial.jpg?h=7c4e7980&itok=w8lHERMH",

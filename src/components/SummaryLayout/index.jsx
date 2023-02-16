@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import { Grid, Paper } from "@mui/material";
+import { Grid, Paper, Collapse } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { SummaryContainer, Item } from "./SummaryLayout.style";
 import SummaryFilter from "./SummaryFilter";
@@ -38,11 +38,22 @@ const SummaryLayout = (props) => {
             <GeneralSearchBox />
           </Grid>
           {filter && showFilter && (
-            <Grid item xs={0} md={3} display={{ xs: "none", md: "block" }}>
+            <Grid
+              item
+              xs={0}
+              md={3}
+              style={{ transition: " all .5s ease-in-out" }}
+              display={{ xs: "none", md: "block" }}
+            >
               <SummaryFilter data={filter} />
             </Grid>
           )}
-          <Grid item xs={12} md={filter ? 9 : 12}>
+          <Grid
+            style={{ transition: " all .5s ease-in-out" }}
+            item
+            xs={12}
+            md={filter && showFilter ? 9 : 12}
+          >
             <Grid container rowSpacing={2}>
               <Grid item xs={12}>
                 <SummarySubHeader

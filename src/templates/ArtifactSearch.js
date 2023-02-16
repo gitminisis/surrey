@@ -9,7 +9,7 @@ const ArtifactSearch = [
             "https://www.surrey.ca/sites/default/files/styles/21x9_1920w/public/2022-05/The%202022%20Re-enactors.jpg?h=120c397f&itok=S0uTZH8E",
           heading: "Search the Artifacts",
           description:
-            "The City’s artifact collections are a vast and rich resource. Collection categories include archaeology, ethnology, agriculture, clothing, textiles, furnishings, tools & equipment, books, commemorative materials, recreation, toys and more.",
+            "The Heritage Artifact Collection is made up of material culture that holds social and cultural significance to Surrey's diverse communities. Examples include clothing, tools, and memorabilia.",
 
           collapseSearchFilter: {
             data: {
