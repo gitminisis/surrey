@@ -25,12 +25,12 @@ const PhotoCoverCard = (props) => {
     <Grid item xs={12} md={6}>
       <Card sx={{ height: "600px" }} style={{ cursor: "pointer" }}>
         <CardMedia
-          sx={{ height: 500 }}
+          sx={{ height: 400 }}
           image="https://picsum.photos/600"
           title="green iguana"
         />
         <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
+          <Typography gutterBottom variant="h3" component="div">
             Lizard
           </Typography>
           <Typography variant="body2" color="text.secondary">
@@ -40,7 +40,6 @@ const PhotoCoverCard = (props) => {
         </CardContent>
         <CardActions>
           <Button size="small">Share</Button>
-          <Button size="small">Learn More</Button>
         </CardActions>
       </Card>
     </Grid>

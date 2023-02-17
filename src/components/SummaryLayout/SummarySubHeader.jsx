@@ -11,13 +11,18 @@ import ViewModuleIcon from "@mui/icons-material/ViewModule";
 import ToggleButton from "@mui/material/ToggleButton";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import PropTypes from "prop-types";
+import { deepSearch, getXMLRecord } from "../../utils/functions";
 export default function SummarySubHeader(props) {
   const handleChange = (event, nextView) => {
     setView(nextView);
   };
+  const xml = getXMLRecord();
+  let totalRecord = deepSearch(xml, "total_record");
+  let searchStatement = deepSearch(xml, "search_statement");
   return (
     <Item sx={{ padding: "10px 16px" }} elevation={6}>
       <Box
+        className="summarySubHeaderBox"
         sx={{
           display: "flex",
           justifyContent: "space-between",
@@ -29,10 +34,9 @@ export default function SummarySubHeader(props) {
             variant="body1"
             sx={{ fontWeight: "bold", fontSize: "1.2rem" }}
           >
-            50 Search results for "Test"
+            {`${totalRecord} search results for "${searchStatement}"`}
           </Typography>
         </Box>
-
         <Box sx={{ display: "flex", gap: 2, flexDirection: "row" }}>
           <Box
             sx={{

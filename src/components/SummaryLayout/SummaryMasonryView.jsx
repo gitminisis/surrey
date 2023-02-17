@@ -39,7 +39,7 @@ const SummaryMasonryView = (props) => {
                   let fieldValue = deepSearch(
                     recordData,
                     field.name.toLowerCase()
-                  );
+                );
                   if (fieldValue.length === 0 || field.gridDisplay === false) {
                     return;
                   }

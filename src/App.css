@@ -74,3 +74,9 @@
   color: #538000;
   text-decoration: underline;
 }
+@media only screen and (max-width: 768px) {
+  .summarySubHeaderBox {
+    flex-direction: column !important;
+    align-items: center !;
+  }
+}
