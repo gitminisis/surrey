@@ -159,7 +159,11 @@ const Banner = (props) => {
         }}
       />
       {collapseSearchFilter && (
-        <CollapseSearchFilter show={show} {...collapseSearchFilter.data} />
+        <CollapseSearchFilter
+          show={show}
+    
+          {...collapseSearchFilter.data}
+        />
       )}
     </>
   );

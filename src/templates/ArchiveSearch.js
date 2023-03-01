@@ -15,6 +15,7 @@ const ArchivesSearch = [
 
           collapseSearchFilter: {
             data: {
+              database: "DESCRIPTION",
               description: "More search options",
               data: [
                 {
