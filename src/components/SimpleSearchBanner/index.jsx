@@ -9,6 +9,7 @@ import {
   SubmitSearch,
   SiteHeading,
   SiteDescription,
+  HoverLink,
 } from "./SimpleSearchBanner.style";
 import {
   Typography,
@@ -21,8 +22,11 @@ import {
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import PropTypes from "prop-types";
+import CollapseSearchFilter from "../AdvancedSearchBanner/CollapseSearchFilter";
 
 import MobileStepper from "@mui/material/MobileStepper";
+import KeyboardDoubleArrowUpIcon from "@mui/icons-material/KeyboardDoubleArrowUp";
+import KeyboardDoubleArrowDownIcon from "@mui/icons-material/KeyboardDoubleArrowDown";
 
 const Banner = (props) => {
   const {
@@ -33,8 +37,9 @@ const Banner = (props) => {
     noSearchBox,
     children,
     bannerCarousel,
+    collapseSearchFilter,
   } = props;
-
+  const [show, setShow] = useState(false);
   const [activeStep, setActiveStep] = React.useState(0);
   useEffect(() => {
     const interval = setInterval(() => {
@@ -117,6 +122,26 @@ const Banner = (props) => {
           ) : null}
         </Container>
         {children}
+        {collapseSearchFilter && (
+          <HoverLink
+            variant="h5"
+            color="secondary"
+            sx={{}}
+            onClick={(_) => {
+              setShow(!show);
+            }}
+          >
+            {collapseSearchFilter.data.description}
+            <br />{" "}
+            <span>
+              {!show ? (
+                <KeyboardDoubleArrowDownIcon />
+              ) : (
+                <KeyboardDoubleArrowUpIcon />
+              )}
+            </span>
+          </HoverLink>
+        )}
       </BannerContainer>
       <MobileStepper
         variant="dots"
@@ -133,6 +158,9 @@ const Banner = (props) => {
           backgroundColor: "rgba(0, 0, 0, 0.4)",
         }}
       />
+      {collapseSearchFilter && (
+        <CollapseSearchFilter show={show} {...collapseSearchFilter.data} />
+      )}
     </>
   );
 };
@@ -143,5 +171,6 @@ Banner.propTypes = {
   noSearchBox: PropTypes.bool,
   bannerCarousel: PropTypes.arrayOf(PropTypes.string),
   searchURL: PropTypes.string,
+  collapseSearchFilter: PropTypes.object,
 };
 export default Banner;

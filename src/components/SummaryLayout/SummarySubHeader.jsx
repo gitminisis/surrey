@@ -83,13 +83,22 @@ export default function SummarySubHeader(props) {
           <Select
             placeholder="Select a sort"
             defaultValue="default"
-            sx={{ width: 240 }}
+            sx={{ width: 180 }}
           >
             <Option value="default">Default</Option>
             <Option value="yearAsc">Year Ascending</Option>
             <Option value="yearDsc">Year Descending</Option>
             <Option value="titleAsc">Title Ascending</Option>
             <Option value="titleDsc">Title Ascending</Option>
+          </Select>{" "}
+          <Select
+            placeholder="Records per page"
+            defaultValue="25"
+            sx={{ width: 122 }}
+          >
+            <Option value="25">25 Records</Option>
+            <Option value="50">50 Records</Option>
+            <Option value="100">100 Records</Option>
           </Select>
         </Box>
       </Box>

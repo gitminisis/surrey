@@ -15,7 +15,7 @@ import {
 } from "@mui/material";
 const CollapseSearchFilter = (props) => {
   let { show, data, description } = props;
-  console.log(props);
+
   return (
     <>
       <Collapse in={show} timeout="auto" unmountOnExit>

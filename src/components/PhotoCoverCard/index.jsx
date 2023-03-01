@@ -23,23 +23,34 @@ const PhotoCoverCard = (props) => {
   };
   return (
     <Grid item xs={12} md={6}>
-      <Card sx={{ height: "600px" }} style={{ cursor: "pointer" }}>
+      <Card style={{ cursor: "pointer", paddingBottom: "20px" }} elevation={3}>
         <CardMedia
           sx={{ height: 400 }}
-          image="https://picsum.photos/600"
+          image="https://picsum.photos/1200"
           title="green iguana"
         />
         <CardContent>
-          <Typography gutterBottom variant="h3" component="div">
-            Lizard
+          <Typography gutterBottom variant="h2" component="div">
+            Feature collections
           </Typography>
-          <Typography variant="body2" color="text.secondary">
-            Lizards are a widespread group of squamate reptiles, with over 6,000
-            species, ranging across all continents except Antarctica
+          <Typography variant="body2" color="text.primary">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat. Duis aute irure dolor in
+            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+            pariatur.
           </Typography>
         </CardContent>
         <CardActions>
-          <Button size="small">Share</Button>
+          <Button
+            style={{ margin: "0 auto" }}
+            className="button"
+            variant="contained"
+            size="large"
+          >
+            Browse
+          </Button>
         </CardActions>
       </Card>
     </Grid>

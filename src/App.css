@@ -80,3 +80,12 @@
     align-items: center !;
   }
 }
+
+.button {
+  padding: 10px 30px 10px 30px !important;
+  border-radius: 40px !important;
+}
+.MuiDrawer-paperAnchorLeft {
+  transition: all 0.5s ease !important;
+  top: 380px;
+}

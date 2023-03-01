@@ -63,7 +63,7 @@ const FieldFilter = (props) => {
   );
 };
 const SummaryFilter = (props) => {
-  const { data } = props;
+  const { data,  } = props;
   return (
     <Item
       elevation={6}
@@ -72,6 +72,7 @@ const SummaryFilter = (props) => {
         overflowY: "scroll",
         overflowX: "hidden",
         padding: "0",
+     
       }}
     >
       {data.map((item, i) => (

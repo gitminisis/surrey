@@ -12,44 +12,6 @@ const ArtifactSearch = [
           heading: "Search the Artifacts",
           description:
             "The Heritage Artifact Collection is made up of material culture that holds social and cultural significance to Surrey's diverse communities. Examples include clothing, tools, and memorabilia.",
-
-          collapseSearchFilter: {
-            data: {
-              description: "More search options",
-              data: [
-                {
-                  title: "Field 1",
-                  field: "",
-                  data: [
-                    { label: "Test 1", value: "123" },
-                    { label: "Test 2", value: "123" },
-                  ],
-                },
-
-                {
-                  title: "Field 2",
-                  field: "",
-                  data: [
-                    { label: "Test 1", value: "123" },
-                    { label: "Test 2", value: "123" },
-                  ],
-                },
-                {
-                  title: "Field 3",
-                  field: "",
-                  data: [
-                    { label: "Test 1", value: "123" },
-                    { label: "Test 2", value: "123" },
-                  ],
-                },
-                {
-                  title: "Field 4",
-                  field: "",
-                  data: [{ label: "Test 1", value: "123" }],
-                },
-              ],
-            },
-          },
         },
       },
       {

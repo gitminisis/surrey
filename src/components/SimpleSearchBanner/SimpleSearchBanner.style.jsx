@@ -72,3 +72,16 @@ export const SiteDescription = styled(Typography)(({ theme }) => ({
     fontSize: "1.2rem",
   },
 }));
+
+export const HoverLink = styled(Typography)(({ theme }) => ({
+  position: "absolute",
+  bottom: "20px",
+  left: "0",
+  right: "0",
+  fontWeight: "900",
+  color: "white",
+  cursor: "pointer",
+  "&:hover": {
+    textDecoration: " underline",
+  },
+}));
