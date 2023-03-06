@@ -1,7 +1,7 @@
 import React from "react";
 import Footer from "../Footer";
 import AppBar from "../AppBar";
-import { Box } from "@mui/material";
+import { Box, Container } from "@mui/material";
 import SiteLayout from "../../templates/SiteLayout";
 import { ErrorBoundary, withErrorBoundary } from "react-error-boundary";
 
@@ -30,7 +30,7 @@ const LayoutChildren = ({ child }) => {
 };
 
 const ErrorFallback = ({ error }) => (
-  <div style={{ height: "100vh", paddingTop:'40vh' }}>
+  <div style={{ height: "100vh", paddingTop: "40vh" }}>
     <p>Something went wrong 😭</p>
 
     {error.message && <span>Here's the error: {error.message}</span>}

@@ -59,10 +59,12 @@ const SummaryRecordsView = (props) => {
                 >
                   <CardContent sx={{ flex: "1 0 auto" }}>
                     {displayFields.map((field) => {
+                   
                       let fieldValue = deepSearch(
                         recordData,
                         field.name.toLowerCase()
                       );
+                      console.log(field);
                       if (fieldValue.length === 0) {
                         return;
                       }

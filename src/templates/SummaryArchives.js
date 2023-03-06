@@ -27,41 +27,6 @@ const Summary = [
           ],
           displayField: [
             {
-              database: "COLLECTIONS",
-              fields: [
-                {
-                  name: "LEGAL_TITLE",
-                  label: "Title",
-                  main: true,
-                },
-                {
-                  name: "ACCESSION_NUMBER",
-                  label: "ID",
-                },
-
-                {
-                  name: "EARLY",
-                  label: "Dates",
-                  gridDisplay: false,
-                },
-                {
-                  name: "OBJECT_NAME",
-                  label: "Object Name(s)",
-                  gridDisplay: false,
-                },
-                {
-                  name: "MATERIAL",
-                  label: "Material(s)",
-                  gridDisplay: false,
-                },
-                {
-                  name: "OBJ_DESCRIPTION",
-                  label: "Description",
-                  gridDisplay: false,
-                },
-              ],
-            },
-            {
               database: "DESCRIPTION",
               fields: [
                 {
@@ -72,12 +37,12 @@ const Summary = [
 
                 {
                   name: "DATE_SEARCH",
-                  label: "Dates",
+                  label: "Date(s)",
                   gridDisplay: false,
                 },
 
                 {
-                  name: "gmd_occurrence",
+                  name: "form_occurrence",
                   label: "Type",
                   gridDisplay: false,
                 },
@@ -89,6 +54,7 @@ const Summary = [
               ],
             },
           ],
+          defaultView: "list",
         },
       },
     ],

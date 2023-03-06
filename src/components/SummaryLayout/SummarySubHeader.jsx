@@ -48,7 +48,7 @@ export default function SummarySubHeader(props) {
               },
             }}
           >
-            {" "}
+ 
             <ToggleButtonGroup
               orientation="horizontal"
               value={props.isGrid === true ? "grid" : "list"}
@@ -69,37 +69,7 @@ export default function SummarySubHeader(props) {
               </ToggleButton>
             </ToggleButtonGroup>
           </Box>
-          <Box sx={{ display: "flex", alignItems: "center" }}>
-            <Typography
-              variant="body1"
-              sx={{
-                fontWeight: "bold",
-                fontSize: "1rem",
-              }}
-            >
-              Sort By:
-            </Typography>
-          </Box>
-          <Select
-            placeholder="Select a sort"
-            defaultValue="default"
-            sx={{ width: 180 }}
-          >
-            <Option value="default">Default</Option>
-            <Option value="yearAsc">Year Ascending</Option>
-            <Option value="yearDsc">Year Descending</Option>
-            <Option value="titleAsc">Title Ascending</Option>
-            <Option value="titleDsc">Title Ascending</Option>
-          </Select>{" "}
-          <Select
-            placeholder="Records per page"
-            defaultValue="25"
-            sx={{ width: 122 }}
-          >
-            <Option value="25">25 Records</Option>
-            <Option value="50">50 Records</Option>
-            <Option value="100">100 Records</Option>
-          </Select>
+         
         </Box>
       </Box>
     </Item>

@@ -31,19 +31,20 @@ const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
 );
 
 const SummaryLayout = (props) => {
-  const { filter, displayField } = props;
+  const { filter, displayField, defaultView } = props;
   if (!localStorage.getItem("grid")) {
     localStorage.setItem("grid", true);
   }
   const defaultHeight = 380;
-  const [grid, setGrid] = useState(localStorage.getItem("grid") === "true");
+  const [grid, setGrid] = useState(
+    defaultView ? defaultView === "grid" : false
+  );
   const [showFilter, setShowFilter] = useState(true);
   const [scroll, setScroll] = useState(
     window.pageYOffset <= defaultHeight ? window.pageYOffset - 80 : 80
   );
 
   useEffect(() => {
- 
     const onScroll = (e) => {
       let curPosition = window.pageYOffset;
       setScroll(curPosition);
@@ -58,8 +59,6 @@ const SummaryLayout = (props) => {
     if (!b || b === undefined) {
       return;
     }
-
-    localStorage.setItem("grid", b === "grid");
     setGrid(b === "grid");
   };
 
@@ -76,26 +75,28 @@ const SummaryLayout = (props) => {
           container
           spacing={2}
           rowSpacing={2}
-          style={{ position: "relative" }}
+          style={{ position: "relative", width: "100vw" }}
         >
-          <Grid item xs={12}>
-            <GeneralSearchBox />
-          </Grid>
-          {filter && (
-            <Drawer
-              sx={{
-                width: "100%",
-              }}
-              variant="persistent"
-              anchor="left"
-              open={showFilter}
-            >
-              <SummaryFilter data={filter} />
-            </Drawer>
-          )}
+          {" "}
           <Main open={showFilter}>
-            {" "}
-            <Grid container rowSpacing={2}>
+            <Grid item xs={12}>
+              <GeneralSearchBox />
+            </Grid>
+            {filter && (
+              <Drawer
+                sx={{
+                  width: "100%",
+                  display: { md: "none", lg: "flex" },
+                }}
+                variant="persistent"
+                anchor="left"
+                open={showFilter}
+              >
+                <SummaryFilter data={filter} />
+              </Drawer>
+            )}
+
+            <Grid container rowSpacing={2} style={{ marginTop: "1rem" }}>
               <Grid item xs={12}>
                 <SummarySubHeader
                   toggleFilter={toggleFilter}
