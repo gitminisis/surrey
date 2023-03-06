@@ -42,22 +42,27 @@ const Home = [
                 {
                   thumbnail: Category1,
                   title: "Photographs",
+                  link: '/scripts/mwimain.dll?UNIONSEARCH&KEEP=Y&APPLICATION=UNION_VIEW&DATABASE=DESCRIPTION&language=144&REPORT=WEB_UNION_SUM_DESC&EXP=A_IM_ACCESS present and FORM "Graphic material"',
                 },
                 {
                   thumbnail: Category2,
                   title: "Maps",
+                  link: '/scripts/mwimain.dll?UNIONSEARCH&KEEP=Y&APPLICATION=UNION_VIEW&DATABASE=DESCRIPTION&language=144&REPORT=WEB_UNION_SUM_DESC&EXP=A_IM_ACCESS present and FORM "Cartographic material"'
                 },
                 {
                   thumbnail: Category3,
                   title: "Audio/Video",
+                  link: '/scripts/mwimain.dll?UNIONSEARCH&KEEP=Y&APPLICATION=UNION_VIEW&DATABASE=DESCRIPTION&language=144&REPORT=WEB_UNION_SUM_DESC&EXP=(A_AD_ACCESS present or A_VD_ACCESS present)and FORM "Cartographic material"'
                 },
                 {
                   thumbnail: Category4,
                   title: "Artifacts",
+                  link: '/scripts/mwimain.dll?UNIONSEARCH&KEEP=Y&APPLICATION=UNION_VIEW&language=144&REPORT=WEB_UNION_SUM_DESC&EXP=(A_IM_ACCESS present and FORM "Object") or (M_IM_ACCESS present)'
                 },
                 {
                   thumbnail: Category5,
                   title: "Textual Records",
+                  link: '/scripts/mwimain.dll?UNIONSEARCH&KEEP=Y&APPLICATION=UNION_VIEW&DATABASE=DESCRIPTION&language=144&REPORT=WEB_UNION_SUM_DESC&EXP=A_IM_ACCESS present and FORM "Textual record"'
                 },
               ],
             },

@@ -37,10 +37,10 @@ const Carousel = (props) => {
 
   return (
     <Swiper
-      autoplay={{ delay: 1000 }}
+      autoplay={{ delay: 2000 }}
       freeMode={true}
       loop={true}
-      speed={800}
+      speed={1000}
       modules={[Navigation, Pagination]}
       slidesPerView={1}
       breakpoints={breakpoints}
@@ -84,7 +84,11 @@ const ImageCarousel = (props) => {
     <Carousel>
       {data.map((item, i) => (
         <SwiperSlide key={item.thumbnail + i}>
-          <CarouselBox dimension={windowDimensions} thumbnail={item.thumbnail}>
+          <CarouselBox
+            onClick={(_) => (window.location = item.link ? item.link : "#")}
+            dimension={windowDimensions}
+            thumbnail={item.thumbnail}
+          >
             <CarouselText as="p">{item.title}</CarouselText>
           </CarouselBox>
         </SwiperSlide>
