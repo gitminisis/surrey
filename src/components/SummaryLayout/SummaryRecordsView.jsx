@@ -21,6 +21,7 @@ const SummaryRecordsView = (props) => {
         let database = record.database_name;
         let recordLink = record.record_link.replace(/\n/g, "");
         let recordData = record.record;
+        console.log(database);
         let displayFields = data.find((e) => e.database === database).fields;
 
         return (
@@ -59,12 +60,10 @@ const SummaryRecordsView = (props) => {
                 >
                   <CardContent sx={{ flex: "1 0 auto" }}>
                     {displayFields.map((field) => {
-                   
                       let fieldValue = deepSearch(
                         recordData,
                         field.name.toLowerCase()
                       );
-                      console.log(field);
                       if (fieldValue.length === 0) {
                         return;
                       }

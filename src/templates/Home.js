@@ -12,9 +12,14 @@ import Category3 from "../assets/images/Audio-Visual.png";
 import Category4 from "../assets/images/Artifacts.png";
 import Category5 from "../assets/images/Textual Records.png";
 
+import { getRecendAdditions } from "../utils/api";
+getRecendAdditions();
 const Home = [
   {
     component: "Layout",
+    data: {
+      active: "Home",
+    },
     children: [
       {
         component: "SimpleSearchBanner",
@@ -47,22 +52,22 @@ const Home = [
                 {
                   thumbnail: Category2,
                   title: "Maps",
-                  link: '/scripts/mwimain.dll?UNIONSEARCH&KEEP=Y&APPLICATION=UNION_VIEW&DATABASE=DESCRIPTION&language=144&REPORT=WEB_UNION_SUM_DESC&EXP=A_IM_ACCESS present and FORM "Cartographic material"'
+                  link: '/scripts/mwimain.dll?UNIONSEARCH&KEEP=Y&APPLICATION=UNION_VIEW&DATABASE=DESCRIPTION&language=144&REPORT=WEB_UNION_SUM_DESC&EXP=A_IM_ACCESS present and FORM "Cartographic material"',
                 },
                 {
                   thumbnail: Category3,
                   title: "Audio/Video",
-                  link: '/scripts/mwimain.dll?UNIONSEARCH&KEEP=Y&APPLICATION=UNION_VIEW&DATABASE=DESCRIPTION&language=144&REPORT=WEB_UNION_SUM_DESC&EXP=(A_AD_ACCESS present or A_VD_ACCESS present)and FORM "Cartographic material"'
+                  link: '/scripts/mwimain.dll?UNIONSEARCH&KEEP=Y&APPLICATION=UNION_VIEW&DATABASE=DESCRIPTION&language=144&REPORT=WEB_UNION_SUM_DESC&EXP=(A_AD_ACCESS present or A_VD_ACCESS present)and FORM "Cartographic material"',
                 },
                 {
                   thumbnail: Category4,
                   title: "Artifacts",
-                  link: '/scripts/mwimain.dll?UNIONSEARCH&KEEP=Y&APPLICATION=UNION_VIEW&language=144&REPORT=WEB_UNION_SUM_DESC&EXP=(A_IM_ACCESS present and FORM "Object") or (M_IM_ACCESS present)'
+                  link: '/scripts/mwimain.dll?UNIONSEARCH&KEEP=Y&APPLICATION=UNION_VIEW&language=144&REPORT=WEB_UNION_SUM&EXP=(A_IM_ACCESS present and FORM "Object") or (M_IM_ACCESS present)',
                 },
                 {
                   thumbnail: Category5,
                   title: "Textual Records",
-                  link: '/scripts/mwimain.dll?UNIONSEARCH&KEEP=Y&APPLICATION=UNION_VIEW&DATABASE=DESCRIPTION&language=144&REPORT=WEB_UNION_SUM_DESC&EXP=A_IM_ACCESS present and FORM "Textual record"'
+                  link: '/scripts/mwimain.dll?UNIONSEARCH&KEEP=Y&APPLICATION=UNION_VIEW&DATABASE=DESCRIPTION&language=144&REPORT=WEB_UNION_SUM_DESC&EXP=A_IM_ACCESS present and FORM "Textual record"',
                 },
               ],
             },

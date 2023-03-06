@@ -2,6 +2,9 @@ import pic1 from "../assets/images/Artifacts Main Background.png";
 const ArtifactSearch = [
   {
     component: "Layout",
+    data: {
+      active: "Artifact",
+    },
     children: [
       {
         component: "SimpleSearchBanner",

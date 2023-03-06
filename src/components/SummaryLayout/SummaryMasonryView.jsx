@@ -34,13 +34,11 @@ const SummaryMasonryView = (props) => {
           return (
             <Card variant="outlined">
               <div style={{ width: "90%" }}>
-          
                 {displayFields.map((field) => {
-                  
                   let fieldValue = deepSearch(
                     recordData,
                     field.name.toLowerCase()
-                );
+                  );
                   if (fieldValue.length === 0 || field.gridDisplay === false) {
                     return;
                   }

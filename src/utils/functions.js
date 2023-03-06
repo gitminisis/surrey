@@ -25,8 +25,9 @@ export const deepSearch = (obj, key) => {
   return res;
 };
 
-export const getXMLRecord = () => {
-  let xmlDOM = document.querySelector("#xml_record");
+export const getXMLRecord = (dom) => {
+  let DOM_SEARCH = dom ? dom : document;
+  let xmlDOM = DOM_SEARCH.querySelector("#xml_record");
   let x2js = new X2JS();
   let json = x2js.xml_str2json(new XMLSerializer().serializeToString(xmlDOM));
   return json;
@@ -41,3 +42,21 @@ export const getIndexList = (field, database, application) => {
   let url = `/scripts/mwimain.dll/FIRST?INDEXLIST&KEYNAME=${field}&DATABASE=${database}&form=[${VIRTUAL_DIR}]includes/html/cluster.html&TITLE=Browse%20${field}&APPLICATION=${APPLICATION}&LANGUAGE=144`;
   return axios.get(url);
 };
+
+export const getTodayDate = (_) => {
+  return new Date().toJSON().slice(0, 10);
+};
+
+export const getTomorrowDate = (_) => {
+  let tomorrow = new Date();
+  tomorrow.setDate(new Date().getDate() + 1);
+  return tomorrow.toJSON().slice(0, 10);
+};
+
+export const getDaysBeforeDate = (number = 30) => {
+  let today = new Date();
+  let priorDate = new Date(new Date().setDate(today.getDate() - number));
+  return priorDate.toJSON().slice(0, 10);
+};
+
+

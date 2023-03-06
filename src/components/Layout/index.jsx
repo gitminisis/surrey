@@ -5,10 +5,10 @@ import { Box, Container } from "@mui/material";
 import SiteLayout from "../../templates/SiteLayout";
 import { ErrorBoundary, withErrorBoundary } from "react-error-boundary";
 
-const Layout = ({ children }) => {
+const Layout = ({ active, children }) => {
   return (
     <>
-      <AppBar {...SiteLayout} />
+      <AppBar active={active} {...SiteLayout} />
 
       <ErrorBoundary
         FallbackComponent={ErrorFallback}

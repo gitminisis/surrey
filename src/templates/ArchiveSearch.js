@@ -1,7 +1,15 @@
 import pic1 from "../assets/images/Archives_Main.png";
+import Featured1 from "../assets/images/Surrey Leader Photograph Collection.png";
+import Featured2 from "../assets/images/Columbian Newspaper Collection.png";
+import Featured3 from "../assets/images/Community Planning Photographs.png";
+import Featured4 from "../assets/images/Surrey 2000 Captured Time Collection.png";
+
 const ArchivesSearch = [
   {
     component: "Layout",
+    data: {
+      active: "Archives",
+    },
     children: [
       {
         component: "SimpleSearchBanner",
@@ -67,20 +75,24 @@ const ArchivesSearch = [
             data: {
               data: [
                 {
-                  thumbnail: "https://picsum.photos/400",
-                  title: "Library",
+                  thumbnail: Featured1,
+                  title: "The Surrey Leader Photograph Fonds",
+                  link: "/scripts/mwimain.dll?UNIONSEARCH&KEEP=Y&APPLICATION=UNION_VIEW&DATABASE=DESCRIPTION&language=144&REPORT=WEB_UNION_SUM_DESC&EXP=REFD F62",
                 },
                 {
-                  thumbnail: "https://picsum.photos/450",
-                  title: "Books",
+                  thumbnail: Featured2,
+                  title: "The Columbian Newspaper Collection",
+                  link: "/scripts/mwimain.dll?UNIONSEARCH&KEEP=Y&APPLICATION=UNION_VIEW&DATABASE=DESCRIPTION&language=144&REPORT=WEB_UNION_SUM_DESC&EXP=REFD F98",
                 },
                 {
-                  thumbnail: "https://picsum.photos/500",
-                  title: "Library",
+                  thumbnail: Featured3,
+                  title: "Community Planning Photographs",
+                  link: "/scripts/mwimain.dll?UNIONSEARCH&KEEP=Y&APPLICATION=UNION_VIEW&DATABASE=DESCRIPTION&language=144&REPORT=WEB_UNION_SUM_DESC&EXP=REFD COS.PL 9",
                 },
                 {
-                  thumbnail: "https://picsum.photos/550",
-                  title: "Library",
+                  thumbnail: Featured4,
+                  title: "Surrey 2000, Captured Time Collection",
+                  link: "/scripts/mwimain.dll?UNIONSEARCH&KEEP=Y&APPLICATION=UNION_VIEW&DATABASE=DESCRIPTION&language=144&REPORT=WEB_UNION_SUM_DESC&EXP=REFD F140",
                 },
               ],
             },

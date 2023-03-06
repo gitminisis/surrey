@@ -1,9 +1,12 @@
  const FAQ = [{
      component: 'Layout',
+     data: {
+        active: "FAQ",
+      },
      children: [{
              component: "SimpleSearchBanner",
              data: {
-                 bannerURL: "https://www.surrey.ca/sites/default/files/styles/21x9_1920w/public/2021-05/SeniorOnTablet.jpeg?h=93ff39ef&itok=rNlCoNyd",
+                bannerCarousel: ["https://www.surrey.ca/sites/default/files/styles/21x9_1920w/public/2021-05/SeniorOnTablet.jpeg?h=93ff39ef&itok=rNlCoNyd"],
                  heading: "Frequently Asked Questions",
                  description: "We are here to answer your questions",
 

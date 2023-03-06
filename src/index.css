@@ -1,6 +1,6 @@
 @font-face {
   font-family: "Univers LT W02 55 Roman";
-  src:  url(./assets/fonts/font.woff2) format("woff2");
+  src: url(./assets/fonts/font.woff2) format("woff2");
   /* other formats include: 'woff2', 'truetype, 'opentype',
                               'embedded-opentype', and 'svg' */
 }
@@ -9,10 +9,11 @@ body {
   font-family: "Univers LT W02 55 Roman";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 
 * {
-    font-family: "Univers LT W02 55 Roman" 
+  font-family: "Univers LT W02 55 Roman";
 }
 
 .hideScrollbar::-webkit-scrollbar {
@@ -36,9 +37,15 @@ body {
 }
 
 .MuiMobileStepper-dot {
-    background:white !important;
+  background: white !important;
 }
 
 .MuiMobileStepper-dotActive {
-    background:green !important;
+  background: green !important;
+}
+.active-link {
+  display: flex !important;
+  height: 100% !important;
+  border-bottom: 3px solid white;
+  align-items: center !important;
 }

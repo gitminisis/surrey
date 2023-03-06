@@ -9,7 +9,7 @@ import SummaryRecordsView from "./SummaryRecordsView";
 import GeneralSearchBox from "../GeneralSearchBox";
 import SummaryMasonryView from "./SummaryMasonryView";
 
-const drawerWidth = 240;
+const drawerWidth = 300;
 const scrollHeight = 330;
 const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
   ({ theme, open }) => ({
@@ -25,7 +25,10 @@ const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
         easing: theme.transitions.easing.easeOut,
         duration: theme.transitions.duration.enteringScreen,
       }),
-      marginLeft: `${drawerWidth}px`,
+      [theme.breakpoints.up("md")]: {
+        marginLeft: `${drawerWidth}px`,
+      },
+      [theme.breakpoints.down("md")]: { marginLeft: 0 },
     }),
   })
 );
@@ -78,7 +81,12 @@ const SummaryLayout = (props) => {
           style={{ position: "relative", width: "100vw" }}
         >
           {" "}
-          <Main open={showFilter}>
+          <Main
+            open={showFilter}
+            sx={{
+              marginLeft: { md: 0, lg: showFilter ? `${drawerWidth}px` : 0 },
+            }}
+          >
             <Grid item xs={12}>
               <GeneralSearchBox />
             </Grid>

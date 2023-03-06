@@ -1,6 +1,9 @@
 const Summary = [
   {
     component: "Layout",
+    data: {
+      active: "Archives",
+    },
     children: [
       {
         component: "SummaryLayout",

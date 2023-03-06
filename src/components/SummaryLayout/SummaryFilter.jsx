@@ -36,8 +36,8 @@ const FieldFilter = (props) => {
         maxHeight: "400px",
         overflowY: "scroll",
         overflowX: "hidden",
-        margin: "18px 16px",
-        borderRadius: "sm",
+        margin: "4px 4px",
+        border: "none",
       }}
     >
       <ListItemButton onClick={handleClick}>
@@ -69,14 +69,49 @@ const SummaryFilter = (props) => {
   const { data } = props;
   return (
     <Item
-      elevation={6}
+      elevation={0}
       sx={{
         height: "auto",
         overflowY: "scroll",
         overflowX: "hidden",
-        padding: "0",
+        padding: "10px",
+        textAlign: "center",
       }}
     >
+      <TextBox>Bookmark</TextBox>
+      <TextBox>Sort by</TextBox>
+      <Select
+        placeholder="Select a sort"
+        defaultValue="default"
+        className="filterSelect"
+      >
+        <Option value="default">Default</Option>
+        <Option value="yearAsc">Year Ascending</Option>
+        <Option value="yearDsc">Year Descending</Option>
+        <Option value="titleAsc">Title Ascending</Option>
+        <Option value="titleDsc">Title Ascending</Option>
+      </Select>
+      <TextBox>Records per page</TextBox>
+      <Select
+        placeholder="Records per page"
+        defaultValue="25"
+        className="filterSelect"
+      >
+        <Option value="25">25 Records</Option>
+        <Option value="50">50 Records</Option>
+        <Option value="100">100 Records</Option>
+      </Select>
+      <TextBox>Filter by</TextBox>
+      {data.map((item, i) => (
+        <FieldFilter data={item} />
+      ))}
+    </Item>
+  );
+};
+
+export const TextBox = ({ children }) => {
+  return (
+    <Divider sx={{ margin: "20px 0px" }}>
       <Box sx={{ display: "flex", alignItems: "center" }}>
         <Typography
           variant="body1"
@@ -85,36 +120,12 @@ const SummaryFilter = (props) => {
             fontSize: "1rem",
           }}
         >
-          Sort By:
+          {children}
         </Typography>
       </Box>
-      <Select
-        placeholder="Select a sort"
-        defaultValue="default"
-        sx={{ width: 180 }}
-      >
-        <Option value="default">Default</Option>
-        <Option value="yearAsc">Year Ascending</Option>
-        <Option value="yearDsc">Year Descending</Option>
-        <Option value="titleAsc">Title Ascending</Option>
-        <Option value="titleDsc">Title Ascending</Option>
-      </Select>
-      <Select
-        placeholder="Records per page"
-        defaultValue="25"
-        sx={{ width: 122 }}
-      >
-        <Option value="25">25 Records</Option>
-        <Option value="50">50 Records</Option>
-        <Option value="100">100 Records</Option>
-      </Select>
-      {data.map((item, i) => (
-        <FieldFilter data={item} />
-      ))}
-    </Item>
+    </Divider>
   );
 };
-
 SummaryFilter.propTypes = {};
 
 export default SummaryFilter;

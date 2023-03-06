@@ -12,7 +12,7 @@ import {
 } from "./AppBar.style";
 
 const AppBar = (props) => {
-  const { links, logo, siteName, baseURL } = props;
+  const { links, logo, siteName, baseURL, active } = props;
   const [isScroll, setIsScroll] = useState(0);
   const [isClicked, setIsClicked] = useState(false);
   useEffect(() => {
@@ -53,6 +53,9 @@ const AppBar = (props) => {
             >
               {links.map((link, i) => (
                 <AppbarLink
+                  className={
+                    active && active === link.title ? "active-link" : ""
+                  }
                   onClick={(_) => (window.location = link.url)}
                   key={link.title}
                 >
@@ -87,6 +90,7 @@ AppBar.propTypes = {
   logo: PropTypes.string,
   siteName: PropTypes.string,
   baseURL: PropTypes.string,
+  active: PropTypes.string,
 };
 
 export default AppBar;

@@ -15,7 +15,7 @@ export const Copyright = (props) => {
   return (
     <Typography variant="body2" style={{ textAlign: "center", color: "white" }}>
       {"Copyright © "}
-      <Link color="inherit" href="https://mui.com/">
+      <Link color="inherit" href="/">
         {siteName}
       </Link>{" "}
       {new Date().getFullYear()}

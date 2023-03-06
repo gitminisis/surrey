@@ -57,7 +57,7 @@ const GeneralSearchBox = (props) => {
             />
           </Grid>
           <Grid item xs={12} style={{ textAlign: "center", marginTop: "20px" }}>
-            <a variant="a" href="/FAQ" className="generalSearchBoxLink">
+            <a variant="a" href="/faq.html" className="generalSearchBoxLink">
               Didn't find what you're looking for? Check our FAQ page for search
               tips
             </a>
