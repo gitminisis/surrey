@@ -54,12 +54,10 @@ const Detail = [
               {
                 database: "COLLECTIONS",
                 fields: [
-               
                   {
                     name: "ACCESSION_NUMBER",
                     label: "Accession Number",
                   },
-
                   {
                     name: "EARLY",
                     label: "Dates",

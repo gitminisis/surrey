@@ -28,14 +28,21 @@ const GeneralSearchBox = (props) => {
           <Link underline="hover" color="inherit" href="/">
             Home
           </Link>
-
           <Link
             underline="hover"
             color="text.primary"
             href="/summary"
-            aria-current="page"
+            aria-current="summary page"
           >
             Summary
+          </Link>
+          <Link
+            underline="hover"
+            color="text.primary"
+            href="/summary"
+            aria-current="detail page"
+          >
+            Detail
           </Link>
         </Breadcrumbs>
 

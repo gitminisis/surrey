@@ -5,6 +5,14 @@ const Summary = [
       {
         component: "SummaryLayout",
         data: {
+          generalSearchBox: {
+            breadcrumbs: ["summary"],
+            helpText: {
+              link: "/faq.html",
+              description:
+                "Didn't find what you're looking for? Check our FAQ page for search tips",
+            },
+          },
           filter: [
             {
               item_group: [
@@ -45,7 +53,7 @@ const Summary = [
                   label: "Title",
                   main: true,
                 },
-           
+
                 {
                   name: "EARLY",
                   label: "Dates",
@@ -54,6 +62,11 @@ const Summary = [
                 {
                   name: "ACCESSION_NUMBER",
                   label: "ID",
+                },
+                {
+                  name: "OBJ_DESCRIPTION",
+                  label: "Description",
+                  gridDisplay: false,
                 },
               ],
             },
@@ -73,7 +86,7 @@ const Summary = [
                 },
 
                 {
-                  name: "gmd_occurrence",
+                  name: "form_occurrence",
                   label: "Type",
                   gridDisplay: false,
                 },

@@ -34,30 +34,14 @@ const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
 );
 
 const SummaryLayout = (props) => {
-  const { filter, displayField, defaultView, thumbnailData } = props;
-  if (!localStorage.getItem("grid")) {
-    localStorage.setItem("grid", true);
-  }
-  const defaultHeight = 380;
+  const { filter, displayField, defaultView, thumbnailData, generalSearchBox } =
+    props;
+
   const [grid, setGrid] = useState(
     defaultView ? defaultView === "grid" : false
   );
   const [showFilter, setShowFilter] = useState(true);
-  const [scroll, setScroll] = useState(
-    window.pageYOffset <= defaultHeight ? window.pageYOffset - 80 : 80
-  );
 
-  useEffect(() => {
-    const onScroll = (e) => {
-      let curPosition = window.pageYOffset;
-      setScroll(curPosition);
-      let element = document.querySelector(".MuiDrawer-paperAnchorLeft");
-      element.style.top = curPosition <= defaultHeight ? curPosition - 80 : 80;
-    };
-    // window.addEventListener("scroll", onScroll);
-
-    return () => window.removeEventListener("scroll", onScroll);
-  }, [scroll]);
   const toggleGrid = (a, b) => {
     if (!b || b === undefined) {
       return;
@@ -80,7 +64,6 @@ const SummaryLayout = (props) => {
           rowSpacing={2}
           style={{ position: "relative", width: "100vw" }}
         >
-          {" "}
           <Main
             open={showFilter}
             sx={{
@@ -137,6 +120,9 @@ const SummaryLayout = (props) => {
 SummaryLayout.propTypes = {
   filter: PropTypes.array,
   displayField: PropTypes.array,
+  defaultView: PropTypes.string,
+  thumbnailData: PropTypes.array,
+  generalSearchBox: PropTypes.object,
 };
 
 export default SummaryLayout;

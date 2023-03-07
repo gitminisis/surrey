@@ -2,7 +2,7 @@ const Summary = [
   {
     component: "Layout",
     data: {
-      active: "Archives",
+      active: "Artifact",
     },
     children: [
       {
@@ -51,6 +51,11 @@ const Summary = [
                 {
                   name: "ACCESSION_NUMBER",
                   label: "ID",
+                },
+                {
+                  name: "OBJ_DESCRIPTION",
+                  label: "Description",
+                  gridDisplay: false,
                 },
               ],
             },
