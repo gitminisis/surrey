@@ -1,17 +1,19 @@
 import * as React from "react";
 import Typography from "@mui/joy/Typography";
 import { Item } from "./SummaryLayout.style";
-import SummaryPagination from "./SummaryPagination";
+
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Box from "@mui/material/Box";
-import ImageNotSupportedOutlinedIcon from "@mui/icons-material/ImageNotSupportedOutlined";
 import { deepSearch, getXMLRecord } from "../../utils/functions";
 import SummaryTextField from "../SummaryTextField";
 import Component from "../Component";
 import { Grid } from "@mui/material";
 import PropTypes from "prop-types";
+import IconButton from "@mui/joy/IconButton";
+import BookmarkAdd from "@mui/icons-material/BookmarkAddOutlined";
+import LinkIcon from "@mui/icons-material/Link";
 const SummaryRecordsView = (props) => {
   const { data } = props;
   const xml = getXMLRecord();
@@ -21,7 +23,6 @@ const SummaryRecordsView = (props) => {
         let database = record.database_name;
         let recordLink = record.record_link.replace(/\n/g, "");
         let recordData = record.record;
-        console.log(database);
         let displayFields = data.find((e) => e.database === database).fields;
 
         return (
@@ -31,6 +32,7 @@ const SummaryRecordsView = (props) => {
                 sx={{
                   display: "flex",
                   flexDirection: "row",
+                  position: "relative",
                 }}
                 variant="outlined"
                 elevation={8}
@@ -78,28 +80,53 @@ const SummaryRecordsView = (props) => {
                             main={field.main}
                             onClick={(_) => (window.location = recordLink)}
                           >
-                            {fieldValue.join(",")}
+                            {fieldValue.join(", ")}
                           </SummaryTextField>
                         );
                       }
 
                       return (
                         <SummaryTextField>
-                          <strong>{fieldLabel}</strong>: {fieldValue.join(",")}
+                          <strong>{fieldLabel}</strong>: {fieldValue.join(", ")}
                         </SummaryTextField>
                       );
                     })}
                   </CardContent>
                   <Box
-                    sx={{ display: "flex", alignItems: "center", pl: 1, pb: 1 }}
-                  ></Box>
+                    sx={{
+                      display: "flex",
+                      alignItems: "center",
+                      pl: 1,
+                      pb: 1,
+                      position: "absolute",
+                      top: "16px",
+                      right: "16px",
+                    }}
+                  >
+                    <IconButton
+                      aria-label="bookmark"
+                      variant="plain"
+                      color="neutral"
+                      size="md"
+                    >
+                      <BookmarkAdd />
+                    </IconButton>
+                    <IconButton
+                      aria-label="copy link"
+                      variant="plain"
+                      color="neutral"
+                      size="md"
+                    >
+                      <LinkIcon />
+                    </IconButton>
+                  </Box>
                 </Box>
               </Card>
             </Item>
           </Grid>
         );
       })}
-      <SummaryPagination />
+
     </>
   );
 };

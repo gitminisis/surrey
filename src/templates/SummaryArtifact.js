@@ -1,6 +1,9 @@
 const Summary = [
   {
     component: "Layout",
+    data: {
+      active: "Archives",
+    },
     children: [
       {
         component: "SummaryLayout",
@@ -30,12 +33,7 @@ const Summary = [
               database: "COLLECTIONS",
               fields: "m_im_access_link",
             },
-            {
-              database: "DESCRIPTION",
-              fields: "a_im_access_link",
-            },
           ],
-
           displayField: [
             {
               database: "COLLECTIONS",
@@ -45,7 +43,6 @@ const Summary = [
                   label: "Title",
                   main: true,
                 },
-           
                 {
                   name: "EARLY",
                   label: "Dates",
@@ -57,34 +54,8 @@ const Summary = [
                 },
               ],
             },
-            {
-              database: "DESCRIPTION",
-              fields: [
-                {
-                  name: "TITLE",
-                  label: "Title",
-                  main: true,
-                },
-
-                {
-                  name: "DATE_SEARCH",
-                  label: "Dates",
-                  gridDisplay: false,
-                },
-
-                {
-                  name: "gmd_occurrence",
-                  label: "Type",
-                  gridDisplay: false,
-                },
-
-                {
-                  name: "REFD",
-                  label: "ID",
-                },
-              ],
-            },
           ],
+          defaultView: "grid",
         },
       },
     ],

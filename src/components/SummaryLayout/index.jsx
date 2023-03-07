@@ -8,7 +8,7 @@ import SummarySubHeader from "./SummarySubHeader";
 import SummaryRecordsView from "./SummaryRecordsView";
 import GeneralSearchBox from "../GeneralSearchBox";
 import SummaryMasonryView from "./SummaryMasonryView";
-
+import SummaryPagination from "./SummaryPagination";
 const drawerWidth = 300;
 const scrollHeight = 330;
 const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
@@ -34,7 +34,7 @@ const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
 );
 
 const SummaryLayout = (props) => {
-  const { filter, displayField, defaultView } = props;
+  const { filter, displayField, defaultView, thumbnailData } = props;
   if (!localStorage.getItem("grid")) {
     localStorage.setItem("grid", true);
   }
@@ -114,10 +114,17 @@ const SummaryLayout = (props) => {
               </Grid>
               <Grid container item xs={12}>
                 {grid ? (
-                  <SummaryMasonryView data={displayField} />
+                  <SummaryMasonryView
+                    thumbnailData={thumbnailData}
+                    data={displayField}
+                  />
                 ) : (
-                  <SummaryRecordsView data={displayField} />
+                  <SummaryRecordsView
+                    thumbnailData={thumbnailData}
+                    data={displayField}
+                  />
                 )}
+                <SummaryPagination />
               </Grid>
             </Grid>
           </Main>

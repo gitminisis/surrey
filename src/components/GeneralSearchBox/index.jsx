@@ -22,7 +22,7 @@ export const Item = styled(Paper)(({ theme }) => ({
 
 const GeneralSearchBox = (props) => {
   return (
-    <Item elevation={6} sx={{ padding: "16px" }}>
+    <Item elevation={6} sx={{ padding: "16px" }} className="back-top-anchor">
       <div>
         <Breadcrumbs aria-label="breadcrumb">
           <Link underline="hover" color="inherit" href="/">

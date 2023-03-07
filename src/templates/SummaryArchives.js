@@ -28,6 +28,12 @@ const Summary = [
               ],
             },
           ],
+          thumbnailData: [
+            {
+              database: "DESCRIPTION",
+              fields: "a_im_access_link",
+            },
+          ],
           displayField: [
             {
               database: "DESCRIPTION",

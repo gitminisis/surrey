@@ -13,7 +13,7 @@ import Category4 from "../assets/images/Artifacts.png";
 import Category5 from "../assets/images/Textual Records.png";
 
 import { getRecendAdditions } from "../utils/api";
-getRecendAdditions();
+// getRecendAdditions();
 const Home = [
   {
     component: "Layout",

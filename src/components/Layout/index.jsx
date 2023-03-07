@@ -4,12 +4,13 @@ import AppBar from "../AppBar";
 import { Box, Container } from "@mui/material";
 import SiteLayout from "../../templates/SiteLayout";
 import { ErrorBoundary, withErrorBoundary } from "react-error-boundary";
-
+import BackTop from "../BackTop";
+import Fab from "@mui/material/Fab";
+import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 const Layout = ({ active, children }) => {
   return (
     <>
       <AppBar active={active} {...SiteLayout} />
-
       <ErrorBoundary
         FallbackComponent={ErrorFallback}
         onError={(error) => {
@@ -19,7 +20,13 @@ const Layout = ({ active, children }) => {
         }}
       >
         <LayoutChildren child={children} />
+        <BackTop>
+          <Fab size="small" aria-label="scroll back to top">
+            <KeyboardArrowUpIcon />
+          </Fab>
+        </BackTop>
       </ErrorBoundary>
+
       <Footer {...SiteLayout} />
     </>
   );

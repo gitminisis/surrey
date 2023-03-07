@@ -3,20 +3,18 @@ import { styled } from "@mui/material/styles";
 import Paper from "@mui/material/Paper";
 import Masonry from "@mui/lab/Masonry";
 import { deepSearch, getXMLRecord } from "../../utils/functions";
-import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
-import { Item } from "./SummaryLayout.style";
+
 import SummaryTextField from "../SummaryTextField";
 import Component from "../Component";
 import AspectRatio from "@mui/joy/AspectRatio";
 import Box from "@mui/joy/Box";
-import Button from "@mui/joy/Button";
 import Card from "@mui/joy/Card";
-import Typography from "@mui/joy/Typography";
 import BookmarkAdd from "@mui/icons-material/BookmarkAddOutlined";
 import IconButton from "@mui/joy/IconButton";
+import PropTypes from "prop-types";
+import LinkIcon from "@mui/icons-material/Link";
 const SummaryMasonryView = (props) => {
-  const { data } = props;
+  const { data, thumbnailData } = props;
 
   const xml = getXMLRecord();
   return (
@@ -31,6 +29,11 @@ const SummaryMasonryView = (props) => {
           let recordLink = record.record_link.replace(/\n/g, "");
           let recordData = record.record;
           let displayFields = data.find((e) => e.database === database).fields;
+
+          let thumbnailField = thumbnailData.find(
+            (e) => e.database === database
+          ).fields;
+          console.log(thumbnailField);
           return (
             <Card variant="outlined">
               <div style={{ width: "90%" }}>
@@ -39,6 +42,12 @@ const SummaryMasonryView = (props) => {
                     recordData,
                     field.name.toLowerCase()
                   );
+                  let thumbnailURL = deepSearch(
+                    record,
+                    thumbnailField.toLowerCase()
+                  )[0];
+                  console.log(thumbnailURL);
+
                   if (fieldValue.length === 0 || field.gridDisplay === false) {
                     return;
                   }
@@ -54,14 +63,14 @@ const SummaryMasonryView = (props) => {
                         main={field.main}
                         onClick={(_) => (window.location = recordLink)}
                       >
-                        {fieldValue.join(",")}
+                        {fieldValue.join(", ")}
                       </SummaryTextField>
                     );
                   }
 
                   return (
                     <SummaryTextField>
-                      <strong>{fieldLabel}</strong>: {fieldValue.join(",")}
+                      <strong>{fieldLabel}</strong>: {fieldValue.join(", ")}
                     </SummaryTextField>
                   );
                 })}
@@ -74,15 +83,26 @@ const SummaryMasonryView = (props) => {
                   alt=""
                 />
               </AspectRatio>
-              <IconButton
-                aria-label="bookmark"
-                variant="plain"
-                color="neutral"
-                size="sm"
+              <Box
                 sx={{ position: "absolute", top: "0.5rem", right: "0.5rem" }}
               >
-                <BookmarkAdd />
-              </IconButton>
+                <IconButton
+                  aria-label="bookmark"
+                  variant="plain"
+                  color="neutral"
+                  size="sm"
+                >
+                  <BookmarkAdd />
+                </IconButton>
+                <IconButton
+                  aria-label="copy link"
+                  variant="plain"
+                  color="neutral"
+                  size="sm"
+                >
+                  <LinkIcon />
+                </IconButton>
+              </Box>
             </Card>
           );
         })}
@@ -91,6 +111,6 @@ const SummaryMasonryView = (props) => {
   );
 };
 
-SummaryMasonryView.propTypes = {};
+SummaryMasonryView.propTypes = { thumbnailData: PropTypes.object };
 
 export default SummaryMasonryView;

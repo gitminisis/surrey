@@ -8,6 +8,8 @@ import {
   FormControlLabel,
   ListItemButton,
   ListItemText,
+  MenuList,
+  MenuItem,
   ListItemIcon,
   Collapse,
 } from "@mui/material";
@@ -79,6 +81,20 @@ const SummaryFilter = (props) => {
       }}
     >
       <TextBox>Bookmark</TextBox>
+      <MenuList sx={{ textAlign: "left" }}>
+        <MenuItem>
+          <ListItemText> Bookmark all records</ListItemText>
+        </MenuItem>
+        <MenuItem>
+          <ListItemText> Clear all records</ListItemText>
+        </MenuItem>
+        <MenuItem>
+          <ListItemText> View Bookmarks</ListItemText>
+          <Typography variant="body2" color="text.secondary">
+            1
+          </Typography>
+        </MenuItem>
+      </MenuList>
       <TextBox>Sort by</TextBox>
       <Select
         placeholder="Select a sort"

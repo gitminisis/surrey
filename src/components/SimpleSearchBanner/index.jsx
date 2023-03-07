@@ -58,7 +58,7 @@ const Banner = (props) => {
       <BannerContainer
         style={{ padding: "0 0" }}
         maxWidth={"true"}
-        className="bannerContainer"
+        className="bannerContainer back-top-anchor"
         banner={bannerCarousel[activeStep]}
       >
         <ShadowLayerBox banner={bannerCarousel[activeStep]} />
