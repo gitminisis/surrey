@@ -41,20 +41,12 @@ const DetailSection = (props) => {
                     if (field.component !== undefined) {
                       return Component(field);
                     }
-                    if (field.main) {
-                      return (
-                        <GeneralDetailTextField
-                          main={field.main}
-                          onClick={(_) => (window.location = recordLink)}
-                        >
-                          {fieldValue.join(",")}
-                        </GeneralDetailTextField>
-                      );
-                    }
                     return (
-                      <GeneralDetailTextField>
-                        <strong>{fieldLabel}</strong>: {fieldValue.join(",")}
-                      </GeneralDetailTextField>
+                      <GeneralDetailTextField
+                        main={field.main}
+                        label={fieldLabel}
+                        value={fieldValue}
+                      />
                     );
                   })}
                 </Grid>

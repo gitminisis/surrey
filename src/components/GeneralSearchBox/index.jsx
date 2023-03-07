@@ -21,6 +21,8 @@ export const Item = styled(Paper)(({ theme }) => ({
 }));
 
 const GeneralSearchBox = (props) => {
+  console.log(props);
+  const { breadcrumbs, heading, helpText } = props;
   return (
     <Item elevation={6} sx={{ padding: "16px" }} className="back-top-anchor">
       <div>
@@ -28,22 +30,16 @@ const GeneralSearchBox = (props) => {
           <Link underline="hover" color="inherit" href="/">
             Home
           </Link>
-          <Link
-            underline="hover"
-            color="text.primary"
-            href="/summary"
-            aria-current="summary page"
-          >
-            Summary
-          </Link>
-          <Link
-            underline="hover"
-            color="text.primary"
-            href="/summary"
-            aria-current="detail page"
-          >
-            Detail
-          </Link>
+          {breadcrumbs.map((e, i) => (
+            <Link
+              underline="hover"
+              color={i === breadcrumbs.length - 1 ? "text.primary" : "inherit"}
+              href="/summary"
+              aria-current={`${e} page`}
+            >
+              {e}
+            </Link>
+          ))}
         </Breadcrumbs>
 
         <Grid
@@ -53,10 +49,11 @@ const GeneralSearchBox = (props) => {
           style={{ width: "100%", maxWidth: "800px", margin: "20px auto" }}
         >
           <Grid item xs={12} style={{ textAlign: "center" }}>
-            <Typography variant="h3">Search the collections</Typography>
+            <Typography variant="h2" sx={{ fontWeight: "bold" }}>
+              {heading}
+            </Typography>
           </Grid>{" "}
           <Grid item xs={12} md={12}>
-            {" "}
             <Input
               variant="soft"
               placeholder="Search…"
@@ -64,9 +61,12 @@ const GeneralSearchBox = (props) => {
             />
           </Grid>
           <Grid item xs={12} style={{ textAlign: "center", marginTop: "20px" }}>
-            <a variant="a" href="/faq.html" className="generalSearchBoxLink">
-              Didn't find what you're looking for? Check our FAQ page for search
-              tips
+            <a
+              variant="a"
+              href={helpText.link}
+              className="generalSearchBoxLink"
+            >
+              {helpText.description}
             </a>
           </Grid>
         </Grid>
@@ -75,6 +75,10 @@ const GeneralSearchBox = (props) => {
   );
 };
 
-GeneralSearchBox.propTypes = {};
+GeneralSearchBox.propTypes = {
+  breadcrumbs: PropTypes.array,
+  heading: PropTypes.string,
+  helpText: PropTypes.object,
+};
 
 export default GeneralSearchBox;

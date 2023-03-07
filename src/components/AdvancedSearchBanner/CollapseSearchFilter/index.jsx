@@ -17,7 +17,6 @@ import {
 } from "../../../utils/functions";
 const CollapseSearchFilter = (props) => {
   let { show, data, description, database } = props;
-  console.log(data);
   return (
     <>
       <Collapse in={show} timeout="auto" unmountOnExit>
@@ -49,7 +48,6 @@ const AutocompleteDropdown = (props) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [items, setItems] = useState([]);
   const { field, label, database } = props;
-  console.log(field, label);
   useEffect(() => {
     getIndexList(field, database).then(
       (result) => {

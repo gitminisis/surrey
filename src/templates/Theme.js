@@ -21,7 +21,7 @@ const baseTheme = createTheme({
   },
   typography: {
     fontSize: 12,
-
+    fontFamily:"Univers LT W02 55 Roman",
     h1: {
       fontSize: "4.5rem",
     },

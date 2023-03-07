@@ -8,6 +8,15 @@ const Summary = [
       {
         component: "SummaryLayout",
         data: {
+          generalSearchBox: {
+            breadcrumbs: ["Summary"],
+            heading: "Search the collections",
+            helpText: {
+              link: "/faq.html",
+              description:
+                "Didn't find what you're looking for? Check our FAQ page for search tips",
+            },
+          },
           filter: [
             {
               item_group: [

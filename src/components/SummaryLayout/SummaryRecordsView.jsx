@@ -126,7 +126,6 @@ const SummaryRecordsView = (props) => {
           </Grid>
         );
       })}
-
     </>
   );
 };

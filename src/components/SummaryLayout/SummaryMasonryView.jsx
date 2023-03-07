@@ -33,7 +33,6 @@ const SummaryMasonryView = (props) => {
           let thumbnailField = thumbnailData.find(
             (e) => e.database === database
           ).fields;
-          console.log(thumbnailField);
           return (
             <Card variant="outlined">
               <div style={{ width: "90%" }}>

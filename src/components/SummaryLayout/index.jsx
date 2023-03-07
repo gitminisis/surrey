@@ -71,13 +71,13 @@ const SummaryLayout = (props) => {
             }}
           >
             <Grid item xs={12}>
-              <GeneralSearchBox />
+              <GeneralSearchBox {...generalSearchBox} />
             </Grid>
             {filter && (
               <Drawer
                 sx={{
                   width: "100%",
-                  display: { md: "none", lg: "flex" },
+                  display: { xs: "none",lg: "flex" },
                 }}
                 variant="persistent"
                 anchor="left"

@@ -5,6 +5,15 @@ const Detail = [
       {
         component: "DetailLayout",
         data: {
+          generalSearchBox: {
+            breadcrumbs: ["Summary","Detail"],
+            heading: "Search the collections",
+            helpText: {
+              link: "/faq.html",
+              description:
+                "Didn't find what you're looking for? Check our FAQ page for search tips",
+            },
+          },
           generalSection: {
             displayFields: [
               {
@@ -19,7 +28,10 @@ const Detail = [
                     name: "ACCESSION_NUMBER",
                     label: "Accession Number",
                   },
-
+                  {
+                    name: "COLLECTION",
+                    label: "Collection",
+                  },
                   {
                     name: "EARLY",
                     label: "Dates",
@@ -27,6 +39,27 @@ const Detail = [
                   {
                     name: "OBJECT_NAME",
                     label: "Object Name(s)",
+                  },
+                  {
+                    name: "ASSOC_FULLNAME",
+                    label: "Associated Person",
+                  },
+
+                  {
+                    name: "ORG_ASSOC",
+                    label: "Associated Organization",
+                  },
+                  {
+                    name: "ASSOC_EVENT",
+                    label: "Associated Event",
+                  },
+                  {
+                    name: "PLACE_ASSOC_NAME",
+                    label: "Associated Place",
+                  },
+                  {
+                    name: "SITE_NAME",
+                    label: "Associated Place",
                   },
                 ],
               },
@@ -55,14 +88,6 @@ const Detail = [
                 database: "COLLECTIONS",
                 fields: [
                   {
-                    name: "ACCESSION_NUMBER",
-                    label: "Accession Number",
-                  },
-                  {
-                    name: "EARLY",
-                    label: "Dates",
-                  },
-                  {
                     name: "OBJ_DESCRIPTION",
                     label: "Description",
                   },
@@ -73,30 +98,6 @@ const Detail = [
                   {
                     name: "PRIMARY",
                     label: "Primary",
-                  },
-                  {
-                    name: "MATERIAL",
-                    label: "Material(s)",
-                  },
-                  {
-                    name: "ASSOC_FULLNAME",
-                    label: "Associated Person",
-                  },
-                  {
-                    name: "ORG_ASSOC",
-                    label: "Associated Organization",
-                  },
-                  {
-                    name: "ASSOC_EVENT",
-                    label: "Associated Event",
-                  },
-                  {
-                    name: "PLACE_ASSOC_NAME",
-                    label: "Associated Place",
-                  },
-                  {
-                    name: "OBJECT_NAME",
-                    label: "Object Name(s)",
                   },
                 ],
               },

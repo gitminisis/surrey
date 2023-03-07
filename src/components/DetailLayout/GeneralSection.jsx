@@ -23,43 +23,42 @@ const GeneralSecion = (props) => {
             flexDirection: "row",
           }}
         >
-          <Grid item xs={12} sm container>
+          <Grid item xs={12} sm container spacing={4}>
             <Grid item xs container direction="column" spacing={2}>
-              <Grid item xs sx={{ textAlign: "left" }}>
+              <Grid
+                item
+                xs
+                sx={{ textAlign: "left", maxWidth: "500px", margin: "0 auto" }}
+              >
                 {displayFields.map((field) => {
                   let fieldValue = deepSearch(
                     recordData,
                     field.name.toLowerCase()
                   );
+
                   if (fieldValue.length === 0) {
                     return;
                   }
+
                   let fieldLabel = field.label;
                   if (field.component !== undefined) {
                     return Component(field);
                   }
-                  if (field.main) {
-                    return (
-                      <GeneralDetailTextField
-                        main={field.main}
-                        onClick={(_) => (window.location = recordLink)}
-                      >
-                        {fieldValue.join(",")}
-                      </GeneralDetailTextField>
-                    );
-                  }
+
                   return (
-                    <GeneralDetailTextField>
-                      <strong>{fieldLabel}</strong>: {fieldValue.join(",")}
-                    </GeneralDetailTextField>
+                    <GeneralDetailTextField
+                      main={field.main}
+                      label={fieldLabel}
+                      value={fieldValue}
+                    />
                   );
                 })}
               </Grid>
-              {/* <Grid item>
+              <Grid item>
                 <Typography sx={{ cursor: "pointer" }} variant="body2">
                   Remove
                 </Typography>
-              </Grid> */}
+              </Grid>
             </Grid>
             <Grid item>
               <ButtonBase sx={{ width: 300, height: 300 }}>

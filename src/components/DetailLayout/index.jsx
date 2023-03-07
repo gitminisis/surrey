@@ -9,7 +9,7 @@ import RecordDetail from "./DetailSection";
 
 const DetailLayout = (props) => {
   console.log(props);
-  const { generalSection, detailSection } = props;
+  const { generalSection, detailSection, generalSearchBox } = props;
   return (
     <div>
       <DetailContainer
@@ -18,7 +18,7 @@ const DetailLayout = (props) => {
       >
         <Grid container spacing={2} rowSpacing={2}>
           <Grid item xs={12}>
-            <GeneralSearchBox />
+            <GeneralSearchBox {...generalSearchBox} />
           </Grid>
           <Grid item xs={12} md={12}>
             <Grid container rowSpacing={2}>

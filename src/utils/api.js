@@ -19,6 +19,5 @@ export const getRecendAdditions = (_) => {
     let {data} = res;
     let dom = new DOMParser().parseFromString(data, "text/html")
     let xml = getXMLRecord(dom);
-    console.log(xml);
   });
 };

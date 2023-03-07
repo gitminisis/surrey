@@ -46,7 +46,6 @@ const Carousel = (props) => {
       breakpoints={breakpoints}
       style={{ marginTop: "100px", width: "1500px" }}
       spaceBetween={20}
-      onReachEnd={() => console.log("reach end")}
       navigation
       pagination={{
         el: ".latest-pagination",

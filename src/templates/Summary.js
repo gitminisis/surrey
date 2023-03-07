@@ -6,7 +6,8 @@ const Summary = [
         component: "SummaryLayout",
         data: {
           generalSearchBox: {
-            breadcrumbs: ["summary"],
+            breadcrumbs: ["Summary"],
+            heading: "Search the collections",
             helpText: {
               link: "/faq.html",
               description:
