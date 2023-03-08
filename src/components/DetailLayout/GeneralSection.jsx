@@ -23,7 +23,7 @@ const GeneralSecion = (props) => {
             flexDirection: "row",
           }}
         >
-          <Grid item xs={12} sm container spacing={4}>
+          <Grid item xs={12} sm container spacing={2} sx={{ pt: 4 }}>
             <Grid item xs container direction="column" spacing={2}>
               <Grid
                 item

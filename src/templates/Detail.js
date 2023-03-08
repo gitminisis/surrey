@@ -6,6 +6,7 @@ const Detail = [
         component: "DetailLayout",
         data: {
           generalSearchBox: {
+            searchURL:"",
             breadcrumbs: ["Summary","Detail"],
             heading: "Search the collections",
             helpText: {

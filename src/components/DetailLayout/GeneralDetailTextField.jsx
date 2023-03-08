@@ -3,10 +3,9 @@ import PropTypes from "prop-types";
 import { Typography, Divider, Box, Grid } from "@mui/joy";
 const index = (props) => {
   let { main, value, label } = props;
-  console.log(value, label);
   if (main) {
     return (
-      <Typography {...props} gutterBottom level="h4" sx={{ margin: "32px 0" }}>
+      <Typography {...props} gutterBottom level="h4" sx={{}}>
         {value.join(", ")}
       </Typography>
     );
@@ -17,9 +16,13 @@ const index = (props) => {
       <Grid
         container
         spacing={3}
-        sx={{ display: "flex", flexDirection: "row", py: 2 }}
+        sx={{
+          display: "flex",
+          flexDirection: { xs: "column", md: "row" },
+          py: 2,
+        }}
       >
-        <Grid xs={4} sx={{ alignSelf: "center" }}>
+        <Grid xs={4} sx={{ alignSelf: { xs: "start", md: "left" } }}>
           {" "}
           <Typography
             variant="plain"
@@ -28,12 +31,11 @@ const index = (props) => {
             fontSize="lg"
             level="h6"
             fontWeight="lg"
-            sx={{ width: "150px", alignSelf: "center" }}
           >
             {label}
           </Typography>
         </Grid>
-        <Grid xs={8} sx={{ alignSelf: "center" }}>
+        <Grid xs={8} sx={{ alignSelf: { xs: "start", md: "left" } }}>
           {value.map((v) => (
             <Typography level="h6" component="div" sx={{ display: "block" }}>
               {v}

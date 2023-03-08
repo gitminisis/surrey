@@ -77,7 +77,7 @@ const SummaryLayout = (props) => {
               <Drawer
                 sx={{
                   width: "100%",
-                  display: { xs: "none",lg: "flex" },
+                  display: { xs: "none", lg: "flex" },
                 }}
                 variant="persistent"
                 anchor="left"
