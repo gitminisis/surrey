@@ -43,3 +43,25 @@ export const getFirstThumbnail = (record, thumbnailData, database) => {
   }
   return thumbPic;
 };
+
+export const bookmarkRecord = (url, SISN, database) => {
+  return axios({
+    method: "post",
+    url: `${url}?ADDSELECTION&COOKIE=BOOKMARK`,
+    data: `mcheckbox_${SISN}=${SISN}-${database}`,
+  }).then(function (r) {
+    console.log(r);
+  });
+};
+
+export const bookmarkAllRecord = () => {};
+
+export const viewBookmark = () => {};
+
+export const removeBookmarkRecord = () => {};
+
+export const removeAllBookmarkRecord = () => {};
+
+export const getRecordPermalink = () => {};
+
+export const copyToClipboard = () => {};

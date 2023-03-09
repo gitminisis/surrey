@@ -138,7 +138,7 @@ const Detail = [
                         label: "Dates",
                       },
                       {
-                        name: "SUBJECT",
+                        name: "subject_occurrence",
                         label: "Subject(s)",
                       },
                       {

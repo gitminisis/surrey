@@ -46,7 +46,7 @@ export const getIndexList = (field, database, application) => {
 export const getTodayDate = (_) => {
   return new Date().toJSON().slice(0, 10);
 };
-
+''
 export const getTomorrowDate = (_) => {
   let tomorrow = new Date();
   tomorrow.setDate(new Date().getDate() + 1);

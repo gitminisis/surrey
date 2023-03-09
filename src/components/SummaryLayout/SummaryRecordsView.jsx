@@ -15,6 +15,7 @@ import PropTypes from "prop-types";
 import IconButton from "@mui/joy/IconButton";
 import BookmarkAdd from "@mui/icons-material/BookmarkAddOutlined";
 import LinkIcon from "@mui/icons-material/Link";
+import SummaryRecordAction from "./SummaryRecordAction";
 const SummaryRecordsView = (props) => {
   const { data, thumbnailData } = props;
   const xml = getXMLRecord();
@@ -26,6 +27,9 @@ const SummaryRecordsView = (props) => {
         let recordData = record.record;
         let displayFields = data.find((e) => e.database === database).fields;
         let thumbPic = getFirstThumbnail(record, thumbnailData, database);
+        console.log(recordData);
+        let sisn = deepSearch(recordData, "sisn");
+        let bookmarkURL = deepSearch(record, "bookmark_url");
         return (
           <Grid item xs={12}>
             <Item sx={{ padding: "16px", borderRadius: "0" }}>
@@ -106,22 +110,11 @@ const SummaryRecordsView = (props) => {
                       right: "16px",
                     }}
                   >
-                    <IconButton
-                      aria-label="bookmark"
-                      variant="plain"
-                      color="neutral"
-                      size="md"
-                    >
-                      <BookmarkAdd />
-                    </IconButton>
-                    <IconButton
-                      aria-label="copy link"
-                      variant="plain"
-                      color="neutral"
-                      size="md"
-                    >
-                      <LinkIcon />
-                    </IconButton>
+                    <SummaryRecordAction
+                      database={database}
+                      sisn={sisn}
+                      url={bookmarkURL}
+                    />
                   </Box>
                 </Box>
               </Card>

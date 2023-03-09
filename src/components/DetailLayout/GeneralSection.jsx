@@ -41,7 +41,12 @@ const GeneralSecion = (props) => {
               <Grid
                 item
                 xs
-                sx={{ textAlign: "left", maxWidth: "700px", margin: "0 auto" }}
+                sx={{
+                  textAlign: "left",
+                  maxWidth: "700px",
+                  margin: "0 auto",
+                  minWidth: "300px",
+                }}
               >
                 {displayFields.map((field) => {
                   let fieldValue = deepSearch(
