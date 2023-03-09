@@ -29,12 +29,12 @@ const index = (props) => {
             component="div"
             fontSize="lg"
             level="h6"
-            fontWeight={600}
+            fontWeight={700}
           >
             {label}
           </Typography>
         </Grid>
-        <Grid xs={8} sx={{ alignSelf: { xs: "start", md: "center" } }}>
+        <Grid xs sx={{ alignSelf: { xs: "start", md: "center" } }}>
           {value.map((v) => (
             <Typography level="h6" component="div" sx={{ display: "block" }}>
               {v}

@@ -21,7 +21,6 @@ export const Item = styled(Paper)(({ theme }) => ({
 }));
 
 const GeneralSearchBox = (props) => {
-  console.log(props);
   const { breadcrumbs, heading, helpText } = props;
   return (
     <Item elevation={6} sx={{ padding: "16px" }} className="back-top-anchor">

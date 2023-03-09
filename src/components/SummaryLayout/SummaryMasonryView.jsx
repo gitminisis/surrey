@@ -3,7 +3,7 @@ import { styled } from "@mui/material/styles";
 import Paper from "@mui/material/Paper";
 import Masonry from "@mui/lab/Masonry";
 import { deepSearch, getXMLRecord } from "../../utils/functions";
-
+import { getFirstThumbnail } from "../../utils/record";
 import SummaryTextField from "../SummaryTextField";
 import Component from "../Component";
 import AspectRatio from "@mui/joy/AspectRatio";
@@ -30,9 +30,8 @@ const SummaryMasonryView = (props) => {
           let recordData = record.record;
           let displayFields = data.find((e) => e.database === database).fields;
 
-          let thumbnailField = thumbnailData.find(
-            (e) => e.database === database
-          ).fields;
+          let thumbPic = getFirstThumbnail(record, thumbnailData, database);
+
           return (
             <Card variant="outlined">
               <div style={{ width: "90%" }}>
@@ -41,11 +40,6 @@ const SummaryMasonryView = (props) => {
                     recordData,
                     field.name.toLowerCase()
                   );
-                  let thumbnailURL = deepSearch(
-                    record,
-                    thumbnailField.toLowerCase()
-                  )[0];
-                  console.log(thumbnailURL);
 
                   if (fieldValue.length === 0 || field.gridDisplay === false) {
                     return;
@@ -74,14 +68,15 @@ const SummaryMasonryView = (props) => {
                   );
                 })}
               </div>
-              <AspectRatio minHeight="120px" maxHeight="200px" sx={{ my: 2 }}>
+              {thumbPic && (
                 <img
-                  src="https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&fit=crop&w=286"
-                  srcSet="https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&fit=crop&w=286&dpr=2 2x"
+                  src={thumbPic}
+                  style={{ maxWidth: "100%" }}
+                  srcSet={thumbPic}
                   loading="lazy"
                   alt=""
                 />
-              </AspectRatio>
+              )}
               <Box
                 sx={{ position: "absolute", top: "0.5rem", right: "0.5rem" }}
               >

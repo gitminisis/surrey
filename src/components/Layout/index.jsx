@@ -38,7 +38,7 @@ const LayoutChildren = ({ child }) => {
 
 const ErrorFallback = ({ error }) => (
   <div style={{ height: "100vh", paddingTop: "40vh" }}>
-    <p>Something went wrong 😭</p>
+    <p>Something went wrong 🫠</p>
 
     {error.message && <span>Here's the error: {error.message}</span>}
   </div>

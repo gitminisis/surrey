@@ -7,6 +7,7 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Box from "@mui/material/Box";
 import { deepSearch, getXMLRecord } from "../../utils/functions";
+import { getFirstThumbnail } from "../../utils/record";
 import SummaryTextField from "../SummaryTextField";
 import Component from "../Component";
 import { Grid } from "@mui/material";
@@ -15,7 +16,7 @@ import IconButton from "@mui/joy/IconButton";
 import BookmarkAdd from "@mui/icons-material/BookmarkAddOutlined";
 import LinkIcon from "@mui/icons-material/Link";
 const SummaryRecordsView = (props) => {
-  const { data } = props;
+  const { data, thumbnailData } = props;
   const xml = getXMLRecord();
   return (
     <>
@@ -24,7 +25,7 @@ const SummaryRecordsView = (props) => {
         let recordLink = record.record_link.replace(/\n/g, "");
         let recordData = record.record;
         let displayFields = data.find((e) => e.database === database).fields;
-
+        let thumbPic = getFirstThumbnail(record, thumbnailData, database);
         return (
           <Grid item xs={12}>
             <Item sx={{ padding: "16px", borderRadius: "0" }}>
@@ -38,20 +39,22 @@ const SummaryRecordsView = (props) => {
                 elevation={8}
               >
                 <Box>
-                  <CardMedia
-                    onClick={(_) => (window.location = recordLink)}
-                    component="img"
-                    sx={{
-                      margin: "0 0",
-                      width: "25vw",
-                      maxWidth: "200px",
-                      cursor: "pointer",
-                    }}
-                    image="https://picsum.photos/500"
-                    alt=""
-                  />
-                  {/* <ImageNotSupportedOutlinedIcon /> */}
+                  {thumbPic && (
+                    <CardMedia
+                      onClick={(_) => (window.location = recordLink)}
+                      component="img"
+                      sx={{
+                        margin: "0 0",
+                        width: "25vw",
+                        maxWidth: "200px",
+                        cursor: "pointer",
+                      }}
+                      image={thumbPic}
+                      alt=""
+                    />
+                  )}
                 </Box>
+
                 <Box
                   sx={{
                     display: "flex",

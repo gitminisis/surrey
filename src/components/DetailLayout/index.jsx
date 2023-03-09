@@ -8,7 +8,6 @@ import GeneralSection from "./GeneralSection";
 import DetailSection from "./DetailSection";
 
 const DetailLayout = (props) => {
-  console.log(props);
   const { generalSection, detailSection, generalSearchBox } = props;
   return (
     <div>

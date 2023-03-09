@@ -47,16 +47,19 @@ const Detail = [
                 database: "DESCRIPTION",
                 fields: [
                   {
-                    name: "REF_CODE",
-                    label: "Reference Code",
-                  },
-                  {
                     name: "TITLE",
                     label: "Title",
+                    main: true,
                   },
                   {
-                    name: "EARLY",
-                    label: "Dates",
+                    name: "DATE_SEARCH",
+                    label: "Date(s)",
+                    gridDisplay: false,
+                  },
+
+                  {
+                    name: "REFD",
+                    label: "ID",
                   },
                 ],
               },
@@ -114,18 +117,39 @@ const Detail = [
               },
               {
                 database: "DESCRIPTION",
-                fields: [
+                section: [
                   {
-                    name: "REF_CODE",
-                    label: "Reference Code",
-                  },
-                  {
-                    name: "TITLE",
-                    label: "Title",
-                  },
-                  {
-                    name: "EARLY",
-                    label: "Dates",
+                    title: "Overview",
+                    fields: [
+                      {
+                        name: "form_occurrence",
+                        label: "Type of Materials",
+                      },
+                      {
+                        name: "LEVEL_DESC",
+                        label: "Level of Description",
+                      },
+                      {
+                        name: "physical_desc_occurrence",
+                        label: "Physical Description",
+                      },
+                      {
+                        name: "DATE_SEARCH",
+                        label: "Dates",
+                      },
+                      {
+                        name: "SUBJECT",
+                        label: "Subject(s)",
+                      },
+                      {
+                        name: "SITE_NAME",
+                        label: "Area/Neighbourhood",
+                      },
+                      {
+                        name: "D_RESTRICTION",
+                        label: "Restrictions",
+                      },
+                    ],
                   },
                 ],
               },

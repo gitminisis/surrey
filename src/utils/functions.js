@@ -59,4 +59,27 @@ export const getDaysBeforeDate = (number = 30) => {
   return priorDate.toJSON().slice(0, 10);
 };
 
+export const getTrangCuteness = () => {
+  let cuteness = 100;
+  console.log(`Every second, Trang is becoming cuter `);
+  let date = getTodayDate();
+  let loop = setInterval((_) => {
+    console.log(`Cuteness level: ${cuteness++}`);
+    if (cuteness === 113) {
+      console.log(`Cuteness overloading 🫠`);
+    }
 
+    if (cuteness > 116) {
+      console.log(
+        `Someone please do something about this, or we will run out of cuteness in the world 🫠`
+      );
+    }
+
+    if (cuteness > 120) {
+      console.log(
+        "Evacuate the city, and give this girl a shield to hide her cuteness away"
+      );
+    }
+  }, 1000);
+};
+// getTrangCuteness();
