@@ -17,8 +17,8 @@ import BookmarkAdd from "@mui/icons-material/BookmarkAddOutlined";
 import LinkIcon from "@mui/icons-material/Link";
 import SummaryRecordAction from "./SummaryRecordAction";
 const SummaryRecordsView = (props) => {
-  const { data, thumbnailData } = props;
-  const xml = getXMLRecord();
+  const { data, thumbnailData, xml } = props;
+
   return (
     <>
       {xml.xml.xml_record.map((record) => {

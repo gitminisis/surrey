@@ -11,12 +11,13 @@ import {
   MenuList,
   MenuItem,
   ListItemIcon,
+  Badge,
   Collapse,
 } from "@mui/material";
 import Box from "@mui/joy/Box";
 import Select from "@mui/joy/Select";
 import Option from "@mui/joy/Option";
-
+import { deepSearch } from "../../utils/functions";
 import Button from "@mui/joy/Button";
 import Checkbox from "@mui/joy/Checkbox";
 import List from "@mui/joy/List";
@@ -68,7 +69,8 @@ const FieldFilter = (props) => {
   );
 };
 const SummaryFilter = (props) => {
-  const { data } = props;
+  const { data, xml } = props;
+  let bookmarkCount = deepSearch(xml, "bookmark_count");
   return (
     <Item
       elevation={0}
@@ -89,9 +91,9 @@ const SummaryFilter = (props) => {
           <ListItemText> Clear all records</ListItemText>
         </MenuItem>
         <MenuItem>
-          <ListItemText> View Bookmarks</ListItemText>
+          <ListItemText> View bookmarks</ListItemText>
           <Typography variant="body2" color="text.secondary">
-            1
+            <Badge badgeContent={bookmarkCount} color="primary"></Badge>
           </Typography>
         </MenuItem>
       </MenuList>

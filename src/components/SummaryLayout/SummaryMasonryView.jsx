@@ -14,9 +14,9 @@ import IconButton from "@mui/joy/IconButton";
 import PropTypes from "prop-types";
 import LinkIcon from "@mui/icons-material/Link";
 const SummaryMasonryView = (props) => {
-  const { data, thumbnailData } = props;
+  const { data, thumbnailData, xml } = props;
 
-  const xml = getXMLRecord();
+
   return (
     <Box sx={{ width: "100%" }}>
       <Masonry

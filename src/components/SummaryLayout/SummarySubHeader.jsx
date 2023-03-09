@@ -1,7 +1,7 @@
 import * as React from "react";
 import Box from "@mui/joy/Box";
 import { Item } from "./SummaryLayout.style";
-import { Typography } from "@mui/material";
+import { Typography, Tooltip } from "@mui/material";
 import Select from "@mui/joy/Select";
 import Option from "@mui/joy/Option";
 import ViewListIcon from "@mui/icons-material/ViewList";
@@ -48,7 +48,6 @@ export default function SummarySubHeader(props) {
               },
             }}
           >
- 
             <ToggleButtonGroup
               orientation="horizontal"
               value={props.isGrid === true ? "grid" : "list"}
@@ -56,20 +55,25 @@ export default function SummarySubHeader(props) {
               onChange={props.toggleGrid}
             >
               <ToggleButton value="grid" aria-label="grid">
-                <ViewModuleIcon />
+                <Tooltip title="Grid view">
+                  <ViewModuleIcon />
+                </Tooltip>
               </ToggleButton>
               <ToggleButton value="list" aria-label="list">
-                <ViewListIcon />
+                <Tooltip title="List view">
+                  <ViewListIcon />
+                </Tooltip>
               </ToggleButton>
               <ToggleButton
                 onClick={props.toggleFilter}
                 aria-label="filter toggle"
               >
-                <TuneIcon />
+                <Tooltip title="Toggle filter">
+                  <TuneIcon />
+                </Tooltip>
               </ToggleButton>
             </ToggleButtonGroup>
           </Box>
-         
         </Box>
       </Box>
     </Item>

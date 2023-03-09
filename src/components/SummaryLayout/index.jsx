@@ -9,6 +9,7 @@ import SummaryRecordsView from "./SummaryRecordsView";
 import GeneralSearchBox from "../GeneralSearchBox";
 import SummaryMasonryView from "./SummaryMasonryView";
 import SummaryPagination from "./SummaryPagination";
+import { deepSearch, getXMLRecord } from "../../utils/functions";
 const drawerWidth = 300;
 const scrollHeight = 330;
 const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
@@ -41,7 +42,7 @@ const SummaryLayout = (props) => {
     defaultView ? defaultView === "grid" : false
   );
   const [showFilter, setShowFilter] = useState(true);
-
+  const [xml, setXml] = useState(getXMLRecord());
   const toggleGrid = (a, b) => {
     if (!b || b === undefined) {
       return;
@@ -52,6 +53,7 @@ const SummaryLayout = (props) => {
   const toggleFilter = () => {
     setShowFilter(!showFilter);
   };
+
   return (
     <div>
       <SummaryContainer
@@ -83,7 +85,7 @@ const SummaryLayout = (props) => {
                 anchor="left"
                 open={showFilter}
               >
-                <SummaryFilter data={filter} />
+                <SummaryFilter data={filter} xml={xml} />
               </Drawer>
             )}
 
@@ -100,11 +102,13 @@ const SummaryLayout = (props) => {
                   <SummaryMasonryView
                     thumbnailData={thumbnailData}
                     data={displayField}
+                    xml={xml}
                   />
                 ) : (
                   <SummaryRecordsView
                     thumbnailData={thumbnailData}
                     data={displayField}
+                    xml={xml}
                   />
                 )}
                 <SummaryPagination />
