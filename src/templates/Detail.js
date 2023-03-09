@@ -6,8 +6,8 @@ const Detail = [
         component: "DetailLayout",
         data: {
           generalSearchBox: {
-            searchURL:"",
-            breadcrumbs: ["Summary","Detail"],
+            searchURL: "",
+            breadcrumbs: ["Summary", "Detail"],
             heading: "Search the collections",
             helpText: {
               link: "/faq.html",
@@ -41,27 +41,6 @@ const Detail = [
                     name: "OBJECT_NAME",
                     label: "Object Name(s)",
                   },
-                  {
-                    name: "ASSOC_FULLNAME",
-                    label: "Associated Person",
-                  },
-
-                  {
-                    name: "ORG_ASSOC",
-                    label: "Associated Organization",
-                  },
-                  {
-                    name: "ASSOC_EVENT",
-                    label: "Associated Event",
-                  },
-                  {
-                    name: "PLACE_ASSOC_NAME",
-                    label: "Associated Place",
-                  },
-                  {
-                    name: "SITE_NAME",
-                    label: "Associated Place",
-                  },
                 ],
               },
               {
@@ -87,18 +66,49 @@ const Detail = [
             displayFields: [
               {
                 database: "COLLECTIONS",
-                fields: [
+                section: [
                   {
-                    name: "OBJ_DESCRIPTION",
-                    label: "Description",
+                    title: "Overview",
+                    fields: [
+                      {
+                        name: "OBJ_DESCRIPTION",
+                        label: "Description",
+                      },
+                      {
+                        name: "ASSOC_FULLNAME",
+                        label: "Associated Person",
+                      },
+
+                      {
+                        name: "ORG_ASSOC",
+                        label: "Associated Organization",
+                      },
+                      {
+                        name: "ASSOC_EVENT",
+                        label: "Associated Event",
+                      },
+                      {
+                        name: "PLACE_ASSOC_NAME",
+                        label: "Associated Place",
+                      },
+                      {
+                        name: "SITE_NAME",
+                        label: "Associated Place",
+                      },
+                    ],
                   },
                   {
-                    name: "SUB_CLASS",
-                    label: "Sub-Classification",
-                  },
-                  {
-                    name: "PRIMARY",
-                    label: "Primary",
+                    title: "Chenhall",
+                    fields: [
+                      {
+                        name: "SUB_CLASS",
+                        label: "Sub-Classification",
+                      },
+                      {
+                        name: "PRIMARY",
+                        label: "Primary",
+                      },
+                    ],
                   },
                 ],
               },

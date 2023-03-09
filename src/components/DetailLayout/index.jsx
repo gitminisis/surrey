@@ -4,8 +4,8 @@ import { Grid, Paper, Container } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { DetailContainer, Item } from "./DetailLayout.style";
 import GeneralSearchBox from "../GeneralSearchBox";
-import GeneralDetailSection from "./GeneralSection";
-import RecordDetail from "./DetailSection";
+import GeneralSection from "./GeneralSection";
+import DetailSection from "./DetailSection";
 
 const DetailLayout = (props) => {
   console.log(props);
@@ -23,10 +23,10 @@ const DetailLayout = (props) => {
           <Grid item xs={12} md={12}>
             <Grid container rowSpacing={2}>
               <Grid item xs={12}>
-                <GeneralDetailSection data={generalSection} />
+                <GeneralSection data={generalSection} />
               </Grid>
               <Grid container item xs={12}>
-                <RecordDetail data={detailSection} />
+                <DetailSection data={detailSection} />
               </Grid>
             </Grid>
           </Grid>

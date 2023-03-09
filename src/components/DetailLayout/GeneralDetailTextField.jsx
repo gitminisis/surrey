@@ -5,7 +5,7 @@ const index = (props) => {
   let { main, value, label } = props;
   if (main) {
     return (
-      <Typography {...props} gutterBottom level="h4" sx={{}}>
+      <Typography {...props} gutterBottom level="h4" sx={{ pb: 2 }}>
         {value.join(", ")}
       </Typography>
     );
@@ -15,27 +15,26 @@ const index = (props) => {
       <Divider style={{ width: "auto" }} />
       <Grid
         container
-        spacing={3}
+        spacing={2}
         sx={{
           display: "flex",
           flexDirection: { xs: "column", md: "row" },
           py: 2,
         }}
       >
-        <Grid xs={4} sx={{ alignSelf: { xs: "start", md: "left" } }}>
-          {" "}
+        <Grid xs={4} sx={{ alignSelf: { xs: "start", md: "center" } }}>
           <Typography
             variant="plain"
             color="primary"
             component="div"
             fontSize="lg"
             level="h6"
-            fontWeight="lg"
+            fontWeight={600}
           >
             {label}
           </Typography>
         </Grid>
-        <Grid xs={8} sx={{ alignSelf: { xs: "start", md: "left" } }}>
+        <Grid xs={8} sx={{ alignSelf: { xs: "start", md: "center" } }}>
           {value.map((v) => (
             <Typography level="h6" component="div" sx={{ display: "block" }}>
               {v}

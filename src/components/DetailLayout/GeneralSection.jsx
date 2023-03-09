@@ -15,7 +15,7 @@ const GeneralSecion = (props) => {
   ).fields;
   return (
     <Item sx={{ padding: "10px 16px" }} elevation={6}>
-      <Container disableGutters maxWidth={"lg"}>
+      <Container disableGutters maxWidth={"lg"} style={{ margin: "0 auto" }}>
         <Box
           sx={{
             display: "flex",
@@ -24,11 +24,24 @@ const GeneralSecion = (props) => {
           }}
         >
           <Grid item xs={12} sm container spacing={2} sx={{ pt: 4 }}>
+            <Grid item sx={{ margin: "0 auto" }}>
+              <ButtonBase sx={{ width: 300, height: 300 }}>
+                <img
+                  alt="complex"
+                  src="https://picsum.photos/900"
+                  style={{
+                    maxWidth: "100%",
+                    maxHeight: "100%",
+                    display: "block",
+                  }}
+                />
+              </ButtonBase>
+            </Grid>
             <Grid item xs container direction="column" spacing={2}>
               <Grid
                 item
                 xs
-                sx={{ textAlign: "left", maxWidth: "500px", margin: "0 auto" }}
+                sx={{ textAlign: "left", maxWidth: "700px", margin: "0 auto" }}
               >
                 {displayFields.map((field) => {
                   let fieldValue = deepSearch(
@@ -59,19 +72,6 @@ const GeneralSecion = (props) => {
                   Remove
                 </Typography>
               </Grid>
-            </Grid>
-            <Grid item>
-              <ButtonBase sx={{ width: 300, height: 300 }}>
-                <img
-                  alt="complex"
-                  src="https://picsum.photos/900"
-                  style={{
-                    maxWidth: "100%",
-                    maxHeight: "100%",
-                    display: "block",
-                  }}
-                />
-              </ButtonBase>
             </Grid>
           </Grid>
         </Box>
