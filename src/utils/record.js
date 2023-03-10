@@ -20,14 +20,14 @@ export const getRecendAdditions = (_) => {
       return exp;
     })
     .join(" or ");
-  let url = `/scripts/mwimain.dll?UNIONSEARCH&KEEP=Y&APPLICATION=UNION_VIEW&language=144&REPORT=WEB_UNION_SUM&EXP=${searchExpressions}`;
+  let url = `/scripts/mwimain.dll?UNIONSEARCH&KEEP=Y&SIMPLE_EXP=Y&APPLICATION=UNION_VIEW&language=144&REPORT=WEB_UNION_SUM&EXP=${searchExpressions}`;
   return axios.get(url).then((res) => {
     let { data } = res;
     let dom = new DOMParser().parseFromString(data, "text/html");
     let xml = getXMLRecord(dom);
   });
 };
-
+getRecendAdditions;
 export const getFirstThumbnail = (record, thumbnailData, database) => {
   let thumbnailField = thumbnailData.find(
     (e) => e.database === database
@@ -65,3 +65,16 @@ export const removeAllBookmarkRecord = () => {};
 export const getRecordPermalink = () => {};
 
 export const copyToClipboard = () => {};
+
+export const getNumberOfRecords = (xml) => {
+  let firstRecordSeq = deepSearch(xml, "first_record_seq")[0];
+  let lastRecordSeq = deepSearch(xml, "last_record_seq")[0];
+  return Number.parseInt(lastRecordSeq) - Number.parseInt(firstRecordSeq) + 1;
+};
+
+export const getRecordsPerPageURL = (xml, pagesize) => {
+  let url = deepSearch(xml, `pagesize_${pagesize}`)[0];
+  console.log(pagesize);
+  return url;
+  // return url.replace(/\n/g, "").trim();
+};

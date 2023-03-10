@@ -25,7 +25,7 @@ const Home = [
         component: "SimpleSearchBanner",
         data: {
           searchURL:
-            "/scripts/mwimain.dll?UNIONSEARCH&KEEP=Y&APPLICATION=UNION_VIEW&language=144&REPORT=WEB_UNION_SUM",
+            "/scripts/mwimain.dll?UNIONSEARCH&KEEP=Y&SIMPLE_EXP=Y&APPLICATION=UNION_VIEW&language=144&REPORT=WEB_UNION_SUM",
           bannerURL: pic1,
           heading: "Surrey Online Heritage Search",
           description:
@@ -47,27 +47,27 @@ const Home = [
                 {
                   thumbnail: Category1,
                   title: "Photographs",
-                  link: '/scripts/mwimain.dll?UNIONSEARCH&KEEP=Y&APPLICATION=UNION_VIEW&DATABASE=DESCRIPTION&language=144&REPORT=WEB_UNION_SUM_DESC&EXP=A_IM_ACCESS present and FORM "Graphic material"',
+                  link: '/scripts/mwimain.dll?UNIONSEARCH&KEEP=Y&SIMPLE_EXP=Y&APPLICATION=UNION_VIEW&DATABASE=DESCRIPTION&language=144&REPORT=WEB_UNION_SUM_DESC&EXP=A_IM_ACCESS present and FORM "Graphic material"',
                 },
                 {
                   thumbnail: Category2,
                   title: "Maps",
-                  link: '/scripts/mwimain.dll?UNIONSEARCH&KEEP=Y&APPLICATION=UNION_VIEW&DATABASE=DESCRIPTION&language=144&REPORT=WEB_UNION_SUM_DESC&EXP=A_IM_ACCESS present and FORM "Cartographic material"',
+                  link: '/scripts/mwimain.dll?UNIONSEARCH&KEEP=Y&SIMPLE_EXP=Y&APPLICATION=UNION_VIEW&DATABASE=DESCRIPTION&language=144&REPORT=WEB_UNION_SUM_DESC&EXP=A_IM_ACCESS present and FORM "Cartographic material"',
                 },
                 {
                   thumbnail: Category3,
                   title: "Audio/Video",
-                  link: '/scripts/mwimain.dll?UNIONSEARCH&KEEP=Y&APPLICATION=UNION_VIEW&DATABASE=DESCRIPTION&language=144&REPORT=WEB_UNION_SUM_DESC&EXP=(A_AD_ACCESS present or A_VD_ACCESS present) and FORM "Cartographic material"',
+                  link: '/scripts/mwimain.dll?UNIONSEARCH&KEEP=Y&SIMPLE_EXP=Y&APPLICATION=UNION_VIEW&DATABASE=DESCRIPTION&language=144&REPORT=WEB_UNION_SUM_DESC&EXP=(A_AD_ACCESS present or A_VD_ACCESS present) and FORM "Cartographic material"',
                 },
                 {
                   thumbnail: Category4,
                   title: "Artifacts",
-                  link: '/scripts/mwimain.dll?UNIONSEARCH&KEEP=Y&APPLICATION=UNION_VIEW&language=144&REPORT=WEB_UNION_SUM&EXP=(A_IM_ACCESS present and FORM "Object") or (M_IM_ACCESS present)',
+                  link: '/scripts/mwimain.dll?UNIONSEARCH&KEEP=Y&SIMPLE_EXP=Y&APPLICATION=UNION_VIEW&language=144&REPORT=WEB_UNION_SUM&EXP=(A_IM_ACCESS present and FORM "Object") or (M_IM_ACCESS present)',
                 },
                 {
                   thumbnail: Category5,
                   title: "Textual Records",
-                  link: '/scripts/mwimain.dll?UNIONSEARCH&KEEP=Y&APPLICATION=UNION_VIEW&DATABASE=DESCRIPTION&language=144&REPORT=WEB_UNION_SUM_DESC&EXP=A_IM_ACCESS present and FORM "Textual record"',
+                  link: '/scripts/mwimain.dll?UNIONSEARCH&KEEP=Y&SIMPLE_EXP=Y&APPLICATION=UNION_VIEW&DATABASE=DESCRIPTION&language=144&REPORT=WEB_UNION_SUM_DESC&EXP=A_IM_ACCESS present and FORM "Textual record"',
                 },
               ],
             },

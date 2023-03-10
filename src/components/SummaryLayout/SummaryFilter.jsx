@@ -18,12 +18,11 @@ import Box from "@mui/joy/Box";
 import Select from "@mui/joy/Select";
 import Option from "@mui/joy/Option";
 import { deepSearch } from "../../utils/functions";
+import { getNumberOfRecords, getRecordsPerPageURL } from "../../utils/record";
 import Button from "@mui/joy/Button";
 import Checkbox from "@mui/joy/Checkbox";
 import List from "@mui/joy/List";
 import ListItem from "@mui/joy/ListItem";
-import Card from "@mui/joy/Card";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
 const FieldFilter = (props) => {
@@ -71,6 +70,8 @@ const FieldFilter = (props) => {
 const SummaryFilter = (props) => {
   const { data, xml } = props;
   let bookmarkCount = deepSearch(xml, "bookmark_count");
+  let numberOfRecords = getNumberOfRecords(xml);
+  console.log(numberOfRecords);
   return (
     <Item
       elevation={0}
@@ -112,12 +113,18 @@ const SummaryFilter = (props) => {
       <TextBox>Records per page</TextBox>
       <Select
         placeholder="Records per page"
-        defaultValue="25"
+        defaultValue={numberOfRecords}
         className="filterSelect"
+        onChange={(e, v) => {
+          if (!v) {
+            return null;
+          }
+          window.location = getRecordsPerPageURL(xml, v);
+        }}
       >
-        <Option value="25">25 Records</Option>
-        <Option value="50">50 Records</Option>
-        <Option value="100">100 Records</Option>
+        <Option value={25}>25 Records</Option>
+        <Option value={50}>50 Records</Option>
+        <Option value={100}>100 Records</Option>
       </Select>
       <TextBox>Filter by</TextBox>
       {data.map((item, i) => (
