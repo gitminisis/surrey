@@ -46,7 +46,7 @@ export const getIndexList = (field, database, application) => {
 export const getTodayDate = (_) => {
   return new Date().toJSON().slice(0, 10);
 };
-''
+("");
 export const getTomorrowDate = (_) => {
   let tomorrow = new Date();
   tomorrow.setDate(new Date().getDate() + 1);
@@ -59,6 +59,9 @@ export const getDaysBeforeDate = (number = 30) => {
   return priorDate.toJSON().slice(0, 10);
 };
 
+export const printPage = (_) => {
+  window.print();
+};
 export const getTrangCuteness = () => {
   let cuteness = 100;
   console.log(`Every second, Trang is becoming cuter `);

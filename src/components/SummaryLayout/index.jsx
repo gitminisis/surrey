@@ -103,12 +103,14 @@ const SummaryLayout = (props) => {
                     thumbnailData={thumbnailData}
                     data={displayField}
                     xml={xml}
+                    updateXML={setXml}
                   />
                 ) : (
                   <SummaryRecordsView
                     thumbnailData={thumbnailData}
                     data={displayField}
                     xml={xml}
+                    updateXML={setXml}
                   />
                 )}
                 <SummaryPagination />

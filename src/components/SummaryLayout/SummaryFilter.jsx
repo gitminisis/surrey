@@ -17,8 +17,13 @@ import {
 import Box from "@mui/joy/Box";
 import Select from "@mui/joy/Select";
 import Option from "@mui/joy/Option";
-import { deepSearch } from "../../utils/functions";
-import { getNumberOfRecords, getRecordsPerPageURL } from "../../utils/record";
+import { deepSearch, printPage } from "../../utils/functions";
+import {
+  bookmarkAllRecord,
+  getNumberOfRecords,
+  getRecordsPerPageURL,
+  viewBookmark,
+} from "../../utils/record";
 import Button from "@mui/joy/Button";
 import Checkbox from "@mui/joy/Checkbox";
 import List from "@mui/joy/List";
@@ -71,7 +76,6 @@ const SummaryFilter = (props) => {
   const { data, xml } = props;
   let bookmarkCount = deepSearch(xml, "bookmark_count");
   let numberOfRecords = getNumberOfRecords(xml);
-  console.log(numberOfRecords);
   return (
     <Item
       elevation={0}
@@ -85,13 +89,17 @@ const SummaryFilter = (props) => {
     >
       <TextBox>Bookmark</TextBox>
       <MenuList sx={{ textAlign: "left" }}>
-        <MenuItem>
+        <MenuItem onClick={(_) => bookmarkAllRecord(xml)}>
           <ListItemText> Bookmark all records</ListItemText>
         </MenuItem>
-        <MenuItem>
-          <ListItemText> Clear all records</ListItemText>
+        <MenuItem
+          onClick={(_) => {
+            printPage();
+          }}
+        >
+          <ListItemText> Print this page</ListItemText>
         </MenuItem>
-        <MenuItem>
+        <MenuItem onClick={(_) => viewBookmark(xml)}>
           <ListItemText> View bookmarks</ListItemText>
           <Typography variant="body2" color="text.secondary">
             <Badge badgeContent={bookmarkCount} color="primary"></Badge>

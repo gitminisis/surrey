@@ -27,7 +27,6 @@ export const getRecendAdditions = (_) => {
     let xml = getXMLRecord(dom);
   });
 };
-getRecendAdditions;
 export const getFirstThumbnail = (record, thumbnailData, database) => {
   let thumbnailField = thumbnailData.find(
     (e) => e.database === database
@@ -44,19 +43,52 @@ export const getFirstThumbnail = (record, thumbnailData, database) => {
   return thumbPic;
 };
 
-export const bookmarkRecord = (url, SISN, database) => {
+export const bookmarkRecord = (url, SISN, database, fn) => {
   return axios({
     method: "post",
     url: `${url}?ADDSELECTION&COOKIE=BOOKMARK`,
     data: `mcheckbox_${SISN}=${SISN}-${database}`,
+  }).then(function (res) {
+    console.log(res);
+    let { data } = res;
+    let dom = new DOMParser().parseFromString(data, "text/html");
+    let xml = getXMLRecord(dom);
+    debugger;
+    if (fn) {
+      fn(xml);
+    }
+    console.log(xml);
+    return xml;
+  });
+};
+
+export const bookmarkAllRecord = (xml) => {
+  let url = deepSearch(xml, "bookmark_url")[0];
+  let dataString = xml.xml.xml_record
+    .map((r) => {
+      let isBookmarked = deepSearch(r, "is_bookmarked")[0];
+      if (isBookmarked) {
+        return "";
+      }
+      let database = deepSearch(r, "database_name")[0];
+      let sisn = deepSearch(r, "sisn")[0];
+      return `mcheckbox_${sisn}=${sisn}-${database}`;
+    })
+    .filter((e) => e !== "")
+    .join("&");
+  return axios({
+    method: "post",
+    url: `${url}?ADDSELECTION&COOKIE=BOOKMARK`,
+    data: dataString,
   }).then(function (r) {
     console.log(r);
   });
 };
 
-export const bookmarkAllRecord = () => {};
-
-export const viewBookmark = () => {};
+export const viewBookmark = (xml) => {
+  let url = deepSearch(xml, "bookmark_url")[0];
+  window.location = `${url}?SHOWORDERLIST&COOKIE=BOOKMARK&NEW=Y`;
+};
 
 export const removeBookmarkRecord = () => {};
 
@@ -74,7 +106,5 @@ export const getNumberOfRecords = (xml) => {
 
 export const getRecordsPerPageURL = (xml, pagesize) => {
   let url = deepSearch(xml, `pagesize_${pagesize}`)[0];
-  console.log(pagesize);
   return url;
-  // return url.replace(/\n/g, "").trim();
 };

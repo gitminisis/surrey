@@ -4,7 +4,6 @@ import { Typography, Divider, Box, Grid } from "@mui/joy";
 
 const index = (props) => {
   let { main, value, label } = props;
-  console.log(_.flattenDeep(value));
   let flattenArrayValue = _.flattenDeep(value);
   if (main) {
     return (
