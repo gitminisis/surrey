@@ -9,7 +9,7 @@ export const deepSearch = (obj, key) => {
     // or just (key in obj)
     return [obj[key]];
   // elegant:
-  return _.flattenDeep(
+  return _.flatten(
     _.map(obj, function (v) {
       return typeof v == "object" ? deepSearch(v, key) : [];
     }),

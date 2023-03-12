@@ -42,7 +42,7 @@ const ImageMasonry = ({ data }) => {
       console.log(res);
       setTiles(res);
     });
-  }, tiles);
+  }, []);
   return (
     <Box sx={{ width: "100%", minHeight: 500, marginTop: "50px" }}>
       <Masonry columns={{ xs: 1, sm: 3, md: 4 }} spacing={2}>

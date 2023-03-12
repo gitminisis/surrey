@@ -12,7 +12,6 @@ import Category3 from "../assets/images/Audio-Visual.png";
 import Category4 from "../assets/images/Artifacts.png";
 import Category5 from "../assets/images/Textual Records.png";
 
-import { getRecendAdditions } from "../utils/record";
 // getRecendAdditions();
 const Home = [
   {

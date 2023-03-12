@@ -7,7 +7,8 @@ import {
   deepSearch,
 } from "./functions";
 import { json } from "react-router";
-
+import _ from "lodash";
+import { ThumbUpAlt } from "@mui/icons-material";
 export const getRecendAdditions = (_) => {
   let high = getTomorrowDate();
   let low = getDaysBeforeDate();
@@ -44,10 +45,10 @@ export const getRecendAdditions = (_) => {
         let xml_record = record.xml.xml_record;
         xml_record.map((e) => {
           let database = deepSearch(e, "database_name")[0];
-          let thumbnail = deepSearch(e, fieldByDatabase[database].thumbnail);
-          console.log(thumbnail);
+          let thumbnail = deepSearch(e, fieldByDatabase[database].thumbnail)[0];
+          console.log(thumbnail, Array.isArray(thumbnail));
           if (Array.isArray(thumbnail)) {
-            thumbnail = thumbnail[0][0];
+            thumbnail = thumbnail[0];
           }
           thumbnail = thumbnail.replace(
             "SAMOA.MINISISINC.COM",
@@ -68,7 +69,6 @@ export const getRecendAdditions = (_) => {
     })
   );
 };
-
 export const getFirstThumbnail = (record, thumbnailData, database) => {
   let thumbnailField = thumbnailData.find(
     (e) => e.database === database
