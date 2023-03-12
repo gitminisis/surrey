@@ -1,3 +1,5 @@
+import { DESCRIPTION_GENERAL_DETAIL_FIELD, COLLECTIONS_GENERAL_DETAIL_FIELD } from "./DisplayFields";
+
 const Detail = [
   {
     component: "Layout",
@@ -19,49 +21,11 @@ const Detail = [
             displayFields: [
               {
                 database: "COLLECTIONS",
-                fields: [
-                  {
-                    name: "LEGAL_TITLE",
-                    label: "Title",
-                    main: true,
-                  },
-                  {
-                    name: "ACCESSION_NUMBER",
-                    label: "Accession Number",
-                  },
-                  {
-                    name: "COLLECTION",
-                    label: "Collection",
-                  },
-                  {
-                    name: "EARLY",
-                    label: "Dates",
-                  },
-                  {
-                    name: "OBJECT_NAME",
-                    label: "Object Name(s)",
-                  },
-                ],
+                fields: COLLECTIONS_GENERAL_DETAIL_FIELD,
               },
               {
                 database: "DESCRIPTION",
-                fields: [
-                  {
-                    name: "TITLE",
-                    label: "Title",
-                    main: true,
-                  },
-                  {
-                    name: "DATE_SEARCH",
-                    label: "Date(s)",
-                    gridDisplay: false,
-                  },
-
-                  {
-                    name: "REFD",
-                    label: "ID",
-                  },
-                ],
+                fields: DESCRIPTION_GENERAL_DETAIL_FIELD,
               },
             ],
           },

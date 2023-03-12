@@ -5,34 +5,44 @@ import BookmarkAdd from "@mui/icons-material/BookmarkAddOutlined";
 import LinkIcon from "@mui/icons-material/Link";
 import { bookmarkRecord } from "../../utils/record";
 import BookmarkAddedIcon from "@mui/icons-material/BookmarkAdded";
-import ToastNotification from "../ToastNotification";
+import { useSnackbar } from "notistack";
+
+import { Tooltip } from "@mui/material";
 const SummaryRecordAction = (props) => {
+  const { enqueueSnackbar } = useSnackbar();
   const { database, url, sisn, updateXML, isBookmarked } = props;
-  const [showToast, setShowToast] = useState(false);
-  const [message, setMesssage] = useState("");
   return (
     <>
-      <ToastNotification message={message} show={showToast} />
       <IconButton
         aria-label="bookmark"
         variant="plain"
         color="neutral"
         size="md"
-        onClick={(_) =>
+        onClick={(_) => {
+          if (isBookmarked) {
+            enqueueSnackbar("This record has already been bookmarked");
+            return;
+          }
+
+          enqueueSnackbar(`Adding record SISN #${sisn} to the bookmark`, {
+            variant: "info",
+          });
           bookmarkRecord(url, sisn, database, updateXML).then((_) => {
-            console.log("test");
-            setMesssage(
+            enqueueSnackbar(
               `Record SISN #${sisn} has been successfully added to the bookmark !`
             );
-
-            setShowToast(true);
-          })
-        }
+          });
+        }}
       >
         {isBookmarked && isBookmarked === "true" ? (
-          <BookmarkAddedIcon />
+          <Tooltip title="Added to the bookmark">
+            <BookmarkAddedIcon />
+          </Tooltip>
         ) : (
-          <BookmarkAdd />
+          <Tooltip title="Bookmark this record">
+            {" "}
+            <BookmarkAdd />
+          </Tooltip>
         )}
       </IconButton>
       <IconButton
@@ -41,14 +51,12 @@ const SummaryRecordAction = (props) => {
         color="neutral"
         size="md"
         onClick={(_) => {
-          setMesssage(
-            `Record SISN #${sisn} has been successfully added to the bookmark !`
-          );
-
-          setShowToast(!showToast);
+          enqueueSnackbar(`Copied to clipboard`);
         }}
       >
-        <LinkIcon />
+        <Tooltip title="Copy this record URL">
+          <LinkIcon />
+        </Tooltip>
       </IconButton>
     </>
   );

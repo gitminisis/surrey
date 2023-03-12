@@ -7,9 +7,16 @@ import { ErrorBoundary, withErrorBoundary } from "react-error-boundary";
 import BackTop from "../BackTop";
 import Fab from "@mui/material/Fab";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
+import { SnackbarProvider } from "notistack";
+
+const MAX_SNACK = 3;
 const Layout = ({ active, children }) => {
   return (
-    <>
+    <SnackbarProvider
+      maxSnack={MAX_SNACK}
+      variant="success"
+      anchorOrigin={{ horizontal: "center", vertical: "top" }}
+    >
       <AppBar active={active} {...SiteLayout} />
       <ErrorBoundary
         FallbackComponent={ErrorFallback}
@@ -26,9 +33,8 @@ const Layout = ({ active, children }) => {
           </Fab>
         </BackTop>
       </ErrorBoundary>
-
       <Footer {...SiteLayout} />
-    </>
+    </SnackbarProvider>
   );
 };
 

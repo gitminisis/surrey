@@ -4,12 +4,12 @@ import Button from "@mui/material/Button";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
 import PropTypes from "prop-types";
+import { SnackbarProvider, useSnackbar } from 'notistack';
 const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
 
 const ToastNotification = (props) => {
-  console.log(props);
   const { show, duration, message, type } = props;
   const [open, setOpen] = React.useState(show);
 
@@ -31,7 +31,7 @@ const ToastNotification = (props) => {
       >
         <Alert
           onClose={handleClose}
-          severity={type || "success"}
+          severity={type || "info"}
           sx={{ width: "100%" }}
         >
           {message}
