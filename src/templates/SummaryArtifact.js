@@ -1,3 +1,8 @@
+import {
+  COLLECTIONS_SUMMARY_FIELD,
+  MEDIA_THUMBNAIL_FIELD,
+} from "./DisplayFields";
+
 const Summary = [
   {
     component: "Layout",
@@ -37,36 +42,11 @@ const Summary = [
               ],
             },
           ],
-          thumbnailData: [
-            {
-              database: "COLLECTIONS",
-              fields: "m_im_access_link",
-            },
-          ],
+          thumbnailData: MEDIA_THUMBNAIL_FIELD,
           displayField: [
             {
               database: "COLLECTIONS",
-              fields: [
-                {
-                  name: "LEGAL_TITLE",
-                  label: "Title",
-                  main: true,
-                },
-                {
-                  name: "EARLY",
-                  label: "Dates",
-                  gridDisplay: false,
-                },
-                {
-                  name: "ACCESSION_NUMBER",
-                  label: "ID",
-                },
-                {
-                  name: "OBJ_DESCRIPTION",
-                  label: "Description",
-                  gridDisplay: false,
-                },
-              ],
+              fields: COLLECTIONS_SUMMARY_FIELD,
             },
           ],
           defaultView: "grid",

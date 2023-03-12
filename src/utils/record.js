@@ -46,7 +46,6 @@ export const getRecendAdditions = (_) => {
         xml_record.map((e) => {
           let database = deepSearch(e, "database_name")[0];
           let thumbnail = deepSearch(e, fieldByDatabase[database].thumbnail)[0];
-          console.log(thumbnail, Array.isArray(thumbnail));
           if (Array.isArray(thumbnail)) {
             thumbnail = thumbnail[0];
           }

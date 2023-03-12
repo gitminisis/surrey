@@ -1,3 +1,9 @@
+import {
+  COLLECTIONS_SUMMARY_FIELD,
+  DESCRIPTION_SUMMARY_FIELD,
+  MEDIA_THUMBNAIL_FIELD,
+} from "./DisplayFields";
+
 const Summary = [
   {
     component: "Layout",
@@ -34,69 +40,16 @@ const Summary = [
               ],
             },
           ],
-          thumbnailData: [
-            {
-              database: "COLLECTIONS",
-              fields: "m_im_access_link",
-            },
-            {
-              database: "DESCRIPTION",
-              fields: "a_im_access_link",
-            },
-          ],
+          thumbnailData: MEDIA_THUMBNAIL_FIELD,
 
           displayField: [
             {
               database: "COLLECTIONS",
-              fields: [
-                {
-                  name: "LEGAL_TITLE",
-                  label: "Title",
-                  main: true,
-                },
-
-                {
-                  name: "EARLY",
-                  label: "Dates",
-                  gridDisplay: false,
-                },
-                {
-                  name: "ACCESSION_NUMBER",
-                  label: "ID",
-                },
-                {
-                  name: "OBJ_DESCRIPTION",
-                  label: "Description",
-                  gridDisplay: false,
-                },
-              ],
+              fields: COLLECTIONS_SUMMARY_FIELD,
             },
             {
               database: "DESCRIPTION",
-              fields: [
-                {
-                  name: "TITLE",
-                  label: "Title",
-                  main: true,
-                },
-
-                {
-                  name: "DATE_SEARCH",
-                  label: "Dates",
-                  gridDisplay: false,
-                },
-
-                {
-                  name: "form_occurrence",
-                  label: "Type",
-                  gridDisplay: false,
-                },
-
-                {
-                  name: "REFD",
-                  label: "ID",
-                },
-              ],
+              fields: DESCRIPTION_SUMMARY_FIELD,
             },
           ],
         },

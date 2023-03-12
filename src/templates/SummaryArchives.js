@@ -1,4 +1,9 @@
-const Summary = [
+import {
+  DESCRIPTION_SUMMARY_FIELD,
+  MEDIA_THUMBNAIL_FIELD,
+} from "./DisplayFields";
+
+const Summmary = [
   {
     component: "Layout",
     data: {
@@ -37,39 +42,11 @@ const Summary = [
               ],
             },
           ],
-          thumbnailData: [
-            {
-              database: "DESCRIPTION",
-              fields: "a_im_access_link",
-            },
-          ],
+          thumbnailData: MEDIA_THUMBNAIL_FIELD,
           displayField: [
             {
               database: "DESCRIPTION",
-              fields: [
-                {
-                  name: "TITLE",
-                  label: "Title",
-                  main: true,
-                },
-
-                {
-                  name: "DATE_SEARCH",
-                  label: "Date(s)",
-                  gridDisplay: false,
-                },
-
-                {
-                  name: "form_occurrence",
-                  label: "Type",
-                  gridDisplay: false,
-                },
-
-                {
-                  name: "REFD",
-                  label: "ID",
-                },
-              ],
+              fields: DESCRIPTION_SUMMARY_FIELD,
             },
           ],
           defaultView: "list",
@@ -79,4 +56,4 @@ const Summary = [
   },
 ];
 
-export default Summary;
+export default Summmary;
