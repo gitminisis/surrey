@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import IconButton from "@mui/joy/IconButton";
 import BookmarkAdd from "@mui/icons-material/BookmarkAddOutlined";
 import LinkIcon from "@mui/icons-material/Link";
-import { bookmarkRecord } from "../../utils/record";
+import { bookmarkRecord, copyToClipboard } from "../../utils/record";
 import BookmarkAddedIcon from "@mui/icons-material/BookmarkAdded";
 import { useSnackbar } from "notistack";
 
@@ -51,6 +51,7 @@ const SummaryRecordAction = (props) => {
         color="neutral"
         size="md"
         onClick={(_) => {
+          copyToClipboard(sisn, database);
           enqueueSnackbar(`Copied to clipboard`);
         }}
       >

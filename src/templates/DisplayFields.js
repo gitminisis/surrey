@@ -43,6 +43,7 @@ export const COLLECTIONS_SUMMARY_FIELD = [
     name: "OBJ_DESCRIPTION",
     label: "Description",
     gridDisplay: false,
+    maxLength: 200,
   },
 ];
 

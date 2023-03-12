@@ -21,6 +21,7 @@
     "babel-polyfill": "^6.26.0",
     "babel-preset-minify": "^0.5.2",
     "babel-preset-react-app": "^10.0.1",
+    "copy-to-clipboard": "^3.3.3",
     "css-loader": "^6.7.3",
     "file-loader": "^6.2.0",
     "leaflet": "^1.9.3",

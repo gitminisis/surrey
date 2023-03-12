@@ -15,6 +15,7 @@ const Layout = ({ active, children }) => {
     <SnackbarProvider
       maxSnack={MAX_SNACK}
       variant="success"
+      autoHideDuration={2500}
       anchorOrigin={{ horizontal: "center", vertical: "top" }}
     >
       <AppBar active={active} {...SiteLayout} />

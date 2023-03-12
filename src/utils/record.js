@@ -9,6 +9,10 @@ import {
 import { json } from "react-router";
 import _ from "lodash";
 import { ThumbUpAlt } from "@mui/icons-material";
+import copy from "copy-to-clipboard";
+
+const DEFAULT_DETAIL_REPORT = "WEB_UNION_DETAIL";
+const WEB_DNS = "http://samoa.minisisinc.com";
 export const getRecendAdditions = (_) => {
   let high = getTomorrowDate();
   let low = getDaysBeforeDate();
@@ -136,7 +140,14 @@ export const removeAllBookmarkRecord = () => {};
 
 export const getRecordPermalink = () => {};
 
-export const copyToClipboard = () => {};
+export const copyToClipboard = (
+  sisn,
+  database,
+  report = DEFAULT_DETAIL_REPORT
+) => {
+  let url = `${WEB_DNS}/scripts/mwimain.dll/144/${database}/${report}?sessionsearch&exp=sisn ${sisn}`;
+  copy(url);
+};
 
 export const getNumberOfRecords = (xml) => {
   let firstRecordSeq = deepSearch(xml, "first_record_seq")[0];

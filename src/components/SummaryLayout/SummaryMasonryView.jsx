@@ -16,7 +16,6 @@ import LinkIcon from "@mui/icons-material/Link";
 const SummaryMasonryView = (props) => {
   const { data, thumbnailData, xml } = props;
 
-
   return (
     <Box sx={{ width: "100%" }}>
       <Masonry
@@ -50,21 +49,13 @@ const SummaryMasonryView = (props) => {
                     return Component(field);
                   }
 
-                  if (field.main) {
-                    return (
-                      <SummaryTextField
-                        main={field.main}
-                        onClick={(_) => (window.location = recordLink)}
-                      >
-                        {fieldValue.join(", ")}
-                      </SummaryTextField>
-                    );
-                  }
-
                   return (
-                    <SummaryTextField>
-                      <strong>{fieldLabel}</strong>: {fieldValue.join(", ")}
-                    </SummaryTextField>
+                    <SummaryTextField
+                      main={field.main}
+                      label={fieldLabel}
+                      value={fieldValue}
+                      maxLength={field.maxLength}
+                    />
                   );
                 })}
               </div>
