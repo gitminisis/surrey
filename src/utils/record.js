@@ -6,27 +6,69 @@ import {
   getXMLRecord,
   deepSearch,
 } from "./functions";
+import { json } from "react-router";
 
 export const getRecendAdditions = (_) => {
   let high = getTomorrowDate();
   let low = getDaysBeforeDate();
   let searchingField = [
-    { date: "LAST_MODIFIED_TM", media: "M_IM_ACCESS" },
-    { date: "MODIFIED_ON", media: "A_IM_ACCESS" },
+    {
+      database: "COLLECTIONS",
+      date: "LAST_MODIFIED_TM",
+      media: "M_IM_ACCESS",
+      report: "WEB_UNION_SUM_COL",
+    },
+    {
+      database: "DESCRIPTION",
+      date: "MODIFIED_ON",
+      media: "A_IM_ACCESS",
+      report: "WEB_UNION_SUM_DESC",
+    },
   ];
-  let searchExpressions = searchingField
-    .map((e) => {
-      let exp = `(${e.date} < "${high}" and ${e.date} > "${low}" and ${e.media} present)`;
-      return exp;
-    })
-    .join(" or ");
-  let url = `/scripts/mwimain.dll?UNIONSEARCH&KEEP=Y&SIMPLE_EXP=Y&APPLICATION=UNION_VIEW&language=144&REPORT=WEB_UNION_SUM&EXP=${searchExpressions}`;
-  return axios.get(url).then((res) => {
-    let { data } = res;
-    let dom = new DOMParser().parseFromString(data, "text/html");
-    let xml = getXMLRecord(dom);
+  let fieldByDatabase = {
+    COLLECTIONS: { title: "legal_title", thumbnail: "m_im_access_link" },
+    DESCRIPTION: { title: "title", thumbnail: "a_im_access_link" },
+  };
+  let searchURL = searchingField.map((e) => {
+    let exp = `${e.date} > "${low}" and ${e.media} present`;
+    let url = `/scripts/mwimain.dll?UNIONSEARCH&KEEP=Y&SIMPLE_EXP=Y&APPLICATION=UNION_VIEW&language=144&REPORT=WEB_UNION_SUM&EXP=${exp}&database=${e.database}`;
+    return url;
   });
+
+  return axios.all(searchURL.map((l) => axios.get(l))).then(
+    axios.spread(function (...res) {
+      let jsonData = res.map((e) =>
+        getXMLRecord(new DOMParser().parseFromString(e.data, "text/html"))
+      );
+      let result = jsonData.reduce((acc, record) => {
+        let xml_record = record.xml.xml_record;
+        xml_record.map((e) => {
+          let database = deepSearch(e, "database_name")[0];
+          let thumbnail = deepSearch(e, fieldByDatabase[database].thumbnail);
+          console.log(thumbnail);
+          if (Array.isArray(thumbnail)) {
+            thumbnail = thumbnail[0][0];
+          }
+          thumbnail = thumbnail.replace(
+            "SAMOA.MINISISINC.COM",
+            "surrey.minisisinc.com"
+          );
+
+          acc.push({
+            thumbnail,
+            title: "Library",
+            url: deepSearch(e, "record_link")[0],
+            urlTitle: deepSearch(e, fieldByDatabase[database].title)[0],
+          });
+        });
+        return acc;
+      }, []);
+
+      return result;
+    })
+  );
 };
+
 export const getFirstThumbnail = (record, thumbnailData, database) => {
   let thumbnailField = thumbnailData.find(
     (e) => e.database === database
@@ -57,7 +99,6 @@ export const bookmarkRecord = (url, SISN, database, fn) => {
     if (fn) {
       fn(xml);
     }
-    console.log(xml);
     return xml;
   });
 };

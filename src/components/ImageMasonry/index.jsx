@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import Masonry from "@mui/lab/Masonry";
 import Box from "@mui/material/Box";
 import { MasonryBox, MasonryShadow, MasonryAction } from "./ImageMasonry.style";
 import KeyboardDoubleArrowUpIcon from "@mui/icons-material/KeyboardDoubleArrowUp";
-
+import { getRecendAdditions } from "../../utils/record";
 const ImageMasonryItem = (props) => {
   let { thumbnail, title, url, urlTitle } = props.item;
   return (
@@ -35,10 +35,18 @@ const ImageMasonryItem = (props) => {
 };
 
 const ImageMasonry = ({ data }) => {
+  const [tiles, setTiles] = useState(data || []);
+
+  useEffect((_) => {
+    getRecendAdditions().then((res) => {
+      console.log(res);
+      setTiles(res);
+    });
+  }, tiles);
   return (
     <Box sx={{ width: "100%", minHeight: 500, marginTop: "50px" }}>
       <Masonry columns={{ xs: 1, sm: 3, md: 4 }} spacing={2}>
-        {data.map((item, index) => (
+        {tiles.map((item, index) => (
           <ImageMasonryItem item={item} key={item.thumbnail + index} />
         ))}
       </Masonry>

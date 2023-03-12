@@ -20,6 +20,7 @@ const SummaryRecordAction = (props) => {
         size="md"
         onClick={(_) =>
           bookmarkRecord(url, sisn, database, updateXML).then((_) => {
+            console.log("test");
             setMesssage(
               `Record SISN #${sisn} has been successfully added to the bookmark !`
             );
@@ -39,6 +40,13 @@ const SummaryRecordAction = (props) => {
         variant="plain"
         color="neutral"
         size="md"
+        onClick={(_) => {
+          setMesssage(
+            `Record SISN #${sisn} has been successfully added to the bookmark !`
+          );
+
+          setShowToast(!showToast);
+        }}
       >
         <LinkIcon />
       </IconButton>

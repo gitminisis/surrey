@@ -9,6 +9,7 @@ const Alert = React.forwardRef(function Alert(props, ref) {
 });
 
 const ToastNotification = (props) => {
+  console.log(props);
   const { show, duration, message, type } = props;
   const [open, setOpen] = React.useState(show);
 
@@ -26,6 +27,7 @@ const ToastNotification = (props) => {
         open={open}
         autoHideDuration={duration || 6000}
         onClose={handleClose}
+        anchorOrigin={{ vertical: "top", horizontal: "center" }}
       >
         <Alert
           onClose={handleClose}

@@ -126,64 +126,7 @@ const Home = [
         children: [
           {
             component: "ImageMasonry",
-            data: {
-              data: [
-                {
-                  thumbnail: "https://picsum.photos/400/300",
-                  title: "Library",
-                  url: "/",
-                  urlTitle: "View More",
-                },
-                {
-                  thumbnail: "https://picsum.photos/410/400",
-                  title: "Library",
-                  url: "/",
-                  urlTitle: "View More",
-                },
-                {
-                  thumbnail: "https://picsum.photos/430/500",
-                  title: "Library",
-                  url: "/",
-                  urlTitle: "View More",
-                },
-                {
-                  thumbnail: "https://picsum.photos/440/600",
-                  title: "Library",
-                  url: "/",
-                  urlTitle: "View More",
-                },
-                {
-                  thumbnail: "https://picsum.photos/450/700",
-                  title: "Library",
-                  url: "/",
-                  urlTitle: "View More",
-                },
-                {
-                  thumbnail: "https://picsum.photos/460/800",
-                  title: "Library",
-                  url: "/",
-                  urlTitle: "View More",
-                },
-                {
-                  thumbnail: "https://picsum.photos/470/900",
-                  title: "Library",
-                  url: "/",
-                  urlTitle: "View More",
-                },
-                {
-                  thumbnail: "https://picsum.photos/480/350",
-                  title: "Library",
-                  url: "/",
-                  urlTitle: "View More",
-                },
-                {
-                  thumbnail: "https://picsum.photos/490/450",
-                  title: "Library",
-                  url: "/",
-                  urlTitle: "View More",
-                },
-              ],
-            },
+            data: {},
           },
         ],
       },
