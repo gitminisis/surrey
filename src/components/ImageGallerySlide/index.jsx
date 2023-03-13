@@ -66,12 +66,10 @@ const ImageGallerySlide = (props) => {
           </button>
         )}
         onScreenChange={(e, fn) => {
-          console.log(show);
           setShow(e);
         }}
         items={data}
         onClick={(e) => {
-          console.log(e);
           setShow(true);
         }}
       />

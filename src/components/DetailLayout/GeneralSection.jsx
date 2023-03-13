@@ -17,7 +17,6 @@ const GeneralSecion = (props) => {
     (e) => e.database === database
   ).fields;
   let allThumbnails = getAllThumbnails(record, undefined, database);
-  console.log(allThumbnails);
   return (
     <Item sx={{ padding: "10px 16px" }} elevation={6}>
       <Container disableGutters maxWidth={"lg"} style={{ margin: "0 auto" }}>

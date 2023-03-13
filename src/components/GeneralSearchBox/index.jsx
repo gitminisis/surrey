@@ -26,7 +26,6 @@ export const Item = styled(Paper)(({ theme }) => ({
 const GeneralSearchBox = (props) => {
   const { breadcrumbs, heading, helpText, databaseList } = props;
   const [index, setIndex] = React.useState(0);
-  console.log(databaseList[index]);
   return (
     <Item elevation={6} sx={{ padding: "16px" }} className="back-top-anchor">
       <div>
