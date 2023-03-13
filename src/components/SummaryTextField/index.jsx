@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Typography } from "@mui/material";
 const index = (props) => {
-  let { main, label, value, maxLength } = props;
+  let { main, label, value, maxLength, recordLink } = props;
   let string = value.join(", ");
   if (maxLength && string.length > maxLength) {
     string = string.substring(0, maxLength) + " ...";
@@ -10,8 +10,9 @@ const index = (props) => {
   if (main) {
     return (
       <Typography
+        onClick={(_) => (window.location = recordLink)}
         {...props}
-        component="div"
+        component="a"
         variant="h3"
         sx={{
           color: "primary.main",

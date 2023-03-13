@@ -16,6 +16,7 @@ import IconButton from "@mui/joy/IconButton";
 import BookmarkAdd from "@mui/icons-material/BookmarkAddOutlined";
 import LinkIcon from "@mui/icons-material/Link";
 import SummaryRecordAction from "./SummaryRecordAction";
+import RecordTextField from "../RecordTextField";
 const SummaryRecordsView = (props) => {
   const { data, thumbnailData, xml, updateXML } = props;
 
@@ -27,11 +28,10 @@ const SummaryRecordsView = (props) => {
         let recordData = record.record;
         let displayFields = data.find((e) => e.database === database).fields;
         let thumbPic = getFirstThumbnail(record, thumbnailData, database);
-        let sisn = deepSearch(recordData, "sisn");
-        let bookmarkURL = deepSearch(xml, "bookmark_url");
+        let sisn = deepSearch(recordData, "sisn")[0];
+        let bookmarkURL = deepSearch(xml, "bookmark_url")[0];
         let isBookmarked = deepSearch(record, "is_bookmarked")[0];
-        console.log(isBookmarked);
-
+    
         return (
           <Grid item xs={12}>
             <Item sx={{ padding: "16px", borderRadius: "0" }}>
@@ -41,8 +41,7 @@ const SummaryRecordsView = (props) => {
                   flexDirection: "row",
                   position: "relative",
                 }}
-                variant="outlined"
-                elevation={8}
+                elevation={5}
               >
                 <Box>
                   {thumbPic && (
@@ -70,28 +69,12 @@ const SummaryRecordsView = (props) => {
                   }}
                 >
                   <CardContent sx={{ flex: "1 0 auto" }}>
-                    {displayFields.map((field) => {
-                      let fieldValue = deepSearch(
-                        recordData,
-                        field.name.toLowerCase()
-                      );
-                      if (fieldValue.length === 0) {
-                        return;
-                      }
-                      let fieldLabel = field.label;
-
-                      if (field.component !== undefined) {
-                        return Component(field);
-                      }
-                      return (
-                        <SummaryTextField
-                          main={field.main}
-                          label={fieldLabel}
-                          value={fieldValue}
-                          maxLength={field.maxLength}
-                        />
-                      );
-                    })}
+                    <RecordTextField
+                      displayFields={displayFields}
+                      recordData={recordData}
+                      recordLink={recordLink}
+                      displayComponent={SummaryTextField}
+                    />
                   </CardContent>
                   <Box
                     sx={{

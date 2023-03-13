@@ -39,7 +39,6 @@ const ImageMasonry = ({ data }) => {
 
   useEffect((_) => {
     getRecendAdditions().then((res) => {
-      console.log(res);
       setTiles(res);
     });
   }, []);

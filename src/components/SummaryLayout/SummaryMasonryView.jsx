@@ -13,6 +13,7 @@ import BookmarkAdd from "@mui/icons-material/BookmarkAddOutlined";
 import IconButton from "@mui/joy/IconButton";
 import PropTypes from "prop-types";
 import LinkIcon from "@mui/icons-material/Link";
+import RecordTextField from "../RecordTextField";
 const SummaryMasonryView = (props) => {
   const { data, thumbnailData, xml } = props;
 
@@ -34,30 +35,13 @@ const SummaryMasonryView = (props) => {
           return (
             <Card variant="outlined">
               <div style={{ width: "90%" }}>
-                {displayFields.map((field) => {
-                  let fieldValue = deepSearch(
-                    recordData,
-                    field.name.toLowerCase()
-                  );
-
-                  if (fieldValue.length === 0 || field.gridDisplay === false) {
-                    return;
-                  }
-                  let fieldLabel = field.label;
-
-                  if (field.component !== undefined) {
-                    return Component(field);
-                  }
-
-                  return (
-                    <SummaryTextField
-                      main={field.main}
-                      label={fieldLabel}
-                      value={fieldValue}
-                      maxLength={field.maxLength}
-                    />
-                  );
-                })}
+                <RecordTextField
+                  gridDisplay={true}
+                  displayFields={displayFields}
+                  recordData={recordData}
+                  recordLink={recordLink}
+                  displayComponent={SummaryTextField}
+                />
               </div>
               {thumbPic && (
                 <img

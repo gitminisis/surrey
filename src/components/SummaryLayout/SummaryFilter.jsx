@@ -30,6 +30,7 @@ import List from "@mui/joy/List";
 import ListItem from "@mui/joy/ListItem";
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
+import { useSnackbar } from "notistack";
 const FieldFilter = (props) => {
   const [open, setOpen] = React.useState(true);
   const handleClick = () => {
@@ -74,6 +75,8 @@ const FieldFilter = (props) => {
 };
 const SummaryFilter = (props) => {
   const { data, xml } = props;
+  const { enqueueSnackbar } = useSnackbar();
+
   let bookmarkCount = deepSearch(xml, "bookmark_count");
   let numberOfRecords = getNumberOfRecords(xml);
   return (
@@ -89,7 +92,18 @@ const SummaryFilter = (props) => {
     >
       <TextBox>Bookmark</TextBox>
       <MenuList sx={{ textAlign: "left" }}>
-        <MenuItem onClick={(_) => bookmarkAllRecord(xml)}>
+        <MenuItem
+          onClick={(_) => {
+            enqueueSnackbar(`Adding all records to the bookmark`, {
+              variant: "info",
+            });
+            bookmarkAllRecord(xml).then((_) => {
+              enqueueSnackbar(
+                `All records have been successfully added to the bookmark!`
+              );
+            });
+          }}
+        >
           <ListItemText> Bookmark all records</ListItemText>
         </MenuItem>
         <MenuItem

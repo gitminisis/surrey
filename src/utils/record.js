@@ -94,11 +94,9 @@ export const bookmarkRecord = (url, SISN, database, fn) => {
     url: `${url}?ADDSELECTION&COOKIE=BOOKMARK`,
     data: `mcheckbox_${SISN}=${SISN}-${database}`,
   }).then(function (res) {
-    console.log(res);
     let { data } = res;
     let dom = new DOMParser().parseFromString(data, "text/html");
     let xml = getXMLRecord(dom);
-    debugger;
     if (fn) {
       fn(xml);
     }
@@ -106,7 +104,7 @@ export const bookmarkRecord = (url, SISN, database, fn) => {
   });
 };
 
-export const bookmarkAllRecord = (xml) => {
+export const bookmarkAllRecord = (xml, fn) => {
   let url = deepSearch(xml, "bookmark_url")[0];
   let dataString = xml.xml.xml_record
     .map((r) => {
@@ -124,8 +122,14 @@ export const bookmarkAllRecord = (xml) => {
     method: "post",
     url: `${url}?ADDSELECTION&COOKIE=BOOKMARK`,
     data: dataString,
-  }).then(function (r) {
-    console.log(r);
+  }).then(function (res) {
+    let { data } = res;
+    let dom = new DOMParser().parseFromString(data, "text/html");
+    let xml = getXMLRecord(dom);
+    if (fn) {
+      fn(xml);
+    }
+    return xml;
   });
 };
 

@@ -11,6 +11,7 @@ import { Tooltip } from "@mui/material";
 const SummaryRecordAction = (props) => {
   const { enqueueSnackbar } = useSnackbar();
   const { database, url, sisn, updateXML, isBookmarked } = props;
+  console.log(props);
   return (
     <>
       <IconButton
@@ -19,7 +20,7 @@ const SummaryRecordAction = (props) => {
         color="neutral"
         size="md"
         onClick={(_) => {
-          if (isBookmarked) {
+          if (isBookmarked === "true") {
             enqueueSnackbar("This record has already been bookmarked");
             return;
           }
@@ -29,18 +30,17 @@ const SummaryRecordAction = (props) => {
           });
           bookmarkRecord(url, sisn, database, updateXML).then((_) => {
             enqueueSnackbar(
-              `Record SISN #${sisn} has been successfully added to the bookmark !`
+              `Record SISN #${sisn} has been successfully added to the bookmark!`
             );
           });
         }}
       >
-        {isBookmarked && isBookmarked === "true" ? (
+        {isBookmarked === "true" ? (
           <Tooltip title="Added to the bookmark">
             <BookmarkAddedIcon />
           </Tooltip>
         ) : (
           <Tooltip title="Bookmark this record">
-            {" "}
             <BookmarkAdd />
           </Tooltip>
         )}

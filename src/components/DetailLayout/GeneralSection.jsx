@@ -4,6 +4,7 @@ import { Item } from "./DetailLayout.style";
 import { Box, Typography, Grid, ButtonBase, Container } from "@mui/material";
 import { deepSearch, getXMLRecord } from "../../utils/functions";
 import GeneralDetailTextField from "./GeneralDetailTextField";
+import RecordTextField from "../RecordTextField";
 const GeneralSecion = (props) => {
   const { data } = props;
   const xml = getXMLRecord();
@@ -48,29 +49,11 @@ const GeneralSecion = (props) => {
                   minWidth: "300px",
                 }}
               >
-                {displayFields.map((field) => {
-                  let fieldValue = deepSearch(
-                    recordData,
-                    field.name.toLowerCase()
-                  );
-
-                  if (fieldValue.length === 0) {
-                    return;
-                  }
-
-                  let fieldLabel = field.label;
-                  if (field.component !== undefined) {
-                    return Component(field);
-                  }
-
-                  return (
-                    <GeneralDetailTextField
-                      main={field.main}
-                      label={fieldLabel}
-                      value={fieldValue}
-                    />
-                  );
-                })}
+                <RecordTextField
+                  displayFields={displayFields}
+                  recordData={recordData}
+                  displayComponent={GeneralDetailTextField}
+                />
               </Grid>
               <Grid item>
                 <Typography sx={{ cursor: "pointer" }} variant="body2">
