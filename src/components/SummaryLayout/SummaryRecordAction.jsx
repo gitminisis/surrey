@@ -11,7 +11,6 @@ import { Tooltip } from "@mui/material";
 const SummaryRecordAction = (props) => {
   const { enqueueSnackbar } = useSnackbar();
   const { database, url, sisn, updateXML, isBookmarked, size } = props;
-  console.log(props);
   return (
     <>
       <IconButton

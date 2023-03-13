@@ -5,6 +5,7 @@ import { Box, Typography, Grid, ButtonBase, Container } from "@mui/material";
 import { deepSearch, getXMLRecord } from "../../utils/functions";
 import GeneralDetailTextField from "./GeneralDetailTextField";
 import RecordTextField from "../RecordTextField";
+import ImageGalleryViewer from "../ImageGalleryCarousel";
 const GeneralSecion = (props) => {
   const { data } = props;
   const xml = getXMLRecord();
@@ -26,23 +27,14 @@ const GeneralSecion = (props) => {
         >
           <Grid item xs={12} sm container spacing={2} sx={{ pt: 4 }}>
             <Grid item sx={{ margin: "0 auto" }}>
-              <ButtonBase sx={{ width: 300, height: 300 }}>
-                <img
-                  alt="complex"
-                  src="https://picsum.photos/900"
-                  style={{
-                    maxWidth: "100%",
-                    maxHeight: "100%",
-                    display: "block",
-                  }}
-                />
-              </ButtonBase>
+              <ImageGalleryViewer />
             </Grid>
             <Grid item xs container direction="column" spacing={2}>
               <Grid
                 item
                 xs
                 sx={{
+                  width: "80%",
                   textAlign: "left",
                   maxWidth: "700px",
                   margin: "0 auto",

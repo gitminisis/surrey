@@ -1,4 +1,11 @@
-import { DESCRIPTION_GENERAL_DETAIL_FIELD, COLLECTIONS_GENERAL_DETAIL_FIELD } from "./DisplayFields";
+import {
+  DESCRIPTION_GENERAL_DETAIL_FIELD,
+  COLLECTIONS_GENERAL_DETAIL_FIELD,
+  DESCRIPTION_OVERVIEW_DETAIL_FIELD,
+  COLLECTIONS_OVERVIEW_DETAIL_FIELD,
+  COLLECTIONS_CHENHALL_DETAIL_FIELD,
+  GENERAL_SEARCHBOX_DBLIST,
+} from "./DisplayFields";
 
 const Detail = [
   {
@@ -8,9 +15,9 @@ const Detail = [
         component: "DetailLayout",
         data: {
           generalSearchBox: {
-            searchURL: "",
             breadcrumbs: ["Summary", "Detail"],
             heading: "Search the collections",
+            databaseList: GENERAL_SEARCHBOX_DBLIST,
             helpText: {
               link: "/faq.html",
               description:
@@ -36,46 +43,11 @@ const Detail = [
                 section: [
                   {
                     title: "Overview",
-                    fields: [
-                      {
-                        name: "OBJ_DESCRIPTION",
-                        label: "Description",
-                      },
-                      {
-                        name: "ASSOC_FULLNAME",
-                        label: "Associated Person",
-                      },
-
-                      {
-                        name: "ORG_ASSOC",
-                        label: "Associated Organization",
-                      },
-                      {
-                        name: "ASSOC_EVENT",
-                        label: "Associated Event",
-                      },
-                      {
-                        name: "PLACE_ASSOC_NAME",
-                        label: "Associated Place",
-                      },
-                      {
-                        name: "SITE_NAME",
-                        label: "Associated Place",
-                      },
-                    ],
+                    fields: COLLECTIONS_OVERVIEW_DETAIL_FIELD,
                   },
                   {
                     title: "Chenhall",
-                    fields: [
-                      {
-                        name: "SUB_CLASS",
-                        label: "Sub-Classification",
-                      },
-                      {
-                        name: "PRIMARY",
-                        label: "Primary",
-                      },
-                    ],
+                    fields: COLLECTIONS_CHENHALL_DETAIL_FIELD,
                   },
                 ],
               },
@@ -84,36 +56,7 @@ const Detail = [
                 section: [
                   {
                     title: "Overview",
-                    fields: [
-                      {
-                        name: "form_occurrence",
-                        label: "Type of Materials",
-                      },
-                      {
-                        name: "LEVEL_DESC",
-                        label: "Level of Description",
-                      },
-                      {
-                        name: "physical_desc_occurrence",
-                        label: "Physical Description",
-                      },
-                      {
-                        name: "DATE_SEARCH",
-                        label: "Dates",
-                      },
-                      {
-                        name: "subject_occurrence",
-                        label: "Subject(s)",
-                      },
-                      {
-                        name: "SITE_NAME",
-                        label: "Area/Neighbourhood",
-                      },
-                      {
-                        name: "D_RESTRICTION",
-                        label: "Restrictions",
-                      },
-                    ],
+                    fields: DESCRIPTION_OVERVIEW_DETAIL_FIELD,
                   },
                 ],
               },

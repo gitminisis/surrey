@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Box, Typography, Grid, ButtonBase, Container } from "@mui/material";
+import { Box, Grid, ButtonBase, Typography,Container } from "@mui/material";
 import { Item } from "./DetailLayout.style";
 import Tabs from "@mui/joy/Tabs";
 import TabList from "@mui/joy/TabList";
@@ -8,6 +8,7 @@ import Tab, { tabClasses } from "@mui/joy/Tab";
 import TabPanel from "@mui/joy/TabPanel";
 import { deepSearch, getXMLRecord } from "../../utils/functions";
 import GeneralDetailTextField from "./GeneralDetailTextField";
+import RecordTextField from "../RecordTextField";
 import useMediaQuery from "@mui/material/useMediaQuery";
 const DetailSection = (props) => {
   const { data } = props;
@@ -22,10 +23,11 @@ const DetailSection = (props) => {
   ).section;
   return (
     <>
-      <div>Record Details</div>
-
-      <Item sx={{ padding: "10px 16px", width: "100vw" }} elevation={6}>
+      <Item sx={{ width: "100vw" }} elevation={6}>
         <Container disableGutters maxWidth={"lg"}>
+          <Typography variant="h4" component={"h3"} fontWeight="lg">
+            Record Details
+          </Typography>
           <Tabs
             scrollButtons="auto"
             aria-label="Record Details"
@@ -71,7 +73,7 @@ const DetailSection = (props) => {
             {sections.map((e, i) => {
               let displayFields = e.fields;
               return (
-                <TabPanel value={i} sx={{ p: 2, minHeight: 200 }}>
+                <TabPanel value={i} sx={{ p: 1, minHeight: 200 }}>
                   <Box
                     sx={{
                       display: "flex",
@@ -82,26 +84,11 @@ const DetailSection = (props) => {
                     <Grid item xs={12} sm container>
                       <Grid item xs container direction="column" spacing={2}>
                         <Grid item xs sx={{ textAlign: "left" }}>
-                          {displayFields.map((field) => {
-                            let fieldValue = deepSearch(
-                              recordData,
-                              field.name.toLowerCase()
-                            );
-                            if (fieldValue.length === 0) {
-                              return;
-                            }
-                            let fieldLabel = field.label;
-                            if (field.component !== undefined) {
-                              return Component(field);
-                            }
-                            return (
-                              <GeneralDetailTextField
-                                main={field.main}
-                                label={fieldLabel}
-                                value={fieldValue}
-                              />
-                            );
-                          })}
+                          <RecordTextField
+                            displayFields={displayFields}
+                            recordData={recordData}
+                            displayComponent={GeneralDetailTextField}
+                          />
                         </Grid>
                       </Grid>
                     </Grid>

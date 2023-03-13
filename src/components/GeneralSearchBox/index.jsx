@@ -14,6 +14,9 @@ import {
   Typography,
 } from "@mui/material";
 import { styled } from "@mui/material/styles";
+import Select from "@mui/joy/Select";
+import Option from "@mui/joy/Option";
+import Divider from "@mui/joy/Divider";
 export const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
   padding: theme.spacing(1),
@@ -21,7 +24,9 @@ export const Item = styled(Paper)(({ theme }) => ({
 }));
 
 const GeneralSearchBox = (props) => {
-  const { breadcrumbs, heading, helpText } = props;
+  const { breadcrumbs, heading, helpText, databaseList } = props;
+  const [index, setIndex] = React.useState(0);
+  console.log(databaseList[index]);
   return (
     <Item elevation={6} sx={{ padding: "16px" }} className="back-top-anchor">
       <div>
@@ -53,11 +58,31 @@ const GeneralSearchBox = (props) => {
             </Typography>
           </Grid>{" "}
           <Grid item xs={12} md={12}>
-            <Input
-              variant="soft"
-              placeholder="Search…"
-              startDecorator={<SearchIcon />}
-            />
+            <form method="POST" action={databaseList[index].searchURL}>
+              <Input
+                variant="soft"
+                placeholder="Search…"
+                name="KEYWORD_CL"
+                startDecorator={<SearchIcon />}
+                endDecorator={
+                  <React.Fragment>
+                    <Divider orientation="vertical" />
+                    <Select
+                      variant="plain"
+                      value={index}
+                      onChange={(e, value) => {
+                        setIndex(Number.parseInt(value));
+                      }}
+                      sx={{ bgcolor: "transparent" }}
+                    >
+                      {databaseList.map((e, i) => (
+                        <Option value={i}>{e.database}</Option>
+                      ))}
+                    </Select>
+                  </React.Fragment>
+                }
+              />
+            </form>
           </Grid>
           <Grid item xs={12} style={{ textAlign: "center", marginTop: "20px" }}>
             <a

@@ -1,6 +1,7 @@
 import {
   COLLECTIONS_SUMMARY_FIELD,
   MEDIA_THUMBNAIL_FIELD,
+  GENERAL_SEARCHBOX_DBLIST
 } from "./DisplayFields";
 
 const Summary = [
@@ -16,6 +17,7 @@ const Summary = [
           generalSearchBox: {
             breadcrumbs: ["Summary"],
             heading: "Search the collections",
+            databaseList: GENERAL_SEARCHBOX_DBLIST,
             helpText: {
               link: "/faq.html",
               description:
