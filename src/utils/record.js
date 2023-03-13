@@ -154,6 +154,12 @@ export const copyToClipboard = (
 };
 
 export const getNumberOfRecords = (xml) => {
+  const urlParams = new URLSearchParams(window.location.search);
+  let pageSize = urlParams.get("PAGESIZE");
+  if (pageSize) {
+    return Number.parseInt(pageSize);
+  }
+
   let firstRecordSeq = deepSearch(xml, "first_record_seq")[0];
   let lastRecordSeq = deepSearch(xml, "last_record_seq")[0];
   return Number.parseInt(lastRecordSeq) - Number.parseInt(firstRecordSeq) + 1;

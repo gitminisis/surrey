@@ -9,12 +9,8 @@ import Box from "@mui/material/Box";
 import { deepSearch, getXMLRecord } from "../../utils/functions";
 import { getFirstThumbnail } from "../../utils/record";
 import SummaryTextField from "../SummaryTextField";
-import Component from "../Component";
 import { Grid } from "@mui/material";
 import PropTypes from "prop-types";
-import IconButton from "@mui/joy/IconButton";
-import BookmarkAdd from "@mui/icons-material/BookmarkAddOutlined";
-import LinkIcon from "@mui/icons-material/Link";
 import SummaryRecordAction from "./SummaryRecordAction";
 import RecordTextField from "../RecordTextField";
 const SummaryRecordsView = (props) => {
@@ -31,14 +27,14 @@ const SummaryRecordsView = (props) => {
         let sisn = deepSearch(recordData, "sisn")[0];
         let bookmarkURL = deepSearch(xml, "bookmark_url")[0];
         let isBookmarked = deepSearch(record, "is_bookmarked")[0];
-    
+
         return (
           <Grid item xs={12}>
             <Item sx={{ padding: "16px", borderRadius: "0" }}>
               <Card
                 sx={{
                   display: "flex",
-                  flexDirection: "row",
+                  flexDirection: { xs: "column", sm: "row" },
                   position: "relative",
                 }}
                 elevation={5}

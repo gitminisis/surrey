@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
-import { Grid, Paper, Collapse, Drawer } from "@mui/material";
+import { Grid, Paper, Collapse, Drawer, Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { SummaryContainer, Item } from "./SummaryLayout.style";
 import SummaryFilter from "./SummaryFilter";
@@ -10,6 +10,9 @@ import GeneralSearchBox from "../GeneralSearchBox";
 import SummaryMasonryView from "./SummaryMasonryView";
 import SummaryPagination from "./SummaryPagination";
 import { deepSearch, getXMLRecord } from "../../utils/functions";
+import Modal from "@mui/joy/Modal";
+import ModalClose from "@mui/joy/ModalClose";
+import Sheet from "@mui/joy/Sheet";
 const drawerWidth = 300;
 const scrollHeight = 330;
 const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
@@ -42,6 +45,7 @@ const SummaryLayout = (props) => {
     defaultView ? defaultView === "grid" : false
   );
   const [showFilter, setShowFilter] = useState(true);
+  const [showMobileFilter, setShowMobileFilter] = useState(false);
   const [xml, setXml] = useState(getXMLRecord());
   const toggleGrid = (a, b) => {
     if (!b || b === undefined) {
@@ -52,6 +56,10 @@ const SummaryLayout = (props) => {
 
   const toggleFilter = () => {
     setShowFilter(!showFilter);
+  };
+
+  const toggleMobileFilter = () => {
+    setShowMobileFilter(!showMobileFilter);
   };
 
   return (
@@ -88,10 +96,47 @@ const SummaryLayout = (props) => {
                 <SummaryFilter data={filter} xml={xml} />
               </Drawer>
             )}
+            {filter && (
+              <Modal
+                aria-labelledby="modal-title"
+                aria-describedby="modal-desc"
+                open={showMobileFilter}
+                onClose={() => setShowMobileFilter(false)}
+                sx={{
+                  display: { lg: "none", xs: "flex" },
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                <Sheet
+                  variant="outlined"
+                  sx={{
+                    maxWidth: 500,
+                    width: "90%",
+                    borderRadius: "md",
+                    p: 3,
+                    boxShadow: "lg",
+                  }}
+                >
+                  <ModalClose
+                    variant="outlined"
+                    sx={{
+                      top: "calc(-1/4 * var(--IconButton-size))",
+                      right: "calc(-1/4 * var(--IconButton-size))",
+                      boxShadow: "0 2px 12px 0 rgba(0 0 0 / 0.2)",
+                      borderRadius: "50%",
+                      bgcolor: "background.body",
+                    }}
+                  />
+                  <SummaryFilter data={filter} xml={xml} />
+                </Sheet>
+              </Modal>
+            )}
 
             <Grid container rowSpacing={2} style={{ marginTop: "1rem" }}>
               <Grid item xs={12}>
                 <SummarySubHeader
+                  toggleMobileFilter={toggleMobileFilter}
                   toggleFilter={toggleFilter}
                   toggleGrid={toggleGrid}
                   isGrid={grid}

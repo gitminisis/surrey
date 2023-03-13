@@ -65,7 +65,10 @@ export default function SummarySubHeader(props) {
                 </Tooltip>
               </ToggleButton>
               <ToggleButton
-                onClick={props.toggleFilter}
+                onClick={(_) => {
+                  props.toggleFilter();
+                  props.toggleMobileFilter();
+                }}
                 aria-label="filter toggle"
               >
                 <Tooltip title="Toggle filter">

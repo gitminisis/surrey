@@ -2,20 +2,16 @@ import * as React from "react";
 import { styled } from "@mui/material/styles";
 import Paper from "@mui/material/Paper";
 import Masonry from "@mui/lab/Masonry";
-import { deepSearch, getXMLRecord } from "../../utils/functions";
 import { getFirstThumbnail } from "../../utils/record";
 import SummaryTextField from "../SummaryTextField";
-import Component from "../Component";
-import AspectRatio from "@mui/joy/AspectRatio";
 import Box from "@mui/joy/Box";
 import Card from "@mui/joy/Card";
-import BookmarkAdd from "@mui/icons-material/BookmarkAddOutlined";
-import IconButton from "@mui/joy/IconButton";
 import PropTypes from "prop-types";
-import LinkIcon from "@mui/icons-material/Link";
 import RecordTextField from "../RecordTextField";
+import SummaryRecordAction from "./SummaryRecordAction";
+import { deepSearch } from "../../utils/functions";
 const SummaryMasonryView = (props) => {
-  const { data, thumbnailData, xml } = props;
+  const { data, thumbnailData, xml, updateXML } = props;
 
   return (
     <Box sx={{ width: "100%" }}>
@@ -29,9 +25,10 @@ const SummaryMasonryView = (props) => {
           let recordLink = record.record_link.replace(/\n/g, "");
           let recordData = record.record;
           let displayFields = data.find((e) => e.database === database).fields;
-
           let thumbPic = getFirstThumbnail(record, thumbnailData, database);
-
+          let sisn = deepSearch(recordData, "sisn")[0];
+          let bookmarkURL = deepSearch(xml, "bookmark_url")[0];
+          let isBookmarked = deepSearch(record, "is_bookmarked")[0];
           return (
             <Card variant="outlined">
               <div style={{ width: "90%" }}>
@@ -55,22 +52,13 @@ const SummaryMasonryView = (props) => {
               <Box
                 sx={{ position: "absolute", top: "0.5rem", right: "0.5rem" }}
               >
-                <IconButton
-                  aria-label="bookmark"
-                  variant="plain"
-                  color="neutral"
-                  size="sm"
-                >
-                  <BookmarkAdd />
-                </IconButton>
-                <IconButton
-                  aria-label="copy link"
-                  variant="plain"
-                  color="neutral"
-                  size="sm"
-                >
-                  <LinkIcon />
-                </IconButton>
+                <SummaryRecordAction
+                  database={database}
+                  sisn={sisn}
+                  url={bookmarkURL}
+                  updateXML={updateXML}
+                  isBookmarked={isBookmarked}
+                />
               </Box>
             </Card>
           );

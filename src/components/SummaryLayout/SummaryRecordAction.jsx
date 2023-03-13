@@ -10,7 +10,7 @@ import { useSnackbar } from "notistack";
 import { Tooltip } from "@mui/material";
 const SummaryRecordAction = (props) => {
   const { enqueueSnackbar } = useSnackbar();
-  const { database, url, sisn, updateXML, isBookmarked } = props;
+  const { database, url, sisn, updateXML, isBookmarked, size } = props;
   console.log(props);
   return (
     <>
@@ -18,7 +18,7 @@ const SummaryRecordAction = (props) => {
         aria-label="bookmark"
         variant="plain"
         color="neutral"
-        size="md"
+        size={size || "md"}
         onClick={(_) => {
           if (isBookmarked === "true") {
             enqueueSnackbar("This record has already been bookmarked");
