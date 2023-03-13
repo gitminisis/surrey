@@ -1,5 +1,7 @@
-@import "~react-image-gallery/styles/css/image-gallery.css";
 
+
+
+@import "~react-image-gallery/styles/css/image-gallery.css";
 @font-face {
   font-family: "Univers LT W02 55 Roman";
   src: url(./assets/fonts/font.woff2) format("woff2");
@@ -158,3 +160,6 @@ body {
 
 /* Image Gallery Style */
 
+.image-gallery{
+  max-width: 500px !important;
+}

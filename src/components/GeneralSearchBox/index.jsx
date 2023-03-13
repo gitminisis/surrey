@@ -73,7 +73,7 @@ const GeneralSearchBox = (props) => {
                       onChange={(e, value) => {
                         setIndex(Number.parseInt(value));
                       }}
-                      sx={{ bgcolor: "transparent" }}
+                      sx={{ bgcolor: "transparent", width: 130 }}
                     >
                       {databaseList.map((e, i) => (
                         <Option value={i}>{e.database}</Option>

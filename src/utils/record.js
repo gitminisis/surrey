@@ -10,7 +10,7 @@ import { json } from "react-router";
 import _ from "lodash";
 import { ThumbUpAlt } from "@mui/icons-material";
 import copy from "copy-to-clipboard";
-
+import { MEDIA_THUMBNAIL_FIELD } from "../templates/DisplayFields";
 const DEFAULT_DETAIL_REPORT = "WEB_UNION_DETAIL";
 const WEB_DNS = "http://samoa.minisisinc.com";
 export const getRecendAdditions = (_) => {
@@ -72,20 +72,29 @@ export const getRecendAdditions = (_) => {
     })
   );
 };
+
 export const getFirstThumbnail = (record, thumbnailData, database) => {
+  return getAllThumbnails(record, thumbnailData, database)[0];
+};
+
+export const getAllThumbnails = (
+  record,
+  thumbnailData = MEDIA_THUMBNAIL_FIELD,
+  database
+) => {
   let thumbnailField = thumbnailData.find(
     (e) => e.database === database
   ).fields;
   let thumbnailURL = deepSearch(record, thumbnailField.toLowerCase())[0];
-  let thumbPic = "";
-  if (thumbnailURL !== undefined && thumbnailURL.length > 0) {
-    let url = Array.isArray(thumbnailURL) ? thumbnailURL[0] : thumbnailURL;
-
-    thumbPic = url
-      .replace("SAMOA.MINISISINC.COM", "surrey.minisisinc.com")
-      .replace(/\n/g, "");
+  if (typeof thumbnailURL === "undefined") {
+    return [];
   }
-  return thumbPic;
+  let array = Array.isArray(thumbnailURL) ? thumbnailURL : [thumbnailURL];
+  return array.map((e) =>
+    e
+      .replace("SAMOA.MINISISINC.COM", "surrey.minisisinc.com")
+      .replace(/\n/g, "")
+  );
 };
 
 export const bookmarkRecord = (url, SISN, database, fn) => {

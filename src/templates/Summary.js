@@ -43,7 +43,6 @@ const Summary = [
             },
           ],
           thumbnailData: MEDIA_THUMBNAIL_FIELD,
-
           displayField: [
             {
               database: "COLLECTIONS",

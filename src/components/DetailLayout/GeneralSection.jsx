@@ -5,7 +5,8 @@ import { Box, Typography, Grid, ButtonBase, Container } from "@mui/material";
 import { deepSearch, getXMLRecord } from "../../utils/functions";
 import GeneralDetailTextField from "./GeneralDetailTextField";
 import RecordTextField from "../RecordTextField";
-import ImageGalleryViewer from "../ImageGalleryCarousel";
+import ImageGallerySlide from "../ImageGallerySlide";
+import { getAllThumbnails } from "../../utils/record";
 const GeneralSecion = (props) => {
   const { data } = props;
   const xml = getXMLRecord();
@@ -15,6 +16,8 @@ const GeneralSecion = (props) => {
   let displayFields = data.displayFields.find(
     (e) => e.database === database
   ).fields;
+  let allThumbnails = getAllThumbnails(record, undefined, database);
+  console.log(allThumbnails);
   return (
     <Item sx={{ padding: "10px 16px" }} elevation={6}>
       <Container disableGutters maxWidth={"lg"} style={{ margin: "0 auto" }}>
@@ -27,7 +30,7 @@ const GeneralSecion = (props) => {
         >
           <Grid item xs={12} sm container spacing={2} sx={{ pt: 4 }}>
             <Grid item sx={{ margin: "0 auto" }}>
-              <ImageGalleryViewer />
+              <ImageGallerySlide images={allThumbnails} />
             </Grid>
             <Grid item xs container direction="column" spacing={2}>
               <Grid
