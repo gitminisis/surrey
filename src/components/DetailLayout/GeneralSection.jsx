@@ -6,17 +6,25 @@ import { deepSearch, getXMLRecord } from "../../utils/functions";
 import GeneralDetailTextField from "./GeneralDetailTextField";
 import RecordTextField from "../RecordTextField";
 import ImageGallerySlide from "../ImageGallerySlide";
-import { getAllThumbnails } from "../../utils/record";
+import { getAllMedia } from "../../utils/record";
+import DetailRecordAction from "./DetailRecordAction";
+import ImageNotSupportedIcon from "@mui/icons-material/ImageNotSupported";
 const GeneralSecion = (props) => {
-  const { data } = props;
-  const xml = getXMLRecord();
+  const { data, xml, updateXML } = props;
+
   let record = xml.xml.xml_record;
   let database = record.database_name;
   let recordData = record.record;
   let displayFields = data.displayFields.find(
     (e) => e.database === database
   ).fields;
-  let allThumbnails = getAllThumbnails(record, undefined, database);
+  let images = getAllMedia(record, database);
+  let audio = getAllMedia(record, database, "audio");
+  let video = getAllMedia(record, database, "video");
+  let visualsMedia = [...images, ...audio, ...video];
+  let sisn = deepSearch(recordData, "sisn")[0];
+  let bookmarkURL = deepSearch(xml, "bookmark_url")[0];
+  let isBookmarked = deepSearch(record, "is_bookmarked")[0];
   return (
     <Item sx={{ padding: "10px 16px" }} elevation={6}>
       <Container disableGutters maxWidth={"lg"} style={{ margin: "0 auto" }}>
@@ -29,7 +37,17 @@ const GeneralSecion = (props) => {
         >
           <Grid item xs={12} sm container spacing={2} sx={{ pt: 4 }}>
             <Grid item sx={{ margin: "0 auto" }}>
-              <ImageGallerySlide images={allThumbnails} />
+              {visualsMedia.length > 0 ? (
+                <ImageGallerySlide
+                  images={images}
+                  audio={audio}
+                  video={video}
+                />
+              ) : (
+                <Box>
+                  <ImageNotSupportedIcon />
+                </Box>
+              )}
             </Grid>
             <Grid item xs container direction="column" spacing={2}>
               <Grid
@@ -50,9 +68,14 @@ const GeneralSecion = (props) => {
                 />
               </Grid>
               <Grid item>
-                <Typography sx={{ cursor: "pointer" }} variant="body2">
-                  Remove
-                </Typography>
+                <DetailRecordAction
+                  size="lg"
+                  database={database}
+                  sisn={sisn}
+                  url={bookmarkURL}
+                  updateXML={updateXML}
+                  isBookmarked={isBookmarked}
+                />
               </Grid>
             </Grid>
           </Grid>

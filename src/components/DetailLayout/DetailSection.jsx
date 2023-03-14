@@ -23,9 +23,14 @@ const DetailSection = (props) => {
   ).section;
   return (
     <>
-      <Item sx={{ width: "100vw" }} elevation={6}>
+      <Item sx={{ width: "100vw", py: 8 }} elevation={6}>
         <Container disableGutters maxWidth={"lg"}>
-          <Typography variant="h4" component={"h3"} fontWeight="lg">
+          <Typography
+            variant="h4"
+            component={"h3"}
+            fontWeight="lg"
+            sx={{ mb: 4 }}
+          >
             Record Details
           </Typography>
           <Tabs

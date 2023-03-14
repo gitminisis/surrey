@@ -75,7 +75,9 @@ const GeneralSearchBox = (props) => {
                       sx={{ bgcolor: "transparent", width: 130 }}
                     >
                       {databaseList.map((e, i) => (
-                        <Option value={i}>{e.database}</Option>
+                        <Option value={i}>
+                          <strong>{e.database}</strong>
+                        </Option>
                       ))}
                     </Select>
                   </React.Fragment>

@@ -1,6 +1,3 @@
-
-
-
 @import "~react-image-gallery/styles/css/image-gallery.css";
 @font-face {
   font-family: "Univers LT W02 55 Roman";
@@ -157,9 +154,13 @@ body {
   align-items: center !important;
 }
 
-
 /* Image Gallery Style */
 
-.image-gallery{
+.image-gallery {
   max-width: 500px !important;
+}
+.image-gallery-slide {
+  height: 400px;
+  display: flex !important;
+  justify-content: center;
 }

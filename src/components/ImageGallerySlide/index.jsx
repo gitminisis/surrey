@@ -4,29 +4,34 @@ import ImageViewer from "../ImageViewer";
 import FullscreenIcon from "@mui/icons-material/Fullscreen";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
-const images = [
-  {
-    original: "https://picsum.photos/id/1018/1000/600/",
-    thumbnail: "https://picsum.photos/id/1018/250/150/",
-  },
-  {
-    original: "https://picsum.photos/id/1015/1000/600/",
-    thumbnail: "https://picsum.photos/id/1015/250/150/",
-  },
-  {
-    original: "https://picsum.photos/id/1019/1000/600/",
-    thumbnail: "https://picsum.photos/id/1019/250/150/",
-  },
-];
-
+import AudioFileIcon from "@mui/icons-material/AudioFile";
+import VideoFileIcon from "@mui/icons-material/VideoFile";
 const ImageGallerySlide = (props) => {
-  const { images } = props;
+  const { images, audio, video } = props;
   let data = images.map((e) => {
     return {
       original: e,
       thumbnail: e,
     };
   });
+
+  data = data.concat(
+    audio.map((e) => {
+      return {
+        original: "https://cdn-icons-png.flaticon.com/512/1324/1324071.png",
+        thumbnail: "https://cdn-icons-png.flaticon.com/512/1324/1324071.png",
+      };
+    })
+  );
+  data = data.concat(
+    video.map((e) => {
+      return {
+        original: "https://cdn-icons-png.flaticon.com/512/1666/1666880.png",
+        thumbnail: "https://cdn-icons-png.flaticon.com/512/1666/1666880.png",
+      };
+    })
+  );
+  console.log(props, data);
   const [show, setShow] = useState(false);
   return (
     <>
@@ -73,7 +78,13 @@ const ImageGallerySlide = (props) => {
           setShow(true);
         }}
       />
-      <ImageViewer data={images} show={show} onClose={(_) => setShow(false)} />
+      <ImageViewer
+        images={images}
+        audio={audio}
+        video={video}
+        show={show}
+        onClose={(_) => setShow(false)}
+      />
     </>
   );
 };

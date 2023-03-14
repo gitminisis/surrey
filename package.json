@@ -7,7 +7,7 @@
     "@babel/preset-react": "^7.18.6",
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
-    "@mui/icons-material": "^5.10.16",
+    "@mui/icons-material": "^5.11.11",
     "@mui/joy": "^5.0.0-alpha.56",
     "@mui/lab": "^5.0.0-alpha.110",
     "@mui/material": "^5.10.16",

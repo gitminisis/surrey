@@ -8,7 +8,7 @@ import BookmarkAddedIcon from "@mui/icons-material/BookmarkAdded";
 import { useSnackbar } from "notistack";
 
 import { Tooltip } from "@mui/material";
-const SummaryRecordAction = (props) => {
+const DetailRecordAction = (props) => {
   console.log(props);
   const { enqueueSnackbar } = useSnackbar();
   const { database, url, sisn, updateXML, isBookmarked, size } = props;
@@ -28,10 +28,13 @@ const SummaryRecordAction = (props) => {
           enqueueSnackbar(`Adding record SISN #${sisn} to the bookmark`, {
             variant: "info",
           });
-          bookmarkRecord(url, sisn, database, updateXML).then((_) => {
+          bookmarkRecord(url, sisn, database).then((_) => {
             enqueueSnackbar(
               `Record SISN #${sisn} has been successfully added to the bookmark!`
             );
+            setTimeout(() => {
+              location.reload();
+            }, 2000);
           });
         }}
       >
@@ -49,7 +52,7 @@ const SummaryRecordAction = (props) => {
         aria-label="copy link"
         variant="plain"
         color="neutral"
-        size="md"
+        size={size || "md"}
         onClick={(_) => {
           copyToClipboard(sisn, database);
           enqueueSnackbar(`Copied to clipboard`);
@@ -63,6 +66,6 @@ const SummaryRecordAction = (props) => {
   );
 };
 
-SummaryRecordAction.propTypes = {};
+DetailRecordAction.propTypes = {};
 
-export default SummaryRecordAction;
+export default DetailRecordAction;

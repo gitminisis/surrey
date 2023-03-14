@@ -6,9 +6,14 @@ import { DetailContainer, Item } from "./DetailLayout.style";
 import GeneralSearchBox from "../GeneralSearchBox";
 import GeneralSection from "./GeneralSection";
 import DetailSection from "./DetailSection";
-
+import { getXMLRecord } from "../../utils/functions";
 const DetailLayout = (props) => {
+  const [xml, setXml] = useState(getXMLRecord());
   const { generalSection, detailSection, generalSearchBox } = props;
+
+  let updateXML = (xml) => {
+    setXml(xml);
+  };
   return (
     <div>
       <DetailContainer
@@ -22,7 +27,11 @@ const DetailLayout = (props) => {
           <Grid item xs={12} md={12}>
             <Grid container rowSpacing={2}>
               <Grid item xs={12}>
-                <GeneralSection data={generalSection} />
+                <GeneralSection
+                  xml={xml}
+                  updateXML={updateXML}
+                  data={generalSection}
+                />
               </Grid>
               <Grid container item xs={12}>
                 <DetailSection data={detailSection} />

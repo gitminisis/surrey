@@ -73,23 +73,19 @@ export const getRecendAdditions = (_) => {
   );
 };
 
-export const getFirstThumbnail = (record, thumbnailData, database) => {
-  return getAllThumbnails(record, thumbnailData, database)[0];
+export const getFirstThumbnail = (record, database) => {
+  return getAllMedia(record, database)[0];
 };
 
-export const getAllThumbnails = (
-  record,
-  thumbnailData = MEDIA_THUMBNAIL_FIELD,
-  database
-) => {
-  let thumbnailField = thumbnailData.find(
-    (e) => e.database === database
-  ).fields;
-  let thumbnailURL = deepSearch(record, thumbnailField.toLowerCase())[0];
-  if (typeof thumbnailURL === "undefined") {
+export const getAllMedia = (record, database, mediaType = "image") => {
+  let field = MEDIA_THUMBNAIL_FIELD.find((e) => e.database === database)[
+    mediaType
+  ];
+  let mediaURL = deepSearch(record, field.toLowerCase())[0];
+  if (typeof mediaURL === "undefined") {
     return [];
   }
-  let array = Array.isArray(thumbnailURL) ? thumbnailURL : [thumbnailURL];
+  let array = Array.isArray(mediaURL) ? mediaURL : [mediaURL];
   return array.map((e) =>
     e
       .replace("SAMOA.MINISISINC.COM", "surrey.minisisinc.com")

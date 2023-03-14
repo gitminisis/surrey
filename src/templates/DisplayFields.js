@@ -1,3 +1,5 @@
+import Video from "yet-another-react-lightbox/plugins/video";
+
 export const DESCRIPTION_SUMMARY_FIELD = [
   {
     name: "TITLE",
@@ -169,11 +171,17 @@ export const COLLECTIONS_CHENHALL_DETAIL_FIELD = [
 export const MEDIA_THUMBNAIL_FIELD = [
   {
     database: "COLLECTIONS",
-    fields: "m_im_access_link",
+    image: "m_im_access_link",
+    audio: "m_ad_access_link",
+    video: "m_vd_access_link",
+    text: "m_tx_access_link",
   },
   {
     database: "DESCRIPTION",
-    fields: "a_im_access_link",
+    image: "a_im_access_link",
+    audio: "a_ad_access_link",
+    video: "a_vd_access_link",
+    text: "a_tx_access_link",
   },
 ];
 

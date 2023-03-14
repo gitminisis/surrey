@@ -23,7 +23,7 @@ const SummaryRecordsView = (props) => {
         let recordLink = record.record_link.replace(/\n/g, "");
         let recordData = record.record;
         let displayFields = data.find((e) => e.database === database).fields;
-        let thumbPic = getFirstThumbnail(record, thumbnailData, database);
+        let thumbPic = getFirstThumbnail(record, database);
         let sisn = deepSearch(recordData, "sisn")[0];
         let bookmarkURL = deepSearch(xml, "bookmark_url")[0];
         let isBookmarked = deepSearch(record, "is_bookmarked")[0];
