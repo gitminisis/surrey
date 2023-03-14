@@ -25,7 +25,7 @@ const SummaryRecordAction = (props) => {
             return;
           }
 
-          enqueueSnackbar(`Adding record SISN #${sisn} to the bookmark`, {
+          enqueueSnackbar(`Adding record SISN #${sisn} to the bookmark ...`, {
             variant: "info",
           });
           bookmarkRecord(url, sisn, database, updateXML).then((_) => {

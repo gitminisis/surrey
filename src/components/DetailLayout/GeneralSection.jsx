@@ -36,7 +36,7 @@ const GeneralSecion = (props) => {
           }}
         >
           <Grid item xs={12} sm container spacing={2} sx={{ pt: 4 }}>
-            <Grid item sx={{ margin: "0 auto" }}>
+            <Grid item sx={{ margin: "0 auto", maxWidth: "100%" }}>
               {visualsMedia.length > 0 ? (
                 <ImageGallerySlide
                   images={images}

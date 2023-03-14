@@ -94,7 +94,7 @@ const SummaryFilter = (props) => {
       <MenuList sx={{ textAlign: "left" }}>
         <MenuItem
           onClick={(_) => {
-            enqueueSnackbar(`Adding all records to the bookmark`, {
+            enqueueSnackbar(`Adding all records to the bookmark ...`, {
               variant: "info",
             });
             bookmarkAllRecord(xml).then((_) => {
