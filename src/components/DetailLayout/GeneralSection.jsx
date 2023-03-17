@@ -8,10 +8,11 @@ import RecordTextField from "../RecordTextField";
 import ImageGallerySlide from "../ImageGallerySlide";
 import { getAllMedia } from "../../utils/record";
 import DetailRecordAction from "./DetailRecordAction";
+import Button from "@mui/joy/Button";
 import ImageNotSupportedIcon from "@mui/icons-material/ImageNotSupported";
-const GeneralSecion = (props) => {
+import Component from "../Component";
+const GeneralSection = (props) => {
   const { data, xml, updateXML } = props;
-
   let record = xml.xml.xml_record;
   let database = record.database_name;
   let recordData = record.record;
@@ -25,8 +26,9 @@ const GeneralSecion = (props) => {
   let sisn = deepSearch(recordData, "sisn")[0];
   let bookmarkURL = deepSearch(xml, "bookmark_url")[0];
   let isBookmarked = deepSearch(record, "is_bookmarked")[0];
+  let children = data.children;
   return (
-    <Item sx={{ padding: "10px 16px" }} elevation={6}>
+    <Item sx={{ padding: "16px" }} elevation={6}>
       <Container disableGutters maxWidth={"lg"} style={{ margin: "0 auto" }}>
         <Box
           sx={{
@@ -36,7 +38,15 @@ const GeneralSecion = (props) => {
           }}
         >
           <Grid item xs={12} sm container spacing={2} sx={{ pt: 4 }}>
-            <Grid item sx={{ margin: "0 auto", maxWidth: "100%" }}>
+            <Grid
+              item
+              sx={{
+                margin: "0 auto",
+                maxWidth: "100%",
+                minWidth: "300px",
+                width: "300px",
+              }}
+            >
               {visualsMedia.length > 0 ? (
                 <ImageGallerySlide
                   images={images}
@@ -45,7 +55,9 @@ const GeneralSecion = (props) => {
                 />
               ) : (
                 <Box>
-                  <ImageNotSupportedIcon />
+                  <ImageNotSupportedIcon
+                    style={{ fontSize: "100px", marginBottom: "16px" }}
+                  />
                 </Box>
               )}
             </Grid>
@@ -62,14 +74,23 @@ const GeneralSecion = (props) => {
                 }}
               >
                 <RecordTextField
+                  xml={xml}
                   displayFields={displayFields}
                   recordData={recordData}
                   displayComponent={GeneralDetailTextField}
                 />
+                {children &&
+                  children.length > 0 &&
+                  children.map((e) => {
+                    e.data ? (e.data.xml = xml) : (e.data = { ...xml });
+                    return Component(e);
+                  })}
               </Grid>
+
               <Grid item>
                 <DetailRecordAction
                   size="lg"
+                  xml={xml}
                   database={database}
                   sisn={sisn}
                   url={bookmarkURL}
@@ -85,6 +106,6 @@ const GeneralSecion = (props) => {
   );
 };
 
-GeneralSecion.propTypes = {};
+GeneralSection.propTypes = {};
 
-export default GeneralSecion;
+export default GeneralSection;

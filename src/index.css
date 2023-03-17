@@ -154,6 +154,10 @@ body {
   align-items: center !important;
 }
 
+img {
+  pointer-events: none;
+}
+
 /* Image Gallery Style */
 
 .image-gallery {

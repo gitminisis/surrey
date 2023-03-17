@@ -3,7 +3,13 @@ import PropTypes from "prop-types";
 import IconButton from "@mui/joy/IconButton";
 import BookmarkAdd from "@mui/icons-material/BookmarkAddOutlined";
 import LinkIcon from "@mui/icons-material/Link";
-import { bookmarkRecord, copyToClipboard } from "../../utils/record";
+import {
+  bookmarkRecord,
+  copyToClipboard,
+  nextRecordURL,
+  backToSummary,
+  previousRecordURL,
+} from "../../utils/record";
 import BookmarkAddedIcon from "@mui/icons-material/BookmarkAdded";
 import { useSnackbar } from "notistack";
 import { printPage } from "../../utils/functions";
@@ -13,19 +19,22 @@ import UndoIcon from "@mui/icons-material/Undo";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 const DetailRecordAction = (props) => {
-  console.log(props);
   const { enqueueSnackbar } = useSnackbar();
-  const { database, url, sisn, updateXML, isBookmarked, size } = props;
+  const { database, url, sisn, updateXML, isBookmarked, size, xml } = props;
+  let next = nextRecordURL(xml);
+  let previous = previousRecordURL(xml);
+  let toSummary = backToSummary(xml);
   return (
     <>
       <Tooltip title="Previous Record">
         <IconButton
+          disabled={!previous}
           aria-label="go to previous record"
           variant="plain"
-          color="neutral"
+          color="primary"
           size={size || "md"}
           onClick={(_) => {
-            printPage();
+            window.location = previous;
           }}
         >
           <ArrowBackIcon />
@@ -34,12 +43,13 @@ const DetailRecordAction = (props) => {
 
       <Tooltip title="Return to summary page">
         <IconButton
+          disabled={!toSummary}
           aria-label="return to summary page"
-          variant="plain"
-          color="neutral"
+          variant={"plain"}
+          color="primary"
           size={size || "md"}
           onClick={(_) => {
-            printPage();
+            window.location = toSummary;
           }}
         >
           <UndoIcon />
@@ -55,8 +65,8 @@ const DetailRecordAction = (props) => {
       >
         <IconButton
           aria-label="bookmark"
-          variant="plain"
-          color="neutral"
+          variant={isBookmarked === "true" ? "soft" : "plain"}
+          color="primary"
           size={size || "md"}
           onClick={(_) => {
             if (isBookmarked === "true") {
@@ -84,7 +94,7 @@ const DetailRecordAction = (props) => {
         <IconButton
           aria-label="copy link"
           variant="plain"
-          color="neutral"
+          color="primary"
           size={size || "md"}
           onClick={(_) => {
             copyToClipboard(sisn, database);
@@ -99,7 +109,7 @@ const DetailRecordAction = (props) => {
         <IconButton
           aria-label="print page"
           variant="plain"
-          color="neutral"
+          color="primary"
           size={size || "md"}
           onClick={(_) => {
             printPage();
@@ -111,12 +121,13 @@ const DetailRecordAction = (props) => {
 
       <Tooltip title="Next Record">
         <IconButton
+          disabled={!next}
           aria-label="go to next record"
           variant="plain"
-          color="neutral"
+          color="primary"
           size={size || "md"}
           onClick={(_) => {
-            printPage();
+            window.location = next;
           }}
         >
           <ArrowForwardIcon />

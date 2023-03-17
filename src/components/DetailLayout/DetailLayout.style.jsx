@@ -5,7 +5,6 @@ import { ExpandLess } from "@mui/icons-material";
 
 export const DetailContainer = styled(Paper)(({ theme }) => ({
   marginTop: "80px",
-  marginBottom: "50px",
   padding : "16px",
 }));
 

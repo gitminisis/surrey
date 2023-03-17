@@ -31,8 +31,9 @@ const SummaryMasonryView = (props) => {
           let isBookmarked = deepSearch(record, "is_bookmarked")[0];
           return (
             <Card variant="outlined">
-              <div style={{ width: "90%" }}>
+              <div style={{ width: "calc(100% - 85px)" }}>
                 <RecordTextField
+                  xml={xml}
                   gridDisplay={true}
                   displayFields={displayFields}
                   recordData={recordData}

@@ -1,17 +1,17 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Typography, Divider, Box, Grid } from "@mui/joy";
+import { Link, Typography, Divider, Box, Grid } from "@mui/joy";
+import { deepSearch } from "../../utils/functions";
+import { getJumpURL } from "../../utils/record";
 
-const index = (props) => {
-  let { main, value, label } = props;
+const SearchFieldLink = (props) => {
+  let { name, label, xml } = props;
+  let record = xml.xml.xml_record.record;
+  let session = deepSearch(xml, "session")[0];
+  let database = deepSearch(xml, "database_name")[0];
+
+  let value = deepSearch(record, name.toLowerCase());
   let flattenArrayValue = _.flattenDeep(value);
-  if (main) {
-    return (
-      <Typography {...props} gutterBottom level="h3" sx={{ pb: 2 }}>
-        {value.join(", ")}
-      </Typography>
-    );
-  }
   return (
     <>
       <Divider style={{ width: "auto" }} />
@@ -38,16 +38,21 @@ const index = (props) => {
         </Grid>
         <Grid xs sx={{ alignSelf: { xs: "start", md: "center" } }}>
           {flattenArrayValue.map((v) => (
-            <Typography level="h6" component="div" sx={{ display: "block" }}>
+            <Link
+              level="h6"
+              underline="always"
+              target="_blank"
+              href={getJumpURL(session, database, name, v)}
+              sx={{ display: "block" }}
+            >
               {v}
-            </Typography>
+            </Link>
           ))}
         </Grid>
       </Grid>
     </>
   );
 };
+SearchFieldLink.propTypes = {};
 
-index.propTypes = {};
-
-export default index;
+export default SearchFieldLink;

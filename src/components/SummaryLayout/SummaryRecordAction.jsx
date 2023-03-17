@@ -9,18 +9,17 @@ import { useSnackbar } from "notistack";
 
 import { Tooltip } from "@mui/material";
 const SummaryRecordAction = (props) => {
-  console.log(props);
   const { enqueueSnackbar } = useSnackbar();
   const { database, url, sisn, updateXML, isBookmarked, size } = props;
   return (
     <>
       <IconButton
         aria-label="bookmark"
-        variant="plain"
-        color="neutral"
+        variant={isBookmarked === "true" ? "soft" : "plain"}
+        color="primary"
         size={size || "md"}
         onClick={(_) => {
-          if (isBookmarked === "true") {
+        if (isBookmarked === "true") {
             enqueueSnackbar("This record has already been bookmarked");
             return;
           }
@@ -48,7 +47,7 @@ const SummaryRecordAction = (props) => {
       <IconButton
         aria-label="copy link"
         variant="plain"
-        color="neutral"
+        color="primary"
         size="md"
         onClick={(_) => {
           copyToClipboard(sisn, database);

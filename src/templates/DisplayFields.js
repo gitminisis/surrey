@@ -31,10 +31,14 @@ export const COLLECTIONS_SUMMARY_FIELD = [
     label: "Title",
     main: true,
   },
-
   {
     name: "EARLY",
     label: "Dates",
+    gridDisplay: false,
+  },
+  {
+    defaultValue: "Artifact",
+    label: "Type",
     gridDisplay: false,
   },
   {
@@ -55,20 +59,37 @@ export const DESCRIPTION_GENERAL_DETAIL_FIELD = [
     label: "Title",
     main: true,
   },
+
   {
     name: "DATE_SEARCH",
     label: "Date(s)",
     gridDisplay: false,
   },
-
-  {
-    name: "REFD",
-    label: "ID",
-  },
   {
     name: "LEVEL_DESC",
     label: "Level of Description",
   },
+
+  {
+    name: "physical_desc_occurrence",
+    label: "Physical Description",
+  },
+  {
+    name: "form_occurrence",
+    label: "Type of Materials",
+  },
+  
+  {
+    name: "scope_occurrence",
+    label: "Scope",
+  },
+  {
+    name: "REFD",
+    label: "ID",
+  },
+
+ 
+
 ];
 
 export const DESCRIPTION_OVERVIEW_DETAIL_FIELD = [
@@ -112,20 +133,51 @@ export const COLLECTIONS_GENERAL_DETAIL_FIELD = [
     main: true,
   },
   {
-    name: "ACCESSION_NUMBER",
-    label: "Accession Number",
-  },
-  {
-    name: "COLLECTION",
-    label: "Collection",
+    name: "OBJ_DESCRIPTION",
+    label: "Description",
   },
   {
     name: "EARLY",
     label: "Dates",
   },
   {
-    name: "OBJECT_NAME",
-    label: "Object Name(s)",
+    name: "SUB_CLASS",
+    label: "Sub-Classification",
+  },
+  {
+    name: "PRIMARY",
+    label: "Primary",
+  },
+
+  {
+    name: "ASSOC_FULLNAME",
+    label: "Associated Person",
+    component: "SearchFieldLink",
+    data: { name: "ASSOC_FULLNAME", label: "Associated Person" },
+  },
+  {
+    name: "ORG_ASSOC",
+    label: "Associated Organization",
+    component: "SearchFieldLink",
+    data: { name: "ORG_ASSOC", label: "Associated Organization" },
+  },
+  {
+    name: "ASSOC_EVENT",
+    label: "Associated Event",
+    component: "SearchFieldLink",
+    data: { name: "ASSOC_EVENT", label: "Associated Event" },
+  },
+  {
+    name: "PLACE_ASSOC_NAME",
+    label: "Associated Place",
+    component: "SearchFieldLink",
+    data: { name: "PLACE_ASSOC_NAME", label: "Associated Place" },
+  },
+  {
+    name: "SITE_NAME",
+    label: "Associated Place",
+    component: "SearchFieldLink",
+    data: { name: "PLACE_ASSOC_NAME", label: "Associated Place" },
   },
 ];
 

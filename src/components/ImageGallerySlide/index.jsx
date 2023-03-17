@@ -31,7 +31,6 @@ const ImageGallerySlide = (props) => {
       };
     })
   );
-  console.log(props, data);
   const [show, setShow] = useState(false);
   return (
     <>

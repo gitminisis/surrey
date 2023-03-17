@@ -21,3 +21,6 @@ export { default as SummaryChipTag } from "./SummaryChipTag";
 export { default as DetailLayout } from "./DetailLayout";
 export { default as PhotoCoverCard } from "./PhotoCoverCard";
 export { default as CoverFlowCarousel } from "./CoverFlowCarousel";
+export { default as SearchFieldLink } from "./SearchFieldLink";
+export { default as ContactUsModalForm } from "./ContactUsModalForm";
+export { default as DescriptionTree } from "./DescriptionTree";

@@ -56,7 +56,6 @@ const ImageViewer = (props) => {
   let fVideo = formatVideo(video);
   let fAudio = formatAudio(audio);
   let allMedia = [...fImages, ...fVideo, ...fAudio];
-  console.log(allMedia);
   return (
     <Lightbox
       open={show}

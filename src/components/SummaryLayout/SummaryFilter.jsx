@@ -49,7 +49,7 @@ const FieldFilter = (props) => {
       }}
     >
       <ListItemButton onClick={handleClick}>
-        <ListItemText primary="Inbox" />
+        <ListItemText primary="Media Type" />
         {open ? <ExpandLess /> : <ExpandMore />}
       </ListItemButton>
 

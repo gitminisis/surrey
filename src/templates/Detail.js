@@ -35,6 +35,16 @@ const Detail = [
                 fields: DESCRIPTION_GENERAL_DETAIL_FIELD,
               },
             ],
+            children: [
+              { component: "DescriptionTree" },
+              {
+                component: "ContactUsModalForm",
+                data: {
+                  description:
+                    "We're always looking to improve our records. If you have information about a record or think we've made a mistake, contact us.",
+                },
+              },
+            ],
           },
           detailSection: {
             displayFields: [

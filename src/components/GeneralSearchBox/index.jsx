@@ -17,6 +17,8 @@ import { styled } from "@mui/material/styles";
 import Select from "@mui/joy/Select";
 import Option from "@mui/joy/Option";
 import Divider from "@mui/joy/Divider";
+import { backToSummary } from "../../utils/record";
+import { deepSearch } from "../../utils/functions";
 export const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
   padding: theme.spacing(1),
@@ -24,20 +26,23 @@ export const Item = styled(Paper)(({ theme }) => ({
 }));
 
 const GeneralSearchBox = (props) => {
-  const { breadcrumbs, heading, helpText, databaseList } = props;
+  const { breadcrumbs, heading, helpText, databaseList, xml } = props;
   const [index, setIndex] = React.useState(0);
+  let database = deepSearch(xml, "database_name")[0];
+  let toSummary = backToSummary(xml);
   return (
     <Item elevation={6} sx={{ padding: "16px" }} className="back-top-anchor">
       <div>
         <Breadcrumbs aria-label="breadcrumb">
-          <Link underline="hover" color="inherit" href="/">
+          <Link underline="hover" color="inherit" variant="h6" href="/">
             Home
           </Link>
           {breadcrumbs.map((e, i) => (
             <Link
-              underline="hover"
+              variant="h6"
+              underline={i === breadcrumbs.length - 1 ? "none" : "hover"}
               color={i === breadcrumbs.length - 1 ? "text.primary" : "inherit"}
-              href="/summary"
+              href={i === 0 && breadcrumbs.length > 1 ? toSummary : "#"}
               aria-current={`${e} page`}
             >
               {e}

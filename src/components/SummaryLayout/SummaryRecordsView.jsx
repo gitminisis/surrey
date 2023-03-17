@@ -39,7 +39,7 @@ const SummaryRecordsView = (props) => {
                 }}
                 elevation={5}
               >
-                <Box>
+                <Box sx={{ display: "flex" }}>
                   {thumbPic && (
                     <CardMedia
                       onClick={(_) => (window.location = recordLink)}
@@ -66,6 +66,7 @@ const SummaryRecordsView = (props) => {
                 >
                   <CardContent sx={{ flex: "1 0 auto" }}>
                     <RecordTextField
+                      xml={xml}
                       displayFields={displayFields}
                       recordData={recordData}
                       recordLink={recordLink}

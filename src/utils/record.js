@@ -11,8 +11,14 @@ import _ from "lodash";
 import { ThumbUpAlt } from "@mui/icons-material";
 import copy from "copy-to-clipboard";
 import { MEDIA_THUMBNAIL_FIELD } from "../templates/DisplayFields";
+import { debug } from "webpack";
 const DEFAULT_DETAIL_REPORT = "WEB_UNION_DETAIL";
 const WEB_DNS = "http://samoa.minisisinc.com";
+const DEFAULT_SUM_REPORT = "WEB_UNION_SUM";
+const SUM_REPORT_BY_DATABASE = {
+  COLLECTIONS: "WEB_UNION_SUM_COL",
+  DESCRIPTION: "WEB_UNION_SUM_DESC",
+};
 export const getRecendAdditions = (_) => {
   let high = getTomorrowDate();
   let low = getDaysBeforeDate();
@@ -71,6 +77,26 @@ export const getRecendAdditions = (_) => {
       return result;
     })
   );
+};
+
+export const nextRecordURL = (xml) => {
+  return getURLFromJSONLink(xml, "next_record");
+};
+
+export const backToSummary = (xml) => {
+  return getURLFromJSONLink(xml, "back_to_summary");
+};
+
+export const previousRecordURL = (xml) => {
+  return getURLFromJSONLink(xml, "previous_record");
+};
+
+export const getURLFromJSONLink = (xml, link) => {
+  let url = deepSearch(xml, link);
+  if (url.length === 0) {
+    return null;
+  }
+  return deepSearch(url, "_href")[0];
 };
 
 export const getFirstThumbnail = (record, database) => {
@@ -147,14 +173,21 @@ export const removeBookmarkRecord = () => {};
 
 export const removeAllBookmarkRecord = () => {};
 
-export const getRecordPermalink = () => {};
+export const getRecordPermalink = (
+  sisn,
+  database,
+  report = DEFAULT_DETAIL_REPORT
+) => {
+  let url = `${WEB_DNS}/scripts/mwimain.dll/144/${database}/${report}?sessionsearch&exp=sisn ${sisn}`;
+  return url;
+};
 
 export const copyToClipboard = (
   sisn,
   database,
   report = DEFAULT_DETAIL_REPORT
 ) => {
-  let url = `${WEB_DNS}/scripts/mwimain.dll/144/${database}/${report}?sessionsearch&exp=sisn ${sisn}`;
+  let url = getRecordPermalink(sisn, database, report);
   copy(url);
 };
 
@@ -174,3 +207,106 @@ export const getRecordsPerPageURL = (xml, pagesize) => {
   let url = deepSearch(xml, `pagesize_${pagesize}`)[0];
   return url;
 };
+
+export const getJumpURL = (
+  session,
+  database,
+  field,
+  value,
+  summary = DEFAULT_SUM_REPORT,
+  detail = DEFAULT_DETAIL_REPORT
+) => {
+  return `${session}/${database}/${field}/${value}/${SUM_REPORT_BY_DATABASE[database]}/${detail}?JUMP`;
+};
+
+//  TREE FUNCTIONS
+
+export const getChildrenSearchLink = (
+  session,
+  database,
+  refd,
+  report = "WEB_UNION_DETAIL"
+) => {
+  let url = `${session}/${database}/REFD/${refd}/${report}?JUMP&DATABASE=${database}`;
+  return url;
+};
+
+export const getXMLTree = (session, database, refd) => {
+  return axios.get(getChildrenSearchLink(session, database, refd));
+};
+
+export const mapLowerLevelXMLToNode = (xml, refdHigher) => {
+  return xml.map((e) => {
+    let hasChildren = deepSearch(e, "lower_lowerexist")[0] !== undefined;
+    return {
+      id: deepSearch(e, "lower_code")[0],
+      title: deepSearch(e, "lower_title")[0],
+      parentId: refdHigher,
+      isRoot: false,
+      hasChildren: hasChildren,
+    };
+  });
+};
+export const mapXMLToNode = (xml) => {
+  let lower_level_occurrence = deepSearch(xml, "lower_level_occurrence")[0];
+  let hasChildren =
+    lower_level_occurrence !== undefined && lower_level_occurrence.length > 0;
+  let id = deepSearch(xml, "refd")[0];
+  let parentId = deepSearch(xml, "refd_higher")[0];
+  return {
+    id,
+    title: deepSearch(xml, "title")[0],
+    parentId: parentId === undefined ? null : parentId,
+    isRoot: deepSearch(xml, "top_level_flag")[0] === "Y",
+    hasChildren: hasChildren,
+    children: hasChildren
+      ? mapLowerLevelXMLToNode(lower_level_occurrence, id)
+      : null,
+  };
+};
+
+// let isRoot = false;
+let tree = {};
+let openKeyPath = [];
+export const getJSONTree = (session, database, id) => {
+  openKeyPath.push(id);
+  while (!tree.isRoot) {
+    return getXMLTree(session, database, id).then((res) => {
+      let { data } = res;
+      let dom = new DOMParser().parseFromString(data, "text/html");
+      let xml = getXMLRecord(dom);
+      let curNode = mapXMLToNode(xml);
+      let lower_level_occurrence = deepSearch(xml, "lower_level_occurrence")[0];
+      let hasChildren =
+        lower_level_occurrence !== undefined &&
+        lower_level_occurrence.length > 0;
+      if (hasChildren) {
+        curNode.children = mapLowerLevelXMLToNode(
+          lower_level_occurrence,
+          curNode.id
+        );
+      }
+      if (_.isEmpty(tree)) {
+        tree = _.clone(curNode);
+      } else {
+        let clone = _.clone(curNode);
+        let curRefd = tree.id;
+        let index = _.findIndex(clone.children, { id: curRefd });
+        clone.children[index].children = tree.children;
+        tree = clone;
+      }
+      if (tree.isRoot) {
+        return { tree, openKeyPath };
+      } else {
+        let higherLevelCode = deepSearch(xml, "refd_higher")[0];
+        return getJSONTree(session, database, higherLevelCode);
+      }
+    });
+  }
+};
+
+export const getNodeFromTree = (tree, id) => {
+  console.log(tree, id);
+  return _.find(tree, { id: id });
+};
+export const getOpenKeyPath = (tree, id) => {};
