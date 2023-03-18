@@ -36,7 +36,10 @@ const Detail = [
               },
             ],
             children: [
-              { component: "DescriptionTree" },
+              {
+                component: "DescriptionTree",
+                data: { title: "Full Collection List" },
+              },
               {
                 component: "ContactUsModalForm",
                 data: {

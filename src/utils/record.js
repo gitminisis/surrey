@@ -231,19 +231,21 @@ export const getChildrenSearchLink = (
   return url;
 };
 
-export const getXMLTree = (session, database, refd) => {
-  return axios.get(getChildrenSearchLink(session, database, refd));
+export const getXMLTree = (session, database, id) => {
+  return axios.get(getChildrenSearchLink(session, database, id));
 };
 
-export const mapLowerLevelXMLToNode = (xml, refdHigher) => {
+export const mapLowerLevelXMLToNode = (xml, parentId) => {
   return xml.map((e) => {
     let hasChildren = deepSearch(e, "lower_lowerexist")[0] !== undefined;
     return {
       id: deepSearch(e, "lower_code")[0],
       title: deepSearch(e, "lower_title")[0],
-      parentId: refdHigher,
+      parentId: parentId,
       isRoot: false,
       hasChildren: hasChildren,
+      children: hasChildren ? [] : null,
+      isChildrenLoaded: false,
     };
   });
 };
@@ -259,6 +261,7 @@ export const mapXMLToNode = (xml) => {
     parentId: parentId === undefined ? null : parentId,
     isRoot: deepSearch(xml, "top_level_flag")[0] === "Y",
     hasChildren: hasChildren,
+    isChildrenLoaded: true,
     children: hasChildren
       ? mapLowerLevelXMLToNode(lower_level_occurrence, id)
       : null,
@@ -268,6 +271,7 @@ export const mapXMLToNode = (xml) => {
 // let isRoot = false;
 let tree = {};
 let openKeyPath = [];
+let treeArray = [];
 export const getJSONTree = (session, database, id) => {
   openKeyPath.push(id);
   while (!tree.isRoot) {
@@ -305,8 +309,22 @@ export const getJSONTree = (session, database, id) => {
   }
 };
 
+export const insertNodeToTree = (tree, node) => {};
+
 export const getNodeFromTree = (tree, id) => {
-  console.log(tree, id);
-  return _.find(tree, { id: id });
+  let curNode = tree;
+  if (curNode.id === id) {
+    return curNode;
+  }
+
+  if (curNode.hasChildren && curNode.children.length > 0) {
+    return curNode.children
+      .map((e) => {
+        return getNodeFromTree(e, id);
+      })
+      .filter((e) => e !== null)[0];
+  }
+
+  return null;
 };
 export const getOpenKeyPath = (tree, id) => {};
