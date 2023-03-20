@@ -1,4 +1,4 @@
-import { Container, Box, AppBar } from "@mui/material";
+import { Container, Box, AppBar, Link } from "@mui/material";
 import { styled } from "@mui/material/styles";
 
 export const AppbarRoot = styled(AppBar)(({ scroll, theme }) => ({
@@ -20,7 +20,7 @@ export const AppbarContainer = styled(Container)(() => ({
   height: "60px",
 }));
 
-export const AppbarLogoBox = styled(Box)((_) => ({
+export const AppbarLogoBox = styled(Link)((_) => ({
   display: "flex",
   alignItems: "center",
   cursor: "pointer",
@@ -29,7 +29,6 @@ export const AppbarLogoBox = styled(Box)((_) => ({
 export const AppbarLogo = styled(Box)(() => ({
   maxWidth: "250px",
   marginRight: "10px",
-  
 }));
 
 export const AppbarLinkBox = styled(Box)(() => ({
@@ -39,12 +38,13 @@ export const AppbarLinkBox = styled(Box)(() => ({
   cursor: "pointer",
 }));
 
-export const AppbarLink = styled(Box)(() => ({
+export const AppbarLink = styled(Link)(() => ({
   display: "block",
   height: "auto",
   fontWeight: "bold",
   color: "white",
   "&:hover": {
     opacity: 0.8,
+    textDecoration: "none",
   },
 }));

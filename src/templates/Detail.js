@@ -77,6 +77,9 @@ const Detail = [
           },
         },
       },
+      {
+        component: "CoverFlowCarousel",
+      },
     ],
   },
 ];

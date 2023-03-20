@@ -23,10 +23,30 @@ const ArtifactSearch = [
           heading: "Featured Collections",
         },
         children: [
-          { component: "PhotoCoverCard" },
-          { component: "PhotoCoverCard" },
-          { component: "PhotoCoverCard" },
-          { component: "PhotoCoverCard" },
+          {
+            component: "PhotoCoverCard",
+            data: {
+              id: "OEXID12",
+            },
+          },
+          {
+            component: "PhotoCoverCard",
+            data: {
+              id: "OEXID13",
+            },
+          },
+          {
+            component: "PhotoCoverCard",
+            data: {
+              id: "OEXID14",
+            },
+          },
+          {
+            component: "PhotoCoverCard",
+            data: {
+              id: "OEXID15",
+            },
+          },
         ],
       },
       {
@@ -73,6 +93,7 @@ const ArtifactSearch = [
           },
         ],
       },
+     
     ],
   },
 ];

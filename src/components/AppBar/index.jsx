@@ -1,5 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { Box, Button, Container, Divider, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  Container,
+  Divider,
+  Typography,
+  Link,
+} from "@mui/material";
 
 import PropTypes from "prop-types";
 import {
@@ -35,8 +42,13 @@ const AppBar = (props) => {
     <>
       <AppbarRoot className="header" scroll={isScroll}>
         <Container maxWidth={"true"}>
-          <AppbarContainer maxWidth={"xl"} >
-            <AppbarLogoBox onClick={(_) => (window.location = baseURL)}>
+          <AppbarContainer maxWidth={"xl"}>
+            <AppbarLogoBox
+              href={baseURL}
+              underline="none"
+              sx={{ color: "white" }}
+              variant={"h5"}
+            >
               <AppbarLogo
                 component="img"
                 src={logo}
@@ -56,8 +68,9 @@ const AppBar = (props) => {
                   className={
                     active && active === link.title ? "active-link" : ""
                   }
-                  onClick={(_) => (window.location = link.url)}
+                  // onClick={(_) => (window.location = link.url)}
                   key={link.title}
+                  href={link.url}
                 >
                   <Typography variant="a">{link.title}</Typography>
                 </AppbarLink>

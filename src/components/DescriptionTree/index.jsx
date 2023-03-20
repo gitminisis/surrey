@@ -4,12 +4,21 @@ import {
   getChildrenSearchLink,
   getJSONTree,
   getNodeFromTree,
+  updateNode,
+  addChildrenToNode,
+  fetchNode,
 } from "../../utils/record";
+import Input from "@mui/joy/Input";
+import SearchIcon from "@mui/icons-material/Search";
+
 import { deepSearch } from "../../utils/functions";
 import TreeView from "@mui/lab/TreeView";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import Typography from "@mui/joy/Typography";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
+
 import {
   Accordion,
   AccordionDetails,
@@ -19,16 +28,36 @@ import {
   PlusSquare,
   CloseSquare,
 } from "./DescriptionTree.style";
-
+import { Tree } from "antd";
 const DescriptionTree = (props) => {
   let { xml, title } = props;
   let session = deepSearch(xml, "session")[0];
   let database = deepSearch(xml, "database_name")[0];
   let refd = deepSearch(xml, "refd")[0];
   let lowerLevelRecords = deepSearch(xml, "lower_level_occurence")[0];
-  const [treeData, setTreeData] = useState(false);
+  const [treeData, setTreeData] = useState([]);
   const [openKeyPath, setOpenKeyPath] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [contextMenu, setContextMenu] = React.useState(null);
+
+  const handleContextMenu = (event) => {
+    event.preventDefault();
+    setContextMenu(
+      contextMenu === null
+        ? {
+            mouseX: event.clientX + 2,
+            mouseY: event.clientY - 6,
+          }
+        : // repeated contextmenu when it is already open closes it with Chrome 84 on Ubuntu
+          // Other native context menus might behave different.
+          // With this behavior we prevent contextmenu from the backdrop to re-locale existing context menus.
+          null
+    );
+  };
+
+  const handleClose = () => {
+    setContextMenu(null);
+  };
   useEffect(() => {
     getJSONTree(session, database, refd)
       .then((res) => {
@@ -37,18 +66,20 @@ const DescriptionTree = (props) => {
         setTreeData(tree);
         setLoading(true);
       })
-      .then((err) => {
-        console.log(err);
-      });
+      .then((err) => {});
   }, []);
 
   const handleToggle = (event, nodeIds) => {
     setOpenKeyPath(nodeIds);
     const expanded = nodeIds.filter((x) => !openKeyPath.includes(x));
-
     if (expanded[0]) {
       let node = getNodeFromTree(treeData, expanded[0]);
-      console.log(node, expanded[0]);
+      if (!node.isChildrenLoaded) {
+        fetchNode(session, database, node.id).then((res) => {
+          let resTree = addChildrenToNode([treeData], node.id, res.children);
+          setTreeData(resTree[0]);
+        });
+      }
     } else {
     }
   };
@@ -72,15 +103,12 @@ const DescriptionTree = (props) => {
         {Array.isArray(children) && children.length > 0 ? (
           children.map((node) => renderTree(node))
         ) : hasChildren ? (
-          <div nodeId={123}>Loading ...</div>
+          <div nodeId={"."}>Loading ...</div>
         ) : null}
       </StyledTreeItem>
     );
   };
 
-  const handleClick = (session, database, id) => {
-    window.location = getChildrenSearchLink(session, database, id);
-  };
   return (
     <Accordion>
       <AccordionSummary
@@ -104,22 +132,44 @@ const DescriptionTree = (props) => {
         </Typography>
       </AccordionSummary>
       <AccordionDetails>
-        <TreeView
-          onContextMenu={(e, n) => console.log(e, n)}
-          multiSelect={false}
-          aria-label={title}
-          defaultCollapseIcon={<MinusSquare />}
-          defaultExpandIcon={<PlusSquare />}
-          defaultEndIcon={<CloseSquare />}
-          //   onNodeSelect={(e, n) => handleClick(session, database, n)}
-          onNodeToggle={handleToggle}
-          expanded={openKeyPath}
-          sx={{
-            flexGrow: 1,
-          }}
+        <Input
+          variant="soft"
+          placeholder="Search"
+          name="KEYWORD_CL"
+          startDecorator={<SearchIcon />}
+        />
+        <Menu
+          open={contextMenu !== null}
+          onClose={handleClose}
+          anchorReference="anchorPosition"
+          anchorPosition={
+            contextMenu !== null
+              ? { top: contextMenu.mouseY, left: contextMenu.mouseX }
+              : undefined
+          }
         >
-          {renderTree(treeData)}
-        </TreeView>
+          <MenuItem onClick={handleClose}>Profile</MenuItem>
+          <MenuItem onClick={handleClose}>My account</MenuItem>
+          <MenuItem onClick={handleClose}>Logout</MenuItem>
+        </Menu>
+        <div onContextMenu={handleContextMenu}>
+          {" "}
+          <TreeView
+            multiSelect={false}
+            aria-label={title}
+            defaultCollapseIcon={<MinusSquare />}
+            defaultExpandIcon={<PlusSquare />}
+            defaultEndIcon={<CloseSquare />}
+            //   onNodeSelect={(e, n) => handleClick(session, database, n)}
+            onNodeToggle={handleToggle}
+            expanded={openKeyPath}
+            sx={{
+              flexGrow: 1,
+            }}
+          >
+            {renderTree(treeData)}
+          </TreeView>
+        </div>
       </AccordionDetails>
     </Accordion>
   );
