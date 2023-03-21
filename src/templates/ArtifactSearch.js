@@ -26,25 +26,7 @@ const ArtifactSearch = [
           {
             component: "PhotoCoverCard",
             data: {
-              id: "OEXID12",
-            },
-          },
-          {
-            component: "PhotoCoverCard",
-            data: {
-              id: "OEXID13",
-            },
-          },
-          {
-            component: "PhotoCoverCard",
-            data: {
-              id: "OEXID14",
-            },
-          },
-          {
-            component: "PhotoCoverCard",
-            data: {
-              id: "OEXID15",
+              recordIds: ["OEXID12", "OEXID13", "OEXID14", "OEXID15"],
             },
           },
         ],
@@ -93,7 +75,6 @@ const ArtifactSearch = [
           },
         ],
       },
-     
     ],
   },
 ];

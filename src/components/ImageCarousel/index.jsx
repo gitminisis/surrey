@@ -40,6 +40,7 @@ const Carousel = (props) => {
       autoplay={{ delay: 2000 }}
       freeMode={true}
       loop={true}
+      grabCursor={true}
       speed={1000}
       modules={[Navigation, Pagination]}
       slidesPerView={1}

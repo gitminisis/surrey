@@ -28,6 +28,7 @@ const index = (props) => {
 
     return (
       <DisplayComponent
+        key={fieldValue}
         recordLink={recordLink}
         main={field.main}
         label={fieldLabel}

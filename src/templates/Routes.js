@@ -10,6 +10,7 @@ import Summary from "./Summary";
 import SummaryArchives from "./SummaryArchives";
 import SummaryArtifact from "./SummaryArtifact";
 import Detail from "./Detail";
+import SummaryBookmark from "./SummaryBookmark";
 const GenericPage = lazy(() => import("../pages/GenericPage"));
 
 // const Routes = [
@@ -30,6 +31,8 @@ const Routes = [
   { path: "summary", template: Summary },
   { path: "summary-artifact", template: SummaryArtifact },
   { path: "summary-archives", template: SummaryArchives },
+  { path: "summary-bookmark", template: SummaryBookmark },
+
   { path: "detail", template: Detail },
   { path: "*", template: NotFoundPageTemplate },
 ];

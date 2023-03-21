@@ -56,8 +56,14 @@ const ImageMasonry = ({ data }) => {
       {" "}
       {loading && (
         <Grid container spacing={4} style={{ margin: "0 auto" }}>
-          {LOADING_SKELETON.map((e) => (
-            <Grid xs={6} md={4} item  style={{ margin: "0 auto" }}>
+          {LOADING_SKELETON.map((e, i) => (
+            <Grid
+              key={`LoadingSkeleton-${i}`}
+              xs={6}
+              md={4}
+              item
+              style={{ margin: "0 auto" }}
+            >
               <Skeleton variant="rectangular" width={"100%"} height={140} />
               <Skeleton variant="rectangular" style={{ marginTop: "16px" }} />
               <Skeleton

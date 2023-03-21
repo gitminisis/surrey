@@ -22,7 +22,9 @@ import {
   CoverFlowCarousel,
   SearchFieldLink,
   ContactUsModalForm,
-  DescriptionTree
+  DescriptionTree,
+  SummaryBookmarkLayout,
+  GeneralSearchBox
 } from "./index";
 
 const KeysToComponentMap = {
@@ -48,7 +50,9 @@ const KeysToComponentMap = {
   CoverFlowCarousel,
   SearchFieldLink,
   ContactUsModalForm,
-  DescriptionTree
+  DescriptionTree,
+  SummaryBookmarkLayout,
+  GeneralSearchBox
 };
 
 function Component(block) {

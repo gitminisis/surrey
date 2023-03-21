@@ -73,14 +73,14 @@ const Banner = (props) => {
             zIndex: "4",
           }}
         >
-          <Grid container spacing={2}>
+          <Grid container spacing={2} data-aos="fade-down">
             <Grid item sm={12}>
               <SiteHeading variant="h1">{heading}</SiteHeading>
               <SiteDescription variant="p">{description}</SiteDescription>
             </Grid>
           </Grid>
           {!noSearchBox ? (
-            <Grid container spacing={2}>
+            <Grid container spacing={2} data-aos="fade-down">
               <Grid item md={12} sm={12} style={{ width: "100%" }}>
                 <Paper
                   method="POST"
@@ -159,11 +159,7 @@ const Banner = (props) => {
         }}
       />
       {collapseSearchFilter && (
-        <CollapseSearchFilter
-          show={show}
-    
-          {...collapseSearchFilter.data}
-        />
+        <CollapseSearchFilter show={show} {...collapseSearchFilter.data} />
       )}
     </>
   );

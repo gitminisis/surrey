@@ -22,6 +22,7 @@ const Summary = [
                 "Didn't find what you're looking for? Check our FAQ page for search tips",
             },
           },
+          sortOptions: true,
           filter: [
             {
               item_group: [

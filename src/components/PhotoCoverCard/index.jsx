@@ -15,12 +15,18 @@ import Box from "@mui/joy/Box";
 import LocationOnRoundedIcon from "@mui/icons-material/LocationOnRounded";
 import BookmarkAdd from "@mui/icons-material/BookmarkAddOutlined";
 const PhotoCoverCard = (props) => {
+  const { recordIds } = props;
+  const { records, setRecords } = useState([]);
   const [hover, setHover] = useState(false);
   let { description, title, thumbnail } = {
     description: "123",
     title: "123",
     thumbnail: "https://picsum.photos/900",
   };
+  if (recordIds.length === 0) {
+    return null;
+  }
+
   return (
     <Grid item xs={12} md={6}>
       <Card style={{ cursor: "pointer", paddingBottom: "20px" }} elevation={3}>

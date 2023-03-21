@@ -2,7 +2,12 @@ import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { Grid, Paper, Collapse, Drawer, Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
-import { SummaryContainer, Item } from "./SummaryLayout.style";
+import {
+  SummaryContainer,
+  Item,
+  Main,
+  drawerWidth,
+} from "./SummaryLayout.style";
 import SummaryFilter from "./SummaryFilter";
 import SummarySubHeader from "./SummarySubHeader";
 import SummaryRecordsView from "./SummaryRecordsView";
@@ -13,40 +18,28 @@ import { deepSearch, getXMLRecord } from "../../utils/functions";
 import Modal from "@mui/joy/Modal";
 import ModalClose from "@mui/joy/ModalClose";
 import Sheet from "@mui/joy/Sheet";
-const drawerWidth = 300;
+import { fetchJSONRecord } from "../../utils/record";
+
 const scrollHeight = 330;
-const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
-  ({ theme, open }) => ({
-    flexGrow: 2,
-    padding: theme.spacing(3),
-    transition: theme.transitions.create("margin", {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-    marginLeft: 0,
-    ...(open && {
-      transition: theme.transitions.create("margin", {
-        easing: theme.transitions.easing.easeOut,
-        duration: theme.transitions.duration.enteringScreen,
-      }),
-      [theme.breakpoints.up("md")]: {
-        marginLeft: `${drawerWidth}px`,
-      },
-      [theme.breakpoints.down("md")]: { marginLeft: 0 },
-    }),
-  })
-);
 
 const SummaryLayout = (props) => {
-  const { filter, displayField, defaultView, thumbnailData, generalSearchBox } =
-    props;
+  const {
+    filter,
+    displayField,
+    defaultView,
+    thumbnailData,
+    generalSearchBox,
+    sortOptions,
+  } = props;
 
   const [grid, setGrid] = useState(
     defaultView ? defaultView === "grid" : false
   );
-  const [showFilter, setShowFilter] = useState(true);
+  const [showFilter, setShowFilter] = useState(filter ? true : false);
   const [showMobileFilter, setShowMobileFilter] = useState(false);
   const [xml, setXml] = useState(getXMLRecord());
+
+
   const toggleGrid = (a, b) => {
     if (!b || b === undefined) {
       return;
@@ -93,7 +86,11 @@ const SummaryLayout = (props) => {
                 anchor="left"
                 open={showFilter}
               >
-                <SummaryFilter data={filter} xml={xml} />
+                <SummaryFilter
+                  sortOptions={sortOptions}
+                  data={filter}
+                  xml={xml}
+                />
               </Drawer>
             )}
             {filter && (
@@ -128,7 +125,11 @@ const SummaryLayout = (props) => {
                       bgcolor: "background.body",
                     }}
                   />
-                  <SummaryFilter data={filter} xml={xml} />
+                  <SummaryFilter
+                    sortOptions={sortOptions}
+                    data={filter}
+                    xml={xml}
+                  />
                 </Sheet>
               </Modal>
             )}
@@ -140,26 +141,29 @@ const SummaryLayout = (props) => {
                   toggleFilter={toggleFilter}
                   toggleGrid={toggleGrid}
                   isGrid={grid}
+                  xml={xml}
                 />
               </Grid>
-              <Grid container item xs={12}>
-                {grid ? (
-                  <SummaryMasonryView
-                    thumbnailData={thumbnailData}
-                    data={displayField}
-                    xml={xml}
-                    updateXML={setXml}
-                  />
-                ) : (
-                  <SummaryRecordsView
-                    thumbnailData={thumbnailData}
-                    data={displayField}
-                    xml={xml}
-                    updateXML={setXml}
-                  />
-                )}
-                <SummaryPagination />
-              </Grid>
+              {!bookmarkLoading ? (
+                <Grid container item xs={12}>
+                  {grid ? (
+                    <SummaryMasonryView
+                      thumbnailData={thumbnailData}
+                      data={displayField}
+                      xml={xml}
+                      updateXML={setXml}
+                    />
+                  ) : (
+                    <SummaryRecordsView
+                      thumbnailData={thumbnailData}
+                      data={displayField}
+                      xml={xml}
+                      updateXML={setXml}
+                    />
+                  )}
+                  <SummaryPagination />
+                </Grid>
+              ) : null}
             </Grid>
           </Main>
         </Grid>

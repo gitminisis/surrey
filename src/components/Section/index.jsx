@@ -40,7 +40,7 @@ const Section = (props) => {
   return (
     <SectionContainer maxWidth={"true"} dimension={windowDimensions}>
       <Divider />
-      <Container maxWidth={"xl"}>
+      <Container maxWidth={"xl"} data-aos="fade-up">
         <div>
           {heading && <SubHeading as="h2">{heading}</SubHeading>}
           {description && <SubDescription as="p">{description}</SubDescription>}

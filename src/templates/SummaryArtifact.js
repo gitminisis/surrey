@@ -1,7 +1,7 @@
 import {
   COLLECTIONS_SUMMARY_FIELD,
   MEDIA_THUMBNAIL_FIELD,
-  GENERAL_SEARCHBOX_DBLIST
+  GENERAL_SEARCHBOX_DBLIST,
 } from "./DisplayFields";
 
 const Summary = [
@@ -24,6 +24,8 @@ const Summary = [
                 "Didn't find what you're looking for? Check our FAQ page for search tips",
             },
           },
+          sortOptions: true,
+
           filter: [
             {
               item_group: [

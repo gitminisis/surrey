@@ -1,6 +1,6 @@
 import * as React from "react";
 import Box from "@mui/joy/Box";
-import { Item } from "./SummaryLayout.style";
+import { Item } from "./SummaryBookmarkLayout.style";
 import { Typography, Tooltip } from "@mui/material";
 import Select from "@mui/joy/Select";
 import Option from "@mui/joy/Option";
@@ -12,13 +12,12 @@ import ToggleButton from "@mui/material/ToggleButton";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import PropTypes from "prop-types";
 import { deepSearch, getXMLRecord } from "../../utils/functions";
-export default function SummarySubHeader(props) {
+export default function SummaryBookmarkSubHeader(props) {
   let { xml } = props;
   const handleChange = (event, nextView) => {
     setView(nextView);
   };
   let totalRecord = deepSearch(xml, "total_record");
-  let searchStatement = deepSearch(xml, "search_statement");
   return (
     <Item sx={{ padding: "10px 16px" }} elevation={6}>
       <Box
@@ -34,7 +33,7 @@ export default function SummarySubHeader(props) {
             variant="body1"
             sx={{ fontWeight: "bold", fontSize: "1.2rem" }}
           >
-            {`${totalRecord} search results for "${searchStatement}"`}
+            {`${totalRecord} bookmarked item(s)`}
           </Typography>
         </Box>
         <Box sx={{ display: "flex", gap: 2, flexDirection: "row" }}>
@@ -52,27 +51,16 @@ export default function SummarySubHeader(props) {
               orientation="horizontal"
               value={props.isGrid === true ? "grid" : "list"}
               exclusive
-              onChange={props.toggleGrid}
             >
-              <ToggleButton value="grid" aria-label="grid">
-                <Tooltip title="Grid view">
-                  <ViewModuleIcon />
-                </Tooltip>
-              </ToggleButton>
-              <ToggleButton value="list" aria-label="list">
-                <Tooltip title="List view">
-                  <ViewListIcon />
-                </Tooltip>
-              </ToggleButton>
               <ToggleButton
                 value="filter toggle"
                 onClick={(_) => {
-                  props.toggleFilter();
-                  props.toggleMobileFilter();
+                  props.toggleSidebar();
+                  //   props.toggleMobileFilter();
                 }}
-                aria-label="filter toggle"
+                aria-label="filter sidebar"
               >
-                <Tooltip title="Toggle filter">
+                <Tooltip title="Toggle sidebar">
                   <TuneIcon />
                 </Tooltip>
               </ToggleButton>
@@ -84,7 +72,7 @@ export default function SummarySubHeader(props) {
   );
 }
 
-SummarySubHeader.propTypes = {
+SummaryBookmarkSubHeader.propTypes = {
   toggleGrid: PropTypes.func,
   isGrid: PropTypes.bool,
 };

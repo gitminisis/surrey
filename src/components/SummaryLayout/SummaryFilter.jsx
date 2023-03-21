@@ -55,17 +55,15 @@ const FieldFilter = (props) => {
 
       <Collapse in={open}>
         <List>
-          {data.item_group.map((item) => (
-            <ListItem sx={{ marginTop: "16px" }}>
+          {data.item_group.map((item, i) => (
+            <ListItem key={`ListItemFilter-${i}`} sx={{ marginTop: "16px" }}>
               <Checkbox
                 label={item.item_value}
                 overlay
                 sx={{ color: "inherit" }}
                 onChange={(_) => (window.location = item.item_link)}
               />
-              <Typography textColor="inherit" sx={{ ml: "auto" }}>
-                {item.item_frequency}
-              </Typography>
+              <Typography sx={{ ml: "auto" }}>{item.item_frequency}</Typography>
             </ListItem>
           ))}
         </List>
@@ -74,7 +72,7 @@ const FieldFilter = (props) => {
   );
 };
 const SummaryFilter = (props) => {
-  const { data, xml } = props;
+  const { data, xml, sortOptions } = props;
   const { enqueueSnackbar } = useSnackbar();
 
   let bookmarkCount = deepSearch(xml, "bookmark_count");
@@ -120,18 +118,22 @@ const SummaryFilter = (props) => {
           </Typography>
         </MenuItem>
       </MenuList>
-      <TextBox>Sort by</TextBox>
-      <Select
-        placeholder="Select a sort"
-        defaultValue="default"
-        className="filterSelect"
-      >
-        <Option value="default">Default</Option>
-        <Option value="yearAsc">Year Ascending</Option>
-        <Option value="yearDsc">Year Descending</Option>
-        <Option value="titleAsc">Title Ascending</Option>
-        <Option value="titleDsc">Title Ascending</Option>
-      </Select>
+      {sortOptions !== false ? (
+        <>
+          <TextBox>Sort by</TextBox>
+          <Select
+            placeholder="Select a sort"
+            defaultValue="default"
+            className="filterSelect"
+          >
+            <Option value="default">Default</Option>
+            <Option value="yearAsc">Year Ascending</Option>
+            <Option value="yearDsc">Year Descending</Option>
+            <Option value="titleAsc">Title Ascending</Option>
+            <Option value="titleDsc">Title Ascending</Option>
+          </Select>
+        </>
+      ) : null}
       <TextBox>Records per page</TextBox>
       <Select
         placeholder="Records per page"
@@ -148,10 +150,15 @@ const SummaryFilter = (props) => {
         <Option value={50}>50 Records</Option>
         <Option value={100}>100 Records</Option>
       </Select>
-      <TextBox>Filter by</TextBox>
-      {data.map((item, i) => (
-        <FieldFilter data={item} />
-      ))}
+
+      {data && data.length > 0 && (
+        <>
+          <TextBox>Filter by</TextBox>{" "}
+          {data.map((item, i) => (
+            <FieldFilter key={`FieldFilter-${i}`} data={item} />
+          ))}
+        </>
+      )}
     </Item>
   );
 };

@@ -1,4 +1,7 @@
 import {
+  COLLECTIONS_SUMMARY_FIELD,
+  DESCRIPTION_SUMMARY_FIELD,
+  MEDIA_THUMBNAIL_FIELD,
   DESCRIPTION_GENERAL_DETAIL_FIELD,
   COLLECTIONS_GENERAL_DETAIL_FIELD,
   DESCRIPTION_OVERVIEW_DETAIL_FIELD,
@@ -7,15 +10,15 @@ import {
   GENERAL_SEARCHBOX_DBLIST,
 } from "./DisplayFields";
 
-const Detail = [
+const Summary = [
   {
     component: "Layout",
     children: [
       {
-        component: "DetailLayout",
+        component: "SummaryBookmarkLayout",
         data: {
           generalSearchBox: {
-            breadcrumbs: ["Summary", "Detail"],
+            breadcrumbs: ["Summary"],
             heading: "Search the collections",
             databaseList: GENERAL_SEARCHBOX_DBLIST,
             helpText: {
@@ -52,37 +55,11 @@ const Detail = [
               },
             ],
           },
-          detailSection: {
-            displayFields: [
-              {
-                database: "COLLECTIONS",
-                section: [
-                  {
-                    title: "Overview",
-                    fields: COLLECTIONS_OVERVIEW_DETAIL_FIELD,
-                  },
-                  {
-                    title: "Chenhall",
-                    fields: COLLECTIONS_CHENHALL_DETAIL_FIELD,
-                  },
-                ],
-              },
-              {
-                database: "DESCRIPTION",
-                section: [
-                  {
-                    title: "Overview",
-                    fields: DESCRIPTION_OVERVIEW_DETAIL_FIELD,
-                  },
-                ],
-              },
-            ],
-          },
         },
+        children: [],
       },
-    
     ],
   },
 ];
 
-export default Detail;
+export default Summary;

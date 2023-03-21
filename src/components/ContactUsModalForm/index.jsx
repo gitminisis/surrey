@@ -52,7 +52,7 @@ const ContactUsModalForm = (props) => {
         Submit an Inquiry
       </Button>
 
-      <Modal onClose={() => setOpen(false)} open={open}>
+      <Modal onClose={() => setOpen(false)} open={open} data-aos="fade-down">
         <ModalDialog
           color="neutral"
           layout="center"
@@ -96,7 +96,7 @@ const ContactUsModalForm = (props) => {
               <FormControl>
                 <FormLabel>Inquiry *</FormLabel>
                 <Textarea
-                  sx={{ height: "200px", }}
+                  sx={{ height: "200px" }}
                   size="lg"
                   placeholder="Type something here ..."
                   defaultValue={text}

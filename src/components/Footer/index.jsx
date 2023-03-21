@@ -62,13 +62,17 @@ const Footer = (props) => {
           <Grid item xs={12} md={5} container>
             {links.map((link, index) => (
               <Grid
-                key={link.href}
+                key={`FooterLink-${index}`}
                 item
                 xs={3}
                 sx={{ marginBottom: "20px", textAlign: "left" }}
               >
                 <Link
-                  style={{ fontWeight: "bold", fontSize: "1rem", cursor: "pointer" }}
+                  style={{
+                    fontWeight: "bold",
+                    fontSize: "1rem",
+                    cursor: "pointer",
+                  }}
                   underline="hover"
                   href={link.url}
                   color="inherit"

@@ -1,21 +1,19 @@
 import logo from "./logo.svg";
 import "./App.css";
-import React, { Suspense } from "react";
+import React, { Suspense, useEffect } from "react";
 import GenericPage from "./pages/GenericPage";
 
 import { CssBaseline } from "@mui/material";
 import Routing from "./templates/Routes";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { baseTheme } from "./templates/Theme";
-import { ThemeProvider } from "@mui/material/styles";
-import Loading from "./components/Loading";
 import { deepmerge } from "@mui/utils";
 import {
   Experimental_CssVarsProvider as CssVarsProvider,
   experimental_extendTheme as extendMuiTheme,
 } from "@mui/material/styles";
 import { extendTheme as extendJoyTheme } from "@mui/joy/styles";
-
+import AOS from "aos";
+import "aos/dist/aos.css";
 function App() {
   const theme = baseTheme;
   const joyTheme = extendJoyTheme({ cssVarPrefix: "mui", ...baseTheme });
@@ -25,7 +23,12 @@ function App() {
     page = "";
   }
   let template = Routing.filter((e) => page === e.path)[0].template;
-
+  useEffect(() => {
+    AOS.init({
+      once: true,
+    });
+    // AOS.refresh();
+  }, []);
   return (
     <CssVarsProvider theme={deepmerge(joyTheme, muiTheme)}>
       <GenericPage template={template} />

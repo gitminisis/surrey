@@ -7,7 +7,7 @@ import {
   updateNode,
   addChildrenToNode,
   fetchNode,
-} from "../../utils/record";
+} from "../../utils/tree";
 import Input from "@mui/joy/Input";
 import SearchIcon from "@mui/icons-material/Search";
 
@@ -18,7 +18,7 @@ import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import Typography from "@mui/joy/Typography";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
-
+import { Box, Skeleton } from "@mui/material";
 import {
   Accordion,
   AccordionDetails,
@@ -28,9 +28,19 @@ import {
   PlusSquare,
   CloseSquare,
 } from "./DescriptionTree.style";
-import { Tree } from "antd";
+
+const TreeSkeletonWidth = [100, 90, 80, 70, 70, 70, 60, 60, 60];
+const TreeLoadingSkeleton = () => {
+  return (
+    <Box sx={{ width: "100%", mt: 4 }}>
+      {TreeSkeletonWidth.map((e) => (
+        <Skeleton width={`${e}%`} style={{ marginLeft: `${100 - e}%` }} />
+      ))}
+    </Box>
+  );
+};
 const DescriptionTree = (props) => {
-  let { xml, title } = props;
+  let { xml, title, displayDatabase } = props;
   let session = deepSearch(xml, "session")[0];
   let database = deepSearch(xml, "database_name")[0];
   let refd = deepSearch(xml, "refd")[0];
@@ -39,6 +49,9 @@ const DescriptionTree = (props) => {
   const [openKeyPath, setOpenKeyPath] = useState([]);
   const [loading, setLoading] = useState(false);
   const [contextMenu, setContextMenu] = React.useState(null);
+  if (displayDatabase.indexOf(database) === -1) {
+    return null;
+  }
 
   const handleContextMenu = (event) => {
     event.preventDefault();
@@ -152,24 +165,28 @@ const DescriptionTree = (props) => {
           <MenuItem onClick={handleClose}>My account</MenuItem>
           <MenuItem onClick={handleClose}>Logout</MenuItem>
         </Menu>
-        <div onContextMenu={handleContextMenu}>
-          {" "}
-          <TreeView
-            multiSelect={false}
-            aria-label={title}
-            defaultCollapseIcon={<MinusSquare />}
-            defaultExpandIcon={<PlusSquare />}
-            defaultEndIcon={<CloseSquare />}
-            //   onNodeSelect={(e, n) => handleClick(session, database, n)}
-            onNodeToggle={handleToggle}
-            expanded={openKeyPath}
-            sx={{
-              flexGrow: 1,
-            }}
-          >
-            {renderTree(treeData)}
-          </TreeView>
-        </div>
+        {loading ? (
+          <div onContextMenu={handleContextMenu}>
+            <TreeView
+              multiSelect={false}
+              aria-label={title}
+              defaultCollapseIcon={<MinusSquare />}
+              defaultExpandIcon={<PlusSquare />}
+              defaultEndIcon={<CloseSquare />}
+              //   onNodeSelect={(e, n) => handleClick(session, database, n)}
+              onNodeToggle={handleToggle}
+              expanded={openKeyPath}
+              sx={{
+                flexGrow: 1,
+                mt: 4,
+              }}
+            >
+              {renderTree(treeData)}
+            </TreeView>
+          </div>
+        ) : (
+          <TreeLoadingSkeleton />
+        )}
       </AccordionDetails>
     </Accordion>
   );

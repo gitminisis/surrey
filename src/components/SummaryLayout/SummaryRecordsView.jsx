@@ -18,7 +18,7 @@ const SummaryRecordsView = (props) => {
 
   return (
     <>
-      {xml.xml.xml_record.map((record) => {
+      {xml.xml.xml_record.map((record, i) => {
         let database = record.database_name;
         let recordLink = record.record_link.replace(/\n/g, "");
         let recordData = record.record;
@@ -29,7 +29,7 @@ const SummaryRecordsView = (props) => {
         let isBookmarked = deepSearch(record, "is_bookmarked")[0];
 
         return (
-          <Grid item xs={12}>
+          <Grid item xs={12} key={`SummaryRecordsView-${i}`}>
             <Item sx={{ padding: "16px", borderRadius: "0" }}>
               <Card
                 sx={{

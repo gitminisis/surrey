@@ -39,6 +39,7 @@ const GeneralSearchBox = (props) => {
           </Link>
           {breadcrumbs.map((e, i) => (
             <Link
+              key={`breadcrum-link-${i}`}
               variant="h6"
               underline={i === breadcrumbs.length - 1 ? "none" : "hover"}
               color={i === breadcrumbs.length - 1 ? "text.primary" : "inherit"}
@@ -80,7 +81,7 @@ const GeneralSearchBox = (props) => {
                       sx={{ bgcolor: "transparent", width: 130 }}
                     >
                       {databaseList.map((e, i) => (
-                        <Option value={i}>
+                        <Option value={i} key={`GeneralSearchBoxLink-${i}`}>
                           <strong>{e.database}</strong>
                         </Option>
                       ))}

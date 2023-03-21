@@ -12,7 +12,8 @@ import Button from "@mui/joy/Button";
 import ImageNotSupportedIcon from "@mui/icons-material/ImageNotSupported";
 import Component from "../Component";
 const GeneralSection = (props) => {
-  const { data, xml, updateXML } = props;
+  const { data, xml, updateXML, recordAction } = props;
+  let RecordAction = props.recordAction;
   let record = xml.xml.xml_record;
   let database = record.database_name;
   let recordData = record.record;
@@ -37,7 +38,7 @@ const GeneralSection = (props) => {
             flexDirection: "row",
           }}
         >
-          <Grid item xs={12} sm container spacing={2} sx={{ pt: 4 }}>
+          <Grid item xs={12} sm container sx={{ pt: 4, paddingLeft: 0 }}>
             <Grid
               item
               sx={{
@@ -61,9 +62,15 @@ const GeneralSection = (props) => {
                 </Box>
               )}
             </Grid>
-            <Grid item xs container direction="column" spacing={2}>
+            <Grid
+              item
+              xs
+              container
+              direction="column"
+              spacing={2}
+              sx={{ margin: "0 auto" }}
+            >
               <Grid
-                item
                 xs
                 sx={{
                   width: "80%",
@@ -71,6 +78,7 @@ const GeneralSection = (props) => {
                   maxWidth: "700px",
                   margin: "0 auto",
                   minWidth: "300px",
+                  paddingLeft: 0,
                 }}
               >
                 <RecordTextField
@@ -88,15 +96,19 @@ const GeneralSection = (props) => {
               </Grid>
 
               <Grid item>
-                <DetailRecordAction
-                  size="lg"
-                  xml={xml}
-                  database={database}
-                  sisn={sisn}
-                  url={bookmarkURL}
-                  updateXML={updateXML}
-                  isBookmarked={isBookmarked}
-                />
+                {!recordAction ? (
+                  <DetailRecordAction
+                    size="lg"
+                    xml={xml}
+                    database={database}
+                    sisn={sisn}
+                    url={bookmarkURL}
+                    updateXML={updateXML}
+                    isBookmarked={isBookmarked}
+                  />
+                ) : (
+                  <RecordAction />
+                )}
               </Grid>
             </Grid>
           </Grid>

@@ -11,6 +11,7 @@ export const Item = styled(Paper)(({ theme }) => ({
   padding: theme.spacing(1),
   textAlign: "center",
 }));
+
 export const drawerWidth = 300;
 export const Main = styled("main", {
   shouldForwardProp: (prop) => prop !== "open",

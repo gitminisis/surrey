@@ -11,20 +11,18 @@ import {
   previousRecordURL,
   viewBookmark,
 } from "../../utils/record";
-import BookmarkAddedIcon from "@mui/icons-material/BookmarkAdded";
 import { useSnackbar } from "notistack";
 import { printPage, deepSearch } from "../../utils/functions";
 import PrintIcon from "@mui/icons-material/Print";
 import { Tooltip } from "@mui/material";
-import UndoIcon from "@mui/icons-material/Undo";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import Badge from "@mui/joy/Badge";
-import BookmarksIcon from "@mui/icons-material/Bookmarks";
-const DetailRecordAction = (props) => {
+import BookmarkRemoveIcon from "@mui/icons-material/BookmarkRemove";
+const BookmarkDetailAction = (props) => {
   const { enqueueSnackbar } = useSnackbar();
-  const { database, url, sisn, updateXML, isBookmarked, size, xml } = props;
-
+  const { xml, size } = props;
+  let sisn = deepSearch(xml, "sisn")[0];
+  let database = deepSearch(xml, "database_name")[0];
   let bookmarkCount = deepSearch(xml, "bookmark_count");
   let next = nextRecordURL(xml);
   let previous = previousRecordURL(xml);
@@ -45,69 +43,15 @@ const DetailRecordAction = (props) => {
           <ArrowBackIcon />
         </IconButton>
       </Tooltip>
-
-      <Tooltip title="Return to summary page">
+      <Tooltip title="Remove from bookmark">
         <IconButton
-          disabled={!toSummary}
-          aria-label="return to summary page"
-          variant={"plain"}
-          color="primary"
-          size={size || "md"}
-          onClick={(_) => {
-            window.location = toSummary;
-          }}
-        >
-          <UndoIcon />
-        </IconButton>
-      </Tooltip>
-
-      <Tooltip
-        title={
-          isBookmarked === "true"
-            ? "Added to the bookmark"
-            : "Bookmark this record"
-        }
-      >
-        <IconButton
-          aria-label="bookmark"
-          variant={isBookmarked === "true" ? "soft" : "plain"}
-          color="primary"
-          size={size || "md"}
-          onClick={(_) => {
-            if (isBookmarked === "true") {
-              enqueueSnackbar("This record has already been bookmarked");
-              return;
-            }
-            enqueueSnackbar(`Adding record SISN #${sisn} to the bookmark ...`, {
-              variant: "info",
-            });
-            bookmarkRecord(url, sisn, database).then((_) => {
-              enqueueSnackbar(
-                `Record SISN #${sisn} has been successfully added to the bookmark!`
-              );
-              setTimeout(() => {
-                location.reload();
-              }, 2000);
-            });
-          }}
-        >
-          {isBookmarked === "true" ? <BookmarkAddedIcon /> : <BookmarkAdd />}
-        </IconButton>
-      </Tooltip>
-
-      <Tooltip title="View bookmarks">
-        <IconButton
-          aria-label="View bookmarks"
+          aria-label="remove from bookmark"
           variant="plain"
           color="primary"
           size={size || "md"}
-          onClick={(_) => {
-            viewBookmark(xml);
-          }}
+          onClick={(_) => {}}
         >
-          <Badge badgeContent={bookmarkCount} color="primary">
-            <BookmarksIcon />
-          </Badge>
+          <BookmarkRemoveIcon />
         </IconButton>
       </Tooltip>
 
@@ -158,6 +102,6 @@ const DetailRecordAction = (props) => {
   );
 };
 
-DetailRecordAction.propTypes = {};
+BookmarkDetailAction.propTypes = {};
 
-export default DetailRecordAction;
+export default BookmarkDetailAction;

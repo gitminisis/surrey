@@ -69,6 +69,6 @@ const SummaryMasonryView = (props) => {
   );
 };
 
-SummaryMasonryView.propTypes = { thumbnailData: PropTypes.object };
+SummaryMasonryView.propTypes = {};
 
 export default SummaryMasonryView;

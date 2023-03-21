@@ -32,7 +32,7 @@ const DetailLayout = (props) => {
                   data={generalSection}
                 />
               </Grid>
-              
+
               {/* <Grid container item xs={12}>
                 <DetailSection data={detailSection} />
               </Grid> */}
