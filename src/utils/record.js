@@ -237,3 +237,16 @@ export const getIDFromBookmarkSummary = (xml) => {
     };
   });
 };
+
+export const getPagination = (xml) => {
+  return deepSearch(xml, "pagination")[0];
+};
+
+export const getPageUrlFromPagination = (pagination, index) => {
+  return pagination[index]["_href"];
+};
+
+export const getCurrentPageFromPagination = (pagination) => {
+  console.log(pagination.filter((e) => e.b !== undefined));
+  return Number.parseInt(pagination.filter((e) => e.b !== undefined)[0].b);
+};

@@ -45,7 +45,7 @@ const Carousel = (props) => {
       modules={[Navigation, Pagination]}
       slidesPerView={1}
       breakpoints={breakpoints}
-      style={{ marginTop: "100px", width: "1500px" }}
+      style={{ marginTop: "100px", width: "100%" }}
       spaceBetween={20}
       navigation
       pagination={{
@@ -80,6 +80,7 @@ const ImageCarousel = (props) => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
   let { data } = props;
+  console.count(data);
   return (
     <Carousel>
       {data.map((item, i) => (

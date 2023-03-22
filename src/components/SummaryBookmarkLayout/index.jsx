@@ -10,7 +10,7 @@ import {
 import GeneralSearchBox from "../GeneralSearchBox";
 import SummaryBookmarkSubHeader from "./SummaryBookmarkSubHeader";
 import { deepSearch, getXMLRecord } from "../../utils/functions";
-import { fetchJSONRecord } from "../../utils/record";
+import { fetchJSONRecord, getFirstThumbnail } from "../../utils/record";
 import GeneralSection from "../DetailLayout/GeneralSection";
 import BookmarkDetailAction from "./BookmarkDetailAction";
 import ImageCarousel from "../ImageCarousel";
@@ -30,7 +30,22 @@ const SummaryBookmarkLayout = (props) => {
   const [xml, setXml] = useState(getXMLRecord());
   const [currentDetailXml, setCurrentDetailXml] = useState(null);
   const [bookmarkLoading, setBookmarkLoading] = useState(true);
-
+  const bookmarkListToImageCarouselData = (xml) => {
+    if (!Array.isArray(xml.xml.xml_record)) {
+      xml.xml.xml_record = [xml.xml.xml_record];
+    }
+    let res = xml.xml.xml_record.map((record) => {
+      let database = record.database_name;
+      let thumbnail = getFirstThumbnail(record, database);
+      return {
+        thumbnail,
+        title: record.title,
+      };
+    });
+    console.log(res);
+    return res;
+    //  return xml.xml_record.record()
+  };
   useEffect((_) => {
     let firstRecord = deepSearch(xml, "xml_record")[0];
     if (Array.isArray(firstRecord)) {
@@ -91,35 +106,9 @@ const SummaryBookmarkLayout = (props) => {
           </Grid>
 
           <Grid item xs={12}>
-            <ImageCarousel
-              data={[
-                {
-                  thumbnail: "Category1",
-                  title: "Photographs",
-                  link: '/scripts/mwimain.dll?UNIONSEARCH&KEEP=Y&SIMPLE_EXP=Y&APPLICATION=UNION_VIEW&DATABASE=DESCRIPTION&language=144&REPORT=WEB_UNION_SUM_DESC&EXP=A_IM_ACCESS present and FORM "Graphic material"',
-                },
-                {
-                  thumbnail: "Category2",
-                  title: "Maps",
-                  link: '/scripts/mwimain.dll?UNIONSEARCH&KEEP=Y&SIMPLE_EXP=Y&APPLICATION=UNION_VIEW&DATABASE=DESCRIPTION&language=144&REPORT=WEB_UNION_SUM_DESC&EXP=A_IM_ACCESS present and FORM "Cartographic material"',
-                },
-                {
-                  thumbnail: "Category3",
-                  title: "Audio/Video",
-                  link: '/scripts/mwimain.dll?UNIONSEARCH&KEEP=Y&SIMPLE_EXP=Y&APPLICATION=UNION_VIEW&DATABASE=DESCRIPTION&language=144&REPORT=WEB_UNION_SUM_DESC&EXP=(A_AD_ACCESS present or A_VD_ACCESS present) and FORM "Cartographic material"',
-                },
-                {
-                  thumbnail: "Category4",
-                  title: "Artifacts",
-                  link: '/scripts/mwimain.dll?UNIONSEARCH&KEEP=Y&SIMPLE_EXP=Y&APPLICATION=UNION_VIEW&language=144&REPORT=WEB_UNION_SUM&EXP=(A_IM_ACCESS present and FORM "Object") or (M_IM_ACCESS present)',
-                },
-                {
-                  thumbnail: "Category5",
-                  title: "Textual Records",
-                  link: '/scripts/mwimain.dll?UNIONSEARCH&KEEP=Y&SIMPLE_EXP=Y&APPLICATION=UNION_VIEW&DATABASE=DESCRIPTION&language=144&REPORT=WEB_UNION_SUM_DESC&EXP=A_IM_ACCESS present and FORM "Textual record"',
-                },
-              ]}
-            />
+            <Container maxWidth={"true"}>
+              <ImageCarousel data={bookmarkListToImageCarouselData(xml)} />
+            </Container>
           </Grid>
         </Grid>
 

@@ -19,10 +19,12 @@ import Modal from "@mui/joy/Modal";
 import ModalClose from "@mui/joy/ModalClose";
 import Sheet from "@mui/joy/Sheet";
 import { fetchJSONRecord } from "../../utils/record";
-
+import useMediaQuery from "@mui/material/useMediaQuery";
 const scrollHeight = 330;
 
 const SummaryLayout = (props) => {
+  const isMobileDevice = useMediaQuery((theme) => theme.breakpoints.down("lg"));
+  console.log(isMobileDevice);
   const {
     filter,
     displayField,
@@ -38,7 +40,6 @@ const SummaryLayout = (props) => {
   const [showFilter, setShowFilter] = useState(filter ? true : false);
   const [showMobileFilter, setShowMobileFilter] = useState(false);
   const [xml, setXml] = useState(getXMLRecord());
-
 
   const toggleGrid = (a, b) => {
     if (!b || b === undefined) {
@@ -93,46 +94,47 @@ const SummaryLayout = (props) => {
                 />
               </Drawer>
             )}
-            {filter && (
-              <Modal
-                aria-labelledby="modal-title"
-                aria-describedby="modal-desc"
-                open={showMobileFilter}
-                onClose={() => setShowMobileFilter(false)}
-                sx={{
-                  display: { lg: "none", xs: "flex" },
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
-              >
-                <Sheet
-                  variant="outlined"
+            {filter &&
+              (isMobileDevice ? (
+                <Modal
+                  aria-labelledby="modal-title"
+                  aria-describedby="modal-desc"
+                  open={showMobileFilter}
+                  onClose={() => setShowMobileFilter(false)}
                   sx={{
-                    maxWidth: 500,
-                    width: "90%",
-                    borderRadius: "md",
-                    p: 3,
-                    boxShadow: "lg",
+                    display: { lg: "none", xs: "flex" },
+                    justifyContent: "center",
+                    alignItems: "center",
                   }}
                 >
-                  <ModalClose
+                  <Sheet
                     variant="outlined"
                     sx={{
-                      top: "calc(-1/4 * var(--IconButton-size))",
-                      right: "calc(-1/4 * var(--IconButton-size))",
-                      boxShadow: "0 2px 12px 0 rgba(0 0 0 / 0.2)",
-                      borderRadius: "50%",
-                      bgcolor: "background.body",
+                      maxWidth: 500,
+                      width: "90%",
+                      borderRadius: "md",
+                      p: 3,
+                      boxShadow: "lg",
                     }}
-                  />
-                  <SummaryFilter
-                    sortOptions={sortOptions}
-                    data={filter}
-                    xml={xml}
-                  />
-                </Sheet>
-              </Modal>
-            )}
+                  >
+                    <ModalClose
+                      variant="outlined"
+                      sx={{
+                        top: "calc(-1/4 * var(--IconButton-size))",
+                        right: "calc(-1/4 * var(--IconButton-size))",
+                        boxShadow: "0 2px 12px 0 rgba(0 0 0 / 0.2)",
+                        borderRadius: "50%",
+                        bgcolor: "background.body",
+                      }}
+                    />
+                    <SummaryFilter
+                      sortOptions={sortOptions}
+                      data={filter}
+                      xml={xml}
+                    />
+                  </Sheet>
+                </Modal>
+              ) : null)}
 
             <Grid container rowSpacing={2} style={{ marginTop: "1rem" }}>
               <Grid item xs={12}>
@@ -144,26 +146,25 @@ const SummaryLayout = (props) => {
                   xml={xml}
                 />
               </Grid>
-              {!bookmarkLoading ? (
-                <Grid container item xs={12}>
-                  {grid ? (
-                    <SummaryMasonryView
-                      thumbnailData={thumbnailData}
-                      data={displayField}
-                      xml={xml}
-                      updateXML={setXml}
-                    />
-                  ) : (
-                    <SummaryRecordsView
-                      thumbnailData={thumbnailData}
-                      data={displayField}
-                      xml={xml}
-                      updateXML={setXml}
-                    />
-                  )}
-                  <SummaryPagination />
-                </Grid>
-              ) : null}
+
+              <Grid container item xs={12}>
+                {grid ? (
+                  <SummaryMasonryView
+                    thumbnailData={thumbnailData}
+                    data={displayField}
+                    xml={xml}
+                    updateXML={setXml}
+                  />
+                ) : (
+                  <SummaryRecordsView
+                    thumbnailData={thumbnailData}
+                    data={displayField}
+                    xml={xml}
+                    updateXML={setXml}
+                  />
+                )}
+                <SummaryPagination xml={xml} />
+              </Grid>
             </Grid>
           </Main>
         </Grid>
