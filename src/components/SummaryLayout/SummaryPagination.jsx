@@ -10,20 +10,22 @@ import {
 const SummaryPagination = (props) => {
   const { xml } = props;
   const [pagination, setPagination] = useState(getPagination(xml));
-  console.log(pagination)
+
   return (
     <div style={{ margin: "0 auto", textAlign: "center" }}>
-      <Stack spacing={2}>
-        <Pagination
-          count={pagination.a.length}
-          shape="rounded"
-          defaultPage={getCurrentPageFromPagination(pagination.a)}
-          onChange={(e, i) => {
-            window.location = getPageUrlFromPagination(pagination.a, i - 1);
-          }}
-          renderItem={(item) => <PaginationItem {...item} />}
-        />
-      </Stack>
+      {pagination && (
+        <Stack spacing={2}>
+          <Pagination
+            count={pagination.a.length}
+            shape="rounded"
+            defaultPage={getCurrentPageFromPagination(pagination.a)}
+            onChange={(e, i) => {
+              window.location = getPageUrlFromPagination(pagination.a, i - 1);
+            }}
+            renderItem={(item) => <PaginationItem {...item} />}
+          />
+        </Stack>
+      )}
     </div>
   );
 };
