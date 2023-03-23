@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import PropTypes from "prop-types";
 import { Grid, Drawer, Skeleton, Container } from "@mui/material";
 import {
@@ -30,6 +30,13 @@ const SummaryBookmarkLayout = (props) => {
   const [xml, setXml] = useState(getXMLRecord());
   const [currentDetailXml, setCurrentDetailXml] = useState(null);
   const [bookmarkLoading, setBookmarkLoading] = useState(true);
+  const [loadedDetailRecord, setLoadedDetailRecord] = useState(new Map());
+  useEffect((_) => {
+    getCurrentRecordByIndex(0).then((res) => {
+      updateLoadedDetailRecord(0, res);
+      setBookmarkLoading(false);
+    });
+  }, []);
   const bookmarkListToImageCarouselData = (xml) => {
     if (!Array.isArray(xml.xml.xml_record)) {
       xml.xml.xml_record = [xml.xml.xml_record];
@@ -42,28 +49,38 @@ const SummaryBookmarkLayout = (props) => {
         title: record.title,
       };
     });
-    console.log(res);
     return res;
-    //  return xml.xml_record.record()
   };
-  useEffect((_) => {
-    let firstRecord = deepSearch(xml, "xml_record")[0];
-    if (Array.isArray(firstRecord)) {
-      firstRecord = firstRecord[0];
+  const updateLoadedDetailRecord = (k, v) => {
+    setLoadedDetailRecord(loadedDetailRecord.set(k, v));
+  };
+  const getCurrentRecordByIndex = (i) => {
+    let record = deepSearch(xml, "xml_record")[0];
+    if (Array.isArray(record)) {
+      record = record[i];
     }
-    fetchJSONRecord(
-      firstRecord.database_name,
-      [firstRecord.link_sisn],
+    return fetchJSONRecord(
+      record.database_name,
+      [record.link_sisn],
       setCurrentDetailXml
-    ).then((res) => {
-      console.log(res);
-
-      setBookmarkLoading(false);
-    });
-  }, []);
-  const toggleSidebar = () => {
-    setShowSidebar(!showSidebar);
+    );
   };
+
+  const switchRecord = (i) => {
+    debugger;
+    let loadedRecord = loadedDetailRecord.get(i);
+    if (loadedRecord !== undefined) {
+      setCurrentDetailXml(loadedRecord);
+    } else {
+      setBookmarkLoading(true);
+      console.log(loadedDetailRecord);
+      getCurrentRecordByIndex(i).then((res) => {
+        updateLoadedDetailRecord(i, res);
+        setBookmarkLoading(false);
+      });
+    }
+  };
+
   return (
     <div>
       <SummaryContainer
@@ -86,7 +103,7 @@ const SummaryBookmarkLayout = (props) => {
             <SummaryBookmarkSubHeader
               xml={xml}
               // toggleMobileFilter={toggleMobileFilter}
-              toggleSidebar={toggleSidebar}
+              // toggleSidebar={toggleSidebar}
             />
           </Grid>
 
@@ -107,7 +124,10 @@ const SummaryBookmarkLayout = (props) => {
 
           <Grid item xs={12}>
             <Container maxWidth={"true"}>
-              <ImageCarousel data={bookmarkListToImageCarouselData(xml)} />
+              <ImageCarousel
+                data={bookmarkListToImageCarouselData(xml)}
+                handleClick={switchRecord}
+              />
             </Container>
           </Grid>
         </Grid>

@@ -11,11 +11,15 @@ import {
 } from "@mui/material";
 import { PropTypes } from "prop-types";
 export const Copyright = (props) => {
-  const { copyrightURL, siteName } = props;
+  const { copyrightURL, siteName, url } = props;
   return (
-    <Typography variant="body2" style={{ textAlign: "center", color: "white" }}>
+    <Typography
+      variant="h6"
+      component="div"
+      style={{ textAlign: "center", color: "white" }}
+    >
       {"Copyright © "}
-      <Link color="inherit" href="/">
+      <Link color="inherit" variant="h6" component="a" href={url}>
         {siteName}
       </Link>{" "}
       {new Date().getFullYear()}
@@ -35,7 +39,7 @@ const Footer = (props) => {
         mt: "auto",
         backgroundColor: (theme) => theme.palette.primary.main,
         height: "auto",
-        minHeight: "300px",
+        minHeight: "200px",
         color: "white",
         paddingTop: "80px",
 
@@ -44,28 +48,40 @@ const Footer = (props) => {
     >
       <Container>
         <Grid container spacing={2}>
-          <Grid
+          {/* <Grid
             item
             xs={12}
             md={4}
-            sx={{ padding: "2rem", display: "flex", alignItems: "center" }}
+            sx={{ display: "flex", alignItems: "center" }}
           >
-            <img
-              src={logo}
-              alt={siteName || "Logo"}
-              style={{ width: "100px", marginRight: "10px" }}
-            />
+            <Link
+              href={baseURL}
+              underline="none"
+              sx={{
+                color: "white",
+                display: "flex",
+                alignItems: "center",
+                cursor: "pointer",
+              }}
+              variant={"h5"}
+            >
+              <Box
+                component="img"
+                sx={{ mr: "10px" }}
+                src={logo}
+                alt={`${siteName} logo`}
+              ></Box>
+              <span> {siteName}</span>
+            </Link>
+          </Grid> */}
 
-            <span> {siteName}</span>
-          </Grid>
-
-          <Grid item xs={12} md={5} container>
+          <Grid item xs={12} md={9} container>
             {links.map((link, index) => (
               <Grid
                 key={`FooterLink-${index}`}
                 item
                 xs={3}
-                sx={{ marginBottom: "20px", textAlign: "left" }}
+                sx={{ marginBottom: "20px", textAlign: "center" }}
               >
                 <Link
                   style={{
@@ -73,6 +89,7 @@ const Footer = (props) => {
                     fontSize: "1rem",
                     cursor: "pointer",
                   }}
+                  variant={"h5"}
                   underline="hover"
                   href={link.url}
                   color="inherit"
@@ -97,7 +114,7 @@ const Footer = (props) => {
         </Grid>
         <Divider flexItem sx={{ marginTop: "40px", marginBottom: "20px" }} />
 
-        <Copyright copyrightURL={baseURL} siteName={siteName} />
+        <Copyright url={baseURL} copyrightURL={baseURL} siteName={siteName} />
       </Container>
     </Box>
   );

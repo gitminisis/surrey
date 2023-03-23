@@ -71,6 +71,7 @@ const AppBar = (props) => {
                   // onClick={(_) => (window.location = link.url)}
                   key={link.title}
                   href={link.url}
+                  variant={"h5"}
                 >
                   <Typography variant="a">{link.title}</Typography>
                 </AppbarLink>

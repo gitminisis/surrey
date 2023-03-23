@@ -33,13 +33,13 @@ const breakpoints = {
 
 SwiperCore.use([Navigation, Pagination, FreeMode, Autoplay]);
 const Carousel = (props) => {
-  let { children } = props;
+  let { children, loop } = props;
 
   return (
     <Swiper
       autoplay={{ delay: 2000 }}
       freeMode={true}
-      loop={true}
+      loop={loop && true}
       grabCursor={true}
       speed={1000}
       modules={[Navigation, Pagination]}
@@ -79,14 +79,19 @@ const ImageCarousel = (props) => {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
-  let { data } = props;
-  console.count(data);
+  let { data, loop, handleClick } = props;
   return (
-    <Carousel>
+    <Carousel loop={loop}>
       {data.map((item, i) => (
         <SwiperSlide key={item.thumbnail + i}>
           <CarouselBox
-            onClick={(_) => (window.location = item.link ? item.link : "#")}
+            onClick={(_) => {
+              if (handleClick === undefined) {
+                window.location = item.link ? item.link : "#";
+              }
+
+              handleClick(i);
+            }}
             dimension={windowDimensions}
             thumbnail={item.thumbnail}
           >

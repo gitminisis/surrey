@@ -238,6 +238,8 @@ export const getIDFromBookmarkSummary = (xml) => {
   });
 };
 
+
+/** PAGINATION FUNCTIONS */
 export const getPagination = (xml) => {
   return deepSearch(xml, "pagination")[0];
 };

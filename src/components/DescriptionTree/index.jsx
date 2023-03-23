@@ -49,10 +49,23 @@ const DescriptionTree = (props) => {
   const [openKeyPath, setOpenKeyPath] = useState([]);
   const [loading, setLoading] = useState(false);
   const [contextMenu, setContextMenu] = React.useState(null);
-  if (displayDatabase.indexOf(database) === -1) {
-    return null;
-  }
-
+  debugger;
+  console.log('render tree')
+  useEffect(() => {
+    console.log(displayDatabase.indexOf(database) !== -1);
+    if (displayDatabase.indexOf(database) !== -1) {
+      console.log("inside");
+      getJSONTree(session, database, refd)
+        .then((res) => {
+          console.log(res);
+          let { tree, openKeyPath } = res;
+          setOpenKeyPath(openKeyPath.reverse());
+          setTreeData(tree);
+          setLoading(true);
+        })
+        .then((err) => {});
+    }
+  }, []);
   const handleContextMenu = (event) => {
     event.preventDefault();
     setContextMenu(
@@ -71,16 +84,6 @@ const DescriptionTree = (props) => {
   const handleClose = () => {
     setContextMenu(null);
   };
-  useEffect(() => {
-    getJSONTree(session, database, refd)
-      .then((res) => {
-        let { tree, openKeyPath } = res;
-        setOpenKeyPath(openKeyPath.reverse());
-        setTreeData(tree);
-        setLoading(true);
-      })
-      .then((err) => {});
-  }, []);
 
   const handleToggle = (event, nodeIds) => {
     setOpenKeyPath(nodeIds);
@@ -121,7 +124,9 @@ const DescriptionTree = (props) => {
       </StyledTreeItem>
     );
   };
-
+  if (displayDatabase.indexOf(database) === -1) {
+    return null;
+  }
   return (
     <Accordion>
       <AccordionSummary

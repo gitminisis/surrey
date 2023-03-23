@@ -52,7 +52,7 @@ export default function SummaryBookmarkSubHeader(props) {
               value={props.isGrid === true ? "grid" : "list"}
               exclusive
             >
-              <ToggleButton
+              {/* <ToggleButton
                 value="filter toggle"
                 onClick={(_) => {
                   props.toggleSidebar();
@@ -63,7 +63,7 @@ export default function SummaryBookmarkSubHeader(props) {
                 <Tooltip title="Toggle sidebar">
                   <TuneIcon />
                 </Tooltip>
-              </ToggleButton>
+              </ToggleButton> */}
             </ToggleButtonGroup>
           </Box>
         </Box>

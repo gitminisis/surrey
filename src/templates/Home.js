@@ -42,6 +42,7 @@ const Home = [
           {
             component: "ImageCarousel",
             data: {
+              loop:true,
               data: [
                 {
                   thumbnail: Category1,

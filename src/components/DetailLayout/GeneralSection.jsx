@@ -88,7 +88,6 @@ const GeneralSection = (props) => {
                   displayComponent={GeneralDetailTextField}
                 />
                 {children &&
-                  children.length > 0 &&
                   children.map((e) => {
                     e.data ? (e.data.xml = xml) : (e.data = { ...xml });
                     return Component(e);
