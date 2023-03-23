@@ -13,6 +13,7 @@ import ImageNotSupportedIcon from "@mui/icons-material/ImageNotSupported";
 import Component from "../Component";
 const GeneralSection = (props) => {
   const { data, xml, updateXML, recordAction } = props;
+  let showTree = props.showTree === undefined ? true : props.showTree;
   let RecordAction = props.recordAction;
   let record = xml.xml.xml_record;
   let database = record.database_name;
@@ -89,6 +90,11 @@ const GeneralSection = (props) => {
                 />
                 {children &&
                   children.map((e) => {
+                    if (e.component === "DescriptionTree") {
+                      let isDisplayed =
+                        showTree && e.data.displayDatabase.includes(database);
+                      e.data.showTree = isDisplayed;
+                    }
                     e.data ? (e.data.xml = xml) : (e.data = { ...xml });
                     return Component(e);
                   })}

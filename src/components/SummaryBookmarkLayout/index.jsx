@@ -14,7 +14,7 @@ import { fetchJSONRecord, getFirstThumbnail } from "../../utils/record";
 import GeneralSection from "../DetailLayout/GeneralSection";
 import BookmarkDetailAction from "./BookmarkDetailAction";
 import ImageCarousel from "../ImageCarousel";
-
+import { useSnackbar } from "notistack";
 const BookmarkLoadingSkeleton = (props) => {
   return (
     <Item sx={{ padding: "16px" }} elevation={6}>
@@ -25,6 +25,7 @@ const BookmarkLoadingSkeleton = (props) => {
   );
 };
 const SummaryBookmarkLayout = (props) => {
+  const { enqueueSnackbar } = useSnackbar();
   const { generalSearchBox, generalSection } = props;
   const [showSidebar, setShowSidebar] = useState(true);
   const [xml, setXml] = useState(getXMLRecord());
@@ -67,13 +68,15 @@ const SummaryBookmarkLayout = (props) => {
   };
 
   const switchRecord = (i) => {
-    debugger;
+    if (bookmarkLoading) {
+      enqueueSnackbar(`Record is being loaded ...`, { variant: "info" });
+      return;
+    }
     let loadedRecord = loadedDetailRecord.get(i);
     if (loadedRecord !== undefined) {
       setCurrentDetailXml(loadedRecord);
     } else {
       setBookmarkLoading(true);
-      console.log(loadedDetailRecord);
       getCurrentRecordByIndex(i).then((res) => {
         updateLoadedDetailRecord(i, res);
         setBookmarkLoading(false);
@@ -108,10 +111,10 @@ const SummaryBookmarkLayout = (props) => {
           </Grid>
 
           <Grid item xs={12}>
-            {bookmarkLoading ? <BookmarkLoadingSkeleton /> : null}
             {currentDetailXml &&
               (!bookmarkLoading ? (
                 <GeneralSection
+                  showTree={false}
                   data={generalSection}
                   xml={currentDetailXml}
                   updateXML={setCurrentDetailXml}
@@ -119,7 +122,9 @@ const SummaryBookmarkLayout = (props) => {
                     <BookmarkDetailAction xml={currentDetailXml} />
                   )}
                 />
-              ) : null)}
+              ) : (
+                <BookmarkLoadingSkeleton />
+              ))}
           </Grid>
 
           <Grid item xs={12}>
@@ -127,6 +132,8 @@ const SummaryBookmarkLayout = (props) => {
               <ImageCarousel
                 data={bookmarkListToImageCarouselData(xml)}
                 handleClick={switchRecord}
+                loop={false}
+                autoplay={false}
               />
             </Container>
           </Grid>

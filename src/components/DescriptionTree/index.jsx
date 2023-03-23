@@ -40,24 +40,20 @@ const TreeLoadingSkeleton = () => {
   );
 };
 const DescriptionTree = (props) => {
-  let { xml, title, displayDatabase } = props;
+  let { xml, title, displayDatabase, showTree } = props;
   let session = deepSearch(xml, "session")[0];
   let database = deepSearch(xml, "database_name")[0];
   let refd = deepSearch(xml, "refd")[0];
   let lowerLevelRecords = deepSearch(xml, "lower_level_occurence")[0];
+
   const [treeData, setTreeData] = useState([]);
   const [openKeyPath, setOpenKeyPath] = useState([]);
   const [loading, setLoading] = useState(false);
   const [contextMenu, setContextMenu] = React.useState(null);
-  debugger;
-  console.log('render tree')
   useEffect(() => {
-    console.log(displayDatabase.indexOf(database) !== -1);
-    if (displayDatabase.indexOf(database) !== -1) {
-      console.log("inside");
+    if (showTree) {
       getJSONTree(session, database, refd)
         .then((res) => {
-          console.log(res);
           let { tree, openKeyPath } = res;
           setOpenKeyPath(openKeyPath.reverse());
           setTreeData(tree);
@@ -124,7 +120,7 @@ const DescriptionTree = (props) => {
       </StyledTreeItem>
     );
   };
-  if (displayDatabase.indexOf(database) === -1) {
+  if (!showTree) {
     return null;
   }
   return (

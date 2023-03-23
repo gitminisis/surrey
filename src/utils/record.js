@@ -8,6 +8,7 @@ import {
 } from "./functions";
 import copy from "copy-to-clipboard";
 import { MEDIA_THUMBNAIL_FIELD } from "../templates/DisplayFields";
+
 const DEFAULT_DETAIL_REPORT = "WEB_UNION_DETAIL";
 const WEB_DNS = "http://samoa.minisisinc.com";
 const DEFAULT_SUM_REPORT = "WEB_UNION_SUM";
