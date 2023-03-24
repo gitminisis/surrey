@@ -20,6 +20,8 @@ import ModalClose from "@mui/joy/ModalClose";
 import Sheet from "@mui/joy/Sheet";
 import { fetchJSONRecord } from "../../utils/record";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import MobileFilterWrapper from "./MobileFilterWrapper";
+import DesktopFilterWrapper from "./DesktopFilterWrapper";
 const scrollHeight = 330;
 
 const SummaryLayout = (props) => {
@@ -41,6 +43,10 @@ const SummaryLayout = (props) => {
   const [showMobileFilter, setShowMobileFilter] = useState(false);
   const [xml, setXml] = useState(getXMLRecord());
   const SummaryView = grid ? SummaryMasonryView : SummaryRecordsView;
+  const FilterWrapper = isMobileDevice
+    ? MobileFilterWrapper
+    : DesktopFilterWrapper;
+
   const toggleGrid = (a, b) => {
     if (!b || b === undefined) {
       return;
@@ -78,66 +84,20 @@ const SummaryLayout = (props) => {
               <GeneralSearchBox {...generalSearchBox} />
             </Grid>
 
-            {filter &&
-              (isMobileDevice ? (
-                <Modal
-                  aria-labelledby="modal-title"
-                  aria-describedby="modal-desc"
-                  open={showMobileFilter}
-                  onClose={() => setShowMobileFilter(false)}
-                  sx={{
-                    display: { lg: "none", xs: "flex" },
-                    justifyContent: "center",
-                    alignItems: "center",
-                  }}
-                >
-                  <Sheet
-                    variant="outlined"
-                    sx={{
-                      maxWidth: 500,
-                      width: "90%",
-                      borderRadius: "md",
-                      p: 3,
-                      boxShadow: "lg",
-                    }}
-                  >
-                    <ModalClose
-                      variant="outlined"
-                      sx={{
-                        top: "calc(-1/4 * var(--IconButton-size))",
-                        right: "calc(-1/4 * var(--IconButton-size))",
-                        boxShadow: "0 2px 12px 0 rgba(0 0 0 / 0.2)",
-                        borderRadius: "50%",
-                        bgcolor: "background.body",
-                      }}
-                    />
-                    <SummaryFilter
-                      sortOptions={sortOptions}
-                      data={filter}
-                      xml={xml}
-                      updateXML={setXml}
-                    />
-                  </Sheet>
-                </Modal>
-              ) : (
-                <Drawer
-                  sx={{
-                    width: "100%",
-                    display: { xs: "none", lg: "flex" },
-                  }}
-                  variant="persistent"
-                  anchor="left"
-                  open={showFilter}
-                >
-                  <SummaryFilter
-                    sortOptions={sortOptions}
-                    data={filter}
-                    xml={xml}
-                    updateXML={setXml}
-                  />
-                </Drawer>
-              ))}
-
+            {filter && (
+              <FilterWrapper
+                openDesktop={showFilter}
+                openMobile={showMobileFilter}
+                onClose={setShowMobileFilter}
+              >
+                <SummaryFilter
+                  sortOptions={sortOptions}
+                  data={filter}
+                  xml={xml}
+                  updateXML={setXml}
+                />
+              </FilterWrapper>
+            )}
             <Grid container rowSpacing={2} style={{ marginTop: "1rem" }}>
               <Grid item xs={12}>
                 <SummarySubHeader
@@ -148,7 +108,6 @@ const SummaryLayout = (props) => {
                   xml={xml}
                 />
               </Grid>
-
               <Grid container item xs={12}>
                 <SummaryView
                   thumbnailData={thumbnailData}
@@ -156,7 +115,6 @@ const SummaryLayout = (props) => {
                   xml={xml}
                   updateXML={setXml}
                 />
-
                 <SummaryPagination xml={xml} />
               </Grid>
             </Grid>
