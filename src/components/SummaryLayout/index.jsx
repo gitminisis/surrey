@@ -40,7 +40,7 @@ const SummaryLayout = (props) => {
   const [showFilter, setShowFilter] = useState(filter ? true : false);
   const [showMobileFilter, setShowMobileFilter] = useState(false);
   const [xml, setXml] = useState(getXMLRecord());
-
+  const SummaryView = grid ? SummaryMasonryView : SummaryRecordsView;
   const toggleGrid = (a, b) => {
     if (!b || b === undefined) {
       return;
@@ -77,23 +77,7 @@ const SummaryLayout = (props) => {
             <Grid item xs={12}>
               <GeneralSearchBox {...generalSearchBox} />
             </Grid>
-            {filter && (
-              <Drawer
-                sx={{
-                  width: "100%",
-                  display: { xs: "none", lg: "flex" },
-                }}
-                variant="persistent"
-                anchor="left"
-                open={showFilter}
-              >
-                <SummaryFilter
-                  sortOptions={sortOptions}
-                  data={filter}
-                  xml={xml}
-                />
-              </Drawer>
-            )}
+
             {filter &&
               (isMobileDevice ? (
                 <Modal
@@ -131,10 +115,28 @@ const SummaryLayout = (props) => {
                       sortOptions={sortOptions}
                       data={filter}
                       xml={xml}
+                      updateXML={setXml}
                     />
                   </Sheet>
                 </Modal>
-              ) : null)}
+              ) : (
+                <Drawer
+                  sx={{
+                    width: "100%",
+                    display: { xs: "none", lg: "flex" },
+                  }}
+                  variant="persistent"
+                  anchor="left"
+                  open={showFilter}
+                >
+                  <SummaryFilter
+                    sortOptions={sortOptions}
+                    data={filter}
+                    xml={xml}
+                    updateXML={setXml}
+                  />
+                </Drawer>
+              ))}
 
             <Grid container rowSpacing={2} style={{ marginTop: "1rem" }}>
               <Grid item xs={12}>
@@ -148,21 +150,13 @@ const SummaryLayout = (props) => {
               </Grid>
 
               <Grid container item xs={12}>
-                {grid ? (
-                  <SummaryMasonryView
-                    thumbnailData={thumbnailData}
-                    data={displayField}
-                    xml={xml}
-                    updateXML={setXml}
-                  />
-                ) : (
-                  <SummaryRecordsView
-                    thumbnailData={thumbnailData}
-                    data={displayField}
-                    xml={xml}
-                    updateXML={setXml}
-                  />
-                )}
+                <SummaryView
+                  thumbnailData={thumbnailData}
+                  data={displayField}
+                  xml={xml}
+                  updateXML={setXml}
+                />
+
                 <SummaryPagination xml={xml} />
               </Grid>
             </Grid>

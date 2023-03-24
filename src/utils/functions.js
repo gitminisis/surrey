@@ -3,7 +3,6 @@ import X2JS from "../libs/xml2json.min.js";
 import axios from "axios";
 import SiteLayout from "../templates/SiteLayout.js";
 
-
 const VIRTUAL_DIR = SiteLayout.virtualIncludePaths;
 const APPLICATION = SiteLayout.application;
 export const deepSearch = (obj, key) => {
@@ -27,6 +26,11 @@ export const deepSearch = (obj, key) => {
   return res;
 };
 
+export const getKeyByValue = (map, searchValue) => {
+  for (let [key, value] of map.entries()) {
+    if (_.isEqual(value, searchValue)) return key;
+  }
+};
 export const getXMLRecord = (dom) => {
   let DOM_SEARCH = dom ? dom : document;
   let xmlDOM = DOM_SEARCH.querySelector("#xml_record");

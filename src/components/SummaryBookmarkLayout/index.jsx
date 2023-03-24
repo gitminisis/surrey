@@ -9,12 +9,18 @@ import {
 } from "./SummaryBookmarkLayout.style";
 import GeneralSearchBox from "../GeneralSearchBox";
 import SummaryBookmarkSubHeader from "./SummaryBookmarkSubHeader";
-import { deepSearch, getXMLRecord } from "../../utils/functions";
-import { fetchJSONRecord, getFirstThumbnail } from "../../utils/record";
+import { deepSearch, getKeyByValue, getXMLRecord } from "../../utils/functions";
+import {
+  fetchJSONRecord,
+  getFirstThumbnail,
+  removeBookmarkFromKey,
+  removeBookmarkFromSISN,
+} from "../../utils/record";
 import GeneralSection from "../DetailLayout/GeneralSection";
 import BookmarkDetailAction from "./BookmarkDetailAction";
 import ImageCarousel from "../ImageCarousel";
 import { useSnackbar } from "notistack";
+
 const BookmarkLoadingSkeleton = (props) => {
   return (
     <Item sx={{ padding: "16px" }} elevation={6}>
@@ -33,7 +39,7 @@ const SummaryBookmarkLayout = (props) => {
   const [bookmarkLoading, setBookmarkLoading] = useState(true);
   const [loadedDetailRecord, setLoadedDetailRecord] = useState(new Map());
   useEffect((_) => {
-    getCurrentRecordByIndex(0).then((res) => {
+    fetchRecord(0).then((res) => {
       updateLoadedDetailRecord(0, res);
       setBookmarkLoading(false);
     });
@@ -55,12 +61,19 @@ const SummaryBookmarkLayout = (props) => {
   const updateLoadedDetailRecord = (k, v) => {
     setLoadedDetailRecord(loadedDetailRecord.set(k, v));
   };
-  const getCurrentRecordByIndex = (i) => {
+
+  const getRecordByIndex = (i) => {
     let record = deepSearch(xml, "xml_record")[0];
     if (Array.isArray(record)) {
       record = record[i];
     }
+    return record;
+  };
+  const fetchRecord = (i) => {
+    let record = getRecordByIndex(i);
+    let session = deepSearch(xml, "session")[0];
     return fetchJSONRecord(
+      session,
       record.database_name,
       [record.link_sisn],
       setCurrentDetailXml
@@ -69,7 +82,9 @@ const SummaryBookmarkLayout = (props) => {
 
   const switchRecord = (i) => {
     if (bookmarkLoading) {
-      enqueueSnackbar(`Record is being loaded ...`, { variant: "info" });
+      enqueueSnackbar(`Please wait while record is being loaded.`, {
+        variant: "info",
+      });
       return;
     }
     let loadedRecord = loadedDetailRecord.get(i);
@@ -77,13 +92,21 @@ const SummaryBookmarkLayout = (props) => {
       setCurrentDetailXml(loadedRecord);
     } else {
       setBookmarkLoading(true);
-      getCurrentRecordByIndex(i).then((res) => {
+      fetchRecord(i).then((res) => {
         updateLoadedDetailRecord(i, res);
         setBookmarkLoading(false);
       });
     }
   };
 
+  const removeBookmark = (record) => {
+    let index = getKeyByValue(loadedDetailRecord, record);
+    let res = getRecordByIndex(index);
+    let sisn = deepSearch(res, "_value")[0];
+    removeBookmarkFromSISN(record, sisn, index + 1).then((res) => {
+      location.reload();
+    });
+  };
   return (
     <div>
       <SummaryContainer
@@ -111,20 +134,21 @@ const SummaryBookmarkLayout = (props) => {
           </Grid>
 
           <Grid item xs={12}>
-            {currentDetailXml &&
-              (!bookmarkLoading ? (
-                <GeneralSection
-                  showTree={false}
-                  data={generalSection}
-                  xml={currentDetailXml}
-                  updateXML={setCurrentDetailXml}
-                  recordAction={(_) => (
-                    <BookmarkDetailAction xml={currentDetailXml} />
-                  )}
-                />
-              ) : (
-                <BookmarkLoadingSkeleton />
-              ))}
+            {bookmarkLoading ? <BookmarkLoadingSkeleton /> : null}
+            {currentDetailXml && !bookmarkLoading && (
+              <GeneralSection
+                showTree={false}
+                data={generalSection}
+                xml={currentDetailXml}
+                updateXML={setCurrentDetailXml}
+                recordAction={(_) => (
+                  <BookmarkDetailAction
+                    xml={currentDetailXml}
+                    removeBookmark={removeBookmark}
+                  />
+                )}
+              />
+            )}
           </Grid>
 
           <Grid item xs={12}>

@@ -78,7 +78,7 @@ export const DESCRIPTION_GENERAL_DETAIL_FIELD = [
     name: "form_occurrence",
     label: "Type of Materials",
   },
-  
+
   {
     name: "scope_occurrence",
     label: "Scope",
@@ -87,9 +87,6 @@ export const DESCRIPTION_GENERAL_DETAIL_FIELD = [
     name: "REFD",
     label: "ID",
   },
-
- 
-
 ];
 
 export const DESCRIPTION_OVERVIEW_DETAIL_FIELD = [
@@ -246,11 +243,11 @@ export const GENERAL_SEARCHBOX_DBLIST = [
   {
     database: "Archives",
     searchURL:
-      "/scripts/mwimain.dll?UNIONSEARCH&KEEP=Y&SIMPLE_EXP=Y&APPLICATION=UNION_VIEW&DATABASE=DESCRIPTION&language=144&REPORT=WEB_UNION_SUM_DESC",
+      "/scripts/mwimain.dll?SEARCH&KEEP=Y&SIMPLE_EXP=Y&APPLICATION=UNION_VIEW&DATABASE=DESCRIPTION&language=144&REPORT=WEB_UNION_SUM_DESC",
   },
   {
     database: "Artifact",
     searchURL:
-      "/scripts/mwimain.dll?UNIONSEARCH&KEEP=Y&SIMPLE_EXP=Y&APPLICATION=UNION_VIEW&DATABASE=COLLECTIONS&language=144&REPORT=WEB_UNION_SUM_COL",
+      "/scripts/mwimain.dll?SEARCH&KEEP=Y&SIMPLE_EXP=Y&APPLICATION=UNION_VIEW&DATABASE=COLLECTIONS&language=144&REPORT=WEB_UNION_SUM_COL",
   },
 ];

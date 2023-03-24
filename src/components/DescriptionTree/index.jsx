@@ -146,7 +146,7 @@ const DescriptionTree = (props) => {
         </Typography>
       </AccordionSummary>
       <AccordionDetails>
-        <Input
+        {/* <Input
           variant="soft"
           placeholder="Search"
           name="KEYWORD_CL"
@@ -165,7 +165,7 @@ const DescriptionTree = (props) => {
           <MenuItem onClick={handleClose}>Profile</MenuItem>
           <MenuItem onClick={handleClose}>My account</MenuItem>
           <MenuItem onClick={handleClose}>Logout</MenuItem>
-        </Menu>
+        </Menu> */}
         {loading ? (
           <div onContextMenu={handleContextMenu}>
             <TreeView

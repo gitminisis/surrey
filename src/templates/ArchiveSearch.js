@@ -15,7 +15,7 @@ const ArchivesSearch = [
         component: "SimpleSearchBanner",
         data: {
           searchURL:
-            "/scripts/mwimain.dll?UNIONSEARCH&KEEP=Y&SIMPLE_EXP=Y&APPLICATION=UNION_VIEW&DATABASE=DESCRIPTION&language=144&REPORT=WEB_UNION_SUM_DESC",
+            "/scripts/mwimain.dll?SEARCH&KEEP=Y&SIMPLE_EXP=Y&APPLICATION=UNION_VIEW&DATABASE=DESCRIPTION&language=144&REPORT=WEB_UNION_SUM_DESC",
           bannerCarousel: [pic1],
           heading: "Search the Archives",
           description:

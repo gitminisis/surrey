@@ -5,10 +5,11 @@ import {
   getDaysBeforeDate,
   getXMLRecord,
   deepSearch,
+  getKeyByValue,
 } from "./functions";
 import copy from "copy-to-clipboard";
 import { MEDIA_THUMBNAIL_FIELD } from "../templates/DisplayFields";
-
+import { findKey } from "lodash";
 const DEFAULT_DETAIL_REPORT = "WEB_UNION_DETAIL";
 const WEB_DNS = "http://samoa.minisisinc.com";
 const DEFAULT_SUM_REPORT = "WEB_UNION_SUM";
@@ -39,7 +40,7 @@ export const getRecendAdditions = (_) => {
   };
   let searchURL = searchingField.map((e) => {
     let exp = `${e.date} > "${low}" and ${e.media} present`;
-    let url = `/scripts/mwimain.dll?UNIONSEARCH&KEEP=Y&SIMPLE_EXP=Y&APPLICATION=UNION_VIEW&language=144&REPORT=WEB_UNION_SUM&EXP=${exp}&database=${e.database}`;
+    let url = `/scripts/mwimain.dll?SEARCH&KEEP=Y&SIMPLE_EXP=Y&APPLICATION=UNION_VIEW&language=144&REPORT=WEB_UNION_SUM&EXP=${exp}&database=${e.database}`;
     return url;
   });
 
@@ -131,13 +132,41 @@ export const bookmarkRecord = (url, SISN, database, fn) => {
     return xml;
   });
 };
-
+export const removeBookmarkFromKey = (map, record, fn) => {
+  let index = getKeyByValue(map, record) + 1;
+  let sisn = deepSearch(record, "sisn")[0];
+  let session = deepSearch(record, "bookmark_url")[0];
+  return axios({
+    method: "post",
+    url: `${session}?DELETEORDER&COOKIE=BOOKMARK`,
+    data: `mcheckbox_${index}=${sisn}`,
+  }).then(function (res) {
+    let { data } = res;
+    let dom = new DOMParser().parseFromString(data, "text/html");
+    console.log(dom);
+    return dom;
+  });
+};
+export const removeBookmarkFromSISN = (record, sisn, index) => {
+  let session = deepSearch(record, "bookmark_url")[0];
+  return axios({
+    method: "post",
+    url: `${session}?DELETEORDER&COOKIE=BOOKMARK`,
+    data: `mcheckbox_${index}=${sisn}`,
+  }).then(function (res) {
+    let { data } = res;
+    let dom = new DOMParser().parseFromString(data, "text/html");
+    return res;
+  });
+};
 export const bookmarkAllRecord = (xml, fn) => {
+  debugger;
   let url = deepSearch(xml, "bookmark_url")[0];
   let dataString = xml.xml.xml_record
     .map((r) => {
       let isBookmarked = deepSearch(r, "is_bookmarked")[0];
-      if (isBookmarked) {
+      console.log(r, isBookmarked )
+      if (isBookmarked === "true") {
         return "";
       }
       let database = deepSearch(r, "database_name")[0];
@@ -216,9 +245,9 @@ export const getJumpURL = (
   return `${session}/${database}/${field}/${value}/${SUM_REPORT_BY_DATABASE[database]}/${detail}?JUMP`;
 };
 
-export const fetchJSONRecord = (database, sisn = [], fn) => {
+export const fetchJSONRecord = (session, database, sisn = [], fn) => {
   let searchExpression = sisn.map((e) => `SISN ${e}`).join(" or ");
-  let url = `/scripts/mwimain.dll?UNIONSEARCH&KEEP=Y&SIMPLE_EXP=Y&APPLICATION=UNION_VIEW&DATABASE=${database}&language=144&REPORT=${SUM_REPORT_BY_DATABASE[database]}&EXP=${searchExpression}`;
+  let url = `${session}/scripts/mwimain.dll?SEARCH&KEEP=Y&SIMPLE_EXP=Y&APPLICATION=UNION_VIEW&DATABASE=${database}&language=144&REPORT=${SUM_REPORT_BY_DATABASE[database]}&EXP=${searchExpression}`;
   return axios.get(url).then((res) => {
     let { data } = res;
     let dom = new DOMParser().parseFromString(data, "text/html");
@@ -238,7 +267,6 @@ export const getIDFromBookmarkSummary = (xml) => {
     };
   });
 };
-
 
 /** PAGINATION FUNCTIONS */
 export const getPagination = (xml) => {

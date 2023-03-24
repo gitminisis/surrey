@@ -18,15 +18,18 @@ import { Tooltip } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import BookmarkRemoveIcon from "@mui/icons-material/BookmarkRemove";
+import PreviewIcon from "@mui/icons-material/Preview";
 const BookmarkDetailAction = (props) => {
   const { enqueueSnackbar } = useSnackbar();
-  const { xml, size } = props;
+  const { xml, size, removeBookmark } = props;
   let sisn = deepSearch(xml, "sisn")[0];
   let database = deepSearch(xml, "database_name")[0];
   let bookmarkCount = deepSearch(xml, "bookmark_count");
+  let recordLink = deepSearch(xml, "record_link")[0];
   let next = nextRecordURL(xml);
   let previous = previousRecordURL(xml);
   let toSummary = backToSummary(xml);
+
   return (
     <>
       <Tooltip title="Previous Record">
@@ -49,7 +52,11 @@ const BookmarkDetailAction = (props) => {
           variant="plain"
           color="primary"
           size={size || "md"}
-          onClick={(_) => {}}
+          onClick={(_) => {
+            if (removeBookmark) {
+              removeBookmark(xml);
+            }
+          }}
         >
           <BookmarkRemoveIcon />
         </IconButton>
@@ -67,6 +74,20 @@ const BookmarkDetailAction = (props) => {
           }}
         >
           <LinkIcon />
+        </IconButton>
+      </Tooltip>
+
+      <Tooltip title="View record detail">
+        <IconButton
+          aria-label="view record detail"
+          variant="plain"
+          color="primary"
+          size={size || "md"}
+          onClick={(_) => {
+            window.location = recordLink;
+          }}
+        >
+          <PreviewIcon />
         </IconButton>
       </Tooltip>
 
