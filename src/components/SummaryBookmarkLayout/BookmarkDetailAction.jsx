@@ -32,20 +32,6 @@ const BookmarkDetailAction = (props) => {
 
   return (
     <>
-      <Tooltip title="Previous Record">
-        <IconButton
-          disabled={!previous}
-          aria-label="go to previous record"
-          variant="plain"
-          color="primary"
-          size={size || "md"}
-          onClick={(_) => {
-            window.location = previous;
-          }}
-        >
-          <ArrowBackIcon />
-        </IconButton>
-      </Tooltip>
       <Tooltip title="Remove from bookmark">
         <IconButton
           aria-label="remove from bookmark"
@@ -84,7 +70,7 @@ const BookmarkDetailAction = (props) => {
           color="primary"
           size={size || "md"}
           onClick={(_) => {
-            window.location = recordLink;
+            window.open = recordLink;
           }}
         >
           <PreviewIcon />
@@ -102,21 +88,6 @@ const BookmarkDetailAction = (props) => {
           }}
         >
           <PrintIcon />
-        </IconButton>
-      </Tooltip>
-
-      <Tooltip title="Next Record">
-        <IconButton
-          disabled={!next}
-          aria-label="go to next record"
-          variant="plain"
-          color="primary"
-          size={size || "md"}
-          onClick={(_) => {
-            window.location = next;
-          }}
-        >
-          <ArrowForwardIcon />
         </IconButton>
       </Tooltip>
     </>

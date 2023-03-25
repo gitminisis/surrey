@@ -5,13 +5,15 @@ import { Typography, Tooltip } from "@mui/material";
 import Select from "@mui/joy/Select";
 import Option from "@mui/joy/Option";
 import ViewListIcon from "@mui/icons-material/ViewList";
-
+import Button from "@mui/joy/Button";
 import TuneIcon from "@mui/icons-material/Tune";
 import ViewModuleIcon from "@mui/icons-material/ViewModule";
 import ToggleButton from "@mui/material/ToggleButton";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import PropTypes from "prop-types";
 import { deepSearch, getXMLRecord } from "../../utils/functions";
+import DeleteIcon from "@mui/icons-material/Delete";
+import { removeAllBookmarkRecord } from "../../utils/record";
 export default function SummaryBookmarkSubHeader(props) {
   let { xml } = props;
   const handleChange = (event, nextView) => {
@@ -47,12 +49,12 @@ export default function SummaryBookmarkSubHeader(props) {
               },
             }}
           >
-            <ToggleButtonGroup
+            {/* <ToggleButtonGroup
               orientation="horizontal"
               value={props.isGrid === true ? "grid" : "list"}
               exclusive
             >
-              {/* <ToggleButton
+              <ToggleButton
                 value="filter toggle"
                 onClick={(_) => {
                   props.toggleSidebar();
@@ -61,10 +63,21 @@ export default function SummaryBookmarkSubHeader(props) {
                 aria-label="filter sidebar"
               >
                 <Tooltip title="Toggle sidebar">
-                  <TuneIcon />
+                  <TuneIcon /> 
                 </Tooltip>
-              </ToggleButton> */}
-            </ToggleButtonGroup>
+              </ToggleButton>
+            </ToggleButtonGroup> */}
+
+            <Button
+              variant="soft"
+              color="danger"
+              size="lg"
+              onClick={(_) => {
+                removeAllBookmarkRecord();
+              }}
+            >
+              <DeleteIcon /> Clear Bookmark
+            </Button>
           </Box>
         </Box>
       </Box>

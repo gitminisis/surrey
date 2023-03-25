@@ -17,6 +17,17 @@ const SUM_REPORT_BY_DATABASE = {
   COLLECTIONS: "WEB_UNION_SUM_COL",
   DESCRIPTION: "WEB_UNION_SUM_DESC",
 };
+export const sendSearchRequest = (
+  database,
+  expression,
+  report,
+  session = "/scripts/mwimains.dll"
+) => {
+  let url = `${session}?UNIONSEARCH&KEEP=Y&SIMPLE_EXP=Y&APPLICATION=UNION_VIEW&DATABASE=${database}&language=144&REPORT=${
+    report || SUM_REPORT_BY_DATABASE[database]
+  }&EXP=${expression}`;
+  window.location = url;
+};
 export const getRecendAdditions = (_) => {
   let high = getTomorrowDate();
   let low = getDaysBeforeDate();
@@ -165,7 +176,7 @@ export const bookmarkAllRecord = (xml, fn) => {
   let dataString = xml.xml.xml_record
     .map((r) => {
       let isBookmarked = deepSearch(r, "is_bookmarked")[0];
-      console.log(r, isBookmarked )
+      console.log(r, isBookmarked);
       if (isBookmarked === "true") {
         return "";
       }
@@ -197,7 +208,13 @@ export const viewBookmark = (xml) => {
 
 export const removeBookmarkRecord = () => {};
 
-export const removeAllBookmarkRecord = () => {};
+export const removeAllBookmarkRecord = () => {
+  var Cookies = document.cookie.split(";");
+
+  // set 1 Jan, 1970 expiry for every cookies
+  for (var i = 0; i < Cookies.length; i++)
+    document.cookie = Cookies[i] + "=;expires=" + new Date(0).toUTCString();
+};
 
 export const getRecordPermalink = (
   sisn,

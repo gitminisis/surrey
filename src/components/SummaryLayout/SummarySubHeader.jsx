@@ -2,10 +2,7 @@ import * as React from "react";
 import Box from "@mui/joy/Box";
 import { Item } from "./SummaryLayout.style";
 import { Typography, Tooltip } from "@mui/material";
-import Select from "@mui/joy/Select";
-import Option from "@mui/joy/Option";
 import ViewListIcon from "@mui/icons-material/ViewList";
-
 import TuneIcon from "@mui/icons-material/Tune";
 import ViewModuleIcon from "@mui/icons-material/ViewModule";
 import ToggleButton from "@mui/material/ToggleButton";

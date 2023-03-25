@@ -9,14 +9,27 @@ import {
   Grid,
   Chip,
   Divider,
+  Button,
 } from "@mui/material";
 import {
   getIndexList,
   xmlStrToJson,
   deepSearch,
+  buildExpressionFromMap,
 } from "../../../utils/functions";
+import { sendSearchRequest } from "../../../utils/record";
 const CollapseSearchFilter = (props) => {
   let { show, data, description, database } = props;
+  const [expression, setExpression] = useState({});
+  const updateInput = (field, value) => {
+    expression[field] = value;
+    setExpression(expression);
+  };
+  const submitForm = () => {
+    let exp = buildExpressionFromMap(expression);
+    sendSearchRequest(database, exp);
+  };
+
   return (
     <>
       <Collapse in={show} timeout="auto" unmountOnExit>
@@ -24,19 +37,23 @@ const CollapseSearchFilter = (props) => {
           <Container>
             <Grid container spacing={2}>
               {data.map((e, i) => (
-                <Grid item xs={12} sm={6} xl={3}>
+                <Grid item xs={12} sm={6} xl={3} key={`Autocomplete-${i}`}>
                   <AutocompleteDropdown
+                    updateInput={updateInput}
                     database={database}
                     field={e.field}
                     label={e.title}
                   />
                 </Grid>
               ))}
+
+              <Button onClick={submitForm}>Search</Button>
             </Grid>
           </Container>
         </CardContent>
-        <Divider>
-          <Chip label={description} />
+
+        <Divider sx={{ marginBottom: "2rem" }}>
+          <Chip color="primary" label={description} />
         </Divider>
       </Collapse>
     </>
@@ -47,7 +64,7 @@ const AutocompleteDropdown = (props) => {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [items, setItems] = useState([]);
-  const { field, label, database } = props;
+  const { field, label, database, updateInput } = props;
   useEffect(() => {
     getIndexList(field, database).then(
       (result) => {
@@ -71,8 +88,16 @@ const AutocompleteDropdown = (props) => {
   return (
     <Autocomplete
       disablePortal
+      onChange={(e, v) => updateInput(field, v)}
       options={items}
-      renderInput={(params) => <TextField {...params} label={label} />}
+      renderInput={(params) => (
+        <TextField
+          onChange={(e) => updateInput(field, e.target.value)}
+          name={field}
+          {...params}
+          label={label}
+        />
+      )}
     />
   );
 };

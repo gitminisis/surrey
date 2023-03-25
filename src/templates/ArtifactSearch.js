@@ -10,7 +10,7 @@ const ArtifactSearch = [
         component: "SimpleSearchBanner",
         data: {
           searchURL:
-            "/scripts/mwimain.dll?SEARCH&KEEP=Y&SIMPLE_EXP=Y&APPLICATION=UNION_VIEW&DATABASE=COLLECTIONS&language=144&REPORT=WEB_UNION_SUM_COL",
+            "/scripts/mwimain.dll?UNIONSEARCH&KEEP=Y&SIMPLE_EXP=Y&APPLICATION=UNION_VIEW&DATABASE=COLLECTIONS&language=144&REPORT=WEB_UNION_SUM_COL",
           bannerCarousel: [pic1],
           heading: "Search the Artifacts",
           description:

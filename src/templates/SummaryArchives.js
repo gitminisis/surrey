@@ -7,7 +7,7 @@ import {
 const Summmary = [
   {
     component: "Layout",
-    data: {
+  data: {
       active: "Archives",
     },
     children: [

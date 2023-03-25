@@ -37,6 +37,7 @@ const Carousel = (props) => {
 
   return (
     <Swiper
+    
       autoplay={autoplay}
       freeMode={true}
       loop={loop}
@@ -45,7 +46,7 @@ const Carousel = (props) => {
       modules={[Navigation, Pagination]}
       slidesPerView={1}
       breakpoints={breakpoints}
-      style={{ marginTop: "100px", width: "100%" }}
+      style={{ marginTop: "50px", width: "100%" }}
       spaceBetween={20}
       navigation
       pagination={{

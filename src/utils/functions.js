@@ -16,14 +16,6 @@ export const deepSearch = (obj, key) => {
     }),
     true
   );
-
-  // or efficient:
-  var res = [];
-  _.forEach(obj, function (v) {
-    if (typeof v == "object" && (v = deepSearch(v, key)).length)
-      res.push.apply(res, v);
-  });
-  return res;
 };
 
 export const getKeyByValue = (map, searchValue) => {
@@ -49,10 +41,29 @@ export const getIndexList = (field, database, application) => {
   return axios.get(url);
 };
 
+export const buildExpressionFromMap = (map) => {
+  let res = _.pickBy(map, function (value, key) {
+    return value !== null && value !== "";
+  });
+  let string =
+    "" +
+    Object.keys(res)
+      .map((k) => `${k} "${res[k]}"`)
+      .join(" and ");
+
+  return string;
+};
+
+
+/**
+ * This function returns today's date in the format "YYYY-MM-DD".
+ * It creates a new Date object and uses the toJSON() and slice() methods to format the date.
+ * @param {*} _
+ * @returns
+ */
 export const getTodayDate = (_) => {
   return new Date().toJSON().slice(0, 10);
 };
-("");
 export const getTomorrowDate = (_) => {
   let tomorrow = new Date();
   tomorrow.setDate(new Date().getDate() + 1);

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
-import { Grid, Paper, Collapse, Drawer, Typography } from "@mui/material";
-import { styled } from "@mui/material/styles";
+import { Grid } from "@mui/material";
 import {
   SummaryContainer,
   Item,
@@ -15,10 +14,6 @@ import GeneralSearchBox from "../GeneralSearchBox";
 import SummaryMasonryView from "./SummaryMasonryView";
 import SummaryPagination from "./SummaryPagination";
 import { deepSearch, getXMLRecord } from "../../utils/functions";
-import Modal from "@mui/joy/Modal";
-import ModalClose from "@mui/joy/ModalClose";
-import Sheet from "@mui/joy/Sheet";
-import { fetchJSONRecord } from "../../utils/record";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import MobileFilterWrapper from "./MobileFilterWrapper";
 import DesktopFilterWrapper from "./DesktopFilterWrapper";
@@ -26,7 +21,6 @@ const scrollHeight = 330;
 
 const SummaryLayout = (props) => {
   const isMobileDevice = useMediaQuery((theme) => theme.breakpoints.down("lg"));
-  console.log(isMobileDevice);
   const {
     filter,
     displayField,
