@@ -46,14 +46,17 @@ const CollapseSearchFilter = (props) => {
                   />
                 </Grid>
               ))}
-
-              <Button onClick={submitForm}>Search</Button>
             </Grid>
           </Container>
         </CardContent>
 
         <Divider sx={{ marginBottom: "2rem" }}>
-          <Chip color="primary" label={description} />
+          <Chip
+            sx={{ fontSize: "1rem", px: 3, py: 2 }}
+            onClick={submitForm}
+            color="primary"
+            label={"Submit your search"}
+          />
         </Divider>
       </Collapse>
     </>
