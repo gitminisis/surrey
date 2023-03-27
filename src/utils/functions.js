@@ -23,11 +23,11 @@ export const getKeyByValue = (map, searchValue) => {
     if (_.isEqual(value, searchValue)) return key;
   }
 };
-export const getXMLRecord = (dom) => {
-  let DOM_SEARCH = dom ? dom : document;
-  let xmlDOM = DOM_SEARCH.querySelector("#xml_record");
-  let x2js = new X2JS();
-  let json = x2js.xml_str2json(new XMLSerializer().serializeToString(xmlDOM));
+export const getXMLRecord = (dom = document) => {
+  const xmlDOM = dom.querySelector("#xml_record");
+  const x2js = new X2JS();
+  const xmlString = new XMLSerializer().serializeToString(xmlDOM);
+  const json = x2js.xml_str2json(xmlString);
   return json;
 };
 
@@ -51,14 +51,10 @@ export const getIndexList = (field, database, application) => {
 };
 
 export const buildExpressionFromMap = (map) => {
-  let res = _.pickBy(map, function (value, key) {
-    return value !== null && value !== "";
-  });
-  let string =
-    "" +
-    Object.keys(res)
-      .map((k) => `${k} "${res[k]}"`)
-      .join(" and ");
+  const filteredMap = _.omitBy(map, _.isEmpty);
+  const string = Object.entries(filteredMap)
+    .map(([key, value]) => `${key} "${value}"`)
+    .join(" and ");
 
   return string;
 };
@@ -72,6 +68,7 @@ export const buildExpressionFromMap = (map) => {
 export const getTodayDate = (_) => {
   return new Date().toJSON().slice(0, 10);
 };
+
 export const getTomorrowDate = (_) => {
   let tomorrow = new Date();
   tomorrow.setDate(new Date().getDate() + 1);
@@ -87,7 +84,6 @@ export const getDaysBeforeDate = (number = 30) => {
 export const printPage = (_) => {
   window.print();
 };
-
 
 export const getTrangCuteness = () => {
   let cuteness = 100;
