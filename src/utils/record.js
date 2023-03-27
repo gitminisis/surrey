@@ -8,7 +8,10 @@ import {
   getKeyByValue,
 } from "./functions";
 import copy from "copy-to-clipboard";
-import { MEDIA_THUMBNAIL_FIELD } from "../templates/DisplayFields";
+import {
+  MEDIA_THUMBNAIL_FIELD,
+  SORT_REPORTS_BY_DATABASE,
+} from "../templates/DisplayFields";
 import { findKey } from "lodash";
 const DEFAULT_DETAIL_REPORT = "WEB_UNION_DETAIL";
 const WEB_DNS = "http://samoa.minisisinc.com";
@@ -309,6 +312,18 @@ export const getIDFromBookmarkSummary = (xml) => {
       sisn,
     };
   });
+};
+
+export const getSortReportURL = (xml, application, sort) => {
+  console.log(sort, application);
+  let url = deepSearch(xml, "bookmark_url")[0];
+  // url = url.replace(
+  //   "WEB_UNION_SUM",
+  //   SORT_REPORTS_BY_DATABASE[sort][application]
+  // );
+
+  url = `${url}/${SORT_REPORTS_BY_DATABASE[sort][application]}?RECLIST&DATABASE=${application}`;
+  return url;
 };
 
 /** PAGINATION FUNCTIONS */

@@ -32,6 +32,7 @@ import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
 import { useSnackbar } from "notistack";
 import { getXMLFilter } from "../../utils/functions";
+import { getSortReportURL } from "../../utils/record";
 const FieldFilter = (props) => {
   const { data, index } = props;
   const [open, setOpen] = React.useState(index === 0);
@@ -39,12 +40,8 @@ const FieldFilter = (props) => {
   const handleClick = () => {
     setOpen(!open);
   };
-
-  console.log(data);
-  let filterType = data._name;
-  if (!Array.isArray(data.item_group)) {
-    data.item_group = [data.item_group];
-  }
+  const { item_group } = data;
+  const itemGroups = Array.isArray(item_group) ? item_group : [item_group];
   return (
     <List
       variant="outlined"
@@ -56,14 +53,17 @@ const FieldFilter = (props) => {
         border: "none",
       }}
     >
-      <ListItemButton onClick={handleClick}>
-        <ListItemText primary={filterType} />
+      <ListItemButton
+        onClick={handleClick}
+        sx={{ backgroundColor: "rgb(233,233,233,0.5)" }}
+      >
+        <ListItemText primary={data._name} />
         {open ? <ExpandLess /> : <ExpandMore />}
       </ListItemButton>
 
       <Collapse in={open}>
         <List>
-          {data.item_group.map((item, i) => {
+          {itemGroups.map((item, i) => {
             let itemSelected = deepSearch(item, "item_selected")[0];
             return (
               <ListItem key={`ListItemFilter-${i}`} sx={{}}>
@@ -88,13 +88,18 @@ const FieldFilter = (props) => {
   );
 };
 const SummaryFilter = (props) => {
-  const { data, xml, sortOptions } = props;
+  const { data, xml, sortOptions, application } = props;
   const { enqueueSnackbar } = useSnackbar();
   const filter = deepSearch(xml, "filter")[0];
 
   let bookmarkCount = deepSearch(xml, "bookmark_count");
   let numberOfRecords = getNumberOfRecords(xml);
 
+  const sortSelectHandler = (e, v) => {
+    let url = getSortReportURL(xml, application, v);
+    window.location = url;
+    // console.log(url);
+  };
   return (
     <Item
       elevation={0}
@@ -144,12 +149,13 @@ const SummaryFilter = (props) => {
             placeholder="Select a sort"
             defaultValue="default"
             className="filterSelect"
+            onChange={sortSelectHandler}
           >
             <Option value="default">Default</Option>
-            <Option value="yearAsc">Year Ascending</Option>
-            <Option value="yearDsc">Year Descending</Option>
-            <Option value="titleAsc">Title Ascending</Option>
-            <Option value="titleDsc">Title Ascending</Option>
+            <Option value="date_asc">Year Ascending</Option>
+            <Option value="date_dsc">Year Descending</Option>
+            <Option value="title_asc">Title Ascending</Option>
+            <Option value="title_dsc">Title Descending</Option>
           </Select>
         </>
       ) : null}

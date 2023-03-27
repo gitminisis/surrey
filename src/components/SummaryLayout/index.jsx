@@ -28,6 +28,7 @@ const SummaryLayout = (props) => {
     thumbnailData,
     generalSearchBox,
     sortOptions,
+    application,
   } = props;
 
   const [grid, setGrid] = useState(
@@ -85,6 +86,7 @@ const SummaryLayout = (props) => {
                 onClose={setShowMobileFilter}
               >
                 <SummaryFilter
+                  application={application}
                   sortOptions={sortOptions}
                   data={filter}
                   xml={xml}
