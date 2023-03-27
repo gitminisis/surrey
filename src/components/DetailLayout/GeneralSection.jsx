@@ -6,7 +6,7 @@ import { deepSearch, getXMLRecord } from "../../utils/functions";
 import GeneralDetailTextField from "./GeneralDetailTextField";
 import RecordTextField from "../RecordTextField";
 import ImageGallerySlide from "../ImageGallerySlide";
-import { getAllMedia , getAllImageCaptions} from "../../utils/record";
+import { getAllMedia, getAllImageCaptions } from "../../utils/record";
 import DetailRecordAction from "./DetailRecordAction";
 import Button from "@mui/joy/Button";
 import ImageNotSupportedIcon from "@mui/icons-material/ImageNotSupported";
@@ -58,10 +58,13 @@ const GeneralSection = (props) => {
                   video={video}
                 />
               ) : (
-                <Box>
+                <Box sx={{ mb: 4 }}>
                   <ImageNotSupportedIcon
                     style={{ fontSize: "100px", marginBottom: "16px" }}
                   />
+                  <Typography variant="h5" component="p">
+                    No Available Media
+                  </Typography>
                 </Box>
               )}
             </Grid>

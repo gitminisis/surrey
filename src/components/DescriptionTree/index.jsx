@@ -45,7 +45,7 @@ const DescriptionTree = (props) => {
   let database = deepSearch(xml, "database_name")[0];
   let refd = deepSearch(xml, "refd")[0];
   let lowerLevelRecords = deepSearch(xml, "lower_level_occurence")[0];
-
+  let recordLink = deepSearch(xml, "session")[0];
   const [treeData, setTreeData] = useState([]);
   const [openKeyPath, setOpenKeyPath] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -63,6 +63,7 @@ const DescriptionTree = (props) => {
     }
   }, []);
   const handleContextMenu = (event) => {
+    event.stopPropagation();
     event.preventDefault();
     setContextMenu(
       contextMenu === null
@@ -146,28 +147,15 @@ const DescriptionTree = (props) => {
         </Typography>
       </AccordionSummary>
       <AccordionDetails>
-        {/* <Input
+        <Input
           variant="soft"
           placeholder="Search"
           name="KEYWORD_CL"
           startDecorator={<SearchIcon />}
         />
-        <Menu
-          open={contextMenu !== null}
-          onClose={handleClose}
-          anchorReference="anchorPosition"
-          anchorPosition={
-            contextMenu !== null
-              ? { top: contextMenu.mouseY, left: contextMenu.mouseX }
-              : undefined
-          }
-        >
-          <MenuItem onClick={handleClose}>Profile</MenuItem>
-          <MenuItem onClick={handleClose}>My account</MenuItem>
-          <MenuItem onClick={handleClose}>Logout</MenuItem>
-        </Menu> */}
+
         {loading ? (
-          <div onContextMenu={handleContextMenu}>
+          <div>
             <TreeView
               multiSelect={false}
               aria-label={title}

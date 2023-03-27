@@ -26,7 +26,6 @@ const ContactUsModalForm = (props) => {
   const DEFAULT_TEXT_BODY = `Record URL: ${recordURL} \n`;
   const [open, setOpen] = useState(false);
   const [text, setText] = useState(DEFAULT_TEXT_BODY);
-  debugger;
   return (
     <Box sx={{ display: "flex", flexDirection: "column", marginTop: 4 }}>
       <Typography

@@ -210,7 +210,6 @@ export const removeBookmarkFromSISN = (record, sisn, index) => {
   });
 };
 export const bookmarkAllRecord = (xml, fn) => {
-  debugger;
   let url = deepSearch(xml, "bookmark_url")[0];
   let dataString = xml.xml.xml_record
     .map((r) => {
