@@ -1,6 +1,6 @@
 import * as React from "react";
 import Masonry from "@mui/lab/Masonry";
-import { getFirstThumbnail } from "../../utils/record";
+import { getAllImageCaptions, getFirstThumbnail } from "../../utils/record";
 import SummaryTextField from "../SummaryTextField";
 import Box from "@mui/joy/Box";
 import Card from "@mui/joy/Card";
@@ -25,6 +25,8 @@ const SummaryMasonryView = (props) => {
           let displayFields = data.find((e) => e.database === database).fields;
           let thumbPic = getFirstThumbnail(record, database);
           let sisn = deepSearch(recordData, "sisn")[0];
+          let captions = getAllImageCaptions(record);
+          let firstCaption = captions.length > 0 ? captions[0] : sisn;
           let bookmarkURL = deepSearch(xml, "bookmark_url")[0];
           let isBookmarked = deepSearch(record, "is_bookmarked")[0];
           return (
@@ -45,7 +47,7 @@ const SummaryMasonryView = (props) => {
                   style={{ maxWidth: "100%" }}
                   srcSet={thumbPic}
                   loading="lazy"
-                  alt=""
+                  alt={firstCaption}
                 />
               )}
               <Box

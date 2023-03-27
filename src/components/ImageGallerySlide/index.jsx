@@ -7,7 +7,7 @@ import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import AudioFileIcon from "@mui/icons-material/AudioFile";
 import VideoFileIcon from "@mui/icons-material/VideoFile";
 const ImageGallerySlide = (props) => {
-  const { images, audio, video } = props;
+  const { images, audio, video, imageCaptions } = props;
   let data = images.map((e) => {
     return {
       original: e,
@@ -78,6 +78,7 @@ const ImageGallerySlide = (props) => {
         }}
       />
       <ImageViewer
+        imageCaptions={imageCaptions}
         images={images}
         audio={audio}
         video={video}

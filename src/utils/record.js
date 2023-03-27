@@ -159,6 +159,15 @@ export const getAllMedia = (record, database, mediaType = "image") => {
   );
 };
 
+export const getAllImageCaptions = (record) => {
+  let captions = deepSearch(record, "image_caption")[0];
+  if (typeof captions === "undefined") {
+    return [];
+  }
+  let array = Array.isArray(captions) ? captions : [captions];
+  return array;
+};
+
 export const bookmarkRecord = (url, SISN, database, fn) => {
   return axios({
     method: "post",

@@ -82,7 +82,7 @@ const ImageMasonry = ({ data }) => {
           sx={{ margin: "0 auto" }}
         >
           {tiles.map((item, index) => (
-            <ImageMasonryItem item={item} key={item.thumbnail + index} />
+            <ImageMasonryItem item={item}  key={item.thumbnail + index} />
           ))}
         </Masonry>
       </Box>

@@ -7,7 +7,7 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Box from "@mui/material/Box";
 import { deepSearch, getXMLRecord } from "../../utils/functions";
-import { getFirstThumbnail } from "../../utils/record";
+import { getFirstThumbnail, getAllImageCaptions } from "../../utils/record";
 import SummaryTextField from "../SummaryTextField";
 import { Grid } from "@mui/material";
 import PropTypes from "prop-types";
@@ -25,6 +25,8 @@ const SummaryRecordsView = (props) => {
         let displayFields = data.find((e) => e.database === database).fields;
         let thumbPic = getFirstThumbnail(record, database);
         let sisn = deepSearch(recordData, "sisn")[0];
+        let captions = getAllImageCaptions(record);
+        let firstCaption = captions.length > 0 ? captions[0] : sisn;
         let bookmarkURL = deepSearch(xml, "bookmark_url")[0];
         let isBookmarked = deepSearch(record, "is_bookmarked")[0];
 
@@ -51,7 +53,7 @@ const SummaryRecordsView = (props) => {
                         cursor: "pointer",
                       }}
                       image={thumbPic}
-                      alt=""
+                      alt={firstCaption}
                     />
                   )}
                 </Box>

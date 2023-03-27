@@ -6,7 +6,7 @@ import { deepSearch, getXMLRecord } from "../../utils/functions";
 import GeneralDetailTextField from "./GeneralDetailTextField";
 import RecordTextField from "../RecordTextField";
 import ImageGallerySlide from "../ImageGallerySlide";
-import { getAllMedia } from "../../utils/record";
+import { getAllMedia , getAllImageCaptions} from "../../utils/record";
 import DetailRecordAction from "./DetailRecordAction";
 import Button from "@mui/joy/Button";
 import ImageNotSupportedIcon from "@mui/icons-material/ImageNotSupported";
@@ -29,6 +29,7 @@ const GeneralSection = (props) => {
   let bookmarkURL = deepSearch(xml, "bookmark_url")[0];
   let isBookmarked = deepSearch(record, "is_bookmarked")[0];
   let children = data.children;
+  let captions = getAllImageCaptions(record);
   return (
     <Item sx={{ padding: "16px" }} elevation={6}>
       <Container disableGutters maxWidth={"lg"} style={{ margin: "0 auto" }}>
@@ -51,6 +52,7 @@ const GeneralSection = (props) => {
             >
               {visualsMedia.length > 0 ? (
                 <ImageGallerySlide
+                  imageCaptions={captions}
                   images={images}
                   audio={audio}
                   video={video}

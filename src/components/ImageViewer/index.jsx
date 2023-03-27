@@ -10,10 +10,11 @@ import Zoom from "yet-another-react-lightbox/plugins/zoom";
 import "yet-another-react-lightbox/plugins/captions.css";
 import "yet-another-react-lightbox/plugins/thumbnails.css";
 const ImageViewer = (props) => {
-  const { show, onClose, images, audio, video } = props;
+  const { show, onClose, images, audio, video, imageCaptions } = props;
   const formatImages = (images) => {
     return images.map((photo, index) => {
       return {
+        title: imageCaptions[index],
         src: photo,
         key: `${index}`,
         images: photo,
