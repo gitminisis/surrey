@@ -31,12 +31,20 @@ import ListItem from "@mui/joy/ListItem";
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
 import { useSnackbar } from "notistack";
+import { getXMLFilter } from "../../utils/functions";
 const FieldFilter = (props) => {
-  const [open, setOpen] = React.useState(true);
+  const { data, index } = props;
+  const [open, setOpen] = React.useState(index === 0);
+
   const handleClick = () => {
     setOpen(!open);
   };
-  const { data } = props;
+
+  console.log(data);
+  let filterType = data._name;
+  if (!Array.isArray(data.item_group)) {
+    data.item_group = [data.item_group];
+  }
   return (
     <List
       variant="outlined"
@@ -49,23 +57,31 @@ const FieldFilter = (props) => {
       }}
     >
       <ListItemButton onClick={handleClick}>
-        <ListItemText primary="Media Type" />
+        <ListItemText primary={filterType} />
         {open ? <ExpandLess /> : <ExpandMore />}
       </ListItemButton>
 
       <Collapse in={open}>
         <List>
-          {data.item_group.map((item, i) => (
-            <ListItem key={`ListItemFilter-${i}`} sx={{ marginTop: "16px" }}>
-              <Checkbox
-                label={item.item_value}
-                overlay
-                sx={{ color: "inherit" }}
-                onChange={(_) => (window.location = item.item_link)}
-              />
-              <Typography sx={{ ml: "auto" }}>{item.item_frequency}</Typography>
-            </ListItem>
-          ))}
+          {data.item_group.map((item, i) => {
+            let itemSelected = deepSearch(item, "item_selected")[0];
+            return (
+              <ListItem key={`ListItemFilter-${i}`} sx={{}}>
+                <Checkbox
+                  defaultChecked={itemSelected === "Y"}
+                  label={item.item_value}
+                  overlay
+                  sx={{ color: "inherit" }}
+                  onChange={(_) =>
+                    (window.location = item.item_link.toString())
+                  }
+                />
+                <Typography sx={{ ml: "auto" }}>
+                  {item.item_frequency}
+                </Typography>
+              </ListItem>
+            );
+          })}
         </List>
       </Collapse>
     </List>
@@ -74,9 +90,11 @@ const FieldFilter = (props) => {
 const SummaryFilter = (props) => {
   const { data, xml, sortOptions } = props;
   const { enqueueSnackbar } = useSnackbar();
+  const filter = deepSearch(xml, "filter")[0];
 
   let bookmarkCount = deepSearch(xml, "bookmark_count");
   let numberOfRecords = getNumberOfRecords(xml);
+
   return (
     <Item
       elevation={0}
@@ -84,7 +102,8 @@ const SummaryFilter = (props) => {
         height: "auto",
         overflowY: "scroll",
         overflowX: "hidden",
-        padding: "10px",
+        px: "10px",
+        py: 2,
         textAlign: "center",
       }}
     >
@@ -151,11 +170,11 @@ const SummaryFilter = (props) => {
         <Option value={100}>100 Records</Option>
       </Select>
 
-      {data && data.length > 0 && (
+      {filter !== undefined && filter.length > 0 && (
         <>
           <TextBox>Filter by</TextBox>{" "}
-          {data.map((item, i) => (
-            <FieldFilter key={`FieldFilter-${i}`} data={item} />
+          {filter.map((item, i) => (
+            <FieldFilter key={`FieldFilter-${i}`} data={item} index={i} />
           ))}
         </>
       )}

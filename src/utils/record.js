@@ -28,6 +28,7 @@ export const sendSearchRequest = (
   }&EXP=${expression}`;
   window.location = url;
 };
+
 export const getRecendAdditions = (_) => {
   let high = getTomorrowDate();
   let low = getDaysBeforeDate();
@@ -51,7 +52,7 @@ export const getRecendAdditions = (_) => {
   };
   let searchURL = searchingField.map((e) => {
     let exp = `${e.date} > "${low}" and ${e.media} present`;
-    let url = `/scripts/mwimain.dll?SEARCH&KEEP=Y&SIMPLE_EXP=Y&APPLICATION=UNION_VIEW&language=144&REPORT=WEB_UNION_SUM&EXP=${exp}&database=${e.database}`;
+    let url = `/scripts/mwimain.dll?UNIONSEARCH&KEEP=Y&SIMPLE_EXP=Y&APPLICATION=UNION_VIEW&language=144&REPORT=WEB_UNION_SUM&EXP=${exp}&database=${e.database}`;
     return url;
   });
 
@@ -154,7 +155,6 @@ export const removeBookmarkFromKey = (map, record, fn) => {
   }).then(function (res) {
     let { data } = res;
     let dom = new DOMParser().parseFromString(data, "text/html");
-    console.log(dom);
     return dom;
   });
 };
@@ -176,7 +176,6 @@ export const bookmarkAllRecord = (xml, fn) => {
   let dataString = xml.xml.xml_record
     .map((r) => {
       let isBookmarked = deepSearch(r, "is_bookmarked")[0];
-      console.log(r, isBookmarked);
       if (isBookmarked === "true") {
         return "";
       }
@@ -295,6 +294,7 @@ export const getPageUrlFromPagination = (pagination, index) => {
 };
 
 export const getCurrentPageFromPagination = (pagination) => {
-  console.log(pagination.filter((e) => e.b !== undefined));
   return Number.parseInt(pagination.filter((e) => e.b !== undefined)[0].b);
 };
+
+

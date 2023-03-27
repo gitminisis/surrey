@@ -12,6 +12,7 @@ const Summary = [
       {
         component: "SummaryLayout",
         data: {
+          application: "UNION_VIEW",
           generalSearchBox: {
             breadcrumbs: ["Summary"],
             heading: "Search the collections",

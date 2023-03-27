@@ -36,7 +36,6 @@ const Map = () => {
         scrollWheelZoom={false}
       >
         {map.features.map((el) => {
-          console.log(el.geometry.coordinates);
           return (
             <>
               <Polygon color={COLOR} positions={el.geometry.coordinates[0]}>

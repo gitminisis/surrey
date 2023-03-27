@@ -31,6 +31,15 @@ export const getXMLRecord = (dom) => {
   return json;
 };
 
+export const getXMLFilter = (dom) => {
+  let DOM_SEARCH = dom ? dom : document;
+  let xmlDOM = DOM_SEARCH.querySelector("#filter_xml");
+  let x2js = new X2JS();
+  let json = x2js.xml_str2json(new XMLSerializer().serializeToString(xmlDOM));
+
+  return json;
+};
+
 export const xmlStrToJson = (str) => {
   let x2js = new X2JS();
   let json = x2js.xml_str2json(str);
@@ -53,7 +62,6 @@ export const buildExpressionFromMap = (map) => {
 
   return string;
 };
-
 
 /**
  * This function returns today's date in the format "YYYY-MM-DD".

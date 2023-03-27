@@ -14,6 +14,7 @@ const ArchivesSearch = [
       {
         component: "SimpleSearchBanner",
         data: {
+          application: "DESCRIPTION",
           searchURL:
             "/scripts/mwimain.dll?UNIONSEARCH&KEEP=Y&SIMPLE_EXP=Y&APPLICATION=UNION_VIEW&DATABASE=DESCRIPTION&language=144&REPORT=WEB_UNION_SUM_DESC",
           bannerCarousel: [pic1],
@@ -25,7 +26,7 @@ const ArchivesSearch = [
             data: {
               database: "DESCRIPTION",
               description: "More search options",
-              
+
               data: [
                 {
                   title: "Reference Code",
