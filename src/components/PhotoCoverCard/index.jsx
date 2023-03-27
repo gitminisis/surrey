@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import {
   Grid,
@@ -14,53 +14,98 @@ import AspectRatio from "@mui/joy/AspectRatio";
 import Box from "@mui/joy/Box";
 import LocationOnRoundedIcon from "@mui/icons-material/LocationOnRounded";
 import BookmarkAdd from "@mui/icons-material/BookmarkAddOutlined";
+import { getFeatureCollectionsFromIDs } from "../../utils/record";
+import { deepSearch } from "../../utils/functions";
+import Skeleton from "@mui/material/Skeleton";
 const PhotoCoverCard = (props) => {
   const { recordIds } = props;
-  const { records, setRecords } = useState([]);
+  const [xml, setXML] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [hover, setHover] = useState(false);
-  let { description, title, thumbnail } = {
-    description: "123",
-    title: "123",
-    thumbnail: "https://picsum.photos/900",
-  };
-  if (recordIds.length === 0) {
-    return null;
-  }
+  const [records, setRecords] = useState(new Array(4).fill(null));
 
-  return (
-    <Grid item xs={12} md={6}>
-      <Card style={{ cursor: "pointer", paddingBottom: "20px" }} elevation={3}>
-        <CardMedia
-          sx={{ height: 400 }}
-          image="https://picsum.photos/1200"
-          title="green iguana"
-        />
-        <CardContent>
-          <Typography gutterBottom variant="h2" component="div">
-            Feature collections
-          </Typography>
-          <Typography variant="body2" color="text.primary">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur.
-          </Typography>
-        </CardContent>
-        <CardActions>
-          <Button
-            style={{ margin: "0 auto" }}
-            className="button"
-            variant="contained"
-            size="large"
-          >
-            Browse
-          </Button>
-        </CardActions>
-      </Card>
-    </Grid>
-  );
+  useEffect(() => {
+    if (recordIds.length === 0) {
+      return null;
+    }
+    getFeatureCollectionsFromIDs(recordIds).then((res) => {
+      console.log(res);
+      let rec = deepSearch(res, "record");
+      if (!Array.isArray(rec)) {
+        rec = [rec];
+      }
+      console.log(rec);
+      setRecords(rec);
+      setXML(res);
+      setLoading(false);
+    });
+  }, []);
+
+  return records.map((e, i) => {
+    let title, description, thumbnail;
+    if (!loading) {
+      title = deepSearch(e, "oef_title")[0];
+      description = deepSearch(e, "oef_description")[0];
+      thumbnail = deepSearch(e, "oef_image_path")[0].replace(/\n/, "");
+    }
+
+    return (
+      <Grid item xs={12} md={6}>
+        <Card
+          style={{ cursor: "pointer", paddingBottom: "20px" }}
+          elevation={3}
+        >
+          {loading ? (
+            <div>
+              {" "}
+              <Skeleton
+                animation="wave"
+                height="400"
+                style={{ marginBottom: 6, height: "400px" }}
+              />
+            </div>
+          ) : (
+            <CardMedia sx={{ height: 400 }} image={thumbnail} title={title} />
+          )}
+
+          <CardContent>
+            <Typography gutterBottom variant="h2" component="div">
+              {loading ? (
+                <Skeleton
+                  animation="wave"
+                  height={30}
+                  width="80%"
+                  style={{ marginBottom: 6 }}
+                />
+              ) : (
+                title
+              )}
+            </Typography>
+            <Typography variant="body1" color="text.primary">
+              {loading ? (
+                <React.Fragment>
+                  <Skeleton animation="wave" style={{ marginBottom: 6 }} />
+                  <Skeleton animation="wave" width="80%" />
+                </React.Fragment>
+              ) : (
+                description
+              )}
+            </Typography>
+          </CardContent>
+          <CardActions>
+            <Button
+              style={{ margin: "0 auto" }}
+              className="button"
+              variant="contained"
+              size="large"
+            >
+              Browse
+            </Button>
+          </CardActions>
+        </Card>
+      </Grid>
+    );
+  });
 };
 
 PhotoCoverCard.propTypes = {};

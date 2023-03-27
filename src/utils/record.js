@@ -17,16 +17,43 @@ const SUM_REPORT_BY_DATABASE = {
   COLLECTIONS: "WEB_UNION_SUM_COL",
   DESCRIPTION: "WEB_UNION_SUM_DESC",
 };
+
+/**
+ * send a request to fetch a search from the corresponding database, expression
+ * @param {*} database
+ * @param {*} expression
+ * @param {*} report
+ * @param {*} session
+ */
 export const sendSearchRequest = (
   database,
   expression,
   report,
+  application = "UNION_VIEW",
   session = "/scripts/mwimains.dll"
 ) => {
-  let url = `${session}?UNIONSEARCH&KEEP=Y&SIMPLE_EXP=Y&APPLICATION=UNION_VIEW&DATABASE=${database}&language=144&REPORT=${
+  let url = `${session}?UNIONSEARCH&KEEP=Y&SIMPLE_EXP=Y&APPLICATION=${application} &DATABASE=${database}&language=144&REPORT=${
     report || SUM_REPORT_BY_DATABASE[database]
   }&EXP=${expression}`;
-  window.location = url;
+  return url;
+};
+
+export const getFeatureCollectionsFromIDs = (ids, fn) => {
+  let exp = ids
+    .map((e) => `OEF_IND ${e}`)
+    .join(" or ")
+    .trim();
+
+  let url = `/scripts/mwimains.dll?UNIONSEARCH&KEEP=Y&SIMPLE_EXP=Y&APPLICATION=UNION_VIEW&DATABASE=ONLINE_EXHIBITION_VIEW&language=144&REPORT=WEB_OE_SUM&EXP=${exp}`;
+  return axios.get(url).then((res) => {
+    let { data } = res;
+    let dom = new DOMParser().parseFromString(data, "text/html");
+    let xml = getXMLRecord(dom);
+    if (fn !== undefined) {
+      fn(xml);
+    }
+    return xml;
+  });
 };
 
 export const getRecendAdditions = (_) => {
@@ -296,5 +323,3 @@ export const getPageUrlFromPagination = (pagination, index) => {
 export const getCurrentPageFromPagination = (pagination) => {
   return Number.parseInt(pagination.filter((e) => e.b !== undefined)[0].b);
 };
-
-

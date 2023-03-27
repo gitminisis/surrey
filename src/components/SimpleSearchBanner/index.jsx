@@ -67,7 +67,7 @@ const Banner = (props) => {
           style={{
             width: "100%",
             height: "100%",
-            paddingTop: "20%",
+            paddingTop: "25%",
             margin: "0 0",
             background: "rgb(0, 0, 0, 0.4)",
             zIndex: "4",

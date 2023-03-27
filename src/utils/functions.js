@@ -87,6 +87,8 @@ export const getDaysBeforeDate = (number = 30) => {
 export const printPage = (_) => {
   window.print();
 };
+
+
 export const getTrangCuteness = () => {
   let cuteness = 100;
   console.log(`Every second, Trang is becoming cuter `);

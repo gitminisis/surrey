@@ -12,7 +12,6 @@ import Category3 from "../assets/images/Audio-Visual.png";
 import Category4 from "../assets/images/Artifacts.png";
 import Category5 from "../assets/images/Textual Records.png";
 
-// getRecendAdditions();
 const Home = [
   {
     component: "Layout",
@@ -26,7 +25,7 @@ const Home = [
           searchURL:
             "/scripts/mwimain.dll?UNIONSEARCH&KEEP=Y&SIMPLE_EXP=Y&APPLICATION=UNION_VIEW&language=144&REPORT=WEB_UNION_SUM",
           bannerURL: pic1,
-          heading: "City of Surrey  Online Heritage Search",
+          heading: "City of Surrey Online Heritage Search",
           description:
             "Over 100,000 pieces of Surrey's history are at your fingertips. Search for specific items below, or browse by category, neighborhood, or new content.",
           bannerCarousel: [pic1, pic2, pic3, pic4, pic5, pic6, pic7],
@@ -74,36 +73,7 @@ const Home = [
           },
         ],
       },
-      // {
-      //     component: "Section",
-      //     data: {
-      //         heading: "SURREY ARTIFACT COLLECTIONS",
-      //         description: "The Artifact Collection feature archaeology, ethnology, and human history materials that reflect the history of Surrey.",
-      //         btnURL: '/artifact',
-      //         btnTitle: "Explore"
-      //     },
-      //     children: [{
-      //             component: "TagCard",
-      //             data: {
-      //                 "tag": "Item",
-      //                 "title": "Nunc consequat interdum varius",
-      //                 "description": "John Doe",
-      //                 "thumbnail": "https://picsum.photos/510"
-      //             }
-      //         },
-
-      //         {
-      //             component: "TagCard",
-      //             data: {
-      //                 "tag": "Document",
-      //                 "title": "Aliquam malesuada bibendum arcu",
-      //                 "description": "Jane Doe",
-      //                 "thumbnail": "https://picsum.photos/520"
-      //             },
-      //         },
-
-      //     ]
-      // },
+    
       {
         component: "Section",
         data: {

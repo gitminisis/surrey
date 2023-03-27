@@ -27,7 +27,7 @@ const CollapseSearchFilter = (props) => {
   };
   const submitForm = () => {
     let exp = buildExpressionFromMap(expression);
-    sendSearchRequest(database, exp);
+    window.location = sendSearchRequest(database, exp);
   };
 
   return (

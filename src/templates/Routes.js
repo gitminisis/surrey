@@ -32,7 +32,6 @@ const Routes = [
   { path: "summary-artifact", template: SummaryArtifact },
   { path: "summary-archives", template: SummaryArchives },
   { path: "summary-bookmark", template: SummaryBookmark },
-
   { path: "detail", template: Detail },
   { path: "*", template: NotFoundPageTemplate },
 ];
