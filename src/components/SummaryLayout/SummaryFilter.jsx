@@ -123,6 +123,7 @@ const SummaryFilter = (props) => {
               enqueueSnackbar(
                 `All records have been successfully added to the bookmark!`
               );
+              location.reload();
             });
           }}
         >

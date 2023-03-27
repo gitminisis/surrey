@@ -30,6 +30,7 @@ const GeneralSearchBox = (props) => {
   const [index, setIndex] = React.useState(0);
   let database = deepSearch(xml, "database_name")[0];
   let toSummary = backToSummary(xml);
+  let session = deepSearch(xml, "session")[0];
   return (
     <Item elevation={6} sx={{ padding: "16px" }} className="back-top-anchor">
       <div>
@@ -63,7 +64,10 @@ const GeneralSearchBox = (props) => {
             </Typography>
           </Grid>{" "}
           <Grid item xs={12} md={12}>
-            <form method="POST" action={databaseList[index].searchURL}>
+            <form
+              method="POST"
+              action={session + databaseList[index].searchURL}
+            >
               <Input
                 variant="soft"
                 placeholder="Search…"
