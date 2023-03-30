@@ -121,7 +121,7 @@ const SummaryBookmarkLayout = (props) => {
         ></Grid>
 
         <Grid item xs={12}>
-          <GeneralSearchBox {...generalSearchBox} />
+          <GeneralSearchBox {...generalSearchBox} xml={xml} />
         </Grid>
 
         <Grid container rowSpacing={2} style={{ marginTop: "1rem" }}>

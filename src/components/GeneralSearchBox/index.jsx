@@ -82,7 +82,7 @@ const GeneralSearchBox = (props) => {
                       onChange={(e, value) => {
                         setIndex(Number.parseInt(value));
                       }}
-                      sx={{ bgcolor: "transparent", width: 130 }}
+                      sx={{ bgcolor: "transparent" }}
                     >
                       {databaseList.map((e, i) => (
                         <Option value={i} key={`GeneralSearchBoxLink-${i}`}>
@@ -96,13 +96,13 @@ const GeneralSearchBox = (props) => {
             </form>
           </Grid>
           <Grid item xs={12} style={{ textAlign: "center", marginTop: "20px" }}>
-            <a
+            <Typography
               variant="a"
               href={helpText.link}
               className="generalSearchBoxLink"
             >
               {helpText.description}
-            </a>
+            </Typography>
           </Grid>
         </Grid>
       </div>

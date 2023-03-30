@@ -98,7 +98,6 @@ const SummaryFilter = (props) => {
   const sortSelectHandler = (e, v) => {
     let url = getSortReportURL(xml, application, v);
     window.location = url;
-    // console.log(url);
   };
   return (
     <Item
@@ -148,7 +147,7 @@ const SummaryFilter = (props) => {
           <TextBox>Sort by</TextBox>
           <Select
             placeholder="Select a sort"
-            defaultValue="default"
+           
             className="filterSelect"
             onChange={sortSelectHandler}
           >

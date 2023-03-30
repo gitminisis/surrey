@@ -81,7 +81,7 @@ const SummaryRecordsView = (props) => {
                       alignItems: "center",
                       pl: 1,
                       pb: 1,
-                      position: "absolute",
+                      position: { xs: "inherit", lg: "absolute" },
                       top: "16px",
                       right: "16px",
                     }}
