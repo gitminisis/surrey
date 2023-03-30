@@ -1,5 +1,3 @@
-import Video from "yet-another-react-lightbox/plugins/video";
-
 export const DESCRIPTION_SUMMARY_FIELD = [
   {
     name: "TITLE",

@@ -11,8 +11,7 @@ import SummaryArchives from "./SummaryArchives";
 import SummaryArtifact from "./SummaryArtifact";
 import Detail from "./Detail";
 import SummaryBookmark from "./SummaryBookmark";
-const GenericPage = lazy(() => import("../pages/GenericPage"));
-
+console.log(SummaryBookmark, SummaryArtifact);
 // const Routes = [
 //     { path: "/", template: HomeTemplate },
 //     { path: "/archives", template: ArchivesSearchTemplate },

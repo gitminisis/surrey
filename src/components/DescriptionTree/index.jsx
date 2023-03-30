@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import {
-  getChildrenSearchLink,
   getJSONTree,
   getNodeFromTree,
-  updateNode,
   addChildrenToNode,
   fetchNode,
 } from "../../utils/tree";
@@ -14,10 +12,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import { deepSearch } from "../../utils/functions";
 import TreeView from "@mui/lab/TreeView";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import Typography from "@mui/joy/Typography";
-import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
 import { Box, Skeleton } from "@mui/material";
 import {
   Accordion,

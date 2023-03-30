@@ -76,7 +76,7 @@ const SummaryLayout = (props) => {
             }}
           >
             <Grid item xs={12}>
-              <GeneralSearchBox {...generalSearchBox} />
+              <GeneralSearchBox {...generalSearchBox} xml={xml} />
             </Grid>
 
             {filter && (
