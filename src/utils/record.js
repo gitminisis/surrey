@@ -32,7 +32,7 @@ export const sendSearchRequest = (
     expression,
     report,
     application = "UNION_VIEW",
-    session = "/scripts/mwimains.dll"
+    session = "/scripts/mwimain.dll"
 ) => {
     let url = `${session}?UNIONSEARCH&KEEP=Y&SIMPLE_EXP=Y&APPLICATION=${application}&DATABASE=${database}&language=144&REPORT=${
     report || SUM_REPORT_BY_DATABASE[database]
@@ -46,7 +46,7 @@ export const getFeatureCollectionsFromIDs = (ids, fn) => {
         .join(" or ")
         .trim();
 
-    let url = `/scripts/mwimains.dll?UNIONSEARCH&KEEP=Y&SIMPLE_EXP=Y&APPLICATION=UNION_VIEW&DATABASE=ONLINE_EXHIBITION_VIEW&language=144&REPORT=WEB_OE_SUM&EXP=${exp}`;
+    let url = `/scripts/mwimain.dll?UNIONSEARCH&KEEP=Y&SIMPLE_EXP=Y&APPLICATION=UNION_VIEW&DATABASE=ONLINE_EXHIBITION_VIEW&language=144&REPORT=WEB_OE_SUM&EXP=${exp}`;
     return axios.get(url).then((res) => {
         let { data } = res;
         let dom = new DOMParser().parseFromString(data, "text/html");

@@ -147,12 +147,12 @@ const DescriptionTree = (props) => {
         </Typography>
       </AccordionSummary>
       <AccordionDetails>
-        <Input
+        {/* <Input
           variant="soft"
           placeholder="Search"
           name="KEYWORD_CL"
           startDecorator={<SearchIcon />}
-        />
+        /> */}
 
         {loading ? (
           <div>
