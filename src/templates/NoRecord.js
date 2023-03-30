@@ -5,7 +5,7 @@ import pic4 from "../assets/images/Union Background 4.png";
 import pic5 from "../assets/images/Union Background 5.png";
 import pic6 from "../assets/images/Union Background 6.png";
 import pic7 from "../assets/images/Union Background 7.png";
-const Home = [{
+const NoRecord = [{
     component: "Layout",
     children: [{
             component: "SimpleSearchBanner",
@@ -21,8 +21,8 @@ const Home = [{
         {
             component: "Section",
             data: {
-                heading: "Page Not Found",
-                description: "The page you are looking for does not exist",
+                heading: "No results have been found",
+                description: "Sorry, we couldn't find any records for your search",
                 btnURL: "/",
                 btnTitle: "Go back to homepage",
             },
@@ -30,4 +30,4 @@ const Home = [{
         },
     ],
 }, ];
-export default Home;
+export default NoRecord;

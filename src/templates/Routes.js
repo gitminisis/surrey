@@ -1,4 +1,3 @@
-
 import HomeTemplate from "./Home";
 import ArchivesSearchTemplate from "./ArchiveSearch";
 import ArtifactSearchTemplate from "./ArtifactSearch";
@@ -9,6 +8,8 @@ import SummaryArchives from "./SummaryArchives";
 import SummaryArtifact from "./SummaryArtifact";
 import Detail from "./Detail";
 import SummaryBookmark from "./SummaryBookmark";
+import NoSession from './NoSession';
+import NoRecord from './NoRecord';
 // const GenericPage = lazy(() =>
 //     import ("../pages/GenericPage"));
 
@@ -23,16 +24,18 @@ import SummaryBookmark from "./SummaryBookmark";
 // ];
 
 const Routes = [
-  { path: "", template: HomeTemplate },
-  { path: "archives", template: ArchivesSearchTemplate },
-  { path: "artifact", template: ArtifactSearchTemplate },
-  { path: "FAQ", template: FAQ },
-  { path: "summary", template: Summary },
-  { path: "summary-artifact", template: SummaryArtifact },
-  { path: "summary-archives", template: SummaryArchives },
-  { path: "summary-bookmark", template: SummaryBookmark },
-  { path: "detail", template: Detail },
-  { path: "*", template: NotFoundPageTemplate },
+    { path: "", template: HomeTemplate },
+    { path: "archives", template: ArchivesSearchTemplate },
+    { path: "artifact", template: ArtifactSearchTemplate },
+    { path: "FAQ", template: FAQ },
+    { path: "summary", template: Summary },
+    { path: "summary-artifact", template: SummaryArtifact },
+    { path: "summary-archives", template: SummaryArchives },
+    { path: "summary-bookmark", template: SummaryBookmark },
+    { path: "detail", template: Detail },
+    { path: "no-session", template: NoSession },
+    { path: "no-record", template: NoRecord },
+    { path: "*", template: NotFoundPageTemplate },
 ];
 
 export default Routes;
