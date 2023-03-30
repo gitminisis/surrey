@@ -12,6 +12,7 @@ const AccordionComponent = (props) => {
       {data.map((item, i) => {
         return (
           <Accordion
+            key={i}
             defaultExpanded={i === 0}
             sx={{
               marginTop: "10px",
@@ -27,7 +28,7 @@ const AccordionComponent = (props) => {
               <Typography variant="h5">{item.title}</Typography>
             </AccordionSummary>
             <AccordionDetails>
-              <Typography  variant="p">{item.description}</Typography>
+              <Typography variant="p">{item.description}</Typography>
             </AccordionDetails>
           </Accordion>
         );

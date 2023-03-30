@@ -1,4 +1,4 @@
-import _ from "lodash";
+import { has, flatten, map, isEqual, omitBy, isEmpty } from "lodash";
 import X2JS from "../libs/xml2json.min.js";
 import axios from "axios";
 import SiteLayout from "../templates/SiteLayout.js";
@@ -6,12 +6,12 @@ import SiteLayout from "../templates/SiteLayout.js";
 const VIRTUAL_DIR = SiteLayout.virtualIncludePaths;
 const APPLICATION = SiteLayout.application;
 export const deepSearch = (obj, key) => {
-  if (_.has(obj, key))
+  if (has(obj, key))
     // or just (key in obj)
     return [obj[key]];
   // elegant:
-  return _.flatten(
-    _.map(obj, function (v) {
+  return flatten(
+    map(obj, function (v) {
       return typeof v == "object" ? deepSearch(v, key) : [];
     }),
     true
@@ -20,7 +20,7 @@ export const deepSearch = (obj, key) => {
 
 export const getKeyByValue = (map, searchValue) => {
   for (let [key, value] of map.entries()) {
-    if (_.isEqual(value, searchValue)) return key;
+    if (isEqual(value, searchValue)) return key;
   }
 };
 export const getXMLRecord = (dom = document) => {
@@ -51,7 +51,7 @@ export const getIndexList = (field, database, application) => {
 };
 
 export const buildExpressionFromMap = (map) => {
-  const filteredMap = _.omitBy(map, _.isEmpty);
+  const filteredMap = omitBy(map, isEmpty);
   const string = Object.entries(filteredMap)
     .map(([key, value]) => `${key} "${value}"`)
     .join(" and ");
@@ -83,6 +83,23 @@ export const getDaysBeforeDate = (number = 30) => {
 
 export const printPage = (_) => {
   window.print();
+};
+
+export const sendEmail = (session, data, body) => {
+  let subject = data.filter((e) => e.id === "subject")[0].value;
+
+  let bodyContent = `\n${data
+    .map((e) => `${e.title}: ${e.value}`)
+    .join("\n")}\n\n ${body}`;
+  console.log(bodyContent);
+  let receiver = "mikehoangdn1@gmail.com";
+  let sender = "noreply@minisisinc.com";
+  let url = `${session}?save_mail_form&async=y&xml=y&subject_default=${subject}&from_default=${sender}&to_default=${receiver}`;
+  return axios({
+    method: "POST",
+    url: url,
+    data: `sender=${sender}&receiver=${receiver}&subject=${subject}&mailbody=${bodyContent}`,
+  });
 };
 
 export const getTrangCuteness = () => {

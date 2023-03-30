@@ -31,7 +31,6 @@ const GeneralSearchBox = (props) => {
   let database = deepSearch(xml, "database_name")[0];
   let toSummary = backToSummary(xml);
   let session = deepSearch(xml, "session")[0];
-  console.log(session);
   return (
     <Item elevation={6} sx={{ padding: "16px" }} className="back-top-anchor">
       <div>

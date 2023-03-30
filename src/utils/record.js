@@ -12,7 +12,6 @@ import {
   MEDIA_THUMBNAIL_FIELD,
   SORT_REPORTS_BY_DATABASE,
 } from "../templates/DisplayFields";
-import { findKey } from "lodash";
 const DEFAULT_DETAIL_REPORT = "WEB_UNION_DETAIL";
 const WEB_DNS = "http://samoa.minisisinc.com";
 const DEFAULT_SUM_REPORT = "WEB_UNION_SUM";
@@ -258,7 +257,7 @@ export const getRecordPermalink = (
   database,
   report = DEFAULT_DETAIL_REPORT
 ) => {
-  let url = `${WEB_DNS}/scripts/mwimain.dll/144/${database}/${report}?sessionsearch&exp=sisn ${sisn}`;
+  let url = `${WEB_DNS}/scripts/mwimain.dll/144/${database}/${report}/SISN%20${sisn}?sessionsearch`;
   return url;
 };
 

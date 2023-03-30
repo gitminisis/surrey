@@ -73,7 +73,6 @@ const Home = [
           },
         ],
       },
-
       {
         component: "Section",
         data: {

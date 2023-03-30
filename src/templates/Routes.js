@@ -1,5 +1,3 @@
-import { lazy } from "react";
-import { Navigate } from "react-router-dom";
 
 import HomeTemplate from "./Home";
 import ArchivesSearchTemplate from "./ArchiveSearch";
@@ -11,7 +9,9 @@ import SummaryArchives from "./SummaryArchives";
 import SummaryArtifact from "./SummaryArtifact";
 import Detail from "./Detail";
 import SummaryBookmark from "./SummaryBookmark";
-console.log(SummaryBookmark, SummaryArtifact);
+// const GenericPage = lazy(() =>
+//     import ("../pages/GenericPage"));
+
 // const Routes = [
 //     { path: "/", template: HomeTemplate },
 //     { path: "/archives", template: ArchivesSearchTemplate },

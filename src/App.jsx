@@ -18,6 +18,32 @@ function App() {
   const theme = baseTheme;
   const joyTheme = extendJoyTheme({ cssVarPrefix: "mui", ...baseTheme });
   const muiTheme = extendMuiTheme(baseTheme);
+  const mergedTheme = {
+    ...joyTheme,
+    ...muiTheme,
+    // You can use your own `deepmerge` function.
+    colorSchemes: deepmerge(joyTheme.colorSchemes, muiTheme.colorSchemes),
+    typography: {
+      ...joyTheme.typography,
+      ...muiTheme.typography,
+    },
+    zIndex: {
+      ...joyTheme.zIndex,
+      ...muiTheme.zIndex,
+    },
+  };
+  mergedTheme.generateCssVars = (colorScheme) => ({
+    css: {
+      ...joyTheme.generateCssVars(colorScheme).css,
+      ...muiTheme.generateCssVars(colorScheme).css,
+    },
+    vars: deepmerge(
+      joyTheme.generateCssVars(colorScheme).vars,
+      muiTheme.generateCssVars(colorScheme).vars
+    ),
+  });
+
+
   let page = document.querySelector("#root").dataset.page;
   if (page === undefined) {
     page = "";
@@ -30,7 +56,7 @@ function App() {
     // AOS.refresh();
   }, []);
   return (
-    <CssVarsProvider theme={deepmerge(joyTheme, muiTheme)}>
+    <CssVarsProvider theme={mergedTheme}>
       <GenericPage template={template} />
       {/* <Router>
         <Suspense fallback={<Loading />}>
