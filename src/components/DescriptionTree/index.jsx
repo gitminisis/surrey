@@ -124,6 +124,7 @@ const DescriptionTree = (props) => {
   if (!showTree) {
     return null;
   }
+  console.log(treeData)
   return (
     <Accordion>
       <AccordionSummary
