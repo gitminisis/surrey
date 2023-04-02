@@ -132,6 +132,7 @@ export const COLLECTIONS_GENERAL_DETAIL_FIELD = [
   {
     name: "OBJ_DESCRIPTION",
     label: "Description",
+    showMore: true,
   },
   {
     name: "EARLY",

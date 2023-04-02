@@ -34,6 +34,7 @@ const index = (props) => {
         main={field.main}
         label={fieldLabel}
         value={fieldValue}
+        showMore={field.showMore}
         maxLength={field.maxLength}
       />
     );
