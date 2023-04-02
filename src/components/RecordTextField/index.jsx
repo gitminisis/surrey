@@ -23,6 +23,7 @@ const index = (props) => {
 
     if (field.component !== undefined) {
       field.data.xml = xml;
+      field.data.record = recordData;
       return Component(field);
     }
 
@@ -33,6 +34,7 @@ const index = (props) => {
         main={field.main}
         label={fieldLabel}
         value={fieldValue}
+        showMore={field.showMore}
         maxLength={field.maxLength}
       />
     );

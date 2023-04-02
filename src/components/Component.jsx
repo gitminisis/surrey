@@ -24,7 +24,8 @@ import {
   ContactUsModalForm,
   DescriptionTree,
   SummaryBookmarkLayout,
-  GeneralSearchBox
+  GeneralSearchBox,
+  ShowMoreText,
 } from "./index";
 
 const KeysToComponentMap = {
@@ -52,7 +53,8 @@ const KeysToComponentMap = {
   ContactUsModalForm,
   DescriptionTree,
   SummaryBookmarkLayout,
-  GeneralSearchBox
+  GeneralSearchBox,
+  ShowMoreText,
 };
 
 function Component(block) {
