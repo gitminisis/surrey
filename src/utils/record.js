@@ -13,7 +13,7 @@ import {
   SORT_REPORTS_BY_DATABASE,
 } from "../templates/DisplayFields";
 const DEFAULT_DETAIL_REPORT = "WEB_UNION_DETAIL";
-const WEB_DNS = "http://surreytest.minisisinc.com";
+const WEB_DNS = "surreytest.minisisinc.com";
 const DEFAULT_SUM_REPORT = "WEB_UNION_SUM";
 const SUM_REPORT_BY_DATABASE = {
   COLLECTIONS: "WEB_UNION_SUM_COL",
@@ -98,10 +98,7 @@ export const getRecendAdditions = (_) => {
           if (Array.isArray(thumbnail)) {
             thumbnail = thumbnail[0];
           }
-          thumbnail = thumbnail.replace(
-            "surreytest.minisisinc.COM",
-            "surrey.minisisinc.com"
-          );
+          // thumbnail = thumbnail.replace(WEB_DNS, "surrey.minisisinc.com");
 
           acc.push({
             thumbnail,
@@ -153,7 +150,7 @@ export const getAllMedia = (record, database, mediaType = "image") => {
   let array = Array.isArray(mediaURL) ? mediaURL : [mediaURL];
   return array.map((e) =>
     e
-      .replace("surreytest.minisisinc.COM", "surrey.minisisinc.com")
+      // .replace("surreytest.minisisinc.COM", "surrey.minisisinc.com")
       .replace(/\n/g, "")
   );
 };
