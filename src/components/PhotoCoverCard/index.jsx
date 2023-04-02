@@ -19,24 +19,22 @@ import { deepSearch } from "../../utils/functions";
 import Skeleton from "@mui/material/Skeleton";
 const PhotoCoverCard = (props) => {
   const { recordIds } = props;
-  const [xml, setXML] = useState([]);
   const [loading, setLoading] = useState(true);
   const [hover, setHover] = useState(false);
-  const [records, setRecords] = useState(new Array(4).fill(null));
+  const [records, setRecords] = useState(
+    new Array(recordIds.length).fill(null)
+  );
 
   useEffect(() => {
     if (recordIds.length === 0) {
       return null;
     }
     getFeatureCollectionsFromIDs(recordIds).then((res) => {
-      console.log(res);
       let rec = deepSearch(res, "record");
       if (!Array.isArray(rec)) {
         rec = [rec];
       }
-      console.log(rec);
       setRecords(rec);
-      setXML(res);
       setLoading(false);
     });
   }, []);
@@ -93,14 +91,14 @@ const PhotoCoverCard = (props) => {
             </Typography>
           </CardContent>
           <CardActions>
-            <Button
+            {/* <Button
               style={{ margin: "0 auto" }}
               className="button"
               variant="contained"
               size="large"
             >
               Browse
-            </Button>
+            </Button> */}
           </CardActions>
         </Card>
       </Grid>
