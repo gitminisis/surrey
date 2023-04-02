@@ -28,7 +28,11 @@ const AccordionComponent = (props) => {
               <Typography variant="h5">{item.title}</Typography>
             </AccordionSummary>
             <AccordionDetails>
-              <Typography variant="p">{item.description}</Typography>
+              <Typography
+                variant="p"
+                dangerouslySetInnerHTML={{ __html: item.description }}
+              >
+              </Typography>
             </AccordionDetails>
           </Accordion>
         );
