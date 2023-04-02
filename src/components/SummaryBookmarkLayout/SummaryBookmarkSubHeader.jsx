@@ -74,6 +74,7 @@ export default function SummaryBookmarkSubHeader(props) {
               size="lg"
               onClick={(_) => {
                 removeAllBookmarkRecord();
+                location.reload();
               }}
             >
               <DeleteIcon /> Clear Bookmark
