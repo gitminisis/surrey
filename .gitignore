@@ -3,3 +3,5 @@ node_modules/
 scripts/
 package-lock.json
 package.json
+**/images/
+src/assets/images/
