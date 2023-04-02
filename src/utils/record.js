@@ -244,11 +244,7 @@ export const viewBookmark = (xml) => {
 export const removeBookmarkRecord = () => {};
 
 export const removeAllBookmarkRecord = () => {
-    var Cookies = document.cookie.split(";");
-
-    // set 1 Jan, 1970 expiry for every cookies
-    for (var i = 0; i < Cookies.length; i++)
-        document.cookie = Cookies[i] + "=;expires=" + new Date(0).toUTCString();
+    document.cookie = "BOOKMARK=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
 };
 
 export const getRecordPermalink = (
