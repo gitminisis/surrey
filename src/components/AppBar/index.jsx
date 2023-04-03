@@ -26,11 +26,7 @@ const AppBar = (props) => {
     const handleScroll = () => {
       const scrolled = window.scrollY > 80;
 
-      if (scrolled) {
-        setIsScroll(1);
-      } else {
-        setIsScroll(0);
-      }
+      setIsScroll(scrolled ? 1 : 0);
     };
     document.addEventListener("scroll", handleScroll);
     return () => {

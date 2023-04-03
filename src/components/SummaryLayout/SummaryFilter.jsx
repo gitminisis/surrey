@@ -103,11 +103,13 @@ const SummaryFilter = (props) => {
     <Item
       elevation={0}
       sx={{
-        height: "auto",
+        maxHeight: "800px",
+        heigh: "100vh",
         overflowY: "scroll",
         overflowX: "hidden",
         px: "10px",
         py: 2,
+
         textAlign: "center",
       }}
     >
@@ -147,7 +149,6 @@ const SummaryFilter = (props) => {
           <TextBox>Sort by</TextBox>
           <Select
             placeholder="Select a sort"
-           
             className="filterSelect"
             onChange={sortSelectHandler}
           >

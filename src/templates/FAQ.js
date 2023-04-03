@@ -37,7 +37,7 @@ const FAQ = [
                 {
                   title: "How do I use this website?",
                   description:
-                    "Interested in a location, person, business, or topic from Surrey's past? Type your keyword into a search bar. Explore the entire Heritage Collections by using the search bar on the Home page or search the Archives or Artifact Collections separately on their respective pages. On the right-hand side of the search results page, results can be organized by title or date using the SORT pull-down menu, or they can be filtered by date and/or material type by using the FILTER options. To copy the URL of a specific record, be sure to click on the “Permanent Link” hyperlink at the bottom of each record.",
+                    "Interested in a location, person, business, or topic from Surrey's past? Type your keyword into a search bar. Explore the entire Heritage Collections by using the search bar on the Home page or search the Archives or Artifact Collections separately on their respective pages. On the right-hand side of the search results page, results can be organized by title or date using the SORT pull-down menu, or they can be filtered by date and/or material type by using the FILTER options. To copy the URL of a specific record, be sure to click on the “Permanent Link” hyperlink at the bottom of each record.<a href='/archives.html'>Archives</a>",
                 },
                 {
                   title:
