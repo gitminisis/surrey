@@ -22,15 +22,12 @@ const AppBar = (props) => {
   const { links, logo, siteName, baseURL, active } = props;
   const [isScroll, setIsScroll] = useState(0);
   const [isClicked, setIsClicked] = useState(false);
+  const [open,setOpen] = useState(false)
   useEffect(() => {
     const handleScroll = () => {
       const scrolled = window.scrollY > 80;
 
-      if (scrolled) {
-        setIsScroll(1);
-      } else {
-        setIsScroll(0);
-      }
+      setIsScroll(scrolled ? 1 : 0);
     };
     document.addEventListener("scroll", handleScroll);
     return () => {
@@ -57,7 +54,13 @@ const AppBar = (props) => {
 
               <span> {siteName}</span>
             </AppbarLogoBox>
-
+            <AppbarLinkBox sx={{ display: { xs: "flex", md: "none" } , position:'relative'}}>
+              {/* <div id="menu-icon" className={open ?'openIcon':""} onClick={_=>setOpen(!open)}>
+                <span></span>
+                <span></span>
+                <span></span>
+              </div> */}
+            </AppbarLinkBox>
             <AppbarLinkBox
               sx={{
                 display: { xs: "none", md: "flex" },
