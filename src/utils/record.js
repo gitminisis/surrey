@@ -27,7 +27,7 @@ const SUM_REPORT_BY_DATABASE = {
  * @param {*} report
  * @param {*} session
  */
-export const sendSearchRequest = (
+export const getSearchRequestURL = (
   database,
   expression,
   report,
@@ -318,7 +318,6 @@ export const getIDFromBookmarkSummary = (xml) => {
   return xml.xml.xml_record.map((e, i) => {
     return {
       database: e.database_name,
-      sisn,
     };
   });
 };
@@ -326,10 +325,6 @@ export const getIDFromBookmarkSummary = (xml) => {
 export const getSortReportURL = (xml, application, sort) => {
   console.log(sort, application);
   let url = deepSearch(xml, "bookmark_url")[0];
-  // url = url.replace(
-  //   "WEB_UNION_SUM",
-  //   SORT_REPORTS_BY_DATABASE[sort][application]
-  // );
 
   url = `${url}/${SORT_REPORTS_BY_DATABASE[sort][application]}?RECLIST&DATABASE=${application}`;
   return url;
@@ -347,3 +342,5 @@ export const getPageUrlFromPagination = (pagination, index) => {
 export const getCurrentPageFromPagination = (pagination) => {
   return Number.parseInt(pagination.filter((e) => e.b !== undefined)[0].b);
 };
+
+export const getSearchURLFromExp = (field, value, database) => {};
