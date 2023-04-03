@@ -15,7 +15,7 @@ const Summmary = [{
             application: "DESCRIPTION",
             generalSearchBox: {
                 breadcrumbs: ["Summary"],
-                heading: "Search the collections",
+                heading: "Search the collections",placeholder:"Search By Keyword",
                 databaseList: GENERAL_SEARCHBOX_DBLIST,
                 helpText: {
                     link: "/faq.html",

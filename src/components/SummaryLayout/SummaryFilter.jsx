@@ -109,6 +109,7 @@ const SummaryFilter = (props) => {
         overflowX: "hidden",
         px: "10px",
         py: 2,
+
         textAlign: "center",
       }}
     >
@@ -148,7 +149,6 @@ const SummaryFilter = (props) => {
           <TextBox>Sort by</TextBox>
           <Select
             placeholder="Select a sort"
-           
             className="filterSelect"
             onChange={sortSelectHandler}
           >

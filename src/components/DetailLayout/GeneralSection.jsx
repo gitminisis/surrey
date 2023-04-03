@@ -105,7 +105,7 @@ const GeneralSection = (props) => {
                   })}
               </Grid>
 
-              <Grid item>
+              <Grid xs>
                 {!recordAction ? (
                   <DetailRecordAction
                     size="lg"

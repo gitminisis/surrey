@@ -7,7 +7,8 @@ import KeyboardDoubleArrowUpIcon from "@mui/icons-material/KeyboardDoubleArrowUp
 import { getRecendAdditions } from "../../utils/record";
 import { Skeleton, Grid } from "@mui/material";
 const ImageMasonryItem = (props) => {
-  let { thumbnail, title, url, urlTitle } = props.item;
+  let { thumbnail, title, url, urlTitle, database } = props.item;
+  console.log(props);
   return (
     <MasonryBox>
       <MasonryShadow onClick={(_) => (window.location = url ? url : "/")}>
@@ -16,12 +17,13 @@ const ImageMasonryItem = (props) => {
             <KeyboardDoubleArrowUpIcon />
           </div>
           <div> {urlTitle}</div>
+          <div>{database}</div>
         </MasonryAction>
       </MasonryShadow>
       <img
         src={`${thumbnail}`}
         srcSet={`${thumbnail}`}
-        alt={title}
+        alt={urlTitle}
         loading="lazy"
         style={{
           borderBottomLeftRadius: 4,
@@ -49,8 +51,10 @@ const ImageMasonry = ({ data }) => {
     getRecendAdditions().then((res) => {
       setLoading(false);
       setTiles(res);
+      console.log(res);
     });
   }, []);
+
   return (
     <>
       {" "}
@@ -82,7 +86,7 @@ const ImageMasonry = ({ data }) => {
           sx={{ margin: "0 auto" }}
         >
           {tiles.map((item, index) => (
-            <ImageMasonryItem item={item}  key={item.thumbnail + index} />
+            <ImageMasonryItem item={item} key={item.thumbnail + index} />
           ))}
         </Masonry>
       </Box>

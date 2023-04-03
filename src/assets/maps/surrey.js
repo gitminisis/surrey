@@ -4,7 +4,7 @@ export const MAP = {
     {
       type: "Feature",
       properties: {
-        name: "City Centre",
+        name: "Whalley",
         created_at: "2013-03-21T04:05:51.121Z",
         updated_at: "2013-03-21T04:07:11.643Z",
         cartodb_id: 1,

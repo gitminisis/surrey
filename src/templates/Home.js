@@ -23,7 +23,7 @@ const Home = [{
                 searchURL: "/scripts/mwimain.dll?UNIONSEARCH&KEEP=Y&SIMPLE_EXP=Y&ERRMSG=[MESSAGES]374.htm&APPLICATION=UNION_VIEW&language=144&REPORT=WEB_UNION_SUM",
                 bannerURL: pic1,
                 heading: "City of Surrey Online Heritage Search",
-                description: "Over 100,000 pieces of Surrey's history are at your fingertips. Search for specific items below, or browse by category, neighborhood, or new content.",
+                description: "More than 100,000 archival photos, maps, documents, and oral histories, as well as over 5,000 artifacts are at your fingertips. Browse the categories, neighbourhoods, or new additions below, or search for specific records using the keyword search.",
                 bannerCarousel: [pic1, pic2, pic3, pic4, pic5, pic6, pic7],
             },
         },

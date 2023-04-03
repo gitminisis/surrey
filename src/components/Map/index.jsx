@@ -11,16 +11,9 @@ import {
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import { getMap } from "../../utils/map";
-
+import { Link, Typography } from "@mui/material";
+import { getSearchRequestURL } from "../../utils/record";
 const position = [49.110918, -122.778992];
-var myIcon = L.icon({
-  iconSize: [25, 41],
-  iconAnchor: [10, 41],
-  popupAnchor: [2, -40],
-  // specify the path here
-  iconUrl: "https://unpkg.com/leaflet@1.5.1/dist/images/marker-icon.png",
-  shadowUrl: "https://unpkg.com/leaflet@1.5.1/dist/images/marker-shadow.png",
-});
 
 const Map = () => {
   const COLOR = "red"; // Credited to Trang Vo
@@ -36,10 +29,23 @@ const Map = () => {
         scrollWheelZoom={false}
       >
         {map.features.map((el) => {
+       
           return (
             <>
               <Polygon color={COLOR} positions={el.geometry.coordinates[0]}>
-                <Popup>{el.properties.name}</Popup>
+                <Popup style={{ textAlign: "center" }}>
+                  <Typography variant="h5" as="p">
+                    {el.properties.name}
+                  </Typography>
+                  <Link
+                    href={getSearchRequestURL(
+                      "DESCRIPTION",
+                      `INDEXGEO ${el.properties.name}`
+                    )}
+                  >
+                    Explore area
+                  </Link>
+                </Popup>
               </Polygon>
             </>
           );

@@ -26,7 +26,8 @@ export const Item = styled(Paper)(({ theme }) => ({
 }));
 
 const GeneralSearchBox = (props) => {
-  const { breadcrumbs, heading, helpText, databaseList, xml } = props;
+  const { breadcrumbs, heading, helpText, databaseList, xml, placeholder } =
+    props;
   const [index, setIndex] = React.useState(0);
   let database = deepSearch(xml, "database_name")[0];
   let toSummary = backToSummary(xml);
@@ -70,7 +71,7 @@ const GeneralSearchBox = (props) => {
             >
               <Input
                 variant="soft"
-                placeholder="Search…"
+                placeholder={placeholder}
                 name="KEYWORD_CL"
                 startDecorator={<SearchIcon />}
                 endDecorator={
@@ -96,13 +97,12 @@ const GeneralSearchBox = (props) => {
             </form>
           </Grid>
           <Grid item xs={12} style={{ textAlign: "center", marginTop: "20px" }}>
-            <Typography
-              variant="a"
+            <Link
               href={helpText.link}
               className="generalSearchBoxLink"
             >
               {helpText.description}
-            </Typography>
+            </Link>
           </Grid>
         </Grid>
       </div>

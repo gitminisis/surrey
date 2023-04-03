@@ -17,7 +17,7 @@ import {
   deepSearch,
   buildExpressionFromMap,
 } from "../../../utils/functions";
-import { sendSearchRequest } from "../../../utils/record";
+import { getSearchRequestURL } from "../../../utils/record";
 const CollapseSearchFilter = (props) => {
   let { show, data, description, database } = props;
   const [expression, setExpression] = useState({});
@@ -27,7 +27,7 @@ const CollapseSearchFilter = (props) => {
   };
   const submitForm = () => {
     let exp = buildExpressionFromMap(expression);
-    window.location = sendSearchRequest(database, exp);
+    window.location = getSearchRequestURL(database, exp);
   };
 
   return (

@@ -5,6 +5,7 @@ import {
   Container,
   Divider,
   Typography,
+  Drawer,
   Link,
 } from "@mui/material";
 
@@ -17,12 +18,13 @@ import {
   AppbarRoot,
   AppbarLinkBox,
 } from "./AppBar.style";
-
+import { Fade as Hamburger } from "hamburger-react";
+import { KeyboardArrowLeftOutlined } from "@mui/icons-material";
 const AppBar = (props) => {
   const { links, logo, siteName, baseURL, active } = props;
   const [isScroll, setIsScroll] = useState(0);
   const [isClicked, setIsClicked] = useState(false);
-  const [open,setOpen] = useState(false)
+  const [open, setOpen] = useState(false);
   useEffect(() => {
     const handleScroll = () => {
       const scrolled = window.scrollY > 80;
@@ -37,6 +39,48 @@ const AppBar = (props) => {
 
   return (
     <>
+      <Drawer
+        variant="persistent"
+        anchor="left"
+        open={open}
+        sx={{ bgcolor: "primary.main", width: 240 }}
+      >
+        <Box
+          sx={{
+            bgcolor: "primary.main",
+            height: "100%",
+            display: "flex",
+            flexDirection: "column",
+            p: 4,
+          }}
+        >
+          {links.map((link, i) => (
+            <>
+              <Link
+                key={link.title}
+                href={link.url}
+                variant={"h5"}
+                sx={{
+                  color: "white",
+                  mt: 2,
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  mb: 2,
+                  fontWeight:
+                    active && active === link.title ? "bold" : "inherit",
+                }}
+              >
+                {link.title}
+                {active && active === link.title ? (
+                  <KeyboardArrowLeftOutlined />
+                ) : null}
+              </Link>
+              <Divider style={{ backgroundColor: "white" }} />
+            </>
+          ))}
+        </Box>
+      </Drawer>
       <AppbarRoot className="header" scroll={isScroll}>
         <Container maxWidth={"true"}>
           <AppbarContainer maxWidth={"xl"}>
@@ -46,20 +90,28 @@ const AppBar = (props) => {
               sx={{ color: "white" }}
               variant={"h5"}
             >
-              <AppbarLogo
-                component="img"
-                src={logo}
-                alt={`${siteName} logo`}
-              ></AppbarLogo>
-
-              <span> {siteName}</span>
+              <div>
+                <AppbarLogo
+                  component="img"
+                  src={logo}
+                  alt={`${siteName} logo`}
+                  onClick={(_) => (window.location = "https://www.surrey.ca/")}
+                ></AppbarLogo>
+              </div>
+              <strong>{siteName}</strong>
             </AppbarLogoBox>
-            <AppbarLinkBox sx={{ display: { xs: "flex", md: "none" } , position:'relative'}}>
-              {/* <div id="menu-icon" className={open ?'openIcon':""} onClick={_=>setOpen(!open)}>
-                <span></span>
-                <span></span>
-                <span></span>
-              </div> */}
+            <AppbarLinkBox
+              sx={{
+                display: { xs: "flex", md: "none" },
+                justifyContent: "end",
+              }}
+            >
+              <Hamburger
+                toggled={open}
+                toggle={setOpen}
+                size={30}
+                label="Menu Icon"
+              />
             </AppbarLinkBox>
             <AppbarLinkBox
               sx={{
