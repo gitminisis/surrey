@@ -49,24 +49,7 @@ export default function SummaryBookmarkSubHeader(props) {
               },
             }}
           >
-            {/* <ToggleButtonGroup
-              orientation="horizontal"
-              value={props.isGrid === true ? "grid" : "list"}
-              exclusive
-            >
-              <ToggleButton
-                value="filter toggle"
-                onClick={(_) => {
-                  props.toggleSidebar();
-                  //   props.toggleMobileFilter();
-                }}
-                aria-label="filter sidebar"
-              >
-                <Tooltip title="Toggle sidebar">
-                  <TuneIcon /> 
-                </Tooltip>
-              </ToggleButton>
-            </ToggleButtonGroup> */}
+       
 
             <Button
               variant="soft"

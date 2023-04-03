@@ -103,8 +103,8 @@ const SummaryFilter = (props) => {
     <Item
       elevation={0}
       sx={{
-        maxHeight: "800px",
-        heigh: "100vh",
+        height: "auto",
+        maxHeight:'800px',
         overflowY: "scroll",
         overflowX: "hidden",
         px: "10px",

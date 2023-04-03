@@ -74,6 +74,7 @@
   color: #538000;
   text-decoration: underline;
 }
+
 @media only screen and (max-width: 768px) {
   .summarySubHeaderBox {
     flex-direction: column !important;
@@ -85,6 +86,7 @@
   padding: 10px 30px 10px 30px !important;
   border-radius: 40px !important;
 }
+
 .MuiDrawer-paperAnchorLeft {
   transition: all 0.5s ease !important;
   top: 80px !important;

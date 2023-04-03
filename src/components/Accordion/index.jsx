@@ -31,7 +31,8 @@ const AccordionComponent = (props) => {
               <Typography
                 variant="p"
                 dangerouslySetInnerHTML={{ __html: item.description }}
-              ></Typography>
+              >
+              </Typography>
             </AccordionDetails>
           </Accordion>
         );

@@ -70,7 +70,7 @@ const BookmarkDetailAction = (props) => {
           color="primary"
           size={size || "md"}
           onClick={(_) => {
-            window.open = recordLink;
+            window.open(recordLink);
           }}
         >
           <PreviewIcon />
