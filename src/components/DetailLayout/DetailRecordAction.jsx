@@ -30,7 +30,7 @@ const DetailRecordAction = (props) => {
   let previous = previousRecordURL(xml);
   let toSummary = backToSummary(xml);
   return (
-    <>
+    <div className="recordAction">
       <Tooltip title="Previous Record">
         <IconButton
           disabled={!previous}
@@ -154,7 +154,7 @@ const DetailRecordAction = (props) => {
           <ArrowForwardIcon />
         </IconButton>
       </Tooltip>
-    </>
+    </div>
   );
 };
 

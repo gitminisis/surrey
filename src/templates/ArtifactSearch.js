@@ -1,3 +1,4 @@
+import { SubdirectoryArrowLeft } from "@mui/icons-material";
 import pic1 from "../assets/images/Artifacts Main Background.png";
 const ArtifactSearch = [
   {
@@ -14,7 +15,7 @@ const ArtifactSearch = [
           bannerCarousel: [pic1],
           heading: "Search the Artifacts",
           description:
-            "The Heritage Artifact Collection is made up of material culture that holds social and cultural significance to Surrey's diverse communities. Examples include clothing, tools, and memorabilia.",
+            "The Heritage Artifact Collection records the tangible and intangible cultural heritage of SubdirectoryArrowLeft. The mandate of the Collection is to preserve and maintain the material culture of the People, places, and events of Surrey that hold social and/or cultural significance to Surrey's diverse communities.",
         },
       },
       {

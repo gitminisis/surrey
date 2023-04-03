@@ -26,7 +26,8 @@ export const Item = styled(Paper)(({ theme }) => ({
 }));
 
 const GeneralSearchBox = (props) => {
-  const { breadcrumbs, heading, helpText, databaseList, xml } = props;
+  const { breadcrumbs, heading, helpText, databaseList, xml, placeholder } =
+    props;
   const [index, setIndex] = React.useState(0);
   let database = deepSearch(xml, "database_name")[0];
   let toSummary = backToSummary(xml);
@@ -70,7 +71,7 @@ const GeneralSearchBox = (props) => {
             >
               <Input
                 variant="soft"
-                placeholder="Search…"
+                placeholder={placeholder}
                 name="KEYWORD_CL"
                 startDecorator={<SearchIcon />}
                 endDecorator={

@@ -16,7 +16,7 @@ const Detail = [
         data: {
           generalSearchBox: {
             breadcrumbs: ["Summary", "Detail"],
-            heading: "Search the collections",
+            heading: "Search the collections",placeholder:"Search By Keyword",
             databaseList: GENERAL_SEARCHBOX_DBLIST,
             helpText: {
               link: "/faq.html",

@@ -91,7 +91,6 @@ const AppBar = (props) => {
               variant={"h5"}
             >
               <div>
-                {" "}
                 <AppbarLogo
                   component="img"
                   src={logo}
@@ -99,7 +98,7 @@ const AppBar = (props) => {
                   onClick={(_) => (window.location = "https://www.surrey.ca/")}
                 ></AppbarLogo>
               </div>
-              <span> {siteName}</span>
+              <strong>{siteName}</strong>
             </AppbarLogoBox>
             <AppbarLinkBox
               sx={{

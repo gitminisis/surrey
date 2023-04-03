@@ -31,7 +31,7 @@ const BookmarkDetailAction = (props) => {
   let toSummary = backToSummary(xml);
 
   return (
-    <>
+    <div className="recordAction">
       <Tooltip title="Remove from bookmark">
         <IconButton
           aria-label="remove from bookmark"
@@ -90,7 +90,7 @@ const BookmarkDetailAction = (props) => {
           <PrintIcon />
         </IconButton>
       </Tooltip>
-    </>
+    </div>
   );
 };
 

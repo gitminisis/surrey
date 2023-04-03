@@ -103,3 +103,12 @@
   display: inline !important;
   margin-left: 5px;
 }
+
+.recordAction svg {
+  font-size: 2rem !important;
+}
+
+.recordAction {
+  display: flex;
+  justify-content: space-evenly;
+}
