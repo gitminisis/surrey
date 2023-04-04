@@ -1,9 +1,3 @@
-import pic1 from "../assets/images/Archives_Main.png";
-import Featured1 from "../assets/images/Surrey Leader Photograph Collection.png";
-import Featured2 from "../assets/images/Columbian Newspaper Collection.png";
-import Featured3 from "../assets/images/Community Planning Photographs.png";
-import Featured4 from "../assets/images/Surrey 2000 Captured Time Collection.png";
-
 const ArchivesSearch = [
   {
     component: "Layout",
@@ -17,7 +11,7 @@ const ArchivesSearch = [
           application: "DESCRIPTION",
           searchURL:
             "/scripts/mwimain.dll?UNIONSEARCH&KEEP=Y&SIMPLE_EXP=Y&ERRMSG=[MESSAGES]374.htm&APPLICATION=UNION_VIEW&DATABASE=DESCRIPTION&language=144&REPORT=WEB_UNION_SUM_DESC",
-          bannerCarousel: [pic1],
+          bannerCarousel: ["/assets/images/Archives_Main.png"],
           heading: "Search the Archives",
           description:
             " Surrey Archives is home to Surrey's history. Original photos, maps, manuscripts, city and community records and an extensive reference collection are waiting for you. Search for and view over 100,000 photos on Surrey Online Heritage Search.",
@@ -77,22 +71,26 @@ const ArchivesSearch = [
             data: {
               data: [
                 {
-                  thumbnail: Featured1,
+                  thumbnail:
+                    "/assets/images/Surrey Leader Photograph Collection.png",
                   title: "The Surrey Leader Photograph Fonds",
                   link: "/scripts/mwimain.dll?UNIONSEARCH&KEEP=Y&SIMPLE_EXP=Y&ERRMSG=[MESSAGES]374.htm&APPLICATION=UNION_VIEW&DATABASE=DESCRIPTION&language=144&REPORT=WEB_UNION_SUM_DESC&EXP=REFD F62",
                 },
                 {
-                  thumbnail: Featured2,
+                  thumbnail:
+                    "/assets/images/Columbian Newspaper Collection.png",
                   title: "The Columbian Newspaper Collection",
                   link: "/scripts/mwimain.dll?UNIONSEARCH&KEEP=Y&SIMPLE_EXP=Y&ERRMSG=[MESSAGES]374.htm&APPLICATION=UNION_VIEW&DATABASE=DESCRIPTION&language=144&REPORT=WEB_UNION_SUM_DESC&EXP=REFD F98",
                 },
                 {
-                  thumbnail: Featured3,
+                  thumbnail:
+                    "/assets/images/Community Planning Photographs.png",
                   title: "Community Planning Photographs",
                   link: "/scripts/mwimain.dll?UNIONSEARCH&KEEP=Y&SIMPLE_EXP=Y&ERRMSG=[MESSAGES]374.htm&APPLICATION=UNION_VIEW&DATABASE=DESCRIPTION&language=144&REPORT=WEB_UNION_SUM_DESC&EXP=REFD COS.PL 9",
                 },
                 {
-                  thumbnail: Featured4,
+                  thumbnail:
+                    "/assets/images/Surrey 2000 Captured Time Collection.png",
                   title: "Surrey 2000, Captured Time Collection",
                   link: "/scripts/mwimain.dll?UNIONSEARCH&KEEP=Y&SIMPLE_EXP=Y&ERRMSG=[MESSAGES]374.htm&APPLICATION=UNION_VIEW&DATABASE=DESCRIPTION&language=144&REPORT=WEB_UNION_SUM_DESC&EXP=REFD F140",
                 },
