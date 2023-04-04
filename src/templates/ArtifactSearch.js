@@ -20,7 +20,7 @@ const ArtifactSearch = [{
             children: [{
                 component: "PhotoCoverCard",
                 data: {
-                    recordIds: ["OEXID12", "OEXID13", "OEXID14", "OEXID15"],
+                    recordIds: ["OEXID12", "OEXID11", "OEXID17", "OEXID16"],
                 },
             }, ],
         },
@@ -31,7 +31,7 @@ const ArtifactSearch = [{
             },
             children: [{
                 component: "MediaCard",
-                data: { recordIds: ["OEXID12", "OEXID13", "OEXID14", "OEXID15"] },
+                data: { recordIds: ["OEXID13", "OEXID14", "OEXID15", "OEXID18"] },
             }, ],
         },
     ],
