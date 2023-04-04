@@ -44,7 +44,10 @@ const PhotoCoverCard = (props) => {
     if (!loading) {
       title = deepSearch(e, "oef_title")[0];
       description = deepSearch(e, "oef_description")[0];
-      thumbnail = deepSearch(e, "oef_image_path")[0].replace(/\n/, "");
+      thumbnail = deepSearch(e, "oef_image_path")[0]
+        .replace(/\n/, " ")
+        .replace(/\\/gi, "/")
+        .replace("[IMAGES]", "/SAMOA_IMAGES/");
     }
 
     return (
@@ -79,7 +82,11 @@ const PhotoCoverCard = (props) => {
                 title
               )}
             </Typography>
-            <Typography variant="body1" color="text.primary">
+            <Typography
+              variant="body1"
+              color="text.primary"
+              sx={{ height: "80px" }}
+            >
               {loading ? (
                 <React.Fragment>
                   <Skeleton animation="wave" style={{ marginBottom: 6 }} />
