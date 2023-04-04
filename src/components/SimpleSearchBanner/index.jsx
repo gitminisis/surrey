@@ -19,6 +19,8 @@ import {
   InputBase,
   IconButton,
   Container,
+  Backdrop,
+  CircularProgress,
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import PropTypes from "prop-types";
@@ -27,6 +29,7 @@ import CollapseSearchFilter from "../AdvancedSearchBanner/CollapseSearchFilter";
 import MobileStepper from "@mui/material/MobileStepper";
 import KeyboardDoubleArrowUpIcon from "@mui/icons-material/KeyboardDoubleArrowUp";
 import KeyboardDoubleArrowDownIcon from "@mui/icons-material/KeyboardDoubleArrowDown";
+import LayoutBackdrop from "../LayoutBackdrop";
 
 const Banner = (props) => {
   const {
@@ -41,6 +44,7 @@ const Banner = (props) => {
   } = props;
   const [show, setShow] = useState(false);
   const [activeStep, setActiveStep] = React.useState(0);
+  const [backdrop, setBackdrop] = useState(false);
   useEffect(() => {
     const interval = setInterval(() => {
       setActiveStep((prev) => {
@@ -55,6 +59,7 @@ const Banner = (props) => {
   }, []);
   return (
     <>
+      <LayoutBackdrop open={backdrop} />
       <BannerContainer
         style={{ padding: "0 0" }}
         maxWidth={"true"}
@@ -86,6 +91,9 @@ const Banner = (props) => {
                   method="POST"
                   component="form"
                   action={searchURL}
+                  onSubmit={(e) => {
+                    setBackdrop(true);
+                  }}
                   sx={{
                     display: "flex",
                     alignItems: "center",
