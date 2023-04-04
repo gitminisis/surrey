@@ -48,7 +48,7 @@ const ArchivesSearch = [
                   field: "DATE_SEARCH",
                 },
                 {
-                  title: "Area/Neighborhood",
+                  title: "Town Centre",
                   field: "INDEXGEO",
                 },
                 {
