@@ -53,6 +53,17 @@ export const COLLECTIONS_SUMMARY_FIELD = [
   },
 ];
 
+export const AUTHORITY_DATABASE_FIELD = {
+  PEOPLE_VAL: [
+    { name: "PERSON_ID", label: "Person ID" },
+    { name: "FULLNAME2", label: "Full Name" },
+    { name: "PERSON_DOB", label: "Date of birth" },
+    { name: "PERSON_DOD", label: "Date of death" },
+    { name: "PERSON_CITY", label: "City" },
+    { name: "PERSON_COUNTRY", label: "Country" },
+  ],
+};
+
 export const DESCRIPTION_GENERAL_DETAIL_FIELD = [
   {
     name: "TITLE",

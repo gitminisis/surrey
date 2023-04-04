@@ -80,7 +80,8 @@ const SearchFieldLink = (props) => {
                 <PopoverRecord
                   session={session}
                   database="PEOPLE_VAL"
-                  searchExpression={`FULLNAME ${v}`}
+                  field="FULLNAME"
+                  value={v}
                 />
               </Popover>
               <Typography

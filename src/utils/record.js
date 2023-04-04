@@ -18,6 +18,7 @@ const DEFAULT_SUM_REPORT = "WEB_UNION_SUM";
 const SUM_REPORT_BY_DATABASE = {
   COLLECTIONS: "WEB_UNION_SUM_COL",
   DESCRIPTION: "WEB_UNION_SUM_DESC",
+  PEOPLE_VAL: "WEB_PEOPLE_SUM",
 };
 
 export const FILTER_TITLE_BY_FIELD = {
@@ -305,12 +306,22 @@ export const getJumpURL = (
   database,
   field,
   value,
-  summary = DEFAULT_SUM_REPORT,
   detail = DEFAULT_DETAIL_REPORT
 ) => {
   return `${session}/${database}/${field}/${value}/${SUM_REPORT_BY_DATABASE[database]}/${detail}?JUMP`;
 };
 
+export const performJumpSearch = (url, fn) => {
+  return axios.get(url).then((res) => {
+    let { data } = res;
+    let dom = new DOMParser().parseFromString(data, "text/html");
+    let xml = getXMLRecord(dom);
+    if (fn !== undefined) {
+      fn(xml);
+    }
+    return xml;
+  });
+};
 export const fetchJSONRecord = (session, database, sisn = [], fn) => {
   let searchExpression = sisn.map((e) => `SISN ${e}`).join(" or ");
   let url = `${session}/scripts/mwimain.dll?SEARCH&KEEP=Y&SIMPLE_EXP=Y&ERRMSG=[MESSAGES]374.htm&APPLICATION=UNION_VIEW&DATABASE=${database}&language=144&REPORT=${SUM_REPORT_BY_DATABASE[database]}&EXP=${searchExpression}`;
