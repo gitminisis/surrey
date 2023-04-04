@@ -19,6 +19,7 @@ import Select from "@mui/joy/Select";
 import Option from "@mui/joy/Option";
 import { deepSearch, printPage } from "../../utils/functions";
 import {
+  FILTER_TITLE_BY_FIELD,
   bookmarkAllRecord,
   getNumberOfRecords,
   getRecordsPerPageURL,
@@ -57,7 +58,7 @@ const FieldFilter = (props) => {
         onClick={handleClick}
         sx={{ backgroundColor: "rgb(233,233,233,0.5)" }}
       >
-        <ListItemText primary={data._name} />
+        <ListItemText primary={FILTER_TITLE_BY_FIELD[data._name]} />
         {open ? <ExpandLess /> : <ExpandMore />}
       </ListItemButton>
 
@@ -65,6 +66,15 @@ const FieldFilter = (props) => {
         <List>
           {itemGroups.map((item, i) => {
             let itemSelected = deepSearch(item, "item_selected")[0];
+            if (item.item_value === "ONLINE_EXHIBITION_VIEW") {
+              return null;
+            }
+            if (item.item_value === "COLLECTIONS") {
+              item.item_value = "Artifact";
+            }
+            if (item.item_value === "DESCRIPTION") {
+              item.item_value = "Archives";
+            }
             return (
               <ListItem key={`ListItemFilter-${i}`} sx={{}}>
                 <Checkbox
@@ -104,7 +114,7 @@ const SummaryFilter = (props) => {
       elevation={0}
       sx={{
         height: "auto",
-        maxHeight:'800px',
+        maxHeight: "800px",
         overflowY: "scroll",
         overflowX: "hidden",
         px: "10px",

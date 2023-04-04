@@ -20,6 +20,15 @@ const SUM_REPORT_BY_DATABASE = {
   DESCRIPTION: "WEB_UNION_SUM_DESC",
 };
 
+export const FILTER_TITLE_BY_FIELD = {
+  $UNION_DBNAME: "Collections",
+  MEDIA_CL: "Media Type",
+  FORM: "Type",
+  DATE_SEARCH: "Date",
+  EARLY: "Date",
+  OBJECT_NAME: "Object Name",
+  PRIMARY: "Primary",
+};
 /**
  * send a request to fetch a search from the corresponding database, expression
  * @param {*} database
