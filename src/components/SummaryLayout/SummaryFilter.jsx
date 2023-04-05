@@ -47,8 +47,8 @@ const FieldFilter = (props) => {
     <List
       variant="outlined"
       sx={{
-        // maxHeight: "400px",
-        // overflowY: "scroll",
+        maxHeight: "400px",
+        overflowY: "scroll",
         overflowX: "hidden",
         margin: "4px 4px",
         border: "none",
