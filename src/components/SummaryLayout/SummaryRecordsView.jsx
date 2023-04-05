@@ -26,7 +26,7 @@ const SummaryRecordsView = (props) => {
         let thumbPic = getFirstThumbnail(record, database);
         let sisn = deepSearch(recordData, "sisn")[0];
         let captions = getAllImageCaptions(record);
-        let firstCaption = captions.length > 0 ? captions[0] : sisn;
+        let firstCaption = captions.length > 0 ? captions[0] : "";
         let bookmarkURL = deepSearch(xml, "bookmark_url")[0];
         let isBookmarked = deepSearch(record, "is_bookmarked")[0];
 

@@ -18,7 +18,7 @@ const SummaryMasonryView = (props) => {
         spacing={4}
         style={{ margin: "0 auto" }}
       >
-        {xml.xml.xml_record.map((record) => {
+        {xml.xml.xml_record.map((record, i) => {
           let database = record.database_name;
           let recordLink = record.record_link.replace(/\n/g, "");
           let recordData = record.record;
@@ -26,11 +26,11 @@ const SummaryMasonryView = (props) => {
           let thumbPic = getFirstThumbnail(record, database);
           let sisn = deepSearch(recordData, "sisn")[0];
           let captions = getAllImageCaptions(record);
-          let firstCaption = captions.length > 0 ? captions[0] : sisn;
+          let firstCaption = captions.length > 0 ? captions[0] : "";
           let bookmarkURL = deepSearch(xml, "bookmark_url")[0];
           let isBookmarked = deepSearch(record, "is_bookmarked")[0];
           return (
-            <Card variant="outlined">
+            <Card variant="outlined" key={i}>
               <div style={{ width: "calc(100% - 85px)" }}>
                 <RecordTextField
                   xml={xml}

@@ -8,7 +8,7 @@ import {
   COLLECTIONS_OVERVIEW_DETAIL_FIELD,
   COLLECTIONS_CHENHALL_DETAIL_FIELD,
   GENERAL_SEARCHBOX_DBLIST,
-} from "./DisplayFields";
+} from "./API";
 
 const Summary = [
   {

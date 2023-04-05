@@ -2,7 +2,7 @@ import {
   COLLECTIONS_SUMMARY_FIELD,
   MEDIA_THUMBNAIL_FIELD,
   GENERAL_SEARCHBOX_DBLIST,
-} from "./DisplayFields";
+} from "./API";
 
 const Summary = [
   {

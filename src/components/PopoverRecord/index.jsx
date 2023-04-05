@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import RecordTextField from "../RecordTextField";
 import { Typography } from "@mui/material";
-import { AUTHORITY_DATABASE_FIELD } from "../../templates/DisplayFields";
+import { AUTHORITY_DATABASE_FIELD } from "../../templates/API";
 import GeneralDetailTextField from "../DetailLayout/GeneralDetailTextField";
 import { getJumpURL, performJumpSearch } from "../../utils/record";
 const PopoverRecord = (props) => {

@@ -11,7 +11,7 @@ import copy from "copy-to-clipboard";
 import {
     MEDIA_THUMBNAIL_FIELD,
     SORT_REPORTS_BY_DATABASE,
-} from "../templates/DisplayFields";
+} from "../templates/API";
 const DEFAULT_DETAIL_REPORT = "WEB_UNION_DETAIL";
 const WEB_DNS = "surreytest.minisisinc.com";
 const DEFAULT_SUM_REPORT = "WEB_UNION_SUM";

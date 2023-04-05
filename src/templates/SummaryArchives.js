@@ -2,7 +2,7 @@ import {
     DESCRIPTION_SUMMARY_FIELD,
     GENERAL_SEARCHBOX_DBLIST,
     MEDIA_THUMBNAIL_FIELD,
-} from "./DisplayFields";
+} from "./API";
 
 const Summmary = [{
     component: "Layout",
