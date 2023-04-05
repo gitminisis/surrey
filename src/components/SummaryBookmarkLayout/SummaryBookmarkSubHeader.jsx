@@ -49,8 +49,6 @@ export default function SummaryBookmarkSubHeader(props) {
               },
             }}
           >
-       
-
             <Button
               variant="soft"
               color="danger"
@@ -60,7 +58,7 @@ export default function SummaryBookmarkSubHeader(props) {
                 location.reload();
               }}
             >
-              <DeleteIcon /> Clear Bookmark
+              <DeleteIcon /> Clear All Bookmarks
             </Button>
           </Box>
         </Box>

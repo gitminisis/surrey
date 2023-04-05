@@ -6,6 +6,7 @@ import { getJumpURL } from "../../utils/record";
 import Popover from "@mui/material/Popover";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 import PopoverRecord from "../PopoverRecord";
+import { Tooltip } from "@mui/material";
 const SearchFieldLink = (props) => {
   const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -69,28 +70,32 @@ const SearchFieldLink = (props) => {
                 anchorEl={anchorEl}
                 onClose={handleClose}
                 anchorOrigin={{
+                  vertical: "top",
+                  horizontal: "center",
+                }}
+                transformOrigin={{
                   vertical: "bottom",
                   horizontal: "left",
                 }}
               >
-                <Typography sx={{ p: 2 }}>
-                  The content of the Popover.
-                </Typography>
-
-                <PopoverRecord
-                  session={session}
-                  database="PEOPLE_VAL"
-                  field="FULLNAME"
-                  value={v}
-                />
+                <Box sx={{ p: 4, borderRadius: "20%" }}>
+                  <PopoverRecord
+                    session={session}
+                    database="PEOPLE_VAL"
+                    field="FULLNAME"
+                    value={v}
+                  />
+                </Box>
               </Popover>
-              <Typography
-                onClick={handleClick}
-                variant="body2"
-                sx={{ cursor: "pointer", color: "primary.main" }}
-              >
-                <HelpOutlineIcon />
-              </Typography>
+              <Tooltip title="Click to view more information about this">
+                <Typography
+                  onClick={handleClick}
+                  variant="body2"
+                  sx={{ cursor: "pointer", color: "black", px: 1 }}
+                >
+                  <HelpOutlineIcon />
+                </Typography>
+              </Tooltip>
             </div>
           ))}
         </Grid>

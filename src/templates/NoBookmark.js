@@ -15,7 +15,7 @@ const NoBookmark = [
           searchURL:
             "/scripts/mwimain.dll?UNIONSEARCH&KEEP=Y&SIMPLE_EXP=Y&ERRMSG=[MESSAGES]374.htm&APPLICATION=UNION_VIEW&language=144&REPORT=WEB_UNION_SUM",
           bannerURL: pic1,
-          heading: "Your bookmark is cleared",
+          heading: "Your bookmark(s) is cleared",
           description: "Please start a new search",
           bannerCarousel: [pic1, pic2, pic3, pic4, pic5, pic6, pic7],
         },
