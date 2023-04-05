@@ -50,7 +50,11 @@ export const getSearchRequestURL = (
   return url;
 };
 
-export const getFeatureCollectionsFromIDs = (ids, session ='/scripts/mwimain.dll', fn) => {
+export const getFeatureCollectionsFromIDs = (
+  ids,
+  session = "/scripts/mwimain.dll",
+  fn
+) => {
   let exp = ids
     .map((e) => `OEF_IND ${e}`)
     .join(" or ")
@@ -69,7 +73,7 @@ export const getFeatureCollectionsFromIDs = (ids, session ='/scripts/mwimain.dll
   });
 };
 
-export const getRecendAdditions = (_) => {
+export const getRecendAdditions = (session = "/scripts/mwimain.dll") => {
   let high = getTomorrowDate();
   let low = getDaysBeforeDate();
   let searchingField = [
@@ -100,7 +104,7 @@ export const getRecendAdditions = (_) => {
   };
   let searchURL = searchingField.map((e) => {
     let exp = `${e.date} > "${low}" and ${e.media} present`;
-    let url = `/scripts/mwimain.dll?UNIONSEARCH&KEEP=Y&SIMPLE_EXP=Y&ERRMSG=[MESSAGES]374.htm&APPLICATION=UNION_VIEW&language=144&REPORT=WEB_UNION_SUM&EXP=${exp}&database=${e.database}`;
+    let url = `${session}?UNIONSEARCH&KEEP=Y&SIMPLE_EXP=Y&ERRMSG=[MESSAGES]374.htm&APPLICATION=UNION_VIEW&language=144&REPORT=WEB_UNION_SUM&EXP=${exp}&database=${e.database}`;
     return url;
   });
 
