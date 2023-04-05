@@ -70,7 +70,7 @@ export const getFeatureCollectionsFromIDs = (ids, fn) => {
     });
 };
 
-export const getRecendAdditions = (_) => {
+export const getRecendAdditions = (session = "/scripts/mwimain.dll") => {
     let high = getTomorrowDate();
     let low = getDaysBeforeDate();
     let searchingField = [{
@@ -102,7 +102,7 @@ export const getRecendAdditions = (_) => {
     };
     let searchURL = searchingField.map((e) => {
         let exp = `${e.date} > "${low}" and ${e.mediaReady} "Yes"`;
-        let url = `/scripts/mwimain.dll?UNIONSEARCH&KEEP=Y&SIMPLE_EXP=Y&ERRMSG=[MESSAGES]374.htm&APPLICATION=UNION_VIEW&language=144&REPORT=WEB_UNION_SUM&EXP=${exp}&database=${e.database}`;
+        let url = `${session}?UNIONSEARCH&KEEP=Y&SIMPLE_EXP=Y&ERRMSG=[MESSAGES]374.htm&APPLICATION=UNION_VIEW&language=144&REPORT=WEB_UNION_SUM&EXP=${exp}&database=${e.database}`;
         return url;
     });
 
