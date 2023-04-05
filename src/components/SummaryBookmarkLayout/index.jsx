@@ -35,9 +35,9 @@ const SummaryBookmarkLayout = (props) => {
   const { generalSearchBox, generalSection } = props;
   const [showSidebar, setShowSidebar] = useState(true);
   const [xml, setXml] = useState(getXMLRecord());
-  const [currentDetailXml, setCurrentDetailXml] = useState(null);
-  const [bookmarkLoading, setBookmarkLoading] = useState(true);
-  const [loadedDetailRecord, setLoadedDetailRecord] = useState(new Map());
+  // const [currentDetailXml, setCurrentDetailXml] = useState(null);
+  // const [bookmarkLoading, setBookmarkLoading] = useState(true);
+  // const [loadedDetailRecord, setLoadedDetailRecord] = useState(new Map());
   useEffect((_) => {
     fetchRecord(0).then((res) => {
       updateLoadedDetailRecord(0, res);
