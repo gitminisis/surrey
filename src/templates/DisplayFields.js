@@ -1,3 +1,5 @@
+export { default as SORT_REPORTS_BY_DATABASE } from "./json/sortReportsByDatabase.json";
+export { default as GENERAL_SEARCHBOX_DBLIST } from "./json/generalSearchboxDBList.json";
 export const DESCRIPTION_SUMMARY_FIELD = [
   {
     name: "TITLE",
@@ -249,24 +251,3 @@ export const MEDIA_THUMBNAIL_FIELD = [
     text: "a_tx_access_link",
   },
 ];
-
-export const GENERAL_SEARCHBOX_DBLIST = [
-  {
-    database: "Union Search",
-    searchURL:
-      "?UNIONSEARCH&KEEP=Y&SIMPLE_EXP=Y&ERRMSG=[MESSAGES]374.htm&APPLICATION=UNION_VIEW&language=144&REPORT=WEB_UNION_SUM",
-  },
-  {
-    database: "Archives",
-    searchURL:
-      "?UNIONSEARCH&KEEP=Y&SIMPLE_EXP=Y&ERRMSG=[MESSAGES]374.htm&APPLICATION=UNION_VIEW&DATABASE=DESCRIPTION&language=144&REPORT=WEB_UNION_SUM_DESC",
-  },
-  {
-    database: "Artifact",
-    searchURL:
-      "?UNIONSEARCH&KEEP=Y&SIMPLE_EXP=Y&ERRMSG=[MESSAGES]374.htm&APPLICATION=UNION_VIEW&DATABASE=COLLECTIONS&language=144&REPORT=WEB_UNION_SUM_COL",
-  },
-];
-
-import sortReportsByDatabase from "./json/sortReportsByDatabase.json";
-export const SORT_REPORTS_BY_DATABASE = sortReportsByDatabase;

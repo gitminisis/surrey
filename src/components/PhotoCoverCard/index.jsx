@@ -42,10 +42,11 @@ const PhotoCoverCard = (props) => {
 
   return records.map((e, i) => {
     let title, description, thumbnail;
+
     if (!loading) {
       title = deepSearch(e, "oef_title")[0];
       description = deepSearch(e, "oef_description")[0];
-      thumbnail = deepSearch(e, "oef_image_path")[0];
+      thumbnail = deepSearch(e, "oef_image_path")[0].replace(/\n/, "");
     }
 
     return (

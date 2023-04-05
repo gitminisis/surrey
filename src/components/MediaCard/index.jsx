@@ -32,9 +32,9 @@ const MediaCard = (props) => {
       title = deepSearch(e, "oef_title")[0];
       description = deepSearch(e, "oef_description")[0];
       thumbnail = deepSearch(e, "oef_image_path")[0]
-        .replace(/\n/, " ")
-        .replace(/\\/gi, "/")
-        .replace("[IMAGES]", "/SAMOA_IMAGES/");
+        // .replace(/\n/, " ")
+        // .replace(/\\/gi, "/")
+        // .replace("[IMAGES]", "/SAMOA_IMAGES/");
     }
     return (
       <Grid item xs={12} sm={6} md={3} key={i}>
