@@ -11,8 +11,12 @@ const FAQ = [
           bannerCarousel: [
             "https://www.surrey.ca/sites/default/files/styles/21x9_1920w/public/2021-05/SeniorOnTablet.jpeg?h=93ff39ef&itok=rNlCoNyd",
           ],
+          searchURL:
+            "/scripts/mwimain.dll?UNIONSEARCH&KEEP=Y&SIMPLE_EXP=Y&ERRMSG=[MESSAGES]374.htm&APPLICATION=UNION_VIEW&language=144&REPORT=WEB_UNION_SUM",
+
           heading: "About Us",
-          description: "Heritage Services is situated on the unceded and ancestral lands of the Salish peoples, including the q̓ic̓əy̓ (Katzie), q̓ʷɑ:n̓ƛ̓ən̓ (Kwantlen), and se’mya’me (Semiahmoo) Nations. A division of the City of Surrey’s Parks, Recreation and Culture Department, Heritage Services operates the facilities and services located at the Museum of Surrey, Historic Stewart Farm, and the City of Surrey Archives. In addition, Heritage Services facilitates the city-wide distribution and delivery of heritage interpretive activities. We hope to see you at our facilities soon!",
+          description:
+            "Heritage Services is situated on the unceded and ancestral lands of the Salish peoples, including the q̓ic̓əy̓ (Katzie), q̓ʷɑ:n̓ƛ̓ən̓ (Kwantlen), and se’mya’me (Semiahmoo) Nations. A division of the City of Surrey’s Parks, Recreation and Culture Department, Heritage Services operates the facilities and services located at the Museum of Surrey, Historic Stewart Farm, and the City of Surrey Archives. In addition, Heritage Services facilitates the city-wide distribution and delivery of heritage interpretive activities. We hope to see you at our facilities soon!",
         },
       },
       // {

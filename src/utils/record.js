@@ -82,12 +82,14 @@ export const getRecendAdditions = (session = "/scripts/mwimain.dll") => {
       date: "LAST_MODIFIED_TM",
       media: "M_IM_ACCESS",
       report: "WEB_UNION_SUM_COL",
+      mediaReady: "M_IM_OPAC",
     },
     {
       database: "DESCRIPTION",
       date: "MODIFIED_ON",
       media: "A_IM_ACCESS",
       report: "WEB_UNION_SUM_DESC",
+      mediaReady: "A_IM_OPAC",
     },
   ];
   let fieldByDatabase = {
@@ -103,7 +105,7 @@ export const getRecendAdditions = (session = "/scripts/mwimain.dll") => {
     },
   };
   let searchURL = searchingField.map((e) => {
-    let exp = `${e.date} > "${low}" and ${e.media} present`;
+    let exp = `${e.date} > "${low}" and ${e.mediaReady} "Yes"`;
     let url = `${session}?UNIONSEARCH&KEEP=Y&SIMPLE_EXP=Y&ERRMSG=[MESSAGES]374.htm&APPLICATION=UNION_VIEW&language=144&REPORT=WEB_UNION_SUM&EXP=${exp}&database=${e.database}`;
     return url;
   });
