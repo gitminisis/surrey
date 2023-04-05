@@ -30,6 +30,7 @@ import MobileStepper from "@mui/material/MobileStepper";
 import KeyboardDoubleArrowUpIcon from "@mui/icons-material/KeyboardDoubleArrowUp";
 import KeyboardDoubleArrowDownIcon from "@mui/icons-material/KeyboardDoubleArrowDown";
 import LayoutBackdrop from "../LayoutBackdrop";
+import { readCookie } from "../../utils/functions";
 
 const Banner = (props) => {
   const {
@@ -45,6 +46,9 @@ const Banner = (props) => {
   const [show, setShow] = useState(false);
   const [activeStep, setActiveStep] = React.useState(0);
   const [backdrop, setBackdrop] = useState(false);
+  const url = readCookie("HOME_SESSID")
+    ? readCookie("HOME_SESSID") + searchURL.replace("/scripts/mwimain.dll", "")
+    : searchURL;
   useEffect(() => {
     const interval = setInterval(() => {
       setActiveStep((prev) => {
@@ -90,7 +94,7 @@ const Banner = (props) => {
                 <Paper
                   method="POST"
                   component="form"
-                  action={searchURL}
+                  action={url}
                   onSubmit={(e) => {
                     setBackdrop(true);
                   }}

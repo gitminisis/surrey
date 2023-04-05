@@ -5,6 +5,22 @@ import SiteLayout from "../templates/SiteLayout.js";
 
 const VIRTUAL_DIR = SiteLayout.virtualIncludePaths;
 const APPLICATION = SiteLayout.application;
+
+export const readCookie = (name) => {
+  const cookies = document.cookie.split(";");
+  for (let i = 0; i < cookies.length; i++) {
+    const cookie = cookies[i].trim();
+    if (cookie.startsWith(name + "=")) {
+      return decodeURIComponent(cookie.substring(name.length + 1));
+    }
+  }
+  return null;
+};
+
+export const getCurrentSession = () => {
+  return readCookie("HOME_SESSID");
+};
+
 export const deepSearch = (obj, key) => {
   if (has(obj, key))
     // or just (key in obj)

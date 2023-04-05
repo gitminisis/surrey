@@ -7,7 +7,7 @@ import LocationOnRoundedIcon from "@mui/icons-material/LocationOnRounded";
 import { Grid } from "@mui/material";
 import PropTypes from "prop-types";
 import { getFeatureCollectionsFromIDs } from "../../utils/record";
-import { deepSearch } from "../../utils/functions";
+import { deepSearch, getCurrentSession } from "../../utils/functions";
 const MediaCard = (props) => {
   let { recordIds } = props;
   const [hover, setHover] = useState(false);
@@ -17,7 +17,7 @@ const MediaCard = (props) => {
   );
   useEffect(() => {
     if (recordIds.length === 0) return null;
-    getFeatureCollectionsFromIDs(recordIds).then((res) => {
+    getFeatureCollectionsFromIDs(recordIds, getCurrentSession()).then((res) => {
       let rec = deepSearch(res, "record");
       if (!Array.isArray(rec)) {
         rec = [rec];
@@ -25,7 +25,7 @@ const MediaCard = (props) => {
       setRecords(rec);
       setLoading(false);
     });
-  },[]);
+  }, []);
   return records.map((e, i) => {
     let title, description, thumbnail;
     if (!loading) {
