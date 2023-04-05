@@ -20,7 +20,7 @@ const SearchFieldLink = (props) => {
 
   const open = Boolean(anchorEl);
   const id = open ? "simple-popover" : undefined;
-  let { name, label, xml } = props;
+  let { name, label, xml, moreInfo = false } = props;
   let record = xml.xml.xml_record.record;
   let session = deepSearch(xml, "session")[0];
   let database = deepSearch(xml, "database_name")[0];
@@ -87,15 +87,17 @@ const SearchFieldLink = (props) => {
                   />
                 </Box>
               </Popover>
-              <Tooltip title="Click to view more information about this">
-                <Typography
-                  onClick={handleClick}
-                  variant="body2"
-                  sx={{ cursor: "pointer", color: "black", px: 1 }}
-                >
-                  <HelpOutlineIcon />
-                </Typography>
-              </Tooltip>
+              {moreInfo && (
+                <Tooltip title="Click to view more information about this">
+                  <Typography
+                    onClick={handleClick}
+                    variant="body2"
+                    sx={{ cursor: "pointer", color: "black", px: 1 }}
+                  >
+                    <HelpOutlineIcon />
+                  </Typography>
+                </Tooltip>
+              )}
             </div>
           ))}
         </Grid>
