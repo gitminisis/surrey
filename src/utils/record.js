@@ -50,13 +50,17 @@ export const getSearchRequestURL = (
     return url;
 };
 
-export const getFeatureCollectionsFromIDs = (ids, fn) => {
+export const getFeatureCollectionsFromIDs = (
+    ids,
+    session = "/scripts/mwimain.dll",
+    fn
+) => {
     let exp = ids
         .map((e) => `OEF_IND ${e}`)
         .join(" or ")
         .trim();
 
-    let url = `/scripts/mwimain.dll?UNIONSEARCH&KEEP=Y&SIMPLE_EXP=Y&ERRMSG=[MESSAGES]374.htm&APPLICATION=UNION_VIEW&DATABASE=ONLINE_EXHIBITION_VIEW&language=144&REPORT=WEB_OE_SUM&EXP=${exp}`;
+    let url = `${session}?UNIONSEARCH&KEEP=Y&SIMPLE_EXP=Y&ERRMSG=[MESSAGES]374.htm&APPLICATION=UNION_VIEW&DATABASE=ONLINE_EXHIBITION_VIEW&language=144&REPORT=WEB_OE_SUM&EXP=${exp}`;
     return axios.get(url).then((res) => {
         let { data } = res;
         let dom = new DOMParser().parseFromString(data, "text/html");
@@ -65,7 +69,6 @@ export const getFeatureCollectionsFromIDs = (ids, fn) => {
             fn(xml);
         }
 
-        console.log(xml);
         return xml;
     });
 };
@@ -123,7 +126,7 @@ export const getRecendAdditions = (session = "/scripts/mwimain.dll") => {
 
                     acc.push({
                         thumbnail,
-                        title: deepSearch(e, fieldByDatabase[database].title)[0],
+                        title: "Library",
                         url: deepSearch(e, "record_link")[0],
                         urlTitle: deepSearch(e, fieldByDatabase[database].title)[0],
                         database: fieldByDatabase[database].databaseName,

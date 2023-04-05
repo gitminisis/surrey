@@ -7,7 +7,7 @@ import LocationOnRoundedIcon from "@mui/icons-material/LocationOnRounded";
 import { Grid } from "@mui/material";
 import PropTypes from "prop-types";
 import { getFeatureCollectionsFromIDs } from "../../utils/record";
-import { deepSearch } from "../../utils/functions";
+import { deepSearch, getCurrentSession } from "../../utils/functions";
 const MediaCard = (props) => {
   let { recordIds } = props;
   const [hover, setHover] = useState(false);
@@ -17,7 +17,7 @@ const MediaCard = (props) => {
   );
   useEffect(() => {
     if (recordIds.length === 0) return null;
-    getFeatureCollectionsFromIDs(recordIds).then((res) => {
+    getFeatureCollectionsFromIDs(recordIds, getCurrentSession()).then((res) => {
       let rec = deepSearch(res, "record");
       if (!Array.isArray(rec)) {
         rec = [rec];
@@ -25,16 +25,16 @@ const MediaCard = (props) => {
       setRecords(rec);
       setLoading(false);
     });
-  },[]);
+  }, []);
   return records.map((e, i) => {
     let title, description, thumbnail;
     if (!loading) {
       title = deepSearch(e, "oef_title")[0];
       description = deepSearch(e, "oef_description")[0];
       thumbnail = deepSearch(e, "oef_image_path")[0]
-        .replace(/\n/, " ")
-        .replace(/\\/gi, "/")
-        .replace("[IMAGES]", "/SAMOA_IMAGES/");
+        // .replace(/\n/, " ")
+        // .replace(/\\/gi, "/")
+        // .replace("[IMAGES]", "/SAMOA_IMAGES/");
     }
     return (
       <Grid item xs={12} sm={6} md={3} key={i}>

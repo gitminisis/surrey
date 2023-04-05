@@ -15,7 +15,7 @@ import Box from "@mui/joy/Box";
 import LocationOnRoundedIcon from "@mui/icons-material/LocationOnRounded";
 import BookmarkAdd from "@mui/icons-material/BookmarkAddOutlined";
 import { getFeatureCollectionsFromIDs } from "../../utils/record";
-import { deepSearch } from "../../utils/functions";
+import { deepSearch, getCurrentSession } from "../../utils/functions";
 import Skeleton from "@mui/material/Skeleton";
 const PhotoCoverCard = (props) => {
   const { recordIds } = props;
@@ -29,29 +29,28 @@ const PhotoCoverCard = (props) => {
     if (recordIds.length === 0) {
       return null;
     }
-    getFeatureCollectionsFromIDs(recordIds).then((res) => {
+    getFeatureCollectionsFromIDs(recordIds, getCurrentSession()).then((res) => {
       let rec = deepSearch(res, "record");
       if (!Array.isArray(rec)) {
         rec = [rec];
       }
       setRecords(rec);
       setLoading(false);
+      console.log(rec);
     });
   }, []);
 
   return records.map((e, i) => {
     let title, description, thumbnail;
+
     if (!loading) {
       title = deepSearch(e, "oef_title")[0];
       description = deepSearch(e, "oef_description")[0];
-      thumbnail = deepSearch(e, "oef_image_path")[0]
-        .replace(/\n/, " ")
-        .replace(/\\/gi, "/")
-        .replace("[IMAGES]", "/SAMOA_IMAGES/");
+      thumbnail = deepSearch(e, "oef_image_path")[0].replace(/\n/, "");
     }
 
     return (
-      <Grid item xs={12} md={6}>
+      <Grid item xs={12} md={6} key={i}>
         <Card
           style={{ cursor: "pointer", paddingBottom: "20px" }}
           elevation={3}

@@ -8,6 +8,7 @@ const DesktopFilterWrapper = (props) => {
       sx={{
         width: "100%",
         display: { xs: "none", lg: "flex" },
+        overflowY:'scroll'
       }}
       variant="persistent"
       anchor="left"

@@ -6,6 +6,7 @@ import { MasonryBox, MasonryShadow, MasonryAction } from "./ImageMasonry.style";
 import KeyboardDoubleArrowUpIcon from "@mui/icons-material/KeyboardDoubleArrowUp";
 import { getRecendAdditions } from "../../utils/record";
 import { Skeleton, Grid } from "@mui/material";
+import { getCurrentSession } from "../../utils/functions";
 const ImageMasonryItem = (props) => {
   let { thumbnail, title, url, urlTitle, database } = props.item;
   console.log(props);
@@ -48,7 +49,7 @@ const ImageMasonry = ({ data }) => {
   const [tiles, setTiles] = useState(data || []);
   const [loading, setLoading] = useState(true);
   useEffect((_) => {
-    getRecendAdditions().then((res) => {
+    getRecendAdditions(getCurrentSession()).then((res) => {
       setLoading(false);
       setTiles(res);
       console.log(res);
