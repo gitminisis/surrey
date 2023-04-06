@@ -20,7 +20,7 @@ const SUM_REPORT_BY_DATABASE = {
     DESCRIPTION: "WEB_UNION_SUM_DESC",
     PEOPLE_VAL: "WEB_PEOPLE_SUM",
 };
-const TITLE_BY_DATABASE = {
+export const TITLE_BY_DATABASE = {
     COLLECTIONS: "legal_title",
     DESCRIPTION: "title",
 }

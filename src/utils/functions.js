@@ -117,6 +117,22 @@ export const sendEmail = (session, data, body) => {
   });
 };
 
+export const sendEmailBookmark = (session, data, body) => {
+  let subject = "City of Surrey Online Heritage Search - Bookmark(s) List";
+
+  let bodyContent = `\n${data
+    .map((e) => `${e.title}: ${e.value}`)
+    .join("\n")}\n\n ${body}`;
+  let receiver = data.filter((e) => e.id === "emailAddress")[0].value;
+  let sender = "noreply@minisisinc.com";
+  let url = `${session}?save_mail_form&async=y&xml=y&subject_default=${subject}&from_default=${sender}&to_default=${receiver}`;
+  return axios({
+    method: "POST",
+    url: url,
+    data: `sender=${sender}&receiver=${receiver}&subject=${subject}&mailbody=${bodyContent}`,
+  });
+};
+
 export const sendErrorReport = (session, body) => {
   let subject = "Report a problem";
   let receiver = "mikehoang.minisis@gmail.com";

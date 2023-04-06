@@ -27,6 +27,7 @@ import SummaryRecordsView from "../SummaryLayout/SummaryRecordsView";
 import ReactToPrint from "react-to-print";
 import PrintIcon from "@mui/icons-material/Print";
 import EmailIcon from "@mui/icons-material/Email";
+import EmailBookmarkForm from "../EmailBookmarkForm";
 const BookmarkLoadingSkeleton = (props) => {
   return (
     <Item sx={{ padding: "16px" }} elevation={6}>
@@ -45,6 +46,7 @@ const SummaryBookmarkLayout = (props) => {
   const [currentDetailXml, setCurrentDetailXml] = useState(null);
   const [bookmarkLoading, setBookmarkLoading] = useState(true);
   const [loadedDetailRecord, setLoadedDetailRecord] = useState(new Map());
+  const [open, setOpen] = useState(false);
   const SummaryView = SummaryRecordsView;
   let componentRef = useRef();
   useEffect((_) => {
@@ -118,6 +120,7 @@ const SummaryBookmarkLayout = (props) => {
   };
   return (
     <div>
+      <EmailBookmarkForm open={open} xml={xml} setOpen={setOpen} />
       <SummaryContainer
         elevation={2}
         sx={{ backgroundColor: "rgb(233, 232, 232,0.4)" }}
@@ -153,7 +156,9 @@ const SummaryBookmarkLayout = (props) => {
                 color="success"
                 sx={{ mx: 1 }}
                 variant="outlined"
-                onClick={(_) => {}}
+                onClick={(_) => {
+                  setOpen(true);
+                }}
               >
                 <EmailIcon />
               </Button>
