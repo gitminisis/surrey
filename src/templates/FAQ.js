@@ -2,7 +2,7 @@ const FAQ = [{
     component: "Layout",
     data: {
         active: "FAQ",
-    },
+    },  
     children: [{
             component: "SimpleSearchBanner",
             data: {

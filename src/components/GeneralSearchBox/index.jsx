@@ -73,10 +73,17 @@ const GeneralSearchBox = (props) => {
                 variant="soft"
                 placeholder={placeholder}
                 name="KEYWORD_CL"
-                startDecorator={<SearchIcon />}
                 endDecorator={
-                  <React.Fragment>
+                  <>
+                    {" "}
                     <Divider orientation="vertical" />
+                    <Button>
+                      <SearchIcon />
+                    </Button>
+                  </>
+                }
+                startDecorator={
+                  <React.Fragment>
                     <Select
                       variant="plain"
                       value={index}
@@ -97,10 +104,7 @@ const GeneralSearchBox = (props) => {
             </form>
           </Grid>
           <Grid item xs={12} style={{ textAlign: "center", marginTop: "20px" }}>
-            <Link
-              href={helpText.link}
-              className="generalSearchBoxLink"
-            >
+            <Link href={helpText.link} className="generalSearchBoxLink">
               {helpText.description}
             </Link>
           </Grid>
