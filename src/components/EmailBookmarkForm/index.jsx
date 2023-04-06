@@ -73,7 +73,7 @@ const EmailBookmarkForm = (props) => {
             if (!Array.isArray(body)) {
               body = [body];
             }
-            body
+            body = body
               .map((record, i) => {
                 let sisn = deepSearch(record, "link_sisn")[0];
                 let database = deepSearch(record, "database_name")[0];
@@ -84,7 +84,7 @@ const EmailBookmarkForm = (props) => {
                 return text;
               })
               .join(
-                "\n\n ======================================================="
+                "\n\n =======================================================\n\n"
               );
 
             event.preventDefault();

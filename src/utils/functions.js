@@ -7,72 +7,72 @@ const VIRTUAL_DIR = SiteLayout.virtualIncludePaths;
 const APPLICATION = SiteLayout.application;
 
 export const readCookie = (name) => {
-  const cookies = document.cookie.split(";");
-  for (let i = 0; i < cookies.length; i++) {
-    const cookie = cookies[i].trim();
-    if (cookie.startsWith(name + "=")) {
-      return decodeURIComponent(cookie.substring(name.length + 1));
+    const cookies = document.cookie.split(";");
+    for (let i = 0; i < cookies.length; i++) {
+        const cookie = cookies[i].trim();
+        if (cookie.startsWith(name + "=")) {
+            return decodeURIComponent(cookie.substring(name.length + 1));
+        }
     }
-  }
-  return null;
+    return null;
 };
 
 export const getCurrentSession = () => {
-  return readCookie("HOME_SESSID");
+    return readCookie("HOME_SESSID");
 };
 
 export const deepSearch = (obj, key) => {
-  if (has(obj, key))
+    if (has(obj, key))
     // or just (key in obj)
-    return [obj[key]];
-  // elegant:
-  return flatten(
-    map(obj, function (v) {
-      return typeof v == "object" ? deepSearch(v, key) : [];
-    }),
-    true
-  );
+        return [obj[key]];
+    // elegant:
+    return flatten(
+        map(obj, function(v) {
+            return typeof v == "object" ? deepSearch(v, key) : [];
+        }),
+        true
+    );
 };
 
 export const getKeyByValue = (map, searchValue) => {
-  for (let [key, value] of map.entries()) {
-    if (isEqual(value, searchValue)) return key;
-  }
+    for (let [key, value] of map.entries()) {
+        if (isEqual(value, searchValue)) return key;
+    }
 };
 export const getXMLRecord = (dom = document) => {
-  const xmlDOM = dom.querySelector("#xml_record");
-  const x2js = new X2JS();
-  const xmlString = new XMLSerializer().serializeToString(xmlDOM);
-  const json = x2js.xml_str2json(xmlString);
-  return json;
+    const xmlDOM = dom.querySelector("#xml_record");
+    const x2js = new X2JS();
+    const xmlString = new XMLSerializer().serializeToString(xmlDOM);
+    const json = x2js.xml_str2json(xmlString);
+    return json;
 };
 
 export const getXMLFilter = (dom) => {
-  let DOM_SEARCH = dom ? dom : document;
-  let xmlDOM = DOM_SEARCH.querySelector("#filter_xml");
-  let x2js = new X2JS();
-  let json = x2js.xml_str2json(new XMLSerializer().serializeToString(xmlDOM));
+    let DOM_SEARCH = dom ? dom : document;
+    let xmlDOM = DOM_SEARCH.querySelector("#filter_xml");
+    let x2js = new X2JS();
+    let json = x2js.xml_str2json(new XMLSerializer().serializeToString(xmlDOM));
 
-  return json;
+    return json;
 };
 
 export const xmlStrToJson = (str) => {
-  let x2js = new X2JS();
-  let json = x2js.xml_str2json(str);
-  return json;
+    let x2js = new X2JS();
+    let json = x2js.xml_str2json(str);
+    return json;
 };
 export const getIndexList = (field, database, application) => {
-  let url = `/scripts/mwimain.dll/FIRST?INDEXLIST&KEYNAME=${field}&DATABASE=${database}&form=[${VIRTUAL_DIR}]includes/html/cluster.html&TITLE=Browse%20${field}&APPLICATION=${APPLICATION}&LANGUAGE=144`;
-  return axios.get(url);
+    let url = `/scripts/mwimain.dll/FIRST?INDEXLIST&KEYNAME=${field}&DATABASE=${database}&form=[${VIRTUAL_DIR}]includes/html/cluster.html&TITLE=Browse%20${field}&APPLICATION=${APPLICATION}&LANGUAGE=144`;
+    return axios.get(url);
 };
 
 export const buildExpressionFromMap = (map) => {
-  const filteredMap = omitBy(map, isEmpty);
-  const string = Object.entries(filteredMap)
-    .map(([key, value]) => `${key} "${value}"`)
-    .join(" and ");
+    const filteredMap = omitBy(map, isEmpty);
+    const string = Object.entries(filteredMap)
+        .map(([key, value]) => `${key} "${value}"`)
+        .join(" and ");
 
-  return string;
+    return string;
 };
 
 /**
@@ -82,29 +82,29 @@ export const buildExpressionFromMap = (map) => {
  * @returns
  */
 export const getTodayDate = (_) => {
-  return new Date().toJSON().slice(0, 10);
+    return new Date().toJSON().slice(0, 10);
 };
 
 export const getTomorrowDate = (_) => {
-  let tomorrow = new Date();
-  tomorrow.setDate(new Date().getDate() + 1);
-  return tomorrow.toJSON().slice(0, 10);
+    let tomorrow = new Date();
+    tomorrow.setDate(new Date().getDate() + 1);
+    return tomorrow.toJSON().slice(0, 10);
 };
 
 export const getDaysBeforeDate = (number = 30) => {
-  let today = new Date();
-  let priorDate = new Date(new Date().setDate(today.getDate() - number));
-  return priorDate.toJSON().slice(0, 10);
+    let today = new Date();
+    let priorDate = new Date(new Date().setDate(today.getDate() - number));
+    return priorDate.toJSON().slice(0, 10);
 };
 
 export const printPage = (_) => {
-  window.print();
+    window.print();
 };
 
 export const sendEmail = (session, data, body) => {
-  let subject = data.filter((e) => e.id === "subject")[0].value;
+        let subject = data.filter((e) => e.id === "subject")[0].value;
 
-  let bodyContent = `\n${data
+        let bodyContent = `\n${data
     .map((e) => `${e.title}: ${e.value}`)
     .join("\n")}\n\n ${body}`;
   let receiver = "jesse@minisisinc.com";
@@ -122,7 +122,7 @@ export const sendEmailBookmark = (session, data, body) => {
 
   let bodyContent = `\n${data
     .map((e) => `${e.title}: ${e.value}`)
-    .join("\n")}\n\n ${body}`;
+    .join("\n")}\n\n${body}`;
   let receiver = data.filter((e) => e.id === "emailAddress")[0].value;
   let sender = "noreply@minisisinc.com";
   let url = `${session}?save_mail_form&async=y&xml=y&subject_default=${subject}&from_default=${sender}&to_default=${receiver}`;
