@@ -20,7 +20,8 @@ import GeneralSection from "../DetailLayout/GeneralSection";
 import BookmarkDetailAction from "./BookmarkDetailAction";
 import ImageCarousel from "../ImageCarousel";
 import { useSnackbar } from "notistack";
-
+import SummaryMasonryView from "../SummaryLayout/SummaryMasonryView";
+import SummaryRecordsView from "../SummaryLayout/SummaryRecordsView";
 const BookmarkLoadingSkeleton = (props) => {
   return (
     <Item sx={{ padding: "16px" }} elevation={6}>
@@ -32,12 +33,14 @@ const BookmarkLoadingSkeleton = (props) => {
 };
 const SummaryBookmarkLayout = (props) => {
   const { enqueueSnackbar } = useSnackbar();
-  const { generalSearchBox, generalSection } = props;
+  const { generalSearchBox, generalSection, displayField, thumbnailData } =
+    props;
   const [showSidebar, setShowSidebar] = useState(true);
   const [xml, setXml] = useState(getXMLRecord());
   const [currentDetailXml, setCurrentDetailXml] = useState(null);
   const [bookmarkLoading, setBookmarkLoading] = useState(true);
   const [loadedDetailRecord, setLoadedDetailRecord] = useState(new Map());
+  const SummaryView = SummaryRecordsView;
   useEffect((_) => {
     fetchRecord(0).then((res) => {
       updateLoadedDetailRecord(0, res);
@@ -107,6 +110,7 @@ const SummaryBookmarkLayout = (props) => {
       location.reload();
     });
   };
+  debugger;
   return (
     <div>
       <SummaryContainer
@@ -150,7 +154,14 @@ const SummaryBookmarkLayout = (props) => {
               />
             )}
           </Grid>
-
+          <Grid container item xs={12} sx={{ display: "none" }}>
+            <SummaryView
+              thumbnailData={thumbnailData}
+              data={displayField}
+              xml={xml}
+              updateXML={setXml}
+            />
+          </Grid>
           <Grid item xs={12}>
             <Container maxWidth={"true"}>
               <ImageCarousel
