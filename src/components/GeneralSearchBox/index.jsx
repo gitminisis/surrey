@@ -71,13 +71,14 @@ const GeneralSearchBox = (props) => {
             >
               <Input
                 variant="soft"
+                sx={{ px: 0 }}
                 placeholder={placeholder}
                 name="KEYWORD_CL"
                 endDecorator={
                   <>
                     {" "}
                     <Divider orientation="vertical" />
-                    <Button>
+                    <Button disableRipple type="submit">
                       <SearchIcon />
                     </Button>
                   </>
