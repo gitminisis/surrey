@@ -16,8 +16,8 @@ import RecordTextField from "../RecordTextField";
 const SummaryRecordsView = (props) => {
   const { data, thumbnailData, xml, updateXML } = props;
   let XMLRecord = deepSearch(xml, "xml_record")[0];
-  if(!Array.isArray(XMLRecord)){
-    XMLRecord=[XMLRecord]
+  if (!Array.isArray(XMLRecord)) {
+    XMLRecord = [XMLRecord];
   }
   return (
     <>
@@ -54,6 +54,7 @@ const SummaryRecordsView = (props) => {
                         width: "25vw",
                         maxWidth: "200px",
                         cursor: "pointer",
+                        height: "100%",
                       }}
                       image={thumbPic}
                       alt={firstCaption}
