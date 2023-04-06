@@ -14,7 +14,10 @@ import AspectRatio from "@mui/joy/AspectRatio";
 import Box from "@mui/joy/Box";
 import LocationOnRoundedIcon from "@mui/icons-material/LocationOnRounded";
 import BookmarkAdd from "@mui/icons-material/BookmarkAddOutlined";
-import { getFeatureCollectionsFromIDs } from "../../utils/record";
+import {
+  getFeatureCollectionsFromIDs,
+  getSearchRequestURL,
+} from "../../utils/record";
 import { deepSearch, getCurrentSession } from "../../utils/functions";
 import Skeleton from "@mui/material/Skeleton";
 const PhotoCoverCard = (props) => {
@@ -52,6 +55,15 @@ const PhotoCoverCard = (props) => {
     return (
       <Grid item xs={12} md={6} key={i}>
         <Card
+          onClick={(_) =>
+            (window.location = getSearchRequestURL(
+              "ONLINE_EXHIBITION_VIEW",
+              `OEF_IND ${recordIds[i]}`,
+              "WEB_OE_UNION_SUM",
+              "UNION_VIEW",
+              getCurrentSession()
+            ))
+          }
           style={{ cursor: "pointer", paddingBottom: "20px" }}
           elevation={3}
         >
