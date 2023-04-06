@@ -84,7 +84,7 @@ const ImageCarousel = (props) => {
   return (
     <Carousel loop={loop} autoplay={autoplay}>
       {data.map((item, i) => (
-        <SwiperSlide key={item.thumbnail + i}>
+        <SwiperSlide key={ i}>
           <CarouselBox
             onClick={(_) => {
               if (handleClick === undefined) {

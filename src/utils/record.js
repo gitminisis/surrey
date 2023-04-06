@@ -20,7 +20,10 @@ const SUM_REPORT_BY_DATABASE = {
     DESCRIPTION: "WEB_UNION_SUM_DESC",
     PEOPLE_VAL: "WEB_PEOPLE_SUM",
 };
-
+const TITLE_BY_DATABASE = {
+    COLLECTIONS: "legal_title",
+    DESCRIPTION: "title",
+}
 export const FILTER_TITLE_BY_FIELD = {
     $UNION_DBNAME: "Collections",
     MEDIA_CL: "Media Type",
@@ -163,6 +166,10 @@ export const getURLFromJSONLink = (xml, link) => {
 export const getFirstThumbnail = (record, database) => {
     return getAllMedia(record, database)[0];
 };
+
+export const getRecordTitle = (record, database) => {
+    return deepSearch(record, TITLE_BY_DATABASE[database])[0];
+}
 
 export const getAllMedia = (record, database, mediaType = "image") => {
     let field = MEDIA_THUMBNAIL_FIELD.find((e) => e.database === database)[

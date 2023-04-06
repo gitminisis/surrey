@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 import PropTypes from "prop-types";
 import { Grid, Drawer, Skeleton, Container } from "@mui/material";
 import {
@@ -8,12 +8,14 @@ import {
   Item,
 } from "./SummaryBookmarkLayout.style";
 import GeneralSearchBox from "../GeneralSearchBox";
+import { Button } from "@mui/joy";
 import SummaryBookmarkSubHeader from "./SummaryBookmarkSubHeader";
 import { deepSearch, getKeyByValue, getXMLRecord } from "../../utils/functions";
 import {
   fetchJSONRecord,
   getFirstThumbnail,
   removeBookmarkFromKey,
+  getRecordTitle,
   removeBookmarkFromSISN,
 } from "../../utils/record";
 import GeneralSection from "../DetailLayout/GeneralSection";
@@ -22,6 +24,9 @@ import ImageCarousel from "../ImageCarousel";
 import { useSnackbar } from "notistack";
 import SummaryMasonryView from "../SummaryLayout/SummaryMasonryView";
 import SummaryRecordsView from "../SummaryLayout/SummaryRecordsView";
+import ReactToPrint from "react-to-print";
+import PrintIcon from "@mui/icons-material/Print";
+import EmailIcon from "@mui/icons-material/Email";
 const BookmarkLoadingSkeleton = (props) => {
   return (
     <Item sx={{ padding: "16px" }} elevation={6}>
@@ -41,6 +46,7 @@ const SummaryBookmarkLayout = (props) => {
   const [bookmarkLoading, setBookmarkLoading] = useState(true);
   const [loadedDetailRecord, setLoadedDetailRecord] = useState(new Map());
   const SummaryView = SummaryRecordsView;
+  let componentRef = useRef();
   useEffect((_) => {
     fetchRecord(0).then((res) => {
       updateLoadedDetailRecord(0, res);
@@ -56,7 +62,7 @@ const SummaryBookmarkLayout = (props) => {
       let thumbnail = getFirstThumbnail(record, database);
       return {
         thumbnail,
-        title: record.title,
+        title: getRecordTitle(record, database),
       };
     });
     return res;
@@ -110,7 +116,6 @@ const SummaryBookmarkLayout = (props) => {
       location.reload();
     });
   };
-  debugger;
   return (
     <div>
       <SummaryContainer
@@ -134,7 +139,25 @@ const SummaryBookmarkLayout = (props) => {
               xml={xml}
               // toggleMobileFilter={toggleMobileFilter}
               // toggleSidebar={toggleSidebar}
-            />
+            >
+              <ReactToPrint
+                trigger={() => (
+                  <Button color="success" sx={{ mx: 1 }} variant="outlined">
+                    <PrintIcon /> Print all
+                  </Button>
+                )}
+                content={() => componentRef}
+              />
+
+              <Button
+                color="success"
+                sx={{ mx: 1 }}
+                variant="outlined"
+                onClick={(_) => {}}
+              >
+                <EmailIcon />
+              </Button>
+            </SummaryBookmarkSubHeader>
           </Grid>
 
           <Grid item xs={12}>
@@ -154,14 +177,17 @@ const SummaryBookmarkLayout = (props) => {
               />
             )}
           </Grid>
-          <Grid container item xs={12} sx={{ display: "none" }}>
-            <SummaryView
-              thumbnailData={thumbnailData}
-              data={displayField}
-              xml={xml}
-              updateXML={setXml}
-            />
-          </Grid>
+          <div style={{ display: "none" }}>
+            {" "}
+            <Grid container item xs={12} ref={(el) => (componentRef = el)}>
+              <SummaryView
+                thumbnailData={thumbnailData}
+                data={displayField}
+                xml={xml}
+                updateXML={setXml}
+              />
+            </Grid>
+          </div>
           <Grid item xs={12}>
             <Container maxWidth={"true"}>
               <ImageCarousel

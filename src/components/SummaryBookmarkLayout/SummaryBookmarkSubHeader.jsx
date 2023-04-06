@@ -2,7 +2,6 @@ import * as React from "react";
 import Box from "@mui/joy/Box";
 import { Item } from "./SummaryBookmarkLayout.style";
 import { Typography, Tooltip } from "@mui/material";
-import Select from "@mui/joy/Select";
 import Option from "@mui/joy/Option";
 import ViewListIcon from "@mui/icons-material/ViewList";
 import Button from "@mui/joy/Button";
@@ -14,8 +13,10 @@ import PropTypes from "prop-types";
 import { deepSearch, getXMLRecord } from "../../utils/functions";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { removeAllBookmarkRecord } from "../../utils/record";
+import PrintIcon from "@mui/icons-material/Print";
+import EmailIcon from "@mui/icons-material/Email";
 export default function SummaryBookmarkSubHeader(props) {
-  let { xml } = props;
+  let { xml , children} = props;
   const handleChange = (event, nextView) => {
     setView(nextView);
   };
@@ -42,7 +43,8 @@ export default function SummaryBookmarkSubHeader(props) {
           <Box
             sx={{
               display: "flex",
-              flexDirection: "column",
+              flexDirection: "row",
+
               alignItems: "center",
               "& > *": {
                 m: 1,
@@ -50,9 +52,9 @@ export default function SummaryBookmarkSubHeader(props) {
             }}
           >
             <Button
+              sx={{ mx: 1 }}
               variant="soft"
               color="danger"
-              size="lg"
               onClick={(_) => {
                 removeAllBookmarkRecord();
                 location.reload();
@@ -60,6 +62,8 @@ export default function SummaryBookmarkSubHeader(props) {
             >
               <DeleteIcon /> Clear All Bookmarks
             </Button>
+            {children}
+          
           </Box>
         </Box>
       </Box>
