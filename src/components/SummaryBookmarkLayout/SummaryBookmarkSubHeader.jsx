@@ -14,6 +14,8 @@ import PropTypes from "prop-types";
 import { deepSearch, getXMLRecord } from "../../utils/functions";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { removeAllBookmarkRecord } from "../../utils/record";
+import PrintIcon from "@mui/icons-material/Print";
+import EmailIcon from "@mui/icons-material/Email";
 export default function SummaryBookmarkSubHeader(props) {
   let { xml } = props;
   const handleChange = (event, nextView) => {
@@ -42,7 +44,8 @@ export default function SummaryBookmarkSubHeader(props) {
           <Box
             sx={{
               display: "flex",
-              flexDirection: "column",
+              flexDirection: "row",
+
               alignItems: "center",
               "& > *": {
                 m: 1,
@@ -50,15 +53,37 @@ export default function SummaryBookmarkSubHeader(props) {
             }}
           >
             <Button
+              sx={{ mx: 1 }}
               variant="soft"
               color="danger"
-              size="lg"
               onClick={(_) => {
                 removeAllBookmarkRecord();
                 location.reload();
               }}
             >
               <DeleteIcon /> Clear All Bookmarks
+            </Button>{" "}
+            <Button
+              color="success"
+              sx={{ mx: 1 }}
+              variant="outlined"
+              onClick={(_) => {
+                // removeAllBookmarkRecord();
+                // location.reload();
+              }}
+            >
+              <PrintIcon /> Print all
+            </Button>
+            <Button
+              color="success"
+              sx={{ mx: 1 }}
+              variant="outlined"
+              onClick={(_) => {
+                removeAllBookmarkRecord();
+                location.reload();
+              }}
+            >
+              <EmailIcon /> 
             </Button>
           </Box>
         </Box>

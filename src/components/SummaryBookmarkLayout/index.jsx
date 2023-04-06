@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 import PropTypes from "prop-types";
 import { Grid, Drawer, Skeleton, Container } from "@mui/material";
 import {
@@ -20,7 +20,7 @@ import GeneralSection from "../DetailLayout/GeneralSection";
 import BookmarkDetailAction from "./BookmarkDetailAction";
 import ImageCarousel from "../ImageCarousel";
 import { useSnackbar } from "notistack";
-
+import ReactToPrint from "react-to-print";
 const BookmarkLoadingSkeleton = (props) => {
   return (
     <Item sx={{ padding: "16px" }} elevation={6}>
@@ -38,6 +38,7 @@ const SummaryBookmarkLayout = (props) => {
   const [currentDetailXml, setCurrentDetailXml] = useState(null);
   const [bookmarkLoading, setBookmarkLoading] = useState(true);
   const [loadedDetailRecord, setLoadedDetailRecord] = useState(new Map());
+  let componentRef = useRef();
   useEffect((_) => {
     fetchRecord(0).then((res) => {
       updateLoadedDetailRecord(0, res);
@@ -132,8 +133,11 @@ const SummaryBookmarkLayout = (props) => {
               // toggleSidebar={toggleSidebar}
             />
           </Grid>
-
-          <Grid item xs={12}>
+          <ReactToPrint
+            trigger={() => <button>Print this out!</button>}
+            content={() => componentRef}
+          />
+          <Grid item xs={12} ref={(el) => (componentRef = el)}>
             {bookmarkLoading ? <BookmarkLoadingSkeleton /> : null}
             {currentDetailXml && !bookmarkLoading && (
               <GeneralSection
