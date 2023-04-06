@@ -6,7 +6,10 @@ import Typography from "@mui/joy/Typography";
 import LocationOnRoundedIcon from "@mui/icons-material/LocationOnRounded";
 import { Grid } from "@mui/material";
 import PropTypes from "prop-types";
-import { getFeatureCollectionsFromIDs } from "../../utils/record";
+import {
+  getSearchRequestURL,
+  getFeatureCollectionsFromIDs,
+} from "../../utils/record";
 import { deepSearch, getCurrentSession } from "../../utils/functions";
 const MediaCard = (props) => {
   let { recordIds } = props;
@@ -31,10 +34,10 @@ const MediaCard = (props) => {
     if (!loading) {
       title = deepSearch(e, "oef_title")[0];
       description = deepSearch(e, "oef_description")[0];
-      thumbnail = deepSearch(e, "oef_image_path")[0]
-        // .replace(/\n/, " ")
-        // .replace(/\\/gi, "/")
-        // .replace("[IMAGES]", "/SAMOA_IMAGES/");
+      thumbnail = deepSearch(e, "oef_image_path")[0];
+      // .replace(/\n/, " ")
+      // .replace(/\\/gi, "/")
+      // .replace("[IMAGES]", "/SAMOA_IMAGES/");
     }
     return (
       <Grid item xs={12} sm={6} md={3} key={i}>
@@ -42,6 +45,15 @@ const MediaCard = (props) => {
           sx={{ cursor: "pointer", height: 280, width: 280 }}
           onMouseEnter={(_) => setHover(true)}
           onMouseLeave={(_) => setHover(false)}
+          onClick={(_) =>
+            (window.location = getSearchRequestURL(
+              "ONLINE_EXHIBITION_VIEW",
+              `OEF_IND ${recordIds[i]}`,
+              "WEB_OE_UNION_SUM",
+              "UNION_VIEW",
+              getCurrentSession()
+            ))
+          }
         >
           <CardCover>
             <img
