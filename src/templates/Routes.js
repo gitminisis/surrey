@@ -8,9 +8,10 @@ import SummaryArchives from "./SummaryArchives";
 import SummaryArtifact from "./SummaryArtifact";
 import Detail from "./Detail";
 import SummaryBookmark from "./SummaryBookmark";
-import NoSession from './NoSession';
-import NoRecord from './NoRecord';
+import NoSession from "./NoSession";
+import NoRecord from "./NoRecord";
 import NoBookmark from "./NoBookmark";
+import SummaryOnlineExhibition from "./SummaryOnlineExhibition";
 // const GenericPage = lazy(() =>
 //     import ("../pages/GenericPage"));
 
@@ -30,6 +31,10 @@ const Routes = [
     { path: "artifact", template: ArtifactSearchTemplate },
     { path: "FAQ", template: FAQ },
     { path: "summary", template: Summary },
+    {
+        path: "summary-onlineExhibitions",
+        template: SummaryOnlineExhibition,
+    },
     { path: "summary-artifact", template: SummaryArtifact },
     { path: "summary-archives", template: SummaryArchives },
     { path: "summary-bookmark", template: SummaryBookmark },

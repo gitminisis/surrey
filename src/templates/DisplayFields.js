@@ -234,6 +234,13 @@ export const MEDIA_THUMBNAIL_FIELD = [{
         text: "m_tx_access_link",
     },
     {
+        database: "ONLINE_EXHIBITION_VIEW",
+        image: "m_im_access_link",
+        audio: "m_ad_access_link",
+        video: "m_vd_access_link",
+        text: "m_tx_access_link",
+    },
+    {
         database: "DESCRIPTION",
         image: "a_im_access_link",
         audio: "a_ad_access_link",

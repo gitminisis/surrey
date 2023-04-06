@@ -26,6 +26,7 @@ import {
   SummaryBookmarkLayout,
   GeneralSearchBox,
   ShowMoreText,
+  SummaryOnlineExhibitionLayout,
 } from "./index";
 
 const KeysToComponentMap = {
@@ -55,6 +56,7 @@ const KeysToComponentMap = {
   SummaryBookmarkLayout,
   GeneralSearchBox,
   ShowMoreText,
+  SummaryOnlineExhibitionLayout,
 };
 
 function Component(block) {
