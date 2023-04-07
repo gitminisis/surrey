@@ -48,7 +48,7 @@ const Home = [{
                         {
                             thumbnail: "/assets/images/Artifacts.png",
                             title: "Artifacts",
-                            link: '/scripts/mwimain.dll?UNIONSEARCH&KEEP=Y&SIMPLE_EXP=Y&ERRMSG=[MESSAGES]374.htm&APPLICATION=UNION_VIEW_COL&DATABASE=COLLECTIONS&language=144&REPORT=WEB_UNION_SUM&EXP=(M_IM_OPAC Yes)',
+                            link: '/scripts/mwimain.dll?UNIONSEARCH&KEEP=Y&SIMPLE_EXP=Y&ERRMSG=[MESSAGES]374.htm&APPLICATION=UNION_VIEW&DATABASE=COLLECTIONS&language=144&REPORT=WEB_UNION_SUM_COL&EXP=(M_IM_OPAC Yes)',
                         },
                         {
                             thumbnail: "/assets/images/Textual Records.png",
