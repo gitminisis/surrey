@@ -17,6 +17,7 @@ import { deepSearch, getXMLRecord } from "../../utils/functions";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import MobileFilterWrapper from "../SummaryLayout/MobileFilterWrapper";
 import DesktopFilterWrapper from "../SummaryLayout/DesktopFilterWrapper";
+import Section from "../Section";
 const scrollHeight = 330;
 
 const SummaryOnlineExhibitionLayout = (props) => {
@@ -56,7 +57,7 @@ const SummaryOnlineExhibitionLayout = (props) => {
   const toggleMobileFilter = () => {
     setShowMobileFilter(!showMobileFilter);
   };
-
+  console.log(xml);
   return (
     <div>
       <SummaryContainer
@@ -75,6 +76,14 @@ const SummaryOnlineExhibitionLayout = (props) => {
               marginLeft: { md: 0, lg: showFilter ? `${drawerWidth}px` : 0 },
             }}
           >
+            <Item elevation={6} sx={{ my: 2 }}>
+              {" "}
+              <Section
+                divider={false}
+                heading={deepSearch(xml, "oef_title")[0]}
+                description={deepSearch(xml, "oef_description")[0]}
+              />
+            </Item>
             <Grid item xs={12}>
               <GeneralSearchBox {...generalSearchBox} xml={xml} />
             </Grid>
@@ -94,6 +103,7 @@ const SummaryOnlineExhibitionLayout = (props) => {
                 />
               </FilterWrapper>
             )}
+
             <Grid container rowSpacing={2} style={{ marginTop: "1rem" }}>
               <Grid item xs={12}>
                 <SummarySubHeader

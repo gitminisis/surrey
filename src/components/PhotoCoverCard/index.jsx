@@ -44,12 +44,13 @@ const PhotoCoverCard = (props) => {
   }, []);
 
   return records.map((e, i) => {
-    let title, description, thumbnail;
+    let title, description, thumbnail, id;
 
     if (!loading) {
       title = deepSearch(e, "oef_title")[0];
       description = deepSearch(e, "oef_description")[0];
       thumbnail = deepSearch(e, "oef_image_path")[0].replace(/\n/, "");
+      id =  deepSearch(e, "oef_ind")[0];
     }
 
     return (
@@ -58,7 +59,7 @@ const PhotoCoverCard = (props) => {
           onClick={(_) =>
             (window.location = getSearchRequestURL(
               "ONLINE_EXHIBITION_VIEW",
-              `OEF_IND ${recordIds[i]}`,
+              `OEF_IND ${id}`,
               "WEB_OE_UNION_SUM",
               "UNION_VIEW",
               getCurrentSession()
@@ -77,7 +78,7 @@ const PhotoCoverCard = (props) => {
               />
             </div>
           ) : (
-            <CardMedia sx={{ height: 400 }} image={thumbnail} title={title} />
+            <CardMedia sx={{ height: 400, backgroundSize:'contain' }} image={thumbnail} title={title} />
           )}
 
           <CardContent>
