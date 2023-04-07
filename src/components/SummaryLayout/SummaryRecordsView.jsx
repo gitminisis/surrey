@@ -19,11 +19,16 @@ const SummaryRecordsView = (props) => {
   if (!Array.isArray(XMLRecord)) {
     XMLRecord = [XMLRecord];
   }
+  console.log(XMLRecord)
   return (
     <>
       {XMLRecord.map((record, i) => {
         let database = record.database_name;
+        if(!record.record_link){
+          console.log(record, i)
+        }
         let recordLink = record.record_link.replace(/\n/g, "");
+      
         let recordData = record.record;
         let displayFields = data.find((e) => e.database === database).fields;
         let thumbPic = getFirstThumbnail(record, database);
