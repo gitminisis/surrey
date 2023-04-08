@@ -9,7 +9,6 @@ import { Skeleton, Grid } from "@mui/material";
 import { getCurrentSession } from "../../utils/functions";
 const ImageMasonryItem = (props) => {
   let { thumbnail, title, url, urlTitle, database } = props.item;
-  console.log(props);
   return (
     <MasonryBox>
       <MasonryShadow onClick={(_) => (window.location = url ? url : "/")}>
@@ -52,7 +51,6 @@ const ImageMasonry = ({ data }) => {
     getRecendAdditions(getCurrentSession()).then((res) => {
       setLoading(false);
       setTiles(res);
-      console.log(res);
     });
   }, []);
 
