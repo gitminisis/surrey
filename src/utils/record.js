@@ -128,11 +128,13 @@ export const getRecendAdditions = (session = "/scripts/mwimain.dll") => {
                     // thumbnail = thumbnail.replace(WEB_DNS, "surrey.minisisinc.com");
 
                     acc.push({
+                        sisn: deepSearch(e, 'sisn')[0],
                         thumbnail,
                         title: "Library",
                         url: deepSearch(e, "record_link")[0],
                         urlTitle: deepSearch(e, fieldByDatabase[database].title)[0],
-                        database: fieldByDatabase[database].databaseName,
+                        database,
+                        databaseName: fieldByDatabase[database].databaseName,
                     });
                 });
                 return acc;
@@ -375,5 +377,3 @@ export const getPageUrlFromPagination = (pagination, index) => {
 export const getCurrentPageFromPagination = (pagination) => {
     return Number.parseInt(pagination.filter((e) => e.b !== undefined)[0].b);
 };
-
-export const getSearchURLFromExp = (field, value, database) => {};
