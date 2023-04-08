@@ -4,20 +4,32 @@ import Masonry from "@mui/lab/Masonry";
 import Box from "@mui/material/Box";
 import { MasonryBox, MasonryShadow, MasonryAction } from "./ImageMasonry.style";
 import KeyboardDoubleArrowUpIcon from "@mui/icons-material/KeyboardDoubleArrowUp";
-import { getRecendAdditions } from "../../utils/record";
+import { getRecendAdditions, getSearchRequestURL } from "../../utils/record";
 import { Skeleton, Grid } from "@mui/material";
 import { getCurrentSession } from "../../utils/functions";
+
 const ImageMasonryItem = (props) => {
-  let { thumbnail, title, url, urlTitle, database } = props.item;
+  let { thumbnail, title, url, urlTitle, database, databaseName, sisn } =
+    props.item;
   return (
     <MasonryBox>
-      <MasonryShadow onClick={(_) => (window.location = url ? url : "/")}>
+      <MasonryShadow
+        onClick={(_) => {
+          window.location = getSearchRequestURL(
+            database,
+            `SISN ${sisn}`,
+            "WEB_UNION_DETAIL",
+            "UNION_VIEW",
+            getCurrentSession()
+          );
+        }}
+      >
         <MasonryAction className="bounce">
           <div>
             <KeyboardDoubleArrowUpIcon />
           </div>
           <div> {urlTitle}</div>
-          <div>{database}</div>
+          <div>{databaseName}</div>
         </MasonryAction>
       </MasonryShadow>
       <img
