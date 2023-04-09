@@ -44,7 +44,13 @@ const GeneralSearchBox = (props) => {
               <Link
                 key={`breadcrumb-link-${i}`}
                 variant="h6"
-                underline={i === breadcrumbs.length - 1 ? "none" : "hover"}
+                underline={
+                  i === breadcrumbs.length - 1
+                    ? "none"
+                    : toSummary
+                    ? "hover"
+                    : "none"
+                }
                 color={
                   i === breadcrumbs.length - 1 ? "text.primary" : "inherit"
                 }
