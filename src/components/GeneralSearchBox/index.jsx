@@ -39,27 +39,32 @@ const GeneralSearchBox = (props) => {
           <Link underline="hover" color="inherit" variant="h6" href="/">
             Home
           </Link>
-          {toSummary &&
-            breadcrumbs.map((e, i) => (
-              <Link
-                key={`breadcrumb-link-${i}`}
-                variant="h6"
-                underline={
-                  i === breadcrumbs.length - 1
-                    ? "none"
-                    : toSummary
-                    ? "hover"
-                    : "none"
-                }
-                color={
-                  i === breadcrumbs.length - 1 ? "text.primary" : "inherit"
-                }
-                href={i === 0 && breadcrumbs.length > 1 ? toSummary : "#"}
-                aria-current={`${e} page`}
-              >
-                {e}
-              </Link>
-            ))}
+          {
+            breadcrumbs.map((e, i) => 
+            {
+              if(!toSummary && e === 'Summary'){
+return null
+              }
+           return   <Link
+              key={`breadcrumb-link-${i}`}
+              variant="h6"
+              underline={
+                i === breadcrumbs.length - 1
+                  ? "none"
+                  : toSummary
+                  ? "hover"
+                  : "none"
+              }
+              color={
+                i === breadcrumbs.length - 1 ? "text.primary" : "inherit"
+              }
+              href={i === 0 && breadcrumbs.length > 1 ? toSummary : "#"}
+              aria-current={`${e} page`}
+            >
+              {e}
+            </Link>
+            }
+            )}
         </Breadcrumbs>
 
         <Grid
