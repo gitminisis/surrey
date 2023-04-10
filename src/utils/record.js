@@ -23,7 +23,7 @@ const SUM_REPORT_BY_DATABASE = {
 export const TITLE_BY_DATABASE = {
     COLLECTIONS: "legal_title",
     DESCRIPTION: "title",
-}
+};
 export const FILTER_TITLE_BY_FIELD = {
     $UNION_DBNAME: "Collections",
     MEDIA_CL: "Media Type",
@@ -62,7 +62,9 @@ export const getFeatureCollectionsFromIDs = (
         .map((e) => `OEF_IND ${e}`)
         .join(" or ")
         .trim();
-
+    if (!session) {
+        session = "/scripts/mwimain.dll";
+    }
     let url = `${session}?UNIONSEARCH&KEEP=Y&SIMPLE_EXP=Y&ERRMSG=[MESSAGES]374.htm&APPLICATION=UNION_VIEW&DATABASE=ONLINE_EXHIBITION_VIEW&language=144&REPORT=WEB_OE_SUM&EXP=${exp}`;
     return axios.get(url).then((res) => {
         let { data } = res;
@@ -128,7 +130,7 @@ export const getRecendAdditions = (session = "/scripts/mwimain.dll") => {
                     // thumbnail = thumbnail.replace(WEB_DNS, "surrey.minisisinc.com");
 
                     acc.push({
-                        sisn: deepSearch(e, 'sisn')[0],
+                        sisn: deepSearch(e, "sisn")[0],
                         thumbnail,
                         title: "Library",
                         url: deepSearch(e, "record_link")[0],
@@ -171,7 +173,7 @@ export const getFirstThumbnail = (record, database) => {
 
 export const getRecordTitle = (record, database) => {
     return deepSearch(record, TITLE_BY_DATABASE[database])[0];
-}
+};
 
 export const getAllMedia = (record, database, mediaType = "image") => {
     let field = MEDIA_THUMBNAIL_FIELD.find((e) => e.database === database)[
@@ -287,7 +289,6 @@ export const getRecordPermalink = (
     let url = `${WEB_DNS}/scripts/mwimain.dll/144/${database}/${report}/SISN%20${sisn}?sessionsearch`;
     return url;
 };
-
 
 export const copyToClipboard = (
     sisn,

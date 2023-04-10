@@ -40,7 +40,10 @@ const Map = () => {
                   <Link
                     href={getSearchRequestURL(
                       "DESCRIPTION",
-                      `INDEXGEO ${el.properties.name}`
+                      `INDEXGEO ${el.properties.name}`,
+                      "WEB_UNION_SUM_DESC",
+                      "UNION_VIEW",
+                      getCurrentSession()
                     )}
                   >
                     Explore area

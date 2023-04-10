@@ -18,6 +18,7 @@ import {
   CarouselText,
   CarouselPagination,
 } from "./ImageCarousel.style";
+import { getCurrentSession } from "../../utils/functions";
 
 const breakpoints = {
   600: {
@@ -37,7 +38,6 @@ const Carousel = (props) => {
 
   return (
     <Swiper
-    
       autoplay={autoplay}
       freeMode={true}
       loop={loop}
@@ -81,14 +81,17 @@ const ImageCarousel = (props) => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
   let { data, loop, handleClick, autoplay } = props;
+  let curSession = getCurrentSession()
+    ? getCurrentSession()
+    : "/script/mwimain.dll";
   return (
     <Carousel loop={loop} autoplay={autoplay}>
       {data.map((item, i) => (
-        <SwiperSlide key={ i}>
+        <SwiperSlide key={i}>
           <CarouselBox
             onClick={(_) => {
               if (handleClick === undefined) {
-                window.location = item.link ? item.link : "#";
+                window.location = item.link ? curSession + item.link : "#";
               }
 
               handleClick(i);

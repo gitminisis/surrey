@@ -112,6 +112,7 @@ const SummaryOnlineExhibitionLayout = (props) => {
                   toggleGrid={toggleGrid}
                   isGrid={grid}
                   xml={xml}
+                  statementField="oef_title"
                 />
               </Grid>
               <Grid container item xs={12}>
