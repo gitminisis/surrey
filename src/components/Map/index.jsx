@@ -13,6 +13,7 @@ import L from "leaflet";
 import { getMap } from "../../utils/map";
 import { Link, Typography } from "@mui/material";
 import { getSearchRequestURL } from "../../utils/record";
+import { getCurrentSession } from "../../utils/functions";
 const position = [49.110918, -122.778992];
 
 const Map = () => {
