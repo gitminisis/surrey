@@ -10,7 +10,7 @@ import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import PropTypes from "prop-types";
 import { deepSearch, getXMLRecord } from "../../utils/functions";
 export default function SummarySubHeader(props) {
-  let { xml, statementField } = props;
+  let { xml, statementField, isFilter = true } = props;
   const handleChange = (event, nextView) => {
     setView(nextView);
   };
@@ -64,18 +64,20 @@ export default function SummarySubHeader(props) {
                   <ViewListIcon />
                 </Tooltip>
               </ToggleButton>
-              <ToggleButton
-                value="filter toggle"
-                onClick={(_) => {
-                  props.toggleFilter();
-                  props.toggleMobileFilter();
-                }}
-                aria-label="filter toggle"
-              >
-                <Tooltip title="Toggle filter">
-                  <TuneIcon />
-                </Tooltip>
-              </ToggleButton>
+              {isFilter && (
+                <ToggleButton
+                  value="filter toggle"
+                  onClick={(_) => {
+                    props.toggleFilter();
+                    props.toggleMobileFilter();
+                  }}
+                  aria-label="filter toggle"
+                >
+                  <Tooltip title="Toggle filter">
+                    <TuneIcon />
+                  </Tooltip>
+                </ToggleButton>
+              )}
             </ToggleButtonGroup>
           </Box>
         </Box>

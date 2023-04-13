@@ -118,8 +118,8 @@ const SummaryFilter = (props) => {
         overflowY: "scroll",
         overflowX: "hidden",
         px: "10px",
-        py: 2,
-
+        paddingTop: '16px',
+paddingBottom:'150px',
         textAlign: "center",
       }}
     >
