@@ -47,7 +47,7 @@ export const getSearchRequestURL = (
     application = "UNION_VIEW",
     session = "/scripts/mwimain.dll"
 ) => {
-    let url = `${session}?UNIONSEARCH&SIMPLE_EXP=Y&ERRMSG=[MESSAGES]374.htm&APPLICATION=${application}&DATABASE=${database}&language=144&REPORT=${
+    let url = `${session}?UNIONSEARCH&SIMPLE_EXP=Y&KEEP=Y&ERRMSG=[MESSAGES]374.htm&APPLICATION=${application}&DATABASE=${database}&language=144&REPORT=${
     report || SUM_REPORT_BY_DATABASE[database]
   }&EXP=${expression}`;
     return url;
@@ -65,7 +65,7 @@ export const getFeatureCollectionsFromIDs = (
     if (!session) {
         session = "/scripts/mwimain.dll";
     }
-    let url = `${session}?UNIONSEARCH&SIMPLE_EXP=Y&ERRMSG=[MESSAGES]374.htm&APPLICATION=UNION_VIEW&DATABASE=ONLINE_EXHIBITION_VIEW&language=144&REPORT=WEB_OE_SUM&EXP=${exp}`;
+    let url = `${session}?UNIONSEARCH&SIMPLE_EXP=Y&KEEP=Y&ERRMSG=[MESSAGES]374.htm&APPLICATION=UNION_VIEW&DATABASE=ONLINE_EXHIBITION_VIEW&language=144&REPORT=WEB_OE_SUM&EXP=${exp}`;
     return axios.get(url).then((res) => {
         let { data } = res;
         let dom = new DOMParser().parseFromString(data, "text/html");
@@ -113,7 +113,7 @@ export const getRecendAdditions = (session = "/scripts/mwimain.dll") => {
     };
     let searchURL = searchingField.map((e) => {
         let exp = `${e.date} > "${low}" and ${e.mediaReady} "Yes"`;
-        let url = `${session}?UNIONSEARCH&SIMPLE_EXP=Y&ERRMSG=[MESSAGES]374.htm&APPLICATION=UNION_VIEW&language=144&REPORT=WEB_UNION_SUM&EXP=${exp}&database=${e.database}`;
+        let url = `${session}?UNIONSEARCH&SIMPLE_EXP=Y&KEEP=Y&ERRMSG=[MESSAGES]374.htm&APPLICATION=UNION_VIEW&language=144&REPORT=WEB_UNION_SUM&EXP=${exp}&database=${e.database}`;
         return url;
     });
 
@@ -342,7 +342,7 @@ export const performJumpSearch = (url, fn) => {
 };
 export const fetchJSONRecord = (session, database, sisn = [], fn) => {
     let searchExpression = sisn.map((e) => `SISN ${e}`).join(" or ");
-    let url = `${session}/scripts/mwimain.dll?SEARCH&SIMPLE_EXP=Y&ERRMSG=[MESSAGES]374.htm&APPLICATION=UNION_VIEW&DATABASE=${database}&language=144&REPORT=${SUM_REPORT_BY_DATABASE[database]}&EXP=${searchExpression}`;
+    let url = `${session}/scripts/mwimain.dll?SEARCH&SIMPLE_EXP=Y&KEEP=Y&ERRMSG=[MESSAGES]374.htm&APPLICATION=UNION_VIEW&DATABASE=${database}&language=144&REPORT=${SUM_REPORT_BY_DATABASE[database]}&EXP=${searchExpression}`;
     return axios.get(url).then((res) => {
         let { data } = res;
         let dom = new DOMParser().parseFromString(data, "text/html");

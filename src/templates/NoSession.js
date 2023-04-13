@@ -10,7 +10,7 @@ const NoSession = [{
     children: [{
         component: "SimpleSearchBanner",
         data: {
-            searchURL: "/scripts/mwimain.dll?UNIONSEARCH&SIMPLE_EXP=Y&ERRMSG=[MESSAGES]374.htm&APPLICATION=UNION_VIEW&language=144&REPORT=WEB_UNION_SUM",
+            searchURL: "/scripts/mwimain.dll?UNIONSEARCH&SIMPLE_EXP=Y&KEEP=Y&ERRMSG=[MESSAGES]374.htm&APPLICATION=UNION_VIEW&language=144&REPORT=WEB_UNION_SUM",
             bannerURL: pic1,
             heading: "No active session",
             description: "Please start a new search",
