@@ -6,6 +6,7 @@ import {
   getCurrentPageFromPagination,
   getPageUrlFromPagination,
   getPagination,
+  getPaginationLength,
 } from "../../utils/record";
 const SummaryPagination = (props) => {
   const { xml } = props;
@@ -16,7 +17,7 @@ const SummaryPagination = (props) => {
       {pagination && (
         <Stack spacing={2}>
           <Pagination
-            count={pagination.a.length}
+            count={getPaginationLength(pagination.a)}
             shape="rounded"
             defaultPage={getCurrentPageFromPagination(pagination.a)}
             onChange={(e, i) => {
@@ -25,26 +26,42 @@ const SummaryPagination = (props) => {
             }}
             disabled={clicked}
             renderItem={(item) => {
-              let index = item.page;
-              console.log(index)
-              // if (!index) {
-              //   return null;
-              // }
-              let pageItem = pagination.a[index];
-        console.log(pageItem)
-              if (!pageItem) {
-                return null;
+              console.log(item);
+              if (item.type === "page") {
+                let index = item.page;
+                let pageItem = pagination.a[index - 1];
+                if (!pageItem) {
+                  return null;
+                }
+                let pageNumb = pageItem["__text"];
+                if (pageNumb && pageNumb === "Next") {
+                  return null;
+                }
+                if (pageItem.b) {
+                  pageNumb = pageItem.b;
+                }
+                return <PaginationItem {...item} page={pageNumb} />
               }
-              let pageNumb = pageItem["__text"];
-              if (pageNumb && pageNumb === "Next") {
-                return null;
-              }
-              if (pageItem.b) {
-                pageNumb = pageItem.b;
-              }
-              console.log(pageNumb, pageItem)
+              //       let index = item.page;
+              //       console.log(index)
+              //       // if (!index) {
+              //       //   return null;
+              //       // }
+              //       let pageItem = pagination.a[index];
+              // console.log(pageItem)
+              //       if (!pageItem) {
+              //         return null;
+              //       }
+              //       let pageNumb = pageItem["__text"];
+              //       if (pageNumb && pageNumb === "Next") {
+              //         return null;
+              //       }
+              //       if (pageItem.b) {
+              //         pageNumb = pageItem.b;
+              //       }
+              //       console.log(pageNumb, pageItem)
 
-              return <PaginationItem {...item} page={Number.parseInt(pageNumb)-1} />;
+              return <PaginationItem {...item} />;
             }}
           />
         </Stack>
