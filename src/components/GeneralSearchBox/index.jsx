@@ -18,7 +18,7 @@ import Select from "@mui/joy/Select";
 import Option from "@mui/joy/Option";
 import Divider from "@mui/joy/Divider";
 import { backToSummary } from "../../utils/record";
-import { deepSearch } from "../../utils/functions";
+import { deepSearch, isSessionSearch } from "../../utils/functions";
 export const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
   padding: theme.spacing(1),
@@ -32,8 +32,7 @@ const GeneralSearchBox = (props) => {
   let database = deepSearch(xml, "database_name")[0];
   let toSummary = backToSummary(xml);
   let session = deepSearch(xml, "session")[0];
-  console.log(toSummary)
-  if (!toSummary) {
+  if (isSessionSearch()) {
     session = "/scripts/mwimain.dll";
   }
   return (

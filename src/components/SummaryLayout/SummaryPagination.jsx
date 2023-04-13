@@ -11,6 +11,7 @@ const SummaryPagination = (props) => {
   const { xml } = props;
   const [pagination, setPagination] = useState(getPagination(xml));
   const [clicked, setClicked] = useState(false);
+  console.log(pagination);
   return (
     <div style={{ margin: "0 auto", textAlign: "center" }}>
       {pagination && (
@@ -24,7 +25,28 @@ const SummaryPagination = (props) => {
               window.location = getPageUrlFromPagination(pagination.a, i - 1);
             }}
             disabled={clicked}
-            renderItem={(item) => <PaginationItem {...item} />}
+            renderItem={(item) => {
+              let index = item.page;
+              console.log(index)
+              // if (!index) {
+              //   return null;
+              // }
+              let pageItem = pagination.a[index];
+        console.log(pageItem)
+              if (!pageItem) {
+                return null;
+              }
+              let pageNumb = pageItem["__text"];
+              if (pageNumb && pageNumb === "Next") {
+                return null;
+              }
+              if (pageItem.b) {
+                pageNumb = pageItem.b;
+              }
+              console.log(pageNumb, pageItem)
+
+              return <PaginationItem {...item} page={Number.parseInt(pageNumb)-1} />;
+            }}
           />
         </Stack>
       )}

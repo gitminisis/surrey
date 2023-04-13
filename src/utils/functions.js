@@ -145,6 +145,11 @@ export const sendErrorReport = (session, body) => {
   });
 };
 
+export const isSessionSearch = () => {
+  const currentUrl = window.location.href.toLowerCase();
+  return currentUrl.includes("sessionsearch");
+};
+
 export const getTrangCuteness = () => {
   let cuteness = 100;
   console.log(`Every second, Trang is becoming cuter `);
