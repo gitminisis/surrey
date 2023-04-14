@@ -83,7 +83,7 @@ const ImageCarousel = (props) => {
   let { data, loop, handleClick, autoplay } = props;
   let curSession = getCurrentSession()
     ? getCurrentSession()
-    : "/script/mwimain.dll";
+    : "/scripts/mwimain.dll";
   return (
     <Carousel loop={loop} autoplay={autoplay}>
       {data.map((item, i) => (
