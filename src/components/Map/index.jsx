@@ -40,9 +40,9 @@ const Map = () => {
                   </Typography>
                   <Link
                     href={getSearchRequestURL(
-                      "DESCRIPTION",
+                      "UNION_VIEW",
                       `PLACES_CL ${el.properties.name}`,
-                      "WEB_UNION_SUM_DESC",
+                      "WEB_UNION_SUM",
                       "UNION_VIEW",
                       getCurrentSession()
                     )}
