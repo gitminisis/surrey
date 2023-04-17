@@ -35,18 +35,18 @@ const Home = [{
                     data: [{
                             thumbnail: "/assets/images/Photos.png",
                             title: "Photographs",
-                            link: '?UNIONSEARCH&SIMPLE_EXP=Y&KEEP=Y&ERRMSG=[MESSAGES]374.htm&APPLICATION=UNION_VIEW&DATABASE=DESCRIPTION&language=144&REPORT=WEB_UNION_SUM_DESC&EXP=A_IM_OPAC Yes and FORM "Graphic material"',
+                            link: '?UNIONSEARCH&SIMPLE_EXP=Y&KEEP=Y&ERRMSG=[MESSAGES]374.htm&APPLICATION=UNION_VIEW&language=144&REPORT=WEB_UNION_SUM&EXP=IMAGE_READY Yes and FORM_CL "Graphic material"',
 
                         },
                         {
                             thumbnail: "/assets/images/Maps.png",
                             title: "Maps",
-                            link: '?UNIONSEARCH&SIMPLE_EXP=Y&KEEP=Y&ERRMSG=[MESSAGES]374.htm&APPLICATION=UNION_VIEW&DATABASE=DESCRIPTION&language=144&REPORT=WEB_UNION_SUM_DESC&EXP=A_IM_OPAC Yes and FORM "Cartographic material"',
+                            link: '?UNIONSEARCH&SIMPLE_EXP=Y&KEEP=Y&ERRMSG=[MESSAGES]374.htm&APPLICATION=UNION_VIEW&language=144&REPORT=WEB_UNION_SUM&EXP=IMAGE_READY Yes and FORM_CL "Cartographic material"',
                         },
                         {
                             thumbnail: "/assets/images/Audio-Visual.png",
                             title: "Audio/Video",
-                            link: '?UNIONSEARCH&SIMPLE_EXP=Y&KEEP=Y&ERRMSG=[MESSAGES]374.htm&APPLICATION=UNION_VIEW&DATABASE=DESCRIPTION&language=144&REPORT=WEB_UNION_SUM_DESC&EXP=(A_AD_OPAC Yes or A_VD_OPAC Yes) and FORM "Cartographic material"',
+                            link: '?UNIONSEARCH&SIMPLE_EXP=Y&KEEP=Y&ERRMSG=[MESSAGES]374.htm&APPLICATION=UNION_VIEW&language=144&REPORT=WEB_UNION_SUM&EXP=(AUDIO_READY Yes or VIDEO_READY Yes) and FORM_CL "Cartographic material"',
                         },
                         {
                             thumbnail: "/assets/images/Artifacts.png",
@@ -56,7 +56,7 @@ const Home = [{
                         {
                             thumbnail: "/assets/images/Textual Records.png",
                             title: "Textual Records",
-                            link: '?UNIONSEARCH&SIMPLE_EXP=Y&KEEP=Y&ERRMSG=[MESSAGES]374.htm&APPLICATION=UNION_VIEW&DATABASE=DESCRIPTION&language=144&REPORT=WEB_UNION_SUM_DESC&EXP=A_TX_OPAC Yes and FORM "Textual record"',
+                            link: '?UNIONSEARCH&SIMPLE_EXP=Y&KEEP=Y&ERRMSG=[MESSAGES]374.htm&APPLICATION=UNION_VIEW&language=144&REPORT=WEB_UNION_SUM&EXP=TEXT_READY Yes and FORM_CL "Textual record"',
                         },
                     ],
                 },
