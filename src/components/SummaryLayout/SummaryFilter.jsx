@@ -35,7 +35,7 @@ import { useSnackbar } from "notistack";
 import { getXMLFilter } from "../../utils/functions";
 import { getSortReportURL } from "../../utils/record";
 const FieldFilter = (props) => {
-  const { data, index } = props;
+  const { data, index,application } = props;
   const [open, setOpen] = React.useState(index === 0);
 
   const handleClick = () => {
@@ -83,7 +83,7 @@ const FieldFilter = (props) => {
                   overlay
                   sx={{ color: "inherit" }}
                   onChange={(_) =>
-                    (window.location = item.item_link.toString())
+                    (window.location = item.item_link.toString()+"&DATABASE="+application)
                   }
                 />
                 <Typography sx={{ ml: "auto" }}>
@@ -118,8 +118,8 @@ const SummaryFilter = (props) => {
         overflowY: "scroll",
         overflowX: "hidden",
         px: "10px",
-        py: 2,
-
+        paddingTop: "16px",
+        paddingBottom: "150px",
         textAlign: "center",
       }}
     >
@@ -191,7 +191,12 @@ const SummaryFilter = (props) => {
         <>
           <TextBox>Filter by</TextBox>{" "}
           {filter.map((item, i) => (
-            <FieldFilter key={`FieldFilter-${i}`} data={item} index={i} />
+            <FieldFilter
+            application={application}
+              key={`FieldFilter-${i}`}
+              data={item}
+              index={i}
+            />
           ))}
         </>
       )}

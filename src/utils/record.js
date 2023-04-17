@@ -47,7 +47,9 @@ export const getSearchRequestURL = (
     application = "UNION_VIEW",
     session = "/scripts/mwimain.dll"
 ) => {
-    let url = `${session}?UNIONSEARCH&SIMPLE_EXP=Y&KEEP=Y&ERRMSG=[MESSAGES]374.htm&APPLICATION=${application}&DATABASE=${database}&language=144&REPORT=${
+    let url = `${
+    session ? session : "/scripts/mwimain.dll"
+  }?UNIONSEARCH&SIMPLE_EXP=Y&KEEP=Y&ERRMSG=[MESSAGES]374.htm&APPLICATION=${application}&DATABASE=${database}&language=144&REPORT=${
     report || SUM_REPORT_BY_DATABASE[database]
   }&EXP=${expression}`;
     return url;
@@ -381,4 +383,8 @@ export const getPageUrlFromPagination = (pagination, index) => {
 
 export const getCurrentPageFromPagination = (pagination) => {
     return Number.parseInt(pagination.filter((e) => e.b !== undefined)[0].b);
+};
+
+export const getPaginationLength = (pagination) => {
+    return pagination.filter((e) => e["__text"] !== "Next").length;
 };

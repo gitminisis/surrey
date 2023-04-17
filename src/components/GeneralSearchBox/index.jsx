@@ -18,7 +18,7 @@ import Select from "@mui/joy/Select";
 import Option from "@mui/joy/Option";
 import Divider from "@mui/joy/Divider";
 import { backToSummary } from "../../utils/record";
-import { deepSearch } from "../../utils/functions";
+import { deepSearch, isSessionSearch } from "../../utils/functions";
 export const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
   padding: theme.spacing(1),
@@ -32,6 +32,9 @@ const GeneralSearchBox = (props) => {
   let database = deepSearch(xml, "database_name")[0];
   let toSummary = backToSummary(xml);
   let session = deepSearch(xml, "session")[0];
+  if (isSessionSearch()) {
+    session = "/scripts/mwimain.dll";
+  }
   return (
     <Item elevation={6} sx={{ padding: "16px" }} className="back-top-anchor">
       <div>
@@ -39,32 +42,31 @@ const GeneralSearchBox = (props) => {
           <Link underline="hover" color="inherit" variant="h6" href="/">
             Home
           </Link>
-          {
-            breadcrumbs.map((e, i) => 
-            {
-              if(!toSummary && e === 'Summary'){
-return null
-              }
-           return   <Link
-              key={`breadcrumb-link-${i}`}
-              variant="h6"
-              underline={
-                i === breadcrumbs.length - 1
-                  ? "none"
-                  : toSummary
-                  ? "hover"
-                  : "none"
-              }
-              color={
-                i === breadcrumbs.length - 1 ? "text.primary" : "inherit"
-              }
-              href={i === 0 && breadcrumbs.length > 1 ? toSummary : "#"}
-              aria-current={`${e} page`}
-            >
-              {e}
-            </Link>
+          {breadcrumbs.map((e, i) => {
+            if (!toSummary && e === "Summary") {
+              return null;
             }
-            )}
+            return (
+              <Link
+                key={`breadcrumb-link-${i}`}
+                variant="h6"
+                underline={
+                  i === breadcrumbs.length - 1
+                    ? "none"
+                    : toSummary
+                    ? "hover"
+                    : "none"
+                }
+                color={
+                  i === breadcrumbs.length - 1 ? "text.primary" : "inherit"
+                }
+                href={i === 0 && breadcrumbs.length > 1 ? toSummary : "#"}
+                aria-current={`${e} page`}
+              >
+                {e}
+              </Link>
+            );
+          })}
         </Breadcrumbs>
 
         <Grid

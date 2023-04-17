@@ -110,6 +110,7 @@ const SummaryOnlineExhibitionLayout = (props) => {
                   toggleMobileFilter={toggleMobileFilter}
                   toggleFilter={toggleFilter}
                   toggleGrid={toggleGrid}
+                  isFilter={false}
                   isGrid={grid}
                   xml={xml}
                   statementField="oef_title"
