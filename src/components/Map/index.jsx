@@ -12,7 +12,10 @@ import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import { getMap } from "../../utils/map";
 import { Link, Typography } from "@mui/material";
-import { getSearchRequestURL } from "../../utils/record";
+import {
+  getSearchRequestURL,
+  getUnionSearchRequestURL,
+} from "../../utils/record";
 import { getCurrentSession } from "../../utils/functions";
 const position = [49.110918, -122.778992];
 
@@ -30,21 +33,17 @@ const Map = () => {
         scrollWheelZoom={false}
       >
         {map.features.map((el) => {
-       
+          let place = el.properties.name;
           return (
             <>
               <Polygon color={COLOR} positions={el.geometry.coordinates[0]}>
                 <Popup style={{ textAlign: "center" }}>
                   <Typography variant="h5" as="p">
-                    {el.properties.name}
+                    {place}
                   </Typography>
                   <Link
-                    href={getSearchRequestURL(
-                      "DESCRIPTION",
-                      `PLACES_CL ${el.properties.name}`,
-                      "WEB_UNION_SUM_DESC",
-                      "UNION_VIEW",
-                      getCurrentSession()
+                    href={getUnionSearchRequestURL(
+                      `INDEXGEO ${place} or PLACE_ASSOC_NAME ${place} or AP_DISTRICT ${place}`
                     )}
                   >
                     Explore area
