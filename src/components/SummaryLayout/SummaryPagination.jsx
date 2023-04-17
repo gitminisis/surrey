@@ -11,6 +11,7 @@ const SummaryPagination = (props) => {
   const { xml } = props;
   const [pagination, setPagination] = useState(getPagination(xml));
   const [clicked, setClicked] = useState(false);
+  console.log(pagination)
   return (
     <div style={{ margin: "0 auto", textAlign: "center" }}>
       {pagination && (
