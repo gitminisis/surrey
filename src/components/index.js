@@ -58,3 +58,5 @@ export { default as ShowMoreText }
 from "./ShowMoreText";
 export { default as SummaryOnlineExhibitionLayout }
 from "./SummaryOnlineExhibitionLayout";
+export { default as RecordToURLField }
+from "./RecordToURLField";

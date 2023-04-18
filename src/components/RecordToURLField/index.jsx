@@ -1,19 +1,15 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Typography, Divider, Box, Grid } from "@mui/joy";
-import ReactShowMoreText from "react-show-more-text";
+import { Typography, Divider, Box, Grid, Link } from "@mui/joy";
+import { deepSearch,convertFilePathToURL } from "../../utils/functions";
 const index = (props) => {
-  let { main, value, label, showMore } = props;
-  let flattenArrayValue = _.flattenDeep(value).map((e) =>
-    e.replace(/\n/g, " ")
-  );
-  if (main) {
-    return (
-      <Typography {...props} gutterBottom level="h3" sx={{ pb: 2 }}>
-        {value.join(", ")}
-      </Typography>
-    );
-  }
+  let {name, label, xml} = props;
+  let record = xml.xml.xml_record.record;
+  let fieldValue =
+   deepSearch(record, name.toLowerCase());
+   let flattenArrayValue = _.flattenDeep(fieldValue).map((e) =>
+   e.replace(/\n/g, " ")
+ );
   return (
     <>
       <Divider style={{ width: "auto" }} />
@@ -40,24 +36,20 @@ const index = (props) => {
         </Grid>
         <Grid xs sx={{ alignSelf: { xs: "start", md: "center" } }}>
           {flattenArrayValue.map((v, i) =>
-            showMore === true ? (
-              <Typography
+             (
+              <Link
                 key={i}
                 level="h6"
-                component="div"
+                component="a"
                 sx={{ display: "block" }}
+                href={convertFilePathToURL(v)}
+                target="_blank"
+                underline="hover"
               >
-                {v}
-              </Typography>
-            ) : (
-              <Typography
-                key={i}
-                level="h6"
-                component="div"
-                sx={{ display: "block" }}
-              >
-                {v}
-              </Typography>
+        
+                {/* {convertFilePathToURL(v)} */}
+        View textual document
+              </Link>
             )
           )}
         </Grid>
@@ -67,7 +59,6 @@ const index = (props) => {
 };
 
 index.propTypes = {
-  showMore: PropTypes.bool,
 };
 
 export default index;

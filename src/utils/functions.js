@@ -5,7 +5,8 @@ import SiteLayout from "../templates/SiteLayout.js";
 
 const VIRTUAL_DIR = SiteLayout.virtualIncludePaths;
 const APPLICATION = SiteLayout.application;
-
+const IMAGE_VIRTUAL_PATH = SiteLayout.imageVirtualPath;
+const IMAGE_VIRTUAL_DIR = SiteLayout.imageVirtualDir;
 export const readCookie = (name) => {
     const cookies = document.cookie.split(";");
     for (let i = 0; i < cookies.length; i++) {
@@ -144,6 +145,10 @@ export const sendErrorReport = (session, body) => {
     data: `sender=${sender}&receiver=${receiver}&subject=${subject}&mailbody=${body}`,
   });
 };
+
+export const convertFilePathToURL= (path) => {
+  return path.replace(/\\/g, '/').replace(IMAGE_VIRTUAL_DIR, IMAGE_VIRTUAL_PATH);
+}
 
 export const isSessionSearch = () => {
   const currentUrl = window.location.href.toLowerCase();

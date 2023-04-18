@@ -27,6 +27,7 @@ import {
   GeneralSearchBox,
   ShowMoreText,
   SummaryOnlineExhibitionLayout,
+  RecordToURLField
 } from "./index";
 
 const KeysToComponentMap = {
@@ -57,6 +58,7 @@ const KeysToComponentMap = {
   GeneralSearchBox,
   ShowMoreText,
   SummaryOnlineExhibitionLayout,
+  RecordToURLField
 };
 
 function Component(block) {

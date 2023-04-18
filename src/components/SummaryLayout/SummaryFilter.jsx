@@ -74,6 +74,7 @@ const FieldFilter = (props) => {
             }
             if (item.item_value === "DESCRIPTION") {
               item.item_value = "Archives";
+              
             }
             return (
               <ListItem key={`ListItemFilter-${i}`} sx={{}}>

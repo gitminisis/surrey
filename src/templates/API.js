@@ -54,6 +54,11 @@ export const DESCRIPTION_GENERAL_DETAIL_FIELD = [{
     {
         name: "a_tx_access",
         label: "Textual Document",
+        component:"RecordToURLField",
+        data:{
+            name: "a_tx_access",
+            label: "Textual Document",
+        }
     },
 ];
 

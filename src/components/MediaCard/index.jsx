@@ -52,7 +52,7 @@ const MediaCard = (props) => {
               "ONLINE_EXHIBITION_VIEW",
               `OEF_IND ${id}`,
               "WEB_OE_UNION_SUM",
-              "UNION_VIEW",
+              "ONLINE_EXHIBITION_VIEW",
               getCurrentSession()
             ))
           }
