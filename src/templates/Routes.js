@@ -12,6 +12,7 @@ import NoSession from "./NoSession";
 import NoRecord from "./NoRecord";
 import NoBookmark from "./NoBookmark";
 import SummaryOnlineExhibition from "./SummaryOnlineExhibition";
+import Admin from './Admin'
 // const GenericPage = lazy(() =>
 //     import ("../pages/GenericPage"));
 
@@ -42,6 +43,7 @@ const Routes = [
     { path: "no-session", template: NoSession },
     { path: "no-record", template: NoRecord },
     { path: "no-bookmark", template: NoBookmark },
+    { path: "admin", template: Admin },
     { path: "*", template: NotFoundPageTemplate },
 ];
 
