@@ -1,4 +1,2 @@
-const Admin = [{
-    component: "Layout",
-}, ];
+const Admin = [{}];
 export default Admin;
