@@ -174,6 +174,15 @@ export const jsonToTemplate = (json) => {
     return object;
   });
 };
+
+export const jsonToFields = (json) => {
+  return json.map((e) => {
+    return {
+      database: e.database,
+      fields: e.displayFields,
+    };
+  });
+};
 export const getTrangCuteness = () => {
   let cuteness = 100;
   console.log(`Every second, Trang is becoming cuter `);

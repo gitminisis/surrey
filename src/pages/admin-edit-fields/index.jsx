@@ -7,7 +7,7 @@ import AnimateButton from "components/@extended/AnimateButton";
 import MainCard from "components/MainCard";
 import { Formik } from "formik";
 import * as Yup from "yup";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import FieldForm from "./FieldForm";
@@ -20,16 +20,38 @@ const AdminEditFields = (props) => {
     `${BASE_URL}/page/${id}`,
     fetcher
   );
+  const [currentData, setCurrentData] = useState(data);
   const updateData = useRef(false);
+  useEffect(() => {
+    setCurrentData(data);
+  }, [data]);
   const fieldHandleChange = (value, object, index) => {
     object[index].displayFields = value;
     updateData.current = object;
   };
   if (error) return "An error has occurred.";
   if (isLoading) return "Loading...";
-  const renderForm = (object, handleChange) => {
-    console.log(object);
-    return object.map((o, i) => {
+
+  const sendUpdateData = async (newData) => {
+    const noti = toast.loading("Please wait for data to be updated ...");
+    await fetch(`${BASE_URL}/page/${id}`, {
+      method: "POST",
+      body: JSON.stringify(newData),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
+    }).then((res) => {
+      toast.update(noti, {
+        render: "Data has been updated successfully",
+        type: "success",
+        isLoading: false,
+      });
+      console.log(res);
+    });
+  };
+  const renderForm = (handleChange) => {
+    let copyData = [...currentData];
+    return copyData.map((o, i) => {
       const { database, databaseName, availableFields, displayFields } = o;
       return (
         <Stack spacing={3} key={i}>
@@ -43,13 +65,32 @@ const AdminEditFields = (props) => {
                   <Grid item sx={{ my: 3 }} key={idx}>
                     <FieldForm
                       data={field}
-                      handleChange={(value, data) => {
-                        console.log(1);
+                      handleChange={(data) => {
+                        displayFields[idx] = data;
+                        updateData.current = copyData;
                       }}
                     />
                   </Grid>
                 ))
               : null}
+            <AnimateButton>
+              <Button
+                onClick={(_) => {
+                  displayFields.push({
+                    name: "LEGAL_TITLE",
+                    label: "Title",
+                  });
+                  console.log(copyData);
+                  setCurrentData(copyData);
+                  updateData.current = copyData;
+                }}
+                size="large"
+                variant="contained"
+                color="secondary"
+              >
+                Add new field
+              </Button>
+            </AnimateButton>
           </MainCard>
         </Stack>
       );
@@ -74,7 +115,7 @@ const AdminEditFields = (props) => {
               try {
                 setStatus({ success: false });
                 setSubmitting(false);
-                // await sendUpdateData(updateData.current);
+                await sendUpdateData(updateData.current);
                 mutate();
               } catch (err) {
                 setStatus({ success: false });
@@ -93,7 +134,7 @@ const AdminEditFields = (props) => {
               values,
             }) => (
               <form noValidate onSubmit={handleSubmit}>
-                {renderForm(data, fieldHandleChange)}
+                {renderForm(fieldHandleChange)}
 
                 {errors.submit && (
                   <Grid item xs={12}>
