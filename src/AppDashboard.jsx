@@ -8,11 +8,8 @@ import ScrollTop from "./components/ScrollTop";
 
 const App = () => (
   <ThemeCustomization>
-    adfadsf
     <ScrollTop>
-      ztoadsfasdf
       <Routes />
-      adfafd
     </ScrollTop>
   </ThemeCustomization>
 );

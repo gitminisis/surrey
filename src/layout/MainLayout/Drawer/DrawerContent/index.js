@@ -10,7 +10,7 @@ const DrawerContent = () => (
      
     >
         <Navigation />
-        <NavCard />
+        {/* <NavCard /> */}
     </div>
 );
 
