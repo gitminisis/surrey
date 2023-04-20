@@ -2,45 +2,71 @@ import PropTypes from "prop-types";
 import useSWR from "swr";
 import { useParams } from "react-router";
 import ComponentSkeleton from "pages/components-overview/ComponentSkeleton";
-import { Grid, Typography, Button, FormHelperText } from "@mui/material";
+import { Grid, Typography, Button, FormHelperText, Stack } from "@mui/material";
 import AnimateButton from "components/@extended/AnimateButton";
 import MainCard from "components/MainCard";
 import FieldForm from "./FieldForm";
 import { Formik } from "formik";
 import * as Yup from "yup";
+import { useState } from "react";
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
 const AdminEditPage = (props) => {
   const { id } = useParams();
   const BASE_URL = process.env.SERVER_BASE_URL || "http://localhost:3001";
   const { data, error, isLoading } = useSWR(`${BASE_URL}/page/${id}`, fetcher);
-
-  const renderForm = (object) => {
+  const [updateData, setUpdateData] = useState(null);
+  const fieldHandleChange = (value, object, index) => {
+    object[index].properties = value;
+    setUpdateData(object);
+  };
+  const sendUpdateData = async () => {
+    await fetch(`${BASE_URL}/page/${id}`, {
+      method: "POST",
+      body: updateData,
+    }).then((res) => {
+      console.log(res);
+    });
+  };
+  const renderForm = (object, handleChange) => {
     return object.map((o, i) => {
       const { component, properties, children, name, description } = o;
 
       return (
-        <div key={i}>
-          <Typography variant="h3">{name}</Typography>
+        <Stack spacing={3} key={i}>
+          <MainCard title={name} sx={{ my: 2 }}>
+            <Typography variant="subtitle1" gutterBottom>
+              {description}
+            </Typography>
 
-          <Typography variant="subtitle1" gutterBottom>
-            {description}
-          </Typography>
-
-          {Object.keys(properties)
-            .map((k) => k)
-            .map((key, idx) => (
-              <Grid item sx={{ my: 2 }} key={idx}>
-                {" "}
-                <FieldForm data={properties[key]} />
+            {properties
+              ? Object.keys(properties)
+                  .map((k) => k)
+                  .map((key, idx) => (
+                    <Grid item sx={{ my: 2 }} key={idx}>
+                      <FieldForm
+                        data={properties[key]}
+                        handleChange={(value, data) => {
+                          let newData = Object.assign({}, data);
+                          newData.value = value;
+                          let newProp = Object.assign({}, properties);
+                          newProp[key] = newData;
+                          handleChange(newProp, object, i);
+                        }}
+                      />
+                    </Grid>
+                  ))
+              : null}
+            {children ? (
+              <Grid item spacing={3}>
+                <Typography variant="subtitle1" gutterBottom>
+                  Children Components
+                </Typography>
+                {renderForm(children, handleChange)}
               </Grid>
-            ))}
-          {children ? (
-            <Grid container spacing={3}>
-              {children.map((child) => renderForm(child))}
-            </Grid>
-          ) : null}
-        </div>
+            ) : null}
+          </MainCard>
+        </Stack>
       );
     });
   };
@@ -51,59 +77,59 @@ const AdminEditPage = (props) => {
     <ComponentSkeleton>
       <Grid container spacing={3}>
         <Grid item xs={12}>
-          <MainCard title={id}>
-            <Formik
-              initialValues={{}}
-              validationSchema={Yup.object().shape({})}
-              onSubmit={async (
-                values,
-                { setErrors, setStatus, setSubmitting }
-              ) => {
-                try {
-                  setStatus({ success: false });
-                  setSubmitting(false);
-                } catch (err) {
-                  setStatus({ success: false });
-                  setErrors({ submit: err.message });
-                  setSubmitting(false);
-                }
-              }}
-            >
-              {({
-                errors,
-                handleBlur,
-                handleChange,
-                handleSubmit,
-                isSubmitting,
-                touched,
-                values,
-              }) => (
-                <form>
-                  {renderForm(data)}
+          <Formik
+            initialValues={{}}
+            validationSchema={Yup.object().shape({})}
+            onSubmit={async (
+              values,
+              { setErrors, setStatus, setSubmitting }
+            ) => {
+              try {
+                console.log(updateData);
+                setStatus({ success: false });
+                setSubmitting(false);
+                sendUpdateData();
+              } catch (err) {
+                setStatus({ success: false });
+                setErrors({ submit: err.message });
+                setSubmitting(false);
+              }
+            }}
+          >
+            {({
+              errors,
+              handleBlur,
+              handleChange,
+              handleSubmit,
+              isSubmitting,
+              touched,
+              values,
+            }) => (
+              <form noValidate onSubmit={handleSubmit}>
+                {renderForm(data, fieldHandleChange)}
 
-                  {errors.submit && (
-                    <Grid item xs={12}>
-                      <FormHelperText error>{errors.submit}</FormHelperText>
-                    </Grid>
-                  )}
+                {errors.submit && (
                   <Grid item xs={12}>
-                    <AnimateButton>
-                      <Button
-                        disableElevation
-                        size="large"
-                        type="submit"
-                        variant="contained"
-                        color="primary"
-                      >
-                        Update
-                      </Button>
-                    </AnimateButton>
+                    <FormHelperText error>{errors.submit}</FormHelperText>
                   </Grid>
-                </form>
-              )}
-            </Formik>
-            {/* {JSON.stringify(data)} */}
-          </MainCard>
+                )}
+                <Grid item xs={12}>
+                  <AnimateButton>
+                    <Button
+                      disableElevation
+                      size="large"
+                      type="submit"
+                      variant="contained"
+                      color="primary"
+                    >
+                      Update
+                    </Button>
+                  </AnimateButton>
+                </Grid>
+              </form>
+            )}
+          </Formik>
+          {/* {JSON.stringify(data)} */}
         </Grid>
       </Grid>
     </ComponentSkeleton>

@@ -162,9 +162,11 @@ export const jsonToTemplate = (json) => {
     let object = {};
     object.component = e.component;
     let dataObject = {};
-    Object.keys(e.properties).map((key) => {
-      dataObject[key] = e.properties[key].value;
-    });
+    if (e.properties) {
+      Object.keys(e.properties).map((key) => {
+        dataObject[key] = e.properties[key].value;
+      });
+    }
     object.data = dataObject;
     if (e.children) {
       object.children = jsonToTemplate(e.children);

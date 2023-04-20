@@ -42,7 +42,7 @@
           "/assets/images/Union Background 7.png"
         ],
         "defaultValue": "",
-        "editable": true
+        "editable": false
       }
     }
   }

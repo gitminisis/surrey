@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import { InputLabel, Grid, Stack, OutlinedInput } from "@mui/material";
 const FieldForm = (props) => {
-  const { data } = props;
+  const { data, handleChange } = props;
   let { name, description, type, value, defaultValue, editable } = data;
   if (!editable) {
     return null;
@@ -15,6 +15,11 @@ const FieldForm = (props) => {
             return (
               <Stack key={i} spacing={1}>
                 <OutlinedInput
+                  onChange={(e) => {
+                    let newValue = value;
+                    newValue[i] = e.target.value;
+                    handleChange(newValue, data);
+                  }}
                   id={name}
                   type="text"
                   defaultValue={v}
@@ -32,6 +37,7 @@ const FieldForm = (props) => {
       <Stack spacing={1}>
         <InputLabel htmlFor={name}>{name}</InputLabel>
         <OutlinedInput
+          onChange={(e) => handleChange(e.target.value, data)}
           id={name}
           type="text"
           placeholder={defaultValue}
@@ -44,6 +50,7 @@ const FieldForm = (props) => {
 };
 
 FieldForm.propTypes = {
+  handleChange: PropTypes.func,
   data: PropTypes.shape({
     name: PropTypes.string,
     description: PropTypes.string,
