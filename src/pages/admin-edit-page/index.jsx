@@ -9,6 +9,8 @@ import FieldForm from "./FieldForm";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import { useState, useRef } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
 const AdminEditPage = (props) => {
@@ -23,7 +25,9 @@ const AdminEditPage = (props) => {
     object[index].properties = value;
     updateData.current = object;
   };
+  
   const sendUpdateData = async (newData) => {
+    toast.loading("Please wait for data to be updated ...");
     await fetch(`${BASE_URL}/page/${id}`, {
       method: "POST",
       body: JSON.stringify(newData),
@@ -31,6 +35,7 @@ const AdminEditPage = (props) => {
         "Content-type": "application/json; charset=UTF-8",
       },
     }).then((res) => {
+      toast.success("Data has been updated successfully");
       console.log(res);
     });
   };
