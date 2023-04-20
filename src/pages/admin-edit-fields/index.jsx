@@ -5,15 +5,15 @@ import ComponentSkeleton from "pages/components-overview/ComponentSkeleton";
 import { Grid, Typography, Button, FormHelperText, Stack } from "@mui/material";
 import AnimateButton from "components/@extended/AnimateButton";
 import MainCard from "components/MainCard";
-import FieldForm from "./FieldForm";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import { useState, useRef } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import FieldForm from "./FieldForm";
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
-const AdminEditPage = (props) => {
+const AdminEditFields = (props) => {
   const { id } = useParams();
   const BASE_URL = process.env.SERVER_BASE_URL || "http://localhost:3001";
   const { data, mutate, error, isLoading } = useSWR(
@@ -22,70 +22,39 @@ const AdminEditPage = (props) => {
   );
   const updateData = useRef(false);
   const fieldHandleChange = (value, object, index) => {
-    object[index].properties = value;
+    object[index].displayFields = value;
     updateData.current = object;
   };
-
-  const sendUpdateData = async (newData) => {
-    const noti = toast.loading("Please wait for data to be updated ...");
-    await fetch(`${BASE_URL}/page/${id}`, {
-      method: "POST",
-      body: JSON.stringify(newData),
-      headers: {
-        "Content-type": "application/json; charset=UTF-8",
-      },
-    }).then((res) => {
-      toast.update(noti, {
-        render: "Data has been updated successfully",
-        type: "success",
-        isLoading: false,
-      });
-      console.log(res);
-    });
-  };
+  if (error) return "An error has occurred.";
+  if (isLoading) return "Loading...";
   const renderForm = (object, handleChange) => {
+    console.log(object);
     return object.map((o, i) => {
-      const { component, properties, children, name, description } = o;
+      const { database, databaseName, availableFields, displayFields } = o;
       return (
         <Stack spacing={3} key={i}>
-          <MainCard title={name} sx={{ my: 1 }}>
+          <MainCard title={databaseName} sx={{ my: 1 }}>
             <Typography variant="subtitle1" gutterBottom>
-              {description}
+              {databaseName}
             </Typography>
 
-            {properties
-              ? Object.keys(properties)
-                  .map((k) => k)
-                  .map((key, idx) => (
-                    <Grid item sx={{ my: 3 }} key={idx}>
-                      <FieldForm
-                        data={properties[key]}
-                        handleChange={(value, data) => {
-                          let newData = Object.assign({}, data);
-                          newData.value = value;
-                          let newProp = Object.assign({}, properties);
-                          newProp[key] = newData;
-                          handleChange(newProp, object, i);
-                        }}
-                      />
-                    </Grid>
-                  ))
+            {displayFields
+              ? displayFields.map((field, idx) => (
+                  <Grid item sx={{ my: 3 }} key={idx}>
+                    <FieldForm
+                      data={field}
+                      handleChange={(value, data) => {
+                        console.log(1);
+                      }}
+                    />
+                  </Grid>
+                ))
               : null}
-            {children ? (
-              <Grid item spacing={3}>
-                <Typography variant="subtitle1" gutterBottom>
-                  Children Components
-                </Typography>
-                {renderForm(children, handleChange)}
-              </Grid>
-            ) : null}
           </MainCard>
         </Stack>
       );
     });
   };
-  if (error) return "An error has occurred.";
-  if (isLoading) return "Loading...";
   return (
     <ComponentSkeleton>
       <ToastContainer />
@@ -105,7 +74,7 @@ const AdminEditPage = (props) => {
               try {
                 setStatus({ success: false });
                 setSubmitting(false);
-                await sendUpdateData(updateData.current);
+                // await sendUpdateData(updateData.current);
                 mutate();
               } catch (err) {
                 setStatus({ success: false });
@@ -154,8 +123,4 @@ const AdminEditPage = (props) => {
   );
 };
 
-AdminEditPage.propTypes = {
-  page: PropTypes.string.isRequired,
-};
-
-export default AdminEditPage;
+export default AdminEditFields;

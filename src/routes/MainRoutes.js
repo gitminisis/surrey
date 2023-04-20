@@ -27,9 +27,13 @@ const AntIcons = Loadable(
   lazy(() => import("../pages/components-overview/AntIcons"))
 );
 
+const AdminEditPage = Loadable(lazy(() => import("../pages/admin-edit-page")));
+const AdminEditFields = Loadable(
+  lazy(() => import("../pages/admin-edit-fields"))
+);
+
 // ==============================|| MAIN ROUTING ||============================== //
 
-const AdminEditPage = Loadable(lazy(() => import("../pages/admin-edit-page")));
 const MainRoutes = {
   path: "/",
   element: <MainLayout />,
@@ -41,6 +45,10 @@ const MainRoutes = {
     {
       path: "page/:id",
       element: <AdminEditPage />,
+    },
+    {
+      path: "fields/:id",
+      element: <AdminEditFields />,
     },
     {
       path: "color",
