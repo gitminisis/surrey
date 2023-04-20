@@ -20,14 +20,14 @@ const AdminEditPage = (props) => {
     `${BASE_URL}/page/${id}`,
     fetcher
   );
-  const updateData = useRef(data);
+  const updateData = useRef(false);
   const fieldHandleChange = (value, object, index) => {
     object[index].properties = value;
     updateData.current = object;
   };
-  
+
   const sendUpdateData = async (newData) => {
-    toast.loading("Please wait for data to be updated ...");
+    const noti = toast.loading("Please wait for data to be updated ...");
     await fetch(`${BASE_URL}/page/${id}`, {
       method: "POST",
       body: JSON.stringify(newData),
@@ -35,7 +35,11 @@ const AdminEditPage = (props) => {
         "Content-type": "application/json; charset=UTF-8",
       },
     }).then((res) => {
-      toast.success("Data has been updated successfully");
+      toast.update(noti, {
+        render: "Data has been updated successfully",
+        type: "success",
+        isLoading: false,
+      });
       console.log(res);
     });
   };
@@ -85,6 +89,7 @@ const AdminEditPage = (props) => {
   if (isLoading) return "Loading...";
   return (
     <ComponentSkeleton>
+      <ToastContainer />
       <Grid container spacing={3}>
         <Grid item xs={12}>
           <Formik
@@ -94,6 +99,10 @@ const AdminEditPage = (props) => {
               values,
               { setErrors, setStatus, setSubmitting }
             ) => {
+              if (!updateData.current) {
+                toast("Please make changes to your data");
+                return;
+              }
               try {
                 setStatus({ success: false });
                 setSubmitting(false);
