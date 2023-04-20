@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import useSWR from "swr";
+import useSWR, { useSWRConfig } from "swr";
 import { useParams } from "react-router";
 import ComponentSkeleton from "pages/components-overview/ComponentSkeleton";
 import { Grid, Typography, Button, FormHelperText, Stack } from "@mui/material";
@@ -8,22 +8,28 @@ import MainCard from "components/MainCard";
 import FieldForm from "./FieldForm";
 import { Formik } from "formik";
 import * as Yup from "yup";
-import { useState } from "react";
+import { useState, useRef } from "react";
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
 const AdminEditPage = (props) => {
   const { id } = useParams();
   const BASE_URL = process.env.SERVER_BASE_URL || "http://localhost:3001";
-  const { data, error, isLoading } = useSWR(`${BASE_URL}/page/${id}`, fetcher);
-  const [updateData, setUpdateData] = useState(null);
+  const { data, mutate, error, isLoading } = useSWR(
+    `${BASE_URL}/page/${id}`,
+    fetcher
+  );
+  const updateData = useRef(data);
   const fieldHandleChange = (value, object, index) => {
     object[index].properties = value;
-    setUpdateData(object);
+    updateData.current = object;
   };
-  const sendUpdateData = async () => {
+  const sendUpdateData = async (newData) => {
     await fetch(`${BASE_URL}/page/${id}`, {
       method: "POST",
-      body: updateData,
+      body: JSON.stringify(newData),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
     }).then((res) => {
       console.log(res);
     });
@@ -34,7 +40,7 @@ const AdminEditPage = (props) => {
 
       return (
         <Stack spacing={3} key={i}>
-          <MainCard title={name} sx={{ my: 2 }}>
+          <MainCard title={name} sx={{ my: 1 }}>
             <Typography variant="subtitle1" gutterBottom>
               {description}
             </Typography>
@@ -43,7 +49,7 @@ const AdminEditPage = (props) => {
               ? Object.keys(properties)
                   .map((k) => k)
                   .map((key, idx) => (
-                    <Grid item sx={{ my: 2 }} key={idx}>
+                    <Grid item sx={{ my: 3 }} key={idx}>
                       <FieldForm
                         data={properties[key]}
                         handleChange={(value, data) => {
@@ -72,7 +78,6 @@ const AdminEditPage = (props) => {
   };
   if (error) return "An error has occurred.";
   if (isLoading) return "Loading...";
-
   return (
     <ComponentSkeleton>
       <Grid container spacing={3}>
@@ -85,10 +90,10 @@ const AdminEditPage = (props) => {
               { setErrors, setStatus, setSubmitting }
             ) => {
               try {
-                console.log(updateData);
                 setStatus({ success: false });
                 setSubmitting(false);
-                sendUpdateData();
+                await sendUpdateData(updateData.current);
+                mutate();
               } catch (err) {
                 setStatus({ success: false });
                 setErrors({ submit: err.message });

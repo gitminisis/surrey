@@ -8,7 +8,7 @@
         "name": "Banner Heading",
         "description": "Banner Heading",
         "type": "string",
-        "value": "City of Surrey Online Heritage Search",
+        "value": "City of Surrey Online Heritage Search Test",
         "defaultValue": "Banner Heading",
         "editable": true
       },
@@ -33,17 +33,127 @@
         "description": "List of all banner background pictures",
         "type": "array",
         "value": [
-          "/assets/images/Union Background 1.png",
-          "/assets/images/Union Background 2.png",
-          "/assets/images/Union Background 3.png",
-          "/assets/images/Union Background 4.png",
-          "/assets/images/Union Background 5.png",
-          "/assets/images/Union Background 6.png",
-          "/assets/images/Union Background 7.png"
+          "http://surreytest.minisisinc.com/assets/images/Union%20Background%201.png",
+          "http://surreytest.minisisinc.com/assets/images/Union%20Background%202.png",
+          "http://surreytest.minisisinc.com/assets/images/Union%20Background%203.png",
+          "http://surreytest.minisisinc.com/assets/images/Union%20Background%204.png",
+          "http://surreytest.minisisinc.com/assets/images/Union%20Background%205.png",
+          "http://surreytest.minisisinc.com/assets/images/Union%20Background%206.png",
+          "http://surreytest.minisisinc.com/assets/images/Union%20Background%207.png"
         ],
         "defaultValue": "",
-        "editable": false
+        "editable": true
       }
     }
+  },
+  {
+    "component": "Section",
+    "name": "Browse by category",
+    "description": "Browse by category section",
+    "properties": {
+      "heading": {
+        "name": "Section Heading",
+        "description": "Section Heading",
+        "type": "string",
+        "value": "Browse by category",
+        "defaultValue": "Section Heading",
+        "editable": true
+      }
+    },
+    "children": [
+      {
+        "component": "ImageCarousel",
+        "name": "Image Carousel Component",
+        "description": "A carousel of records",
+        "properties": {
+          "data": {
+            "name": "ImageCarousel Heading",
+            "description": "ImageCarousel Heading",
+            "type": "array",
+            "value": [
+              {
+                "thumbnail": "/assets/images/Photos.png",
+                "title": "Photographs",
+                "link": "?UNIONSEARCH&SIMPLE_EXP=Y&KEEP=Y&ERRMSG=[MESSAGES]374.htm&APPLICATION=UNION_VIEW&language=144&DATABASE=DESCRIPTION&REPORT=WEB_UNION_SUM_DESC&EXP=(A_IM_OPAC Yes and FORM \"Graphic material\")"
+              },
+              {
+                "thumbnail": "/assets/images/Maps.png",
+                "title": "Maps",
+                "link": "?UNIONSEARCH&SIMPLE_EXP=Y&KEEP=Y&ERRMSG=[MESSAGES]374.htm&APPLICATION=UNION_VIEW&DATABASE=DESCRIPTION&language=144&REPORT=WEB_UNION_SUM_DESC&EXP=A_IM_OPAC Yes and FORM \"Cartographic material\""
+              },
+              {
+                "thumbnail": "/assets/images/Audio-Visual.png",
+                "title": "Audio/Video",
+                "link": "?UNIONSEARCH&SIMPLE_EXP=Y&KEEP=Y&ERRMSG=[MESSAGES]374.htm&APPLICATION=UNION_VIEW&DATABASE=DESCRIPTION&language=144&REPORT=WEB_UNION_SUM_DESC&EXP=FORM \"Sound recording\" or FORM \"Moving images\" "
+              },
+              {
+                "thumbnail": "/assets/images/Artifacts.png",
+                "title": "Artifacts",
+                "link": "?UNIONSEARCH&SIMPLE_EXP=Y&KEEP=Y&ERRMSG=[MESSAGES]374.htm&APPLICATION=UNION_VIEW&DATABASE=COLLECTIONS&language=144&REPORT=WEB_UNION_SUM_COL&EXP=(M_IM_OPAC Yes)"
+              },
+              {
+                "thumbnail": "/assets/images/Textual Records.png",
+                "title": "Textual Records",
+                "link": "?UNIONSEARCH&SIMPLE_EXP=Y&KEEP=Y&ERRMSG=[MESSAGES]374.htm&APPLICATION=UNION_VIEW&DATABASE=DESCRIPTION&language=144&REPORT=WEB_UNION_SUM_DESC&EXP=FORM \"Textual record\""
+              }
+            ],
+            "defaultValue": [],
+            "editable": false
+          }
+        }
+      }
+    ]
+  },
+  {
+    "component": "Section",
+    "name": "Browse by area",
+    "description": "Browse by area section",
+    "properties": {
+      "heading": {
+        "name": "Section Heading",
+        "description": "Section Heading",
+        "type": "string",
+        "value": "Browse by area",
+        "defaultValue": "Section Heading",
+        "editable": true
+      }
+    },
+    "children": [
+      {
+        "component": "Map",
+        "name": "Map Component",
+        "description": "A display of the city map"
+      }
+    ]
+  },
+  {
+    "component": "Section",
+    "name": "Recent Additions",
+    "description": "Recent Additions section",
+    "properties": {
+      "heading": {
+        "name": "Section Heading",
+        "description": "Section Heading",
+        "type": "string",
+        "value": "Recent Additions",
+        "defaultValue": "Section Heading",
+        "editable": true
+      },
+      "description": {
+        "name": "Section Description",
+        "description": "Section Description",
+        "type": "string",
+        "value": "Recent additions from the Archives and Artifact Collections",
+        "defaultValue": "Section Description",
+        "editable": true
+      }
+    },
+    "children": [
+      {
+        "component": "ImageMasonry",
+        "name": "Image Gallery Component",
+        "description": "A list of recent additions records"
+      }
+    ]
   }
 ]
