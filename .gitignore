@@ -5,3 +5,4 @@ package-lock.json
 package.json
 **/images/
 src/assets/images/
+.env
