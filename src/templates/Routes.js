@@ -44,7 +44,7 @@ const Routes = [
     { path: "no-record", template: NoRecord },
     { path: "no-bookmark", template: NoBookmark },
     { path: "admin", template: Admin },
-    { path: "*", template: NotFoundPageTemplate },
+    { path: "404", template: NotFoundPageTemplate },
 ];
 
 export default Routes;

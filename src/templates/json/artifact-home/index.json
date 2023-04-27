@@ -1,107 +1,102 @@
-[
-  {
-    "component": "SimpleSearchBanner",
-    "name": "Page Banner",
-    "description": "This is the banner of the page",
-    "properties": {
-      "heading": {
-        "name": "Banner Heading",
-        "description": "Banner Heading",
-        "type": "string",
-        "value": "Search the Artifacts",
-        "defaultValue": "Banner Heading",
-        "editable": true
-      },
-      "description": {
-        "name": "Banner Description",
-        "description": "Banner Description",
-        "type": "string",
-        "value": "The Heritage Artifact Collection records the tangible and intangible cultural heritage of Surrey. The mandate of the Collection is to preserve and maintain the material culture of the people, places, and events of Surrey that hold social and/or cultural significance to Surrey's diverse communities.",
-        "defaultValue": "Banner Description",
-        "editable": true
-      },
-      "searchURL": {
-        "name": "Banner Search URL",
-        "description": "Search bar action URL",
-        "type": "string",
-        "value": "/scripts/mwimain.dll?UNIONSEARCH&SIMPLE_EXP=Y&KEEP=Y&ERRMSG=[MESSAGES]374.htm&APPLICATION=UNION_VIEW&DATABASE=COLLECTIONS&language=144&REPORT=WEB_UNION_SUM_COL",
-        "defaultValue": "",
-        "editable": false
-      },
-      "bannerCarousel": {
-        "name": "Banner Carousel List",
-        "description": "List of all banner background pictures",
-        "type": "array",
-        "value": [
-          "http://surreytest.minisisinc.com/assets/images/Artifacts Main Background.png"
-        ],
-        "defaultValue": "",
-        "editable": true
-      }
+[{
+        "component": "SimpleSearchBanner",
+        "name": "Page Banner",
+        "description": "This is the banner of the page",
+        "properties": {
+            "heading": {
+                "name": "Banner Heading",
+                "description": "Banner Heading",
+                "type": "string",
+                "value": "Search the Artifacts",
+                "defaultValue": "Banner Heading",
+                "editable": true
+            },
+            "description": {
+                "name": "Banner Description",
+                "description": "Banner Description",
+                "type": "string",
+                "value": "The Heritage Artifact Collection records the tangible and intangible cultural heritage of Surrey. The mandate of the Collection is to preserve and maintain the material culture of the people, places, and events of Surrey that hold social and/or cultural significance to Surrey's diverse communities.",
+                "defaultValue": "Banner Description",
+                "editable": true
+            },
+            "searchURL": {
+                "name": "Banner Search URL",
+                "description": "Search bar action URL",
+                "type": "string",
+                "value": "/scripts/mwimain.dll?UNIONSEARCH&SIMPLE_EXP=Y&KEEP=Y&ERRMSG=[MESSAGES]374.htm&APPLICATION=UNION_VIEW&DATABASE=COLLECTIONS&language=144&REPORT=WEB_UNION_SUM_COL",
+                "defaultValue": "",
+                "editable": false
+            },
+            "bannerCarousel": {
+                "name": "Banner Carousel List",
+                "description": "List of all banner background pictures",
+                "type": "array",
+                "value": [
+                    "http://surreytest.minisisinc.com/assets/images/Artifacts Main Background.png"
+                ],
+                "defaultValue": "",
+                "editable": true
+            }
+        }
+    },
+    {
+        "component": "Section",
+        "name": "Featured Collections",
+        "description": "Featured Collections section",
+        "properties": {
+            "heading": {
+                "name": "Section Heading",
+                "description": "Section Heading",
+                "type": "string",
+                "value": "Featured Collections",
+                "defaultValue": "Section Heading",
+                "editable": true
+            }
+        },
+        "children": [{
+            "component": "PhotoCoverCard",
+            "name": "Photo Card Component",
+            "description": "Online Exhibitions for Featured Collections",
+            "properties": {
+                "recordIds": {
+                    "name": "Record List",
+                    "description": "List of Record Ids",
+                    "type": "array",
+                    "value": ["OEXID12", "OEXID11", "OEXID17", "OEXID16"],
+                    "defaultValue": [],
+                    "editable": true
+                }
+            }
+        }]
+    },
+    {
+        "component": "Section",
+        "name": "Artifacts on Display",
+        "description": "Artifacts on Display section",
+        "properties": {
+            "heading": {
+                "name": "Section Heading",
+                "description": "Section Heading",
+                "type": "string",
+                "value": "Artifacts on Display",
+                "defaultValue": "Section Heading",
+                "editable": true
+            }
+        },
+        "children": [{
+            "component": "MediaCard",
+            "name": "Media Card Component",
+            "description": "Online Exhibitions for Artifacts on Display",
+            "properties": {
+                "recordIds": {
+                    "name": "Record List",
+                    "description": "List of Record Ids",
+                    "type": "array",
+                    "value": ["OEXID13", "OEXID14", "OEXID15", "OEXID18"],
+                    "defaultValue": [],
+                    "editable": true
+                }
+            }
+        }]
     }
-  },
-  {
-    "component": "Section",
-    "name": "Featured Collections",
-    "description": "Featured Collections section",
-    "properties": {
-      "heading": {
-        "name": "Section Heading",
-        "description": "Section Heading",
-        "type": "string",
-        "value": "Featured Collections",
-        "defaultValue": "Section Heading",
-        "editable": true
-      }
-    },
-    "children": [
-      {
-        "component": "PhotoCoverCard",
-        "name": "Photo Card Component",
-        "description": "Online Exhibitions for Featured Collections",
-        "properties": {
-          "recordIds": {
-            "name": "Record List",
-            "description": "List of Record Ids",
-            "type": "array",
-            "value": ["OEXID12", "OEXID11", "OEXID17", "OEXID16"],
-            "defaultValue": [],
-            "editable": true
-          }
-        }
-      }
-    ]
-  },
-  {
-    "component": "Section",
-    "name": "Artifacts on Display",
-    "description": "Artifacts on Display section",
-    "properties": {
-      "heading": {
-        "name": "Section Heading",
-        "description": "Section Heading",
-        "type": "string",
-        "value": "Artifacts on Display",
-        "defaultValue": "Section Heading",
-        "editable": true
-      }
-    },
-    "children": [
-      {
-        "component": "MediaCard",
-        "name": "Media Card Component",
-        "description": "Online Exhibitions for Artifacts on Display",
-        "properties": {
-          "recordIds": {
-            "name": "Record List",
-            "description": "List of Record Ids",
-            "type": "array",
-            "value": ["OEXID13", "OEXID14", "OEXID15", "OEXID18"],
-            "defaultValue": [],
-            "editable": true
-          }
-        }
-      }
-    ]
-  }
 ]

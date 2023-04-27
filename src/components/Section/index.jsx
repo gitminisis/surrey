@@ -56,7 +56,7 @@ const Section = (props) => {
             {btnTitle}
           </ActionButton>
         )}
-        <Grid container spacing={2} sx={{ marginTop: "30px" }}>
+        <Grid container spacing={2} sx={{ margin: "0 auto", width: "100%" }}>
           {children}
         </Grid>
       </Container>
