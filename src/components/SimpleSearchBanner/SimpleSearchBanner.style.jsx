@@ -62,6 +62,7 @@ export const SiteHeading = styled(Typography)(({ theme }) => ({
   fontWeight: "900",
   [theme.breakpoints.down("md")]: {
     fontSize: "2.5rem",
+    marginTop:'150px'
   },
 }));
 
