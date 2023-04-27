@@ -7,6 +7,9 @@ import {
   GENERAL_SEARCHBOX_DBLIST,
 } from "./API";
 
+import detailJson from "../templates/json/detail-fields/index.json";
+import { jsonToFields } from "utils/functions";
+let displayFields = jsonToFields(detailJson);
 const Detail = [
   {
     component: "Layout",
@@ -16,7 +19,8 @@ const Detail = [
         data: {
           generalSearchBox: {
             breadcrumbs: ["Summary", "Detail"],
-            heading: "Search the collections",placeholder:"Search By Keyword",
+            heading: "Search the collections",
+            placeholder: "Search By Keyword",
             databaseList: GENERAL_SEARCHBOX_DBLIST,
             helpText: {
               link: "/faq.html",
@@ -25,16 +29,7 @@ const Detail = [
             },
           },
           generalSection: {
-            displayFields: [
-              {
-                database: "COLLECTIONS",
-                fields: COLLECTIONS_GENERAL_DETAIL_FIELD,
-              },
-              {
-                database: "DESCRIPTION",
-                fields: DESCRIPTION_GENERAL_DETAIL_FIELD,
-              },
-            ],
+            displayFields: [...displayFields],
             children: [
               {
                 component: "DescriptionTree",
@@ -80,7 +75,6 @@ const Detail = [
           },
         },
       },
-    
     ],
   },
 ];

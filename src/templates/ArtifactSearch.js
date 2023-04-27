@@ -1,40 +1,14 @@
-const ArtifactSearch = [{
+import json from "./json/artifact-home/index.json";
+import { jsonToTemplate } from "utils/functions";
+let data = jsonToTemplate(json);
+const ArtifactSearch = [
+  {
     component: "Layout",
     data: {
-        active: "Artifact",
+      active: "Artifact",
     },
-    children: [{
-            component: "SimpleSearchBanner",
-            data: {
-                searchURL: "/scripts/mwimain.dll?UNIONSEARCH&SIMPLE_EXP=Y&KEEP=Y&ERRMSG=[MESSAGES]374.htm&APPLICATION=UNION_VIEW&DATABASE=COLLECTIONS&language=144&REPORT=WEB_UNION_SUM_COL",
-                bannerCarousel: ["/assets/images/Artifacts Main Background.png"],
-                heading: "Search the Artifacts",
-                description: "The Heritage Artifact Collection records the tangible and intangible cultural heritage of Surrey. The mandate of the Collection is to preserve and maintain the material culture of the people, places, and events of Surrey that hold social and/or cultural significance to Surrey's diverse communities.",
-            },
-        },
-        {
-            component: "Section",
-            data: {
-                heading: "Featured Collections",
-            },
-            children: [{
-                component: "PhotoCoverCard",
-                data: {
-                    recordIds: ["OEXID12", "OEXID11", "OEXID17", "OEXID16"],
-                },
-            }, ],
-        },
-        {
-            component: "Section",
-            data: {
-                heading: "Artifacts on Display",
-            },
-            children: [{
-                component: "MediaCard",
-                data: { recordIds: ["OEXID13", "OEXID14", "OEXID15", "OEXID18"] },
-            }, ],
-        },
-    ],
-}, ];
+    children: [...data],
+  },
+];
 
 export default ArtifactSearch;
