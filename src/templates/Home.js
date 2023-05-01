@@ -1,4 +1,3 @@
-import homeSimpleSearchBanner from "./json/homeSimpleSearchBanner.json";
 import homeJSON from "./json/home/index.json";
 import { jsonToTemplate } from "utils/functions";
 

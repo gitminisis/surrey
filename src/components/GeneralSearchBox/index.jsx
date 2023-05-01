@@ -82,10 +82,15 @@ const GeneralSearchBox = (props) => {
           </Grid>{" "}
           <Grid item xs={12} md={12}>
             <form
-              method="POST"
+              method="GET"
               action={session + databaseList[index].searchURL}
+              onSubmit={(e) => {
+                e.preventDefault();
+                window.location = `${session}${databaseList[index].searchURL}&EXP=KEYWORD_CL "${document.getElementById('simpleSearchCluster').value}"`
+              }}
             >
               <Input
+                id="simpleSearchCluster"
                 variant="soft"
                 sx={{ px: 0 }}
                 placeholder={placeholder}

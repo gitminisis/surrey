@@ -14,6 +14,7 @@ const index = (props) => {
         {...props}
         component="a"
         variant="h3"
+        href={recordLink}
         sx={{
           color: "primary.main",
           fontWeight: "bold",

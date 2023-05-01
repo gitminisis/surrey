@@ -1,6 +1,9 @@
 import axios from "axios";
 import _ from "lodash";
-import { deepSearch, getXMLRecord } from "./functions";
+import {
+    deepSearch,
+    getXMLRecord
+} from "./functions";
 /**
  * Returns the search URL to the record with the corresponding REFD
  * @param {} session
@@ -80,6 +83,7 @@ export const mapXMLToNode = (xml) => {
 let tree = {};
 let openKeyPath = [];
 let treeArray = [];
+let noTree = false;
 
 /**
  * Build the tree from the current record using bottom-up approach
@@ -92,9 +96,23 @@ export const getJSONTree = (session, database, id) => {
     openKeyPath.push(id);
     while (!tree.isRoot) {
         return getXMLTree(session, database, id).then((res) => {
-            let { data } = res;
-            let { xml, curNode, lower_level_occurrence } = getCurNodeFromXML(data);
-
+            let {
+                data
+            } = res;
+            let curNodeJSON = getCurNodeFromXML(data);
+            if (curNodeJSON === null) {
+                noTree = true;
+                return {
+                    tree,
+                    openKeyPath,
+                    noTree
+                }
+            }
+            let {
+                xml,
+                curNode,
+                lower_level_occurrence
+            } = curNodeJSON
             let hasChildren =
                 lower_level_occurrence !== undefined &&
                 lower_level_occurrence.length > 0;
@@ -109,12 +127,17 @@ export const getJSONTree = (session, database, id) => {
             } else {
                 let clone = _.clone(curNode);
                 let curRefd = tree.id;
-                let index = _.findIndex(clone.children, { id: curRefd });
+                let index = _.findIndex(clone.children, {
+                    id: curRefd
+                });
                 clone.children[index].children = tree.children;
                 tree = clone;
             }
             if (tree.isRoot) {
-                return { tree, openKeyPath };
+                return {
+                    tree,
+                    openKeyPath
+                };
             } else {
                 let higherLevelCode = deepSearch(xml, "refd_higher")[0];
                 return getJSONTree(session, database, higherLevelCode);
@@ -132,8 +155,14 @@ export const getJSONTree = (session, database, id) => {
  */
 export const fetchNode = (session, database, id) => {
     return getXMLTree(session, database, id).then((res) => {
-        let { data } = res;
-        let { xml, curNode, lower_level_occurrence } = getCurNodeFromXML(data);
+        let {
+            data
+        } = res;
+        let {
+            xml,
+            curNode,
+            lower_level_occurrence
+        } = getCurNodeFromXML(data);
         let hasChildren =
             lower_level_occurrence !== undefined && lower_level_occurrence.length > 0;
         if (hasChildren) {
@@ -149,12 +178,20 @@ export const fetchNode = (session, database, id) => {
 
 export const getCurNodeFromXML = (data) => {
     let dom = new DOMParser().parseFromString(data, "text/html");
+    console.log(dom)
+    if (dom.getElementById('MWI-error')) {
+        return null;
+    }
     let xml = getXMLRecord(dom);
     let curNode = mapXMLToNode(xml);
     let lower_level_occurrence = _.flatten(
         deepSearch(xml, "lower_level_occurrence")
     );
-    return { xml, curNode, lower_level_occurrence };
+    return {
+        xml,
+        curNode,
+        lower_level_occurrence
+    };
 };
 /**
  * Return node object from the tree using the ID
@@ -197,7 +234,11 @@ export const addChildrenToNode = (tree, id, children) => {
 
     return tree.map((e) => {
         if (e.id === id) {
-            return {...e, children, isChildrenLoaded: true };
+            return {
+                ...e,
+                children,
+                isChildrenLoaded: true
+            };
         }
 
         if (e.hasChildren) {

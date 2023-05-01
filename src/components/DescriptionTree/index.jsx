@@ -54,10 +54,14 @@ const DescriptionTree = (props) => {
     if (showTree) {
       getJSONTree(session, database, refd)
         .then((res) => {
-          let { tree, openKeyPath } = res;
+          let { tree, openKeyPath, noTree } = res;
+          setLoading(true);
+          if(noTree){
+            return;
+          }
           setOpenKeyPath(openKeyPath.reverse());
           setTreeData(tree);
-          setLoading(true);
+       
         })
         .then((err) => {});
     }

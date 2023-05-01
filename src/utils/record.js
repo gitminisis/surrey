@@ -150,7 +150,7 @@ export const getRecendAdditions = (session = "/scripts/mwimain.dll") => {
     };
     let searchURL = searchingField.map((e) => {
         let exp = `${e.date} > "${low}" and ${e.mediaReady} "Yes"`;
-        let url = `${session}?UNIONSEARCH&SIMPLE_EXP=Y&KEEP=Y&ERRMSG=[MESSAGES]374.htm&APPLICATION=UNION_VIEW&language=144&REPORT=WEB_UNION_SUM&EXP=${exp}&database=${e.database}`;
+        let url = `${session}?UNIONSEARCH&SIMPLE_EXP=Y&SHOWSINGLE=Y&KEEP=Y&ERRMSG=[MESSAGES]374.htm&APPLICATION=UNION_VIEW&language=144&REPORT=WEB_UNION_SUM&EXP=${exp}&database=${e.database}`;
         return url;
     });
 
@@ -160,7 +160,10 @@ export const getRecendAdditions = (session = "/scripts/mwimain.dll") => {
                 getXMLRecord(new DOMParser().parseFromString(e.data, "text/html"))
             );
             let result = jsonData.reduce((acc, record) => {
-                let xml_record = record.xml.xml_record;
+                let xml_record = deepSearch(record, 'xml_record');
+                if (Array.isArray(xml_record[0])) {
+                    xml_record = xml_record[0]
+                }
                 xml_record.map((e) => {
                     let database = deepSearch(e, "database_name")[0];
                     let thumbnail = deepSearch(e, fieldByDatabase[database].thumbnail)[0];
