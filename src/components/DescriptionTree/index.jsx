@@ -56,14 +56,14 @@ const DescriptionTree = (props) => {
         .then((res) => {
           let { tree, openKeyPath, noTree } = res;
           setLoading(true);
-          if(noTree){
+          if (noTree) {
             return;
           }
           setOpenKeyPath(openKeyPath.reverse());
           setTreeData(tree);
-       
+
         })
-        .then((err) => {});
+        .then((err) => { });
     }
   }, []);
   const handleContextMenu = (event) => {
@@ -72,13 +72,13 @@ const DescriptionTree = (props) => {
     setContextMenu(
       contextMenu === null
         ? {
-            mouseX: event.clientX + 2,
-            mouseY: event.clientY - 6,
-          }
+          mouseX: event.clientX + 2,
+          mouseY: event.clientY - 6,
+        }
         : // repeated contextmenu when it is already open closes it with Chrome 84 on Ubuntu
-          // Other native context menus might behave different.
-          // With this behavior we prevent contextmenu from the backdrop to re-locale existing context menus.
-          null
+        // Other native context menus might behave different.
+        // With this behavior we prevent contextmenu from the backdrop to re-locale existing context menus.
+        null
     );
   };
 
@@ -152,22 +152,20 @@ const DescriptionTree = (props) => {
         </Typography>
       </AccordionSummary>
       <AccordionDetails>
-        {/* <Input
-          variant="soft"
-          placeholder="Search"
-          name="KEYWORD_CL"
-          startDecorator={<SearchIcon />}
-        /> */}
+
 
         {loading ? (
           <div>
-            <TreeView
+            {treeData.isRoot ? <TreeView
               multiSelect={false}
               aria-label={title}
               defaultCollapseIcon={<MinusSquare />}
               defaultExpandIcon={<PlusSquare />}
               defaultEndIcon={<CloseSquare />}
-              //   onNodeSelect={(e, n) => handleClick(session, database, n)}
+                onNodeSelect={(e, n) => {
+                  // handleClick(session, database, n)
+                  console.log(n)
+                }}
               onNodeToggle={handleToggle}
               expanded={openKeyPath}
               sx={{
@@ -176,7 +174,7 @@ const DescriptionTree = (props) => {
               }}
             >
               {renderTree(treeData)}
-            </TreeView>
+            </TreeView> : "Description tree is not available for this record"}
           </div>
         ) : (
           <TreeLoadingSkeleton />

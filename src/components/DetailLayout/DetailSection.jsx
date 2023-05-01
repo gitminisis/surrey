@@ -66,8 +66,8 @@ const DetailSection = (props) => {
                 },
               })}
             >
-              {sections.map((e) => (
-                <Tab sx={{ px: 8, py: 2 }}>
+              {sections.map((e,i) => (
+                <Tab key={i} sx={{ px: 8, py: 2 }}>
                   <Typography variant="h6" component="h3">
                     {" "}
                     <strong>{e.title}</strong>
@@ -78,7 +78,7 @@ const DetailSection = (props) => {
             {sections.map((e, i) => {
               let displayFields = e.fields;
               return (
-                <TabPanel value={i} sx={{ p: 1, minHeight: 200 }}>
+                <TabPanel key={i} value={i} sx={{ p: 1, minHeight: 200 }}>
                   <Box
                     sx={{
                       display: "flex",

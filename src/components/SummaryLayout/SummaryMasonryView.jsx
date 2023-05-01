@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import Masonry from "@mui/lab/Masonry";
 import { getAllImageCaptions, getFirstThumbnail } from "../../utils/record";
 import SummaryTextField from "../SummaryTextField";
@@ -8,6 +8,7 @@ import PropTypes from "prop-types";
 import RecordTextField from "../RecordTextField";
 import SummaryRecordAction from "./SummaryRecordAction";
 import { deepSearch } from "../../utils/functions";
+import { Typography } from "@mui/material";
 const SummaryMasonryView = (props) => {
   const { data, thumbnailData, xml, updateXML } = props;
 
@@ -42,13 +43,13 @@ const SummaryMasonryView = (props) => {
                 />
               </div>
               {thumbPic && (
-                <img
+                <Typography component="a" href={recordLink}> <img
                   src={thumbPic}
                   style={{ maxWidth: "100%" }}
                   srcSet={thumbPic}
                   loading="lazy"
                   alt={firstCaption}
-                />
+                /></Typography>
               )}
               <Box
                 sx={{ position: "absolute", top: "0.5rem", right: "0.5rem" }}

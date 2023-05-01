@@ -81,7 +81,7 @@ const ContactUsModalForm = (props) => {
         size="md"
         variant="outlined"
       >
-        Submit an Inquiry
+        Contact Us
       </Button>
 
       <Modal onClose={() => setOpen(false)} open={open} data-aos="fade-down">

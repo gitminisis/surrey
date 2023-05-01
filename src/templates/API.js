@@ -9,7 +9,6 @@ from "./json/collectionsSummaryField.json";
 
 export const AUTHORITY_DATABASE_FIELD = {
     PEOPLE_VAL: [
-        { name: "PERSON_ID", label: "Person ID" },
         { name: "FULLNAME2", label: "Full Name" },
         { name: "PERSON_DOB", label: "Date of birth" },
         { name: "PERSON_DOD", label: "Date of death" },
@@ -54,8 +53,8 @@ export const DESCRIPTION_GENERAL_DETAIL_FIELD = [{
     {
         name: "a_tx_access",
         label: "Textual Document",
-        component:"RecordToURLField",
-        data:{
+        component: "RecordToURLField",
+        data: {
             name: "a_tx_access",
             label: "Textual Document",
         }

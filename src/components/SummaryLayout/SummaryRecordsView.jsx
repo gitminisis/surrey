@@ -24,11 +24,11 @@ const SummaryRecordsView = (props) => {
     <>
       {XMLRecord.map((record, i) => {
         let database = record.database_name;
-        if(!record.record_link){
+        if (!record.record_link) {
           console.log(record, i)
         }
         let recordLink = record.record_link.replace(/\n/g, "");
-      
+
         let recordData = record.record;
         let displayFields = data.find((e) => e.database === database).fields;
         let thumbPic = getFirstThumbnail(record, database);
@@ -51,7 +51,7 @@ const SummaryRecordsView = (props) => {
               >
                 <Box sx={{ display: "flex" }}>
                   {thumbPic && (
-                    <CardMedia
+                    <Typography component="a" href={recordLink}><CardMedia
                       onClick={(_) => (window.location = recordLink)}
                       component="img"
                       sx={{
@@ -63,7 +63,7 @@ const SummaryRecordsView = (props) => {
                       }}
                       image={thumbPic}
                       alt={firstCaption}
-                    />
+                    /></Typography>
                   )}
                 </Box>
 

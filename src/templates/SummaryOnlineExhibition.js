@@ -24,6 +24,7 @@ const Summary = [{
             sortOptions: true,
             filter: [],
             thumbnailData: MEDIA_THUMBNAIL_FIELD,
+            defaultView: "grid",
             displayField: [{
                     database: "COLLECTIONS",
                     fields: COLLECTIONS_SUMMARY_FIELD,
