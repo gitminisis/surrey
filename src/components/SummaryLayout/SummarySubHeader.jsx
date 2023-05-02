@@ -10,10 +10,8 @@ import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import PropTypes from "prop-types";
 import { deepSearch, getXMLRecord } from "../../utils/functions";
 export default function SummarySubHeader(props) {
-  let { xml, statementField, isFilter = true } = props;
-  const handleChange = (event, nextView) => {
-    setView(nextView);
-  };
+  let { xml, statementField, isFilter = true, statement = null } = props;
+
   let totalRecord = deepSearch(xml, "total_record");
   let searchStatement = deepSearch(
     xml,
@@ -34,7 +32,7 @@ export default function SummarySubHeader(props) {
             variant="body1"
             sx={{ fontWeight: "bold", fontSize: "1.2rem" }}
           >
-            {`${totalRecord} search results for "${searchStatement}"`}
+            {statement ? statement : `${totalRecord} search results for "${searchStatement}"`}
           </Typography>
         </Box>
         <Box sx={{ display: "flex", gap: 2, flexDirection: "row" }}>

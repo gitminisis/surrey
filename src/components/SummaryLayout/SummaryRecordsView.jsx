@@ -14,12 +14,11 @@ import PropTypes from "prop-types";
 import SummaryRecordAction from "./SummaryRecordAction";
 import RecordTextField from "../RecordTextField";
 const SummaryRecordsView = (props) => {
-  const { data, thumbnailData, xml, updateXML } = props;
+  const { data, thumbnailData, xml, updateXML, recordAction = true } = props;
   let XMLRecord = deepSearch(xml, "xml_record")[0];
   if (!Array.isArray(XMLRecord)) {
     XMLRecord = [XMLRecord];
   }
-  console.log(XMLRecord)
   return (
     <>
       {XMLRecord.map((record, i) => {
@@ -95,13 +94,13 @@ const SummaryRecordsView = (props) => {
                       right: "16px",
                     }}
                   >
-                    <SummaryRecordAction
+                    {recordAction && <SummaryRecordAction
                       database={database}
                       sisn={sisn}
                       url={bookmarkURL}
                       updateXML={updateXML}
                       isBookmarked={isBookmarked}
-                    />
+                    />}
                   </Box>
                 </Box>
               </Card>
@@ -115,6 +114,7 @@ const SummaryRecordsView = (props) => {
 SummaryRecordsView.propTypes = {
   data: PropTypes.array,
   isGrid: PropTypes.bool,
+  recordAction: PropTypes.bool,
 };
 
 export default SummaryRecordsView;

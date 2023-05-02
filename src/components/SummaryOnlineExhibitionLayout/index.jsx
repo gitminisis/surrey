@@ -57,7 +57,6 @@ const SummaryOnlineExhibitionLayout = (props) => {
   const toggleMobileFilter = () => {
     setShowMobileFilter(!showMobileFilter);
   };
-  console.log(xml);
   return (
     <div>
       <SummaryContainer
@@ -107,6 +106,7 @@ const SummaryOnlineExhibitionLayout = (props) => {
             <Grid container rowSpacing={2} style={{ marginTop: "1rem" }}>
               <Grid item xs={12}>
                 <SummarySubHeader
+                  statement={"127 attached records"}
                   toggleMobileFilter={toggleMobileFilter}
                   toggleFilter={toggleFilter}
                   toggleGrid={toggleGrid}
@@ -122,6 +122,7 @@ const SummaryOnlineExhibitionLayout = (props) => {
                   data={displayField}
                   xml={xml}
                   updateXML={setXml}
+                  recordAction={false}
                 />
                 {/* <SummaryPagination xml={xml} /> */}
               </Grid>

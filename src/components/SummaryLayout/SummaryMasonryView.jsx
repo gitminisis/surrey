@@ -10,7 +10,7 @@ import SummaryRecordAction from "./SummaryRecordAction";
 import { deepSearch } from "../../utils/functions";
 import { Typography } from "@mui/material";
 const SummaryMasonryView = (props) => {
-  const { data, thumbnailData, xml, updateXML } = props;
+  const { data, thumbnailData, xml, updateXML, recordAction = true } = props;
 
   return (
     <Box sx={{ width: "100%" }}>
@@ -43,7 +43,7 @@ const SummaryMasonryView = (props) => {
                 />
               </div>
               {thumbPic && (
-                <Typography component="a" href={recordLink}> <img
+                <Typography component="a" href={recordLink} style={{ textAlign: 'center' }}> <img
                   src={thumbPic}
                   style={{ maxWidth: "100%" }}
                   srcSet={thumbPic}
@@ -54,13 +54,16 @@ const SummaryMasonryView = (props) => {
               <Box
                 sx={{ position: "absolute", top: "0.5rem", right: "0.5rem" }}
               >
-                <SummaryRecordAction
-                  database={database}
-                  sisn={sisn}
-                  url={bookmarkURL}
-                  updateXML={updateXML}
-                  isBookmarked={isBookmarked}
-                />
+                {
+                  recordAction &&
+                  <SummaryRecordAction
+                    database={database}
+                    sisn={sisn} F
+                    url={bookmarkURL}
+                    updateXML={updateXML}
+                    isBookmarked={isBookmarked}
+                  />
+                }
               </Box>
             </Card>
           );
@@ -70,6 +73,8 @@ const SummaryMasonryView = (props) => {
   );
 };
 
-SummaryMasonryView.propTypes = {};
+SummaryMasonryView.propTypes = {
+  recordAction: PropTypes.bool
+};
 
 export default SummaryMasonryView;
