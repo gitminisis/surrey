@@ -28,7 +28,7 @@ import {
   PlusSquare,
   CloseSquare,
 } from "./DescriptionTree.style";
-
+import { getSearchRequestURL } from "utils/record";
 const TreeSkeletonWidth = [100, 90, 80, 70, 70, 70, 60, 60, 60];
 const TreeLoadingSkeleton = () => {
   return (
@@ -97,7 +97,6 @@ const DescriptionTree = (props) => {
           setTreeData(resTree[0]);
         });
       }
-    } else {
     }
   };
 
@@ -105,16 +104,23 @@ const DescriptionTree = (props) => {
     let { id, children, hasChildren, isLoaded } = nodes;
     return (
       <StyledTreeItem
-        key={nodes.id}
-        nodeId={nodes.id}
-        onClick={e=>{
+        key={id}
+        nodeId={id}
+        onClick={e => {
+
           console.log(e)
         }}
         label={
           <Typography
+
             level="h6"
-            component="div"
-            sx={{ fontWeight: refd === nodes.id ? "bold" : "inherit" }}
+            component="a"
+            href={getSearchRequestURL('DESCRIPTION', `REFD ${id}`, 'WEB_UNION_DETAIL', 'UNION_VIEW', session)}
+            onClick={e => {
+              e.stopPropagation();
+              console.log('tree node click', id)
+            }}
+            sx={{ fontWeight: refd === nodes.id ? "bold" : "inherit", textDecoration: 'none', color:'primary.dark' }}
           >
             {nodes.title}
           </Typography>
