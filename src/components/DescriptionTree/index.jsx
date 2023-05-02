@@ -107,6 +107,9 @@ const DescriptionTree = (props) => {
       <StyledTreeItem
         key={nodes.id}
         nodeId={nodes.id}
+        onClick={e=>{
+          console.log(e)
+        }}
         label={
           <Typography
             level="h6"
@@ -162,10 +165,10 @@ const DescriptionTree = (props) => {
               defaultCollapseIcon={<MinusSquare />}
               defaultExpandIcon={<PlusSquare />}
               defaultEndIcon={<CloseSquare />}
-                onNodeSelect={(e, n) => {
-                  // handleClick(session, database, n)
-                  console.log(n)
-                }}
+              onNodeSelect={(e, n) => {
+                // handleClick(session, database, n)
+                console.log(n)
+              }}
               onNodeToggle={handleToggle}
               expanded={openKeyPath}
               sx={{
