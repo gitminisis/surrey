@@ -76,14 +76,18 @@ const Banner = (props) => {
           style={{
             width: "100%",
             height: "100%",
-            paddingTop: "25%",
+            paddingTop: "20%",
             margin: "0 0",
             background: "rgb(0, 0, 0, 0.4)",
             zIndex: "4",
           }}
         >
           <Grid container spacing={2} data-aos="fade-down">
-            <Grid item sm={12}>
+            <Grid
+              item
+              sm={12}
+              style={{ width: "100%", maxWidth: "900px", margin: "0 auto" }}
+            >
               <SiteHeading variant="h1">{heading}</SiteHeading>
               <SiteDescription variant="p">{description}</SiteDescription>
             </Grid>
@@ -98,7 +102,9 @@ const Banner = (props) => {
                   onSubmit={(e) => {
                     // setBackdrop(true);
                     e.preventDefault();
-                    window.location = `${url}&EXP=KEYWORD_CL "${document.getElementById('simpleSearchCluster').value}"`
+                    window.location = `${url}&EXP=KEYWORD_CL "${
+                      document.getElementById("simpleSearchCluster").value
+                    }"`;
                   }}
                   sx={{
                     display: "flex",

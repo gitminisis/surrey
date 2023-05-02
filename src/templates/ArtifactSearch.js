@@ -5,7 +5,7 @@ const ArtifactSearch = [
   {
     component: "Layout",
     data: {
-      active: "Artifact",
+      active: "Artifacts",
     },
     children: [...data],
   },
