@@ -29,7 +29,7 @@ export const FILTER_TITLE_BY_FIELD = {
     $UNION_DBNAME: "Collections",
     MEDIA_CL: "Media Type",
     FORM: "Type",
-    DATE_SEARCH: "Date",
+    DATE_CR_INC: "Date",
     FORM_CL: "Type",
     DATE_CL: "Date",
     EARLY: "Date",

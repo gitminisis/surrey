@@ -40,7 +40,7 @@ const ArchivesSearch = [{
                             },
                             {
                                 title: "Search Dates",
-                                field: "DATE_SEARCH",
+                                field: "DATE_CR_INC",
                             },
                             {
                                 title: "Town Centre",

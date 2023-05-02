@@ -1,24 +1,23 @@
-[
-  {
-    "name": "TITLE",
-    "label": "Title",
-    "main": true
-  },
+[{
+        "name": "TITLE",
+        "label": "Title",
+        "main": true
+    },
 
-  {
-    "name": "DATE_SEARCH",
-    "label": "Dates",
-    "gridDisplay": false
-  },
+    {
+        "name": "DATE_CR_INC",
+        "label": "Dates",
+        "gridDisplay": false
+    },
 
-  {
-    "name": "form_occurrence",
-    "label": "Type",
-    "gridDisplay": false
-  },
+    {
+        "name": "form_occurrence",
+        "label": "Type",
+        "gridDisplay": false
+    },
 
-  {
-    "name": "REFD",
-    "label": "ID"
-  }
+    {
+        "name": "REFD",
+        "label": "ID"
+    }
 ]

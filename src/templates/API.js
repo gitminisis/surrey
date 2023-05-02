@@ -22,9 +22,8 @@ export const DESCRIPTION_GENERAL_DETAIL_FIELD = [{
         label: "Title",
         main: true,
     },
-
     {
-        name: "DATE_SEARCH",
+        name: "DATE_CR_INC",
         label: "Date(s)",
         gridDisplay: false,
     },

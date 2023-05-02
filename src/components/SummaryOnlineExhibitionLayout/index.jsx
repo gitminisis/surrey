@@ -57,6 +57,10 @@ const SummaryOnlineExhibitionLayout = (props) => {
   const toggleMobileFilter = () => {
     setShowMobileFilter(!showMobileFilter);
   };
+
+  let attachedRecords = deepSearch(xml, 'xml_record')[0];
+  attachedRecords = Array.isArray(attachedRecords) ? attachedRecords : [attachedRecords];
+  let title = deepSearch(xml, 'oef_title')[0];
   return (
     <div>
       <SummaryContainer
@@ -106,7 +110,7 @@ const SummaryOnlineExhibitionLayout = (props) => {
             <Grid container rowSpacing={2} style={{ marginTop: "1rem" }}>
               <Grid item xs={12}>
                 <SummarySubHeader
-                  statement={"127 attached records"}
+                  statement={`${attachedRecords.length} attached record(s) for ${title}`}
                   toggleMobileFilter={toggleMobileFilter}
                   toggleFilter={toggleFilter}
                   toggleGrid={toggleGrid}
