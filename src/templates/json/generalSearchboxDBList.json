@@ -1,5 +1,5 @@
 [{
-        "database": "Union Search",
+        "database": "Combined Search",
         "searchURL": "?UNIONSEARCH&SIMPLE_EXP=Y&KEEP=Y&ERRMSG=[MESSAGES]374.htm&APPLICATION=UNION_VIEW&language=144&REPORT=WEB_UNION_SUM"
     },
     {
