@@ -35,7 +35,7 @@ const MediaCard = (props) => {
       title = deepSearch(e, "oef_title")[0];
       description = deepSearch(e, "oef_description")[0];
       thumbnail = deepSearch(e, "oef_image_path")[0];
-      id =  deepSearch(e, "oef_ind")[0];
+      id = deepSearch(e, "oef_ind")[0];
 
       // .replace(/\n/, " ")
       // .replace(/\\/gi, "/")
@@ -44,17 +44,17 @@ const MediaCard = (props) => {
     return (
       <Grid item xs={12} sm={6} md={3} key={i}>
         <Card
-          sx={{ cursor: "pointer", height: 280, width: 280 }}
+          sx={{ cursor: "pointer", height: 280, width: 280, margin: '0 auto' }}
           onMouseEnter={(_) => setHover(true)}
           onMouseLeave={(_) => setHover(false)}
           onClick={(_) =>
-            (window.location = getSearchRequestURL(
-              "ONLINE_EXHIBITION_VIEW",
-              `OEF_IND ${id}`,
-              "WEB_OE_UNION_SUM",
-              "UNION_VIEW",
-              getCurrentSession()
-            ))
+          (window.location = getSearchRequestURL(
+            "ONLINE_EXHIBITION_VIEW",
+            `OEF_IND ${id}`,
+            "WEB_OE_UNION_SUM",
+            "UNION_VIEW",
+            getCurrentSession()
+          ))
           }
         >
           <CardCover>

@@ -50,22 +50,23 @@ const PhotoCoverCard = (props) => {
       title = deepSearch(e, "oef_title")[0];
       description = deepSearch(e, "oef_description")[0];
       thumbnail = deepSearch(e, "oef_image_path")[0].replace(/\n/, "");
-      id =  deepSearch(e, "oef_ind")[0];
+      id = deepSearch(e, "oef_ind")[0];
     }
 
     return (
       <Grid item xs={12} md={6} key={i}>
         <Card
+          className="photoCoverCard"
           onClick={(_) =>
-            (window.location = getSearchRequestURL(
-              "ONLINE_EXHIBITION_VIEW",
-              `OEF_IND ${id}`,
-              "WEB_OE_UNION_SUM",
-              "UNION_VIEW",
-              getCurrentSession()
-            ))
+          (window.location = getSearchRequestURL(
+            "ONLINE_EXHIBITION_VIEW",
+            `OEF_IND ${id}`,
+            "WEB_OE_UNION_SUM",
+            "UNION_VIEW",
+            getCurrentSession()
+          ))
           }
-          style={{ cursor: "pointer", paddingBottom: "20px" }}
+          style={{ cursor: "pointer", paddingBottom: "20px", margin: '0 auto' }}
           elevation={3}
         >
           {loading ? (
@@ -78,7 +79,7 @@ const PhotoCoverCard = (props) => {
               />
             </div>
           ) : (
-            <CardMedia sx={{ height: 400, backgroundSize:'contain' }} image={thumbnail} title={title} />
+            <CardMedia sx={{ height: 400, backgroundSize: 'contain' }} image={thumbnail} title={title} />
           )}
 
           <CardContent>
