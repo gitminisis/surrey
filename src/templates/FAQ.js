@@ -3,7 +3,6 @@ import {
     jsonToTemplate
 } from "utils/functions";
 let data = jsonToTemplate(json);
-console.log(data)
 const FAQ = [{
     component: "Layout",
     data: {

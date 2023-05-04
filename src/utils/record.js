@@ -403,7 +403,6 @@ export const getIDFromBookmarkSummary = (xml) => {
 };
 
 export const getSortReportURL = (xml, application, sort) => {
-    console.log(sort, application);
     let url = deepSearch(xml, "bookmark_url")[0];
 
     url = `${url}/${SORT_REPORTS_BY_DATABASE[sort][application]}?RECLIST&DATABASE=${application}`;

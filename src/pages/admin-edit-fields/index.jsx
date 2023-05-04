@@ -46,7 +46,6 @@ const AdminEditFields = (props) => {
         type: "success",
         isLoading: false,
       });
-      console.log(res);
     });
   };
   const renderForm = (handleChange) => {
@@ -80,7 +79,6 @@ const AdminEditFields = (props) => {
                     name: "LEGAL_TITLE",
                     label: "Title",
                   });
-                  console.log(copyData);
                   setCurrentData(copyData);
                   updateData.current = copyData;
                 }}

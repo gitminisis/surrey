@@ -120,7 +120,7 @@ const Footer = (props) => {
         >
           Learn more about {" "}
           <Link color="inherit" variant="h6" component="a" href={"https://www.surrey.ca/arts-culture/heritage"}>
-          Heritage in Surrey here
+          Heritage in Surrey
           </Link>
          
         </Typography>

@@ -24,7 +24,6 @@ const SummaryRecordsView = (props) => {
       {XMLRecord.map((record, i) => {
         let database = record.database_name;
         if (!record.record_link) {
-          console.log(record, i)
         }
         let recordLink = record.record_link.replace(/\n/g, "");
 

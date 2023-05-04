@@ -12,7 +12,6 @@ const SummaryPagination = (props) => {
   const { xml } = props;
   const [pagination, setPagination] = useState(getPagination(xml));
   const [clicked, setClicked] = useState(false);
-  console.log(pagination)
   return (
     <div style={{ margin: "0 auto", textAlign: "center" }}>
       {pagination && (
@@ -27,7 +26,6 @@ const SummaryPagination = (props) => {
             }}
             disabled={clicked}
             renderItem={(item) => {
-              console.log(item);
               if (item.type === "page") {
                 let index = item.page;
                 let pageItem = pagination.a[index - 1];

@@ -13,11 +13,10 @@ import SummaryRecordsView from "./SummaryRecordsView";
 import GeneralSearchBox from "../GeneralSearchBox";
 import SummaryMasonryView from "./SummaryMasonryView";
 import SummaryPagination from "./SummaryPagination";
-import { deepSearch, getXMLRecord } from "../../utils/functions";
+import { getXMLRecord } from "../../utils/functions";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import MobileFilterWrapper from "./MobileFilterWrapper";
 import DesktopFilterWrapper from "./DesktopFilterWrapper";
-const scrollHeight = 330;
 
 const SummaryLayout = (props) => {
   const isMobileDevice = useMediaQuery((theme) => theme.breakpoints.down("lg"));
@@ -41,7 +40,8 @@ const SummaryLayout = (props) => {
   const FilterWrapper = isMobileDevice
     ? MobileFilterWrapper
     : DesktopFilterWrapper;
-
+  const dataPage = document.querySelector("#root").dataset.page;
+  console.log(dataPage)
   const toggleGrid = (a, b) => {
     if (!b || b === undefined) {
       return;

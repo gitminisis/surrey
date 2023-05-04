@@ -178,7 +178,6 @@ export const fetchNode = (session, database, id) => {
 
 export const getCurNodeFromXML = (data) => {
     let dom = new DOMParser().parseFromString(data, "text/html");
-    console.log(dom)
     if (dom.getElementById('MWI-error')) {
         return null;
     }

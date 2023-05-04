@@ -68,7 +68,6 @@ const EmailBookmarkForm = (props) => {
         />
         <form
           onSubmit={(event) => {
-            console.log(xml);
             let body = deepSearch(xml, "xml_record")[0];
             if (!Array.isArray(body)) {
               body = [body];

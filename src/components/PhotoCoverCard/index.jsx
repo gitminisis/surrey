@@ -39,7 +39,6 @@ const PhotoCoverCard = (props) => {
       }
       setRecords(rec);
       setLoading(false);
-      console.log(rec);
     });
   }, []);
 

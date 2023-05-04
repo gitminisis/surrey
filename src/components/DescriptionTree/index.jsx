@@ -108,7 +108,6 @@ const DescriptionTree = (props) => {
         nodeId={id}
         onClick={e => {
 
-          console.log(e)
         }}
         label={
           <Typography
@@ -118,9 +117,8 @@ const DescriptionTree = (props) => {
             href={getSearchRequestURL('DESCRIPTION', `REFD ${id}`, 'WEB_UNION_DETAIL', 'UNION_VIEW', session)}
             onClick={e => {
               e.stopPropagation();
-              console.log('tree node click', id)
             }}
-            sx={{ fontWeight: refd === nodes.id ? "bold" : "inherit", textDecoration: 'none', color:'primary.dark' }}
+            sx={{ fontWeight: refd === nodes.id ? "bold" : "inherit", textDecoration: refd === nodes.id ? "underline" : "none", color: 'primary.dark' }}
           >
             {nodes.title}
           </Typography>
@@ -137,7 +135,6 @@ const DescriptionTree = (props) => {
   if (!showTree) {
     return null;
   }
-  console.log(treeData);
   return (
     <Accordion>
       <AccordionSummary
@@ -173,7 +170,6 @@ const DescriptionTree = (props) => {
               defaultEndIcon={<CloseSquare />}
               onNodeSelect={(e, n) => {
                 // handleClick(session, database, n)
-                console.log(n)
               }}
               onNodeToggle={handleToggle}
               expanded={openKeyPath}

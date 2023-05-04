@@ -8,7 +8,6 @@ const ShowMoreText = (props) => {
   const { record, name, label, showLabel } = props;
   let text = deepSearch(record, name.toLowerCase());
   let flattenText = flattenDeep(text);
-  console.log(flattenText);
 
   return (
     <>

@@ -15,7 +15,6 @@ const PopoverRecord = (props) => {
     performJumpSearch(
       getJumpURL(session, database, field, value, "WEB_PEOPLE_SUM")
     ).then((res) => {
-      console.log(res);
       setXML(res);
       isLoaded(false);
     });
