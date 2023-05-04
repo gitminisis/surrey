@@ -31,7 +31,7 @@ import KeyboardDoubleArrowUpIcon from "@mui/icons-material/KeyboardDoubleArrowUp
 import KeyboardDoubleArrowDownIcon from "@mui/icons-material/KeyboardDoubleArrowDown";
 import LayoutBackdrop from "../LayoutBackdrop";
 import { readCookie } from "../../utils/functions";
-
+import BannerSlide from "./BannerSlide";
 const Banner = (props) => {
   const {
     bannerURL,
@@ -57,7 +57,7 @@ const Banner = (props) => {
         }
         return prev + 1;
       });
-    }, 5000);
+    }, 10000);
 
     return () => clearInterval(interval);
   }, []);
@@ -70,7 +70,8 @@ const Banner = (props) => {
         className="bannerContainer back-top-anchor"
         banner={bannerCarousel[activeStep]}
       >
-        <ShadowLayerBox banner={bannerCarousel[activeStep]} />
+        {/* <ShadowLayerBox banner={bannerCarousel[activeStep]} /> */}
+        <BannerSlide banner={bannerCarousel} />
         <Container
           maxWidth={false}
           style={{
@@ -164,7 +165,7 @@ const Banner = (props) => {
           </HoverLink>
         )}
       </BannerContainer>
-      <MobileStepper
+      {/* <MobileStepper
         variant="dots"
         steps={bannerCarousel.length}
         position="static"
@@ -178,7 +179,7 @@ const Banner = (props) => {
           right: "0",
           backgroundColor: "rgba(0, 0, 0, 0.4)",
         }}
-      />
+      /> */}
       {collapseSearchFilter && (
         <CollapseSearchFilter show={show} {...collapseSearchFilter.data} />
       )}
