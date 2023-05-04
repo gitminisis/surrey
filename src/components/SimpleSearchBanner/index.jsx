@@ -70,7 +70,6 @@ const Banner = (props) => {
         className="bannerContainer back-top-anchor"
         banner={bannerCarousel[activeStep]}
       >
-        {/* <ShadowLayerBox banner={bannerCarousel[activeStep]} /> */}
         <BannerSlide banner={bannerCarousel} />
         <Container
           maxWidth={false}
@@ -165,21 +164,7 @@ const Banner = (props) => {
           </HoverLink>
         )}
       </BannerContainer>
-      {/* <MobileStepper
-        variant="dots"
-        steps={bannerCarousel.length}
-        position="static"
-        activeStep={activeStep}
-        sx={{
-          textAlign: "center",
-          margin: "0 auto",
-          position: "absolute",
-          bottom: 0,
-          color: "white",
-          right: "0",
-          backgroundColor: "rgba(0, 0, 0, 0.4)",
-        }}
-      /> */}
+
       {collapseSearchFilter && (
         <CollapseSearchFilter show={show} {...collapseSearchFilter.data} />
       )}
