@@ -81,11 +81,11 @@ const FieldFilter = (props) => {
                   checked={itemSelected}
                   label={item.item_value}
                   overlay
-                  sx={{ color: "inherit" }}
+                  sx={{ color: "inherit", textAlign: "left" }}
                   onChange={(_) => {
-                    handleFilter(item.item_value, data._name);
-                    // (window.location =
-                    //   item.item_link.toString() + "&DATABASE=" + application)
+                    // handleFilter(item.item_value, data._name);
+                    window.location =
+                      item.item_link.toString() + "&DATABASE=" + application;
                   }}
                 />
                 <Typography sx={{ ml: "auto" }}>
@@ -222,7 +222,7 @@ const SummaryFilter = (props) => {
               selectedValues={filterType[item._name]}
             />
           ))}
-
+{/* 
           <Box sx={{ mt: 2, justifyContent: "right", display: "flex" }}>
             <Button
               color="warning"
@@ -235,7 +235,7 @@ const SummaryFilter = (props) => {
             <Button color="success" size="sm">
               Apply{" "}
             </Button>
-          </Box>
+          </Box> */}
         </>
       )}
     </Item>
