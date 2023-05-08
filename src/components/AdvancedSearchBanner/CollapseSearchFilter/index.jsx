@@ -107,46 +107,15 @@ const AutocompleteDropdown = (props) => {
     );
   }, []);
 
-  const loadMoreOptions = async (url) => {
-    setIsLoaded(true);
-    await getMoreIndexList(url).then((res) => {
-      console.log(res);
-      let { data } = res;
-      let jsonData = xmlStrToJson(data);
-      let options = deepSearch(jsonData, "option")[0];
-      if (!options) {
-        return;
-      }
-
-      let nextPage = deepSearch(jsonData, "next_page")[0];
-      if (nextPage !== "#") {
-        options.push("Show more options");
-        setCurNext(nextPage);
-      }
-      let curOptions = items.filter((e, i) => i !== items.length - 1);
-      curOptions = [...curOptions, ...options];
-      setItems(curOptions);
-    });
-  };
   return (
     <Autocomplete
       disablePortal
       freeSolo
+      loading={!isLoaded}
       autoHighlight
-      // getOptionDisabled={(options) => {
-      //   return options === "Show more options";
-      // }}
       onChange={(e, v) => {
-        e.stopPropagation();
-        if (v === "Show more options") {
-          console.log("load more..");
-          loadMoreOptions(curNext);
-          return;
-        } else {
-          updateInput(field, v);
-          setValue(v);
-          return;
-        }
+        updateInput(field, v);
+        setValue(v);
       }}
       options={items}
       renderInput={(params) => (
