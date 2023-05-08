@@ -44,17 +44,18 @@ const MediaCard = (props) => {
     return (
       <Grid item xs={12} sm={6} md={3} key={i}>
         <Card
-          sx={{ cursor: "pointer", height: 280, width: 280, margin: '0 auto' }}
+          className="mediaCardImage"
+          sx={{ cursor: "pointer", height: 280, width: 280, margin: "0 auto" }}
           onMouseEnter={(_) => setHover(true)}
           onMouseLeave={(_) => setHover(false)}
           onClick={(_) =>
-          (window.location = getSearchRequestURL(
-            "ONLINE_EXHIBITION_VIEW",
-            `OEF_IND ${id}`,
-            "WEB_OE_UNION_SUM",
-            "UNION_VIEW",
-            getCurrentSession()
-          ))
+            (window.location = getSearchRequestURL(
+              "ONLINE_EXHIBITION_VIEW",
+              `OEF_IND ${id}`,
+              "WEB_OE_UNION_SUM",
+              "UNION_VIEW",
+              getCurrentSession()
+            ))
           }
         >
           <CardCover>

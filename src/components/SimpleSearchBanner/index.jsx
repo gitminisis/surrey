@@ -153,7 +153,7 @@ const Banner = (props) => {
             }}
           >
             {collapseSearchFilter.data.description}
-            <br />{" "}
+            <br />
             <span>
               {!show ? (
                 <KeyboardDoubleArrowDownIcon />
