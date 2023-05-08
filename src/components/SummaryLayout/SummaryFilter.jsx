@@ -11,13 +11,20 @@ import {
   MenuList,
   MenuItem,
   ListItemIcon,
+  Accordion,
+  AccordionSummary,
+  AccordionDetails,
   Badge,
   Collapse,
 } from "@mui/material";
 import Box from "@mui/joy/Box";
 import Select from "@mui/joy/Select";
 import Option from "@mui/joy/Option";
-import { deepSearch, printPage } from "../../utils/functions";
+import {
+  deepSearch,
+  printPage,
+  getSelectedFilter,
+} from "../../utils/functions";
 import {
   FILTER_TITLE_BY_FIELD,
   bookmarkAllRecord,
@@ -34,8 +41,9 @@ import ExpandMore from "@mui/icons-material/ExpandMore";
 import { useSnackbar } from "notistack";
 import { getXMLFilter } from "../../utils/functions";
 import { getSortReportURL } from "../../utils/record";
+
 const FieldFilter = (props) => {
-  const { data, index,application } = props;
+  const { data, index, application, handleFilter, selectedValues } = props;
   const [open, setOpen] = React.useState(index === 0);
 
   const handleClick = () => {
@@ -44,28 +52,20 @@ const FieldFilter = (props) => {
   const { item_group } = data;
   const itemGroups = Array.isArray(item_group) ? item_group : [item_group];
   return (
-    <List
-      variant="outlined"
-      sx={{
-        maxHeight: "400px",
-        overflowY: "scroll",
-        overflowX: "hidden",
-        margin: "4px 4px",
-        border: "none",
-      }}
-    >
-      <ListItemButton
-        onClick={handleClick}
-        sx={{ backgroundColor: "rgb(233,233,233,0.5)" }}
+    <Accordion defaultExpanded={index === 0} disableGutters>
+      <AccordionSummary
+        expandIcon={<ExpandMore />}
+        aria-controls={data._name}
+        id={data._name}
       >
-        <ListItemText primary={FILTER_TITLE_BY_FIELD[data._name]} />
-        {open ? <ExpandLess /> : <ExpandMore />}
-      </ListItemButton>
-
-      <Collapse in={open}>
+        <Typography>{FILTER_TITLE_BY_FIELD[data._name]}</Typography>
+      </AccordionSummary>
+      <AccordionDetails>
         <List>
           {itemGroups.map((item, i) => {
-            let itemSelected = deepSearch(item, "item_selected")[0];
+            let itemSelected = selectedValues
+              ? selectedValues.indexOf(item.item_value) !== -1
+              : false;
             if (item.item_value === "ONLINE_EXHIBITION_VIEW") {
               return null;
             }
@@ -74,18 +74,19 @@ const FieldFilter = (props) => {
             }
             if (item.item_value === "DESCRIPTION") {
               item.item_value = "Archives";
-              
             }
             return (
               <ListItem key={`ListItemFilter-${i}`} sx={{}}>
                 <Checkbox
-                  defaultChecked={itemSelected === "Y"}
+                  checked={itemSelected}
                   label={item.item_value}
                   overlay
                   sx={{ color: "inherit" }}
-                  onChange={(_) =>
-                    (window.location = item.item_link.toString()+"&DATABASE="+application)
-                  }
+                  onChange={(_) => {
+                    handleFilter(item.item_value, data._name);
+                    // (window.location =
+                    //   item.item_link.toString() + "&DATABASE=" + application)
+                  }}
                 />
                 <Typography sx={{ ml: "auto" }}>
                   {item.item_frequency}
@@ -94,14 +95,15 @@ const FieldFilter = (props) => {
             );
           })}
         </List>
-      </Collapse>
-    </List>
+      </AccordionDetails>
+    </Accordion>
   );
 };
 const SummaryFilter = (props) => {
   const { data, xml, sortOptions, application } = props;
   const { enqueueSnackbar } = useSnackbar();
   const filter = deepSearch(xml, "filter")[0];
+  const [filterType, setFilterType] = useState(getSelectedFilter(filter));
 
   let bookmarkCount = deepSearch(xml, "bookmark_count");
   let numberOfRecords = getNumberOfRecords(xml);
@@ -110,6 +112,24 @@ const SummaryFilter = (props) => {
     let url = getSortReportURL(xml, application, v);
     window.location = url;
   };
+  const handleFilter = (value, field) => {
+    let object = Object.assign({}, filterType);
+    if (!object[field]) {
+      object[field] = [value];
+    } else {
+      let isValueExisted = object[field].indexOf(value) !== -1;
+      object[field] = isValueExisted
+        ? filterType[field].filter((e) => e !== value)
+        : [...object[field], value];
+    }
+    setFilterType(object);
+  };
+
+  const clearFilterType = () => {
+    setFilterType({});
+  };
+
+  console.log(filterType);
   return (
     <Item
       elevation={0}
@@ -190,15 +210,32 @@ const SummaryFilter = (props) => {
 
       {filter !== undefined && filter.length > 0 && (
         <>
-          <TextBox>Filter by</TextBox>{" "}
+          <TextBox>Filter by</TextBox>
+
           {filter.map((item, i) => (
             <FieldFilter
-            application={application}
+              handleFilter={handleFilter}
+              application={application}
               key={`FieldFilter-${i}`}
               data={item}
               index={i}
+              selectedValues={filterType[item._name]}
             />
           ))}
+
+          <Box sx={{ mt: 2, justifyContent: "right", display: "flex" }}>
+            <Button
+              color="warning"
+              size="sm"
+              sx={{ mr: 1 }}
+              onClick={(_) => clearFilterType()}
+            >
+              Reset
+            </Button>
+            <Button color="success" size="sm">
+              Apply{" "}
+            </Button>
+          </Box>
         </>
       )}
     </Item>
@@ -223,5 +260,10 @@ export const TextBox = ({ children }) => {
   );
 };
 SummaryFilter.propTypes = {};
-
+FieldFilter.propTypes = {
+  data: PropTypes.object,
+  index: PropTypes.number,
+  handleFilter: PropTypes.func,
+  selectedValues: PropTypes.array,
+};
 export default SummaryFilter;
