@@ -1,4 +1,3 @@
-import React from "react";
 import { lazy } from "react";
 
 // project import
@@ -31,7 +30,9 @@ const AdminEditPage = Loadable(lazy(() => import("../pages/admin-edit-page")));
 const AdminEditFields = Loadable(
   lazy(() => import("../pages/admin-edit-fields"))
 );
-
+const AuthLogout = Loadable(
+  lazy(() => import("../pages/authentication/Logout"))
+);
 // ==============================|| MAIN ROUTING ||============================== //
 
 const MainRoutes = {
@@ -79,6 +80,7 @@ const MainRoutes = {
       path: "icons/ant",
       element: <AntIcons />,
     },
+    
   ],
 };
 

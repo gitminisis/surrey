@@ -51,20 +51,11 @@ const pages = {
       icon: icons.FileSearchOutlined,
     },
     {
-      id: "login1",
-      title: "Login",
+      id: "logout",
+      title: "Logout",
       type: "item",
-      url: "/login",
+      url: "/logout",
       icon: icons.LoginOutlined,
-      target: true,
-    },
-    {
-      id: "register1",
-      title: "Register",
-      type: "item",
-      url: "/register",
-      icon: icons.ProfileOutlined,
-      target: true,
     },
   ],
 };
