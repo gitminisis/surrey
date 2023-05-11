@@ -34,7 +34,8 @@ export const FILTER_TITLE_BY_FIELD = {
     DATE_CL: "Date",
     EARLY: "Date",
     OBJECT_NAME: "Object Name",
-    PRIMARY: "Primary",
+    PRIMARY: "Type",
+    PLACES_CL: "Town Centre"
 };
 /**
  * send a request to fetch a search from the corresponding database, expression

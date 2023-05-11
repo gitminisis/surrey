@@ -11,7 +11,10 @@ import { deepSearch } from "../../utils/functions";
 import { Typography } from "@mui/material";
 const SummaryMasonryView = (props) => {
   const { data, thumbnailData, xml, updateXML, recordAction = true } = props;
-
+  let XMLRecord = deepSearch(xml, "xml_record")[0];
+  if (!Array.isArray(XMLRecord)) {
+    XMLRecord = [XMLRecord];
+  }
   return (
     <Box sx={{ width: "100%" }}>
       <Masonry
@@ -19,7 +22,7 @@ const SummaryMasonryView = (props) => {
         spacing={4}
         style={{ margin: "0 auto" }}
       >
-        {xml.xml.xml_record.map((record, i) => {
+        {XMLRecord.map((record, i) => {
           let database = record.database_name;
           let recordLink = record.record_link.replace(/\n/g, "");
           let recordData = record.record;

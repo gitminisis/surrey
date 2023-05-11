@@ -40,7 +40,7 @@ export const getXMLTree = (session, database, id) => {
  * @returns
  */
 export const mapLowerLevelXMLToNode = (xml, parentId) => {
-    return xml.map((e) => {
+    return xml.filter(e => deepSearch(e, "lower_security")[0] !== 'No').map((e) => {
         let hasChildren = deepSearch(e, "lower_lowerexist")[0] !== undefined;
         return {
             id: deepSearch(e, "lower_code")[0],

@@ -85,7 +85,7 @@ const FieldFilter = (props) => {
                   onChange={(_) => {
                     // handleFilter(item.item_value, data._name);
                     window.location =
-                      item.item_link.toString() + "&DATABASE=" + application;
+                      item.item_link.toString() + `${application !== 'UNION_VIEW' ? "&DATABASE=" + application : ''}`;
                   }}
                 />
                 <Typography sx={{ ml: "auto" }}>
@@ -103,7 +103,7 @@ const SummaryFilter = (props) => {
   const { data, xml, sortOptions, application } = props;
   const { enqueueSnackbar } = useSnackbar();
   const filter = deepSearch(xml, "filter")[0];
-  const [filterType, setFilterType] = useState(getSelectedFilter(filter));
+  const [filterType, setFilterType] = useState(filter ? getSelectedFilter(filter) : {});
 
   let bookmarkCount = deepSearch(xml, "bookmark_count");
   let numberOfRecords = getNumberOfRecords(xml);
@@ -129,7 +129,6 @@ const SummaryFilter = (props) => {
     setFilterType({});
   };
 
-  console.log(filterType);
   return (
     <Item
       elevation={0}
@@ -155,7 +154,7 @@ const SummaryFilter = (props) => {
               enqueueSnackbar(
                 `All records have been successfully added to the bookmark!`
               );
-              // location.reload();
+              location.reload();
             });
           }}
         >
@@ -222,7 +221,7 @@ const SummaryFilter = (props) => {
               selectedValues={filterType[item._name]}
             />
           ))}
-{/* 
+          {/* 
           <Box sx={{ mt: 2, justifyContent: "right", display: "flex" }}>
             <Button
               color="warning"

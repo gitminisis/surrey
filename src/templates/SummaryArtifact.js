@@ -7,7 +7,7 @@ import {
 const Summary = [{
     component: "Layout",
     data: {
-        active: "Artifact",
+        active: "Artifacts",
     },
     children: [{
         component: "SummaryLayout",
@@ -18,7 +18,7 @@ const Summary = [{
                 heading: "Search the collections",
                 placeholder: "Search By Keyword",
                 databaseList: [{
-                    "database": "Artifact",
+                    "database": "Artifacts",
                     "searchURL": "?UNIONSEARCH&SIMPLE_EXP=Y&KEEP=Y&ERRMSG=[MESSAGES]374.htm&APPLICATION=UNION_VIEW&DATABASE=COLLECTIONS&language=144&REPORT=WEB_UNION_SUM_COL"
                 }],
                 helpText: {

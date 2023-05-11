@@ -71,34 +71,40 @@
                     "type": "array",
                     "value": [{
                             "title": "How do I use this website?",
-                            "description": "Interested in a location, person, business, or topic from Surrey's past? Type your keyword into a search bar. Explore the entire Heritage Collections by using the search bar on the Home page or search the Archives or Artifact Collections separately on their respective pages. On the right-hand side of the search results page, results can be organized by title or date using the SORT pull-down menu, or they can be filtered by date and/or material type by using the FILTER options. To copy the URL of a specific record, be sure to click on the “Permanent Link” hyperlink at the bottom of each record.<a href='/archives.html'>Archives</a>"
+                            "description": "Interested in a location, person, business, or topic from Surrey’s past? Type your keyword into a search bar. Explore both the Archives and Artifact Collections using the search bar on the Home page or search them separately on their respective pages. Use the SORT and FILTER options on the right-hand side of the search results page to narrow or organize your search."
                         },
                         {
-                            "title": "Should I use the “Search Both Archives and Artifacts Collections,” or the specific Archives Search Page / Artifacts Search Page?",
-                            "description": "We recommend using the “Search Both Archives and Artifacts Collections” if you're interested in a variety of formats. Click on the Archives Search Page if you only want to view documents, photographs, audio recordings, or maps. Just interested in objects like clothing, furniture, and tools? Use the Artifacts Search Page."
+                            "title": "Should I use the “Combined Search” or the specific Archives Search Page / Artifacts Search Page?",
+                            "description": "We recommend using the “Combined Search” if you’re interested in a variety of formats. Click on the Archives Search Page if you only want to view documents, photographs, audio recordings, or maps. Just interested in objects like clothing, furniture, and tools? Use the Artifacts Search Page."
                         },
                         {
-                            "title": "I can't find what I'm looking for - what do I do?",
-                            "description": "Please contact archives@surrey.ca or 604.502.6459 and we'll be happy to help you find the information you're looking for. We are always adding to the database but only a fragment of our collections, spanning millions of items, are available online."
+                            "title": "What do the icons at the bottom of a record description mean ?",
+                            "description": "The icons at the bottom of a record description are helpful tools for you to use! The arrows on the left and right sides allow you to navigate between record descriptions. If you want to return to the search results page, click the curved arrow. You can also bookmark records by clicking on the bookmark icon with the + sign. To view all your bookmarks, click the bookmark icon in the centre, which also shows how many records you currently have bookmarked. To copy the direct link for the record description, click the paperclip icon. You can also print records by selecting the printer icon. "
                         },
 
                         {
-                            "title": "Can I see these things in person?",
-                            "description": "Yes, you can! Items in the archival collection can be seen at the Surrey Archives, and objects in the Artifacts Collection may be viewed at the Museum of Surrey or the Historic Stewart Farm. We encourage you to get in touch with staff to ensure the items are available for viewing during your visit."
+                            "title": "I can’t find what I’m looking for – what do I do?",
+                            "description": "Please contact <a href=\"mailto:HeritageCollections@surrey.ca\">HeritageCollections@surrey.ca </a> or 604.502.6459 and we’ll be glad to help you find the information you’re looking for. We are always adding to the database but only a fragment of our collections, spanning millions of items, are available online."
                         },
-
+                        {
+                            "title": "I have a copyright question. Who can I contact?",
+                            "description": "If you want to use our photos for a project and aren’t sure how copyright applies, please contact <a href=\"mailto:HeritageCollections@surrey.ca\">HeritageCollections@surrey.ca </a> or 604-502-6459. Our staff will be able to advise you. "
+                        }, {
+                            "title": "Can I see things in person?",
+                            "description": "Many items in the archival collection can be viewed at Surrey Archives by request. Artifacts are on display at the Museum of Surrey and the Historic Stewart Farm, but this is only a small representation of the full collection. We encourage you to get in touch with staff to ensure the items are available for viewing during your visit."
+                        },
                         {
                             "title": "I've spotted an error. Can I tell someone?",
-                            "description": "Please do! We appreciate feedback and always welcome corrections and comments as they help expand our shared knowledge of Surrey's past and maintain accuracy. Contact us at archives@surrey.ca or 604.502.6459 and your message will be directed to the appropriate staff member."
+                            "description": "Please do! We appreciate feedback and always welcome corrections and comments as they help expand our shared knowledge of Surrey’s past and maintain accuracy. Contact us at <a href=\"mailto:HeritageCollections@surrey.ca\">HeritageCollections@surrey.ca </a> or 604.502.6459 and your message will be directed to the appropriate staff member."
                         },
 
                         {
                             "title": "Where do the Heritage Collections come from?",
-                            "description": "The Surrey Archives holds records created by people who live, work, and gather in Surrey, along with records made by our civic government. Community records have been graciously donated to the Archives by Surrey's residents, businesses, organizations and associations. Civic records are transferred to the archives from Surrey City Hall. Acquisitions to the collection are led by the City of Surrey's Records Retention Schedule and the Archives' Collections Policy. For the most part, artifacts in the Heritage Collection are donated by Surrey residents or businesses. The Museums' Collections Policy guides the acquisition of new items and outlines criteria for acquisition. The Heritage Collection has been named the official repository for some Provincially-designated archaeological excavations and hold those items in public trust."
+                            "description": "Surrey Archives holds records created by people who live, work, and gather in Surrey, along with the records made by our civic government. Community records have been graciously donated to the Archives by Surrey’s residents, businesses, organizations, and associations. Civic records are transferred to the Archives from Surrey City Hall. Acquisitions to the collection are led by the City of Surrey’s Records Retention Schedule and the Archives’ Collections Policy. <br />The Heritage Artifact Collections is comprised of objects which record the tangible and intangible heritage of Surrey. Objects are acquired through several methods, most commonly by donation. Acquisitions are guided by the Heritage Artifact Collections Policy, which outlines criteria for acquisition and other aspects of care for the Collections. The Heritage Artifact Collections is also a repository for archaeological excavations in accordance with the Heritage Conservation Act."
                         },
                         {
                             "title": "I have something I think you might want. How can I donate?",
-                            "description": "Thank you so much for considering Surrey Heritage Collections. We look forward to hearing from you and learning about your item(s). Please email HeritageCollections@surrey.ca to start the donation process."
+                            "description": "Thank you for considering Surrey Heritage Collections. We look forward to hearing from you and learning about your item(s). All donation offers are assessed according to our mandate, which is centred around the people, places, and events of Surrey. Please email <a href=\"mailto:HeritageCollections@surrey.ca\">HeritageCollections@surrey.ca </a> or call 604.502.6459 to start the donation process. "
                         }
                     ],
                     "defaultValue": [],
@@ -146,7 +152,7 @@
                     "name": "Thumbnail",
                     "description": "Description card thumbnail",
                     "type": "string",
-                    "value": "http://surrey.minisisinc.com/surrey/images/ordering-1.jpg",
+                    "value": "/assets/images/ordering-1.png",
                     "defaultValue": "Thumbnail",
                     "editable": true
                 },
@@ -154,7 +160,83 @@
                     "name": "Description",
                     "description": "Description card thumbnail",
                     "type": "string",
-                    "value": "Search for items with the Archives search page.",
+                    "value": "Use the Combined Search on the Home Page or the Archives Search to find the record(s) you are looking for. You can also Browse by Category, Area, see Recent Additions, or check out the Featured Collections. ",
+                    "defaultValue": "Description",
+                    "editable": true
+                },
+                "textAlign": {
+                    "name": "Text Alignment",
+                    "description": "Text Alignment",
+                    "type": "string",
+                    "value": "left",
+                    "defaultValue": "right",
+                    "editable": false
+                }
+            }
+        }, {
+            "component": "DescriptionCard",
+            "name": "DescriptionCard Component",
+            "description": "A display of the city map",
+            "properties": {
+                "position": {
+                    "name": "Picture position",
+                    "description": "Set to 0 to align picture on the left, 1 to align picture on the right",
+                    "type": "number",
+                    "value": 0,
+                    "defaultValue": 1,
+                    "editable": false
+                },
+                "thumbnail": {
+                    "name": "Thumbnail",
+                    "description": "Description card thumbnail",
+                    "type": "string",
+                    "value": "/assets/images/ordering-2.png",
+                    "defaultValue": "Thumbnail",
+                    "editable": true
+                },
+                "description": {
+                    "name": "Description",
+                    "description": "Description card thumbnail",
+                    "type": "string",
+                    "value": "Click on the record you want to order in the summary results list.",
+                    "defaultValue": "Description",
+                    "editable": true
+                },
+                "textAlign": {
+                    "name": "Text Alignment",
+                    "description": "Text Alignment",
+                    "type": "string",
+                    "value": "left",
+                    "defaultValue": "right",
+                    "editable": false
+                }
+            }
+        }, {
+            "component": "DescriptionCard",
+            "name": "DescriptionCard Component",
+            "description": "A display of the city map",
+            "properties": {
+                "position": {
+                    "name": "Picture position",
+                    "description": "Set to 0 to align picture on the left, 1 to align picture on the right",
+                    "type": "number",
+                    "value": 0,
+                    "defaultValue": 1,
+                    "editable": false
+                },
+                "thumbnail": {
+                    "name": "Thumbnail",
+                    "description": "Description card thumbnail",
+                    "type": "string",
+                    "value": "/assets/images/ordering-3.png",
+                    "defaultValue": "Thumbnail",
+                    "editable": true
+                },
+                "description": {
+                    "name": "Description",
+                    "description": "Description card thumbnail",
+                    "type": "string",
+                    "value": "In the detailed record view, click on the ‘Contact Us’ button and fill out the form. We will contact you to complete your order.",
                     "defaultValue": "Description",
                     "editable": true
                 },
