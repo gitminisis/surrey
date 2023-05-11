@@ -26,6 +26,7 @@ const Summary = [{
             },
             sortOptions: true,
             filter: [],
+            defaultView: 'list',
             thumbnailData: MEDIA_THUMBNAIL_FIELD,
             displayField: [{
                     database: "COLLECTIONS",

@@ -85,7 +85,7 @@ const FieldFilter = (props) => {
                   onChange={(_) => {
                     // handleFilter(item.item_value, data._name);
                     window.location =
-                      item.item_link.toString() + "&DATABASE=" + application;
+                      item.item_link.toString() + `${application !== 'UNION_VIEW' ? "&DATABASE=" + application : ''}`;
                   }}
                 />
                 <Typography sx={{ ml: "auto" }}>
