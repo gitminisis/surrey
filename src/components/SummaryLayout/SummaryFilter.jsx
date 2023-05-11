@@ -129,7 +129,6 @@ const SummaryFilter = (props) => {
     setFilterType({});
   };
 
-  console.log(filterType);
   return (
     <Item
       elevation={0}
@@ -155,7 +154,7 @@ const SummaryFilter = (props) => {
               enqueueSnackbar(
                 `All records have been successfully added to the bookmark!`
               );
-              // location.reload();
+              location.reload();
             });
           }}
         >
