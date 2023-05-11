@@ -20,7 +20,7 @@ const Login = () => (
           sx={{ mb: { xs: -0.5, sm: 0.5 } }}
         >
           <Typography variant="h3">Login</Typography>
-          <Typography
+          {/* <Typography
             component={Link}
             to="/register"
             variant="body1"
@@ -28,7 +28,7 @@ const Login = () => (
             color="primary"
           >
             Don&apos;t have an account?
-          </Typography>
+          </Typography> */}
         </Stack>
       </Grid>
       <Grid item xs={12}>
