@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Link, Typography, Divider, Box, Grid } from "@mui/joy";
 import { deepSearch } from "../../utils/functions";
 import { getJumpURL } from "../../utils/record";
-import Popover from "@mui/material/Popover";
+import Popover  from "@mui/material/Popover";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 import PopoverRecord from "../PopoverRecord";
 import { Tooltip } from "@mui/material";
@@ -64,7 +64,7 @@ const SearchFieldLink = (props) => {
                 {v}
               </Link>
 
-              <Popover
+              <Popover 
                 id={id}
                 open={open}
                 anchorEl={anchorEl}
