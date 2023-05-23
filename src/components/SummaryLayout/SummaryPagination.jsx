@@ -24,7 +24,6 @@ const SummaryPagination = (props) => {
               setClicked(true);
               window.location = getPageUrlFromPagination(pagination.a, i - 1);
             }}
-            disabled={clicked}
             renderItem={(item) => {
               if (item.type === "page") {
                 let index = item.page;
@@ -41,24 +40,7 @@ const SummaryPagination = (props) => {
                 }
                 return <PaginationItem {...item} page={pageNumb} />
               }
-              //       let index = item.page;
-              //       console.log(index)
-              //       // if (!index) {
-              //       //   return null;
-              //       // }
-              //       let pageItem = pagination.a[index];
-              // console.log(pageItem)
-              //       if (!pageItem) {
-              //         return null;
-              //       }
-              //       let pageNumb = pageItem["__text"];
-              //       if (pageNumb && pageNumb === "Next") {
-              //         return null;
-              //       }
-              //       if (pageItem.b) {
-              //         pageNumb = pageItem.b;
-              //       }
-              //       console.log(pageNumb, pageItem)
+
 
               return <PaginationItem {...item} />;
             }}
