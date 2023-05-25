@@ -103,7 +103,7 @@ export const getFeatureCollectionsFromIDs = (
     if (!session) {
         session = "/scripts/mwimain.dll";
     }
-    let url = `${session}?UNIONSEARCH&SIMPLE_EXP=Y&KEEP=Y&ERRMSG=[MESSAGES]374.htm&APPLICATION=UNION_VIEW&DATABASE=ONLINE_EXHIBITION_VIEW&language=144&REPORT=WEB_OE_SUM&EXP=${exp}`;
+    let url = `${session}?UNIONSEARCH&KEEP=Y&ERRMSG=[MESSAGES]374.htm&APPLICATION=UNION_VIEW&DATABASE=ONLINE_EXHIBITION_VIEW&language=144&REPORT=WEB_OE_SUM&EXP=${exp}`;
     return axios.get(url).then((res) => {
         let { data } = res;
         let dom = new DOMParser().parseFromString(data, "text/html");

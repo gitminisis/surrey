@@ -12,7 +12,7 @@ import {
 } from "../../utils/record";
 import { deepSearch, getCurrentSession } from "../../utils/functions";
 const MediaCard = (props) => {
-  let { recordIds } = props;
+  const { recordIds } = props;
   const [hover, setHover] = useState(false);
   const [loading, setLoading] = useState(true);
   const [records, setRecords] = useState(
