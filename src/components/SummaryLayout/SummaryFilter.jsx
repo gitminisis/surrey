@@ -4,13 +4,9 @@ import { Item } from "./SummaryLayout.style";
 import {
   Divider,
   Typography,
-  FormGroup,
-  FormControlLabel,
-  ListItemButton,
   ListItemText,
   MenuList,
   MenuItem,
-  ListItemIcon,
   Accordion,
   AccordionSummary,
   AccordionDetails,
@@ -128,7 +124,7 @@ const SummaryFilter = (props) => {
   const clearFilterType = () => {
     setFilterType({});
   };
-
+  console.log(filterType)
   return (
     <Item
       elevation={0}
@@ -221,7 +217,7 @@ const SummaryFilter = (props) => {
               selectedValues={filterType[item._name]}
             />
           ))}
-          {/* 
+
           <Box sx={{ mt: 2, justifyContent: "right", display: "flex" }}>
             <Button
               color="warning"
@@ -231,10 +227,10 @@ const SummaryFilter = (props) => {
             >
               Reset
             </Button>
-            <Button color="success" size="sm">
+            <Button color="success" size="sm" >
               Apply{" "}
             </Button>
-          </Box> */}
+          </Box>
         </>
       )}
     </Item>

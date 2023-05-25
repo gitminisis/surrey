@@ -3,25 +3,23 @@ import PropTypes from "prop-types";
 import { Link, Typography, Divider, Box, Grid } from "@mui/joy";
 import { deepSearch } from "../../utils/functions";
 import { getJumpURL } from "../../utils/record";
-import Popper from '@mui/material/Popper';
+import Popover  from "@mui/material/Popover";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 import PopoverRecord from "../PopoverRecord";
 import { Tooltip } from "@mui/material";
-import Fade from '@mui/material/Fade';
 const SearchFieldLink = (props) => {
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const [open, setOpen] = React.useState(false);
+
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
-    setOpen((previousOpen) => !previousOpen);
   };
 
   const handleClose = () => {
     setAnchorEl(null);
   };
 
-  const canBeOpen = open && Boolean(anchorEl);
-  const id = canBeOpen ? "transition-popper" : undefined;
+  const open = Boolean(anchorEl);
+  const id = open ? "simple-popover" : undefined;
   let { name, label, xml, moreInfo = false } = props;
   let record = xml.xml.xml_record.record;
   let session = deepSearch(xml, "session")[0];
@@ -29,7 +27,6 @@ const SearchFieldLink = (props) => {
 
   let value = deepSearch(record, name.toLowerCase());
   let flattenArrayValue = _.flattenDeep(value);
-  console.log(open, canBeOpen)
   return (
     <>
       <Divider style={{ width: "auto" }} />
@@ -67,31 +64,32 @@ const SearchFieldLink = (props) => {
                 {v}
               </Link>
 
-              <Popper
+              <Popover 
                 id={id}
                 open={open}
                 anchorEl={anchorEl}
-                transition
+                onClose={handleClose}
+                anchorOrigin={{
+                  vertical: "top",
+                  horizontal: "center",
+                }}
+                transformOrigin={{
+                  vertical: "bottom",
+                  horizontal: "left",
+                }}
               >
-                {({ TransitionProps }) => (
-                  <Fade {...TransitionProps} timeout={800}>
-                    <Box sx={{ p: 4,  bgcolor: 'background.paper', borderColor:'primary.main', border:'1px solid ' }} elevation={6}>
-                      <PopoverRecord
-                        session={session}
-                        database="PEOPLE_VAL"
-                        field="FULLNAME"
-                        value={v}
-                      />
-                   
-                    </Box>
-                  </Fade>
-                )}
-
-              </Popper>
+                <Box sx={{ p: 4, borderRadius: "20%" }}>
+                  <PopoverRecord
+                    session={session}
+                    database="PEOPLE_VAL"
+                    field="FULLNAME"
+                    value={v}
+                  />
+                </Box>
+              </Popover>
               {moreInfo && (
                 <Tooltip title="Click to view more information about this">
                   <Typography
-                    aria-describedby={id}
                     onClick={handleClick}
                     variant="body2"
                     sx={{ cursor: "pointer", color: "black", px: 1 }}

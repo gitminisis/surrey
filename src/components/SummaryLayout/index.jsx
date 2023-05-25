@@ -32,7 +32,6 @@ const SummaryLayout = (props) => {
 
   const dataPage = document.querySelector("#root").dataset.page;
   const pageView = sessionStorage.getItem(dataPage)
-  debugger;
   const [grid, setGrid] = useState(
     defaultView ? (pageView ? pageView === 'grid' : defaultView === "grid") : false
   );
