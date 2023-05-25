@@ -56,6 +56,7 @@ function App() {
   if (page === undefined) {
     page = "";
   }
+  debugger;
   let template = Routing.filter((e) => page === e.path)[0].template;
   useEffect(() => {
     AOS.init({
