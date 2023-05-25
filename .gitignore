@@ -6,3 +6,4 @@ package.json
 **/images/
 src/assets/images/
 .env
+web.config

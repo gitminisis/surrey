@@ -95,10 +95,17 @@ const GeneralSection = (props) => {
                 />
                 {children &&
                   children.map((e) => {
+                    if (!e.data.displayDatabase.includes(database)) {
+                      return;
+                    }
                     if (e.component === "DescriptionTree") {
                       let isDisplayed =
                         showTree && e.data.displayDatabase.includes(database);
                       e.data.showTree = isDisplayed;
+                    }
+
+                    if (e.component === "MediaCard") {
+                      e.data.recordsIds = deepSearch(xml, "m3_oef_id")[0];
                     }
                     e.data ? (e.data.xml = xml) : (e.data = { ...xml });
                     return Component(e);

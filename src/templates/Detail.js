@@ -39,16 +39,17 @@ const Detail = [
                 },
               },
               {
-                component: "RelatedCollection",
+                component: "ContactUsModalForm",
                 data: {
-                  displayDatabase: ["COLLECTIONS"],
+                  displayDatabase: ["DESCRIPTION", "COLLECTIONS"],
+                  description:
+                    "We’re always looking to improve our records. If you have information about a record or think we’ve made a mistake, contact us. You can also order a copy of the record by clicking the button below.",
                 },
               },
               {
-                component: "ContactUsModalForm",
+                component: "MediaCard",
                 data: {
-                  description:
-                    "We’re always looking to improve our records. If you have information about a record or think we’ve made a mistake, contact us. You can also order a copy of the record by clicking the button below.",
+                  displayDatabase: ["COLLECTIONS"],
                 },
               },
             ],

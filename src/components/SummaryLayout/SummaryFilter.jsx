@@ -62,6 +62,7 @@ const FieldFilter = (props) => {
             let itemSelected = selectedValues
               ? selectedValues.indexOf(item.item_value) !== -1
               : false;
+              console.log(itemSelected, selectedValues)
             if (item.item_value === "ONLINE_EXHIBITION_VIEW") {
               return null;
             }
@@ -78,10 +79,11 @@ const FieldFilter = (props) => {
                   label={item.item_value}
                   overlay
                   sx={{ color: "inherit", textAlign: "left" }}
-                  onChange={(_) => {
-                    // handleFilter(item.item_value, data._name);
-                    window.location =
-                      item.item_link.toString() + `${application !== 'UNION_VIEW' ? "&DATABASE=" + application : ''}`;
+                  onChange={(e) => {
+                    console.log(e)
+                    handleFilter(item.item_value, data._name);
+                    // window.location =
+                      // item.item_link.toString() + `${application !== 'UNION_VIEW' ? "&DATABASE=" + application : ''}`;
                   }}
                 />
                 <Typography sx={{ ml: "auto" }}>

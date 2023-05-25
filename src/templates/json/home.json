@@ -33,17 +33,17 @@
                     "data": [{
                             "thumbnail": "/assets/images/Photos.png",
                             "title": "Photographs",
-                            "link": "/scripts/mwimain.dll?UNIONSEARCH&SIMPLE_EXP=Y&KEEP=Y&ERRMSG=[MESSAGES]374.htm&APPLICATION=UNION_VIEW&DATABASE=DESCRIPTION&language=144&REPORT=WEB_UNION_SUM_DESC&EXP=A_IM_OPAC Yes and FORM \"Graphic material\""
+                            "link": "/scripts/mwimain.dll?UNIONSEARCH&SIMPLE_EXP=Y&KEEP=Y&ERRMSG=[MESSAGES]374.htm&APPLICATION=UNION_VIEW&DATABASE=DESCRIPTION&language=144&REPORT=WEB_UNION_SUM_DESC&EXP=A_IM_OPAC Yes and (FORM_CL \"Graphic material\")"
                         },
                         {
                             "thumbnail": "/assets/images/Maps.png",
                             "title": "Maps",
-                            "link": "/scripts/mwimain.dll?UNIONSEARCH&SIMPLE_EXP=Y&KEEP=Y&ERRMSG=[MESSAGES]374.htm&APPLICATION=UNION_VIEW&DATABASE=DESCRIPTION&language=144&REPORT=WEB_UNION_SUM_DESC&EXP=A_IM_OPAC Yes and FORM \"Cartographic material\""
+                            "link": "/scripts/mwimain.dll?UNIONSEARCH&SIMPLE_EXP=Y&KEEP=Y&ERRMSG=[MESSAGES]374.htm&APPLICATION=UNION_VIEW&DATABASE=DESCRIPTION&language=144&REPORT=WEB_UNION_SUM_DESC&EXP=A_IM_OPAC Yes and (FORM_CL \"Cartographic material\")"
                         },
                         {
                             "thumbnail": "/assets/images/Audio-Visual.png",
                             "title": "Audio/Video",
-                            "link": "/scripts/mwimain.dll?UNIONSEARCH&SIMPLE_EXP=Y&KEEP=Y&ERRMSG=[MESSAGES]374.htm&APPLICATION=UNION_VIEW&DATABASE=DESCRIPTION&language=144&REPORT=WEB_UNION_SUM_DESC&EXP=(A_AD_OPAC Yes or A_VD_OPAC Yes) and FORM \"Cartographic material\""
+                            "link": "/scripts/mwimain.dll?UNIONSEARCH&SIMPLE_EXP=Y&KEEP=Y&ERRMSG=[MESSAGES]374.htm&APPLICATION=UNION_VIEW&DATABASE=DESCRIPTION&language=144&REPORT=WEB_UNION_SUM_DESC&EXP=(A_AD_OPAC Yes or A_VD_OPAC Yes) and (FORM_CL \"Cartographic material\")"
                         },
                         {
                             "thumbnail": "/assets/images/Artifacts.png",
@@ -53,7 +53,7 @@
                         {
                             "thumbnail": "/assets/images/Textual Records.png",
                             "title": "Textual Records",
-                            "link": "/scripts/mwimain.dll?UNIONSEARCH&SIMPLE_EXP=Y&KEEP=Y&ERRMSG=[MESSAGES]374.htm&APPLICATION=UNION_VIEW&DATABASE=DESCRIPTION&language=144&REPORT=WEB_UNION_SUM_DESC&EXP=A_TX_OPAC Yes and FORM \"Textual record\""
+                            "link": "/scripts/mwimain.dll?UNIONSEARCH&SIMPLE_EXP=Y&KEEP=Y&ERRMSG=[MESSAGES]374.htm&APPLICATION=UNION_VIEW&DATABASE=DESCRIPTION&language=144&REPORT=WEB_UNION_SUM_DESC&EXP=A_TX_OPAC Yes and (FORM_CL \"Textual record\")"
                         }
                     ]
                 }
