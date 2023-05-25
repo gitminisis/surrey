@@ -71,17 +71,17 @@
                     "value": [{
                             "thumbnail": "/assets/images/Photos.png",
                             "title": "Photographs",
-                            "link": "?UNIONSEARCH&SIMPLE_EXP=Y&KEEP=Y&ERRMSG=[MESSAGES]374.htm&APPLICATION=UNION_VIEW&language=144&DATABASE=DESCRIPTION&REPORT=WEB_UNION_SUM_DESC&EXP=(A_IM_OPAC Yes and FORM \"Graphic material\")"
+                            "link": "?UNIONSEARCH&SIMPLE_EXP=Y&KEEP=Y&ERRMSG=[MESSAGES]374.htm&APPLICATION=UNION_VIEW&language=144&DATABASE=DESCRIPTION&REPORT=WEB_UNION_SUM_DESC&EXP=(A_IM_OPAC Yes and FORM_CL \"Graphic material\")"
                         },
                         {
                             "thumbnail": "/assets/images/Maps.png",
                             "title": "Maps",
-                            "link": "?UNIONSEARCH&SIMPLE_EXP=Y&KEEP=Y&ERRMSG=[MESSAGES]374.htm&APPLICATION=UNION_VIEW&DATABASE=DESCRIPTION&language=144&REPORT=WEB_UNION_SUM_DESC&EXP=A_IM_OPAC Yes and FORM \"Cartographic material\""
+                            "link": "?UNIONSEARCH&SIMPLE_EXP=Y&KEEP=Y&ERRMSG=[MESSAGES]374.htm&APPLICATION=UNION_VIEW&DATABASE=DESCRIPTION&language=144&REPORT=WEB_UNION_SUM_DESC&EXP=A_IM_OPAC Yes and FORM_CL \"Cartographic material\""
                         },
                         {
                             "thumbnail": "/assets/images/Audio-Visual.png",
                             "title": "Audio/Video",
-                            "link": "?UNIONSEARCH&SIMPLE_EXP=Y&KEEP=Y&ERRMSG=[MESSAGES]374.htm&APPLICATION=UNION_VIEW&DATABASE=DESCRIPTION&language=144&REPORT=WEB_UNION_SUM_DESC&EXP=FORM \"Sound recording\" or FORM \"Moving images\" "
+                            "link": "?UNIONSEARCH&SIMPLE_EXP=Y&KEEP=Y&ERRMSG=[MESSAGES]374.htm&APPLICATION=UNION_VIEW&DATABASE=DESCRIPTION&language=144&REPORT=WEB_UNION_SUM_DESC&EXP=FORM_CL \"Sound recording\" or FORM_CL \"Moving images\" "
                         },
                         {
                             "thumbnail": "/assets/images/Artifacts.png",
@@ -91,7 +91,7 @@
                         {
                             "thumbnail": "/assets/images/Textual Records.png",
                             "title": "Textual Records",
-                            "link": "?UNIONSEARCH&SIMPLE_EXP=Y&KEEP=Y&ERRMSG=[MESSAGES]374.htm&APPLICATION=UNION_VIEW&DATABASE=DESCRIPTION&language=144&REPORT=WEB_UNION_SUM_DESC&EXP=FORM \"Textual record\""
+                            "link": "?UNIONSEARCH&SIMPLE_EXP=Y&KEEP=Y&ERRMSG=[MESSAGES]374.htm&APPLICATION=UNION_VIEW&DATABASE=DESCRIPTION&language=144&REPORT=WEB_UNION_SUM_DESC&EXP=FORM_CL \"Textual record\""
                         }
                     ],
                     "defaultValue": [],

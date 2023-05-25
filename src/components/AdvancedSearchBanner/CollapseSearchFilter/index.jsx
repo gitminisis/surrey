@@ -44,6 +44,7 @@ const CollapseSearchFilter = (props) => {
                     <AutocompleteDropdown
                       updateInput={updateInput}
                       database={database}
+                      defaultList={e.defaultList}
                       field={e.field}
                       label={e.title}
                     />
@@ -90,21 +91,24 @@ const InputField = (props) => {
 const AutocompleteDropdown = (props) => {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
-  const [items, setItems] = useState([]);
   const [curNext, setCurNext] = useState("");
-  const { field, label, database, updateInput } = props;
+  const { field, label, database, updateInput, defaultList } = props;
+  const [items, setItems] = useState(defaultList || []);
+
   const [value, setValue] = useState("");
   useEffect(() => {
-    getAllIndexList(field, database).then(
-      (res) => {
-        setItems(res);
-        setIsLoaded(true);
-      },
-      (error) => {
-        setIsLoaded(true);
-        setError(error);
-      }
-    );
+    if (!defaultList) {
+      getAllIndexList(field, database).then(
+        (res) => {
+          setItems(res);
+          setIsLoaded(true);
+        },
+        (error) => {
+          setIsLoaded(true);
+          setError(error);
+        }
+      );
+    }
   }, []);
 
   return (

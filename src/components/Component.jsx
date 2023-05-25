@@ -29,6 +29,7 @@ import {
   SummaryOnlineExhibitionLayout,
   RecordToURLField,
   EmptyComponent,
+  RelatedCollection
 } from "./index";
 
 const KeysToComponentMap = {
@@ -61,6 +62,7 @@ const KeysToComponentMap = {
   SummaryOnlineExhibitionLayout,
   RecordToURLField,
   EmptyComponent,
+  RelatedCollection
 };
 
 function Component(block) {
