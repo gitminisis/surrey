@@ -38,56 +38,7 @@
                 "editable": true
             }
         }
-    },
-    {
-        "component": "Section",
-        "name": "Featured Collections",
-        "description": "Featured Collections section",
-        "properties": {
-            "heading": {
-                "name": "Section Heading",
-                "description": "Section Heading",
-                "type": "string",
-                "value": "Featured Collections",
-                "defaultValue": "Section Heading",
-                "editable": true
-            }
-        },
-        "children": [{
-            "component": "ImageCarousel",
-            "name": "Image Carousel Component",
-            "description": "Image carousel for the featured collections",
-            "properties": {
-                "data": {
-                    "name": "Item List",
-                    "description": "List of Item",
-                    "type": "array",
-                    "value": [{
-                            "thumbnail": "/assets/images/Surrey Leader Photograph Collection.png",
-                            "title": "The Surrey Leader Photograph Fonds",
-                            "link": "?UNIONSEARCH&SIMPLE_EXP=Y&KEEP=Y&ERRMSG=[MESSAGES]374.htm&APPLICATION=UNION_VIEW&DATABASE=DESCRIPTION&language=144&REPORT=WEB_UNION_SUM_DESC&EXP=REFD F62"
-                        },
-                        {
-                            "thumbnail": "/assets/images/Columbian Newspaper Collection.png",
-                            "title": "The Columbian Newspaper Collection",
-                            "link": "?UNIONSEARCH&SIMPLE_EXP=Y&KEEP=Y&ERRMSG=[MESSAGES]374.htm&APPLICATION=UNION_VIEW&DATABASE=DESCRIPTION&language=144&REPORT=WEB_UNION_SUM_DESC&EXP=REFD F98"
-                        },
-                        {
-                            "thumbnail": "/assets/images/Community Planning Photographs.png",
-                            "title": "Community Planning Photographs",
-                            "link": "?UNIONSEARCH&SIMPLE_EXP=Y&KEEP=Y&ERRMSG=[MESSAGES]374.htm&APPLICATION=UNION_VIEW&DATABASE=DESCRIPTION&language=144&REPORT=WEB_UNION_SUM_DESC&EXP=REFD COS.PL 9"
-                        },
-                        {
-                            "thumbnail": "/assets/images/Surrey 2000 Captured Time Collection.png",
-                            "title": "Surrey 2000, Captured Time Collection",
-                            "link": "?UNIONSEARCH&SIMPLE_EXP=Y&KEEP=Y&ERRMSG=[MESSAGES]374.htm&APPLICATION=UNION_VIEW&DATABASE=DESCRIPTION&language=144&REPORT=WEB_UNION_SUM_DESC&EXP=REFD F140"
-                        }
-                    ],
-                    "defaultValue": [],
-                    "editable": true
-                }
-            }
-        }]
     }
+
 
 ]

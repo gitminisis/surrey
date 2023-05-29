@@ -21,8 +21,9 @@ const AdminEditPage = (props) => {
   const BASE_URL = process.env.SERVER_BASE_URL || "http://localhost:3001";
   const { data, mutate, error, isLoading } = useSWR(
     `${BASE_URL}/page/${id}`,
-    fetcher
+    fetcher,
   );
+
   const updateData = useRef(false);
   const fieldHandleChange = (value, object, index) => {
     object[index].properties = value;

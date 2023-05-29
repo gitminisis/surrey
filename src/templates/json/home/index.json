@@ -1,4 +1,5 @@
 [{
+        "id": "HomeLayout",
         "component": "SimpleSearchBanner",
         "name": "Page Banner",
         "description": "This is the banner of the page",

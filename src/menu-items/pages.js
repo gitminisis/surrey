@@ -31,11 +31,11 @@ const pages = {
     icon: icons.HomeOutlined,
   },
   {
-    id: "archive-home-page",
+    id: "archives-home-page",
     title: "Archives Search Page",
     type: "item",
     url: "/page/archives-home",
-    icon: icons.FileSearchOutlined,
+    icon: icons.FileOutlined,
   }, {
     id: "artifact-home-page",
     title: "Artifact Search Page",
