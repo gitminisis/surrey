@@ -80,10 +80,10 @@ const FieldFilter = (props) => {
                   overlay
                   sx={{ color: "inherit", textAlign: "left" }}
                   onChange={(e) => {
-                    console.log(e)
-                    handleFilter(item.item_value, data._name);
-                    // window.location =
-                      // item.item_link.toString() + `${application !== 'UNION_VIEW' ? "&DATABASE=" + application : ''}`;
+                    // console.log(e)
+                    // handleFilter(item.item_value, data._name);
+                    window.location =
+                      item.item_link.toString() + `${application !== 'UNION_VIEW' ? "&DATABASE=" + application : ''}`;
                   }}
                 />
                 <Typography sx={{ ml: "auto" }}>
@@ -220,7 +220,7 @@ const SummaryFilter = (props) => {
             />
           ))}
 
-          <Box sx={{ mt: 2, justifyContent: "right", display: "flex" }}>
+          {/* <Box sx={{ mt: 2, justifyContent: "right", display: "flex" }}>
             <Button
               color="warning"
               size="sm"
@@ -232,7 +232,7 @@ const SummaryFilter = (props) => {
             <Button color="success" size="sm" >
               Apply{" "}
             </Button>
-          </Box>
+          </Box> */}
         </>
       )}
     </Item>
