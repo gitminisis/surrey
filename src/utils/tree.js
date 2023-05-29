@@ -62,8 +62,11 @@ export const mapLowerLevelXMLToNode = (xml, parentId) => {
  */
 export const mapXMLToNode = (xml) => {
     let lower_level_occurrence = deepSearch(xml, "lower_level_occurrence")[0];
+    if (lower_level_occurrence !== undefined) {
+        lower_level_occurrence = Array.isArray(lower_level_occurrence) ? lower_level_occurrence : [lower_level_occurrence]
+    }
     let hasChildren =
-        lower_level_occurrence !== undefined && lower_level_occurrence.length > 0;
+        typeof lower_level_occurrence !== "undefined"
     let id = deepSearch(xml, "refd")[0];
     let parentId = deepSearch(xml, "refd_higher")[0];
     return {
@@ -203,6 +206,7 @@ export const getNodeFromTree = (tree, id) => {
     if (curNode.id === id) {
         return curNode;
     }
+    debugger;
 
     if (curNode.hasChildren && curNode.isChildrenLoaded) {
         for (let i = 0; i < curNode.children.length; i++) {
