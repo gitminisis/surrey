@@ -32,13 +32,13 @@
                 "description": "List of all banner background pictures",
                 "type": "array",
                 "value": [
-                    "http://surreytest.minisisinc.com/assets/images/Union%20Background%201.png",
-                    "http://surreytest.minisisinc.com/assets/images/Union%20Background%202.png",
-                    "http://surreytest.minisisinc.com/assets/images/Union%20Background%203.png",
-                    "http://surreytest.minisisinc.com/assets/images/Union%20Background%204.png",
-                    "http://surreytest.minisisinc.com/assets/images/Union%20Background%205.png",
-                    "http://surreytest.minisisinc.com/assets/images/Union%20Background%206.png",
-                    "http://surreytest.minisisinc.com/assets/images/Union%20Background%207.png"
+                    "https://surreytest.minisisinc.com/assets/images/Union%20Background%201.png",
+                    "https://surreytest.minisisinc.com/assets/images/Union%20Background%202.png",
+                    "https://surreytest.minisisinc.com/assets/images/Union%20Background%203.png",
+                    "https://surreytest.minisisinc.com/assets/images/Union%20Background%204.png",
+                    "https://surreytest.minisisinc.com/assets/images/Union%20Background%205.png",
+                    "https://surreytest.minisisinc.com/assets/images/Union%20Background%206.png",
+                    "https://surreytest.minisisinc.com/assets/images/Union%20Background%207.png"
                 ],
                 "defaultValue": "",
                 "editable": true
