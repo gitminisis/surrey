@@ -32,7 +32,7 @@
                 "description": "List of all banner background pictures",
                 "type": "array",
                 "value": [
-                    "http://surreytest.minisisinc.com/assets/images/Artifacts Main Background.png"
+                    "https://surreytest.minisisinc.com/assets/images/Artifacts Main Background.png"
                 ],
                 "defaultValue": "",
                 "editable": true
