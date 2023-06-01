@@ -159,7 +159,7 @@ const AdminEditPage = (props) => {
 };
 
 AdminEditPage.propTypes = {
-  page: PropTypes.string.isRequired,
+  page: PropTypes.string,
 };
 
 export default AdminEditPage;

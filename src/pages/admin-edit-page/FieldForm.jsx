@@ -3,7 +3,6 @@ import { InputLabel, Grid, Stack, OutlinedInput } from "@mui/material";
 const FieldForm = (props) => {
   const { data, handleChange } = props;
   let { name, description, type, value, defaultValue, editable } = data;
-  debugger;
   
   if (!editable) {
     return null;

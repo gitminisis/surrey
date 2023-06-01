@@ -206,7 +206,6 @@ export const getNodeFromTree = (tree, id) => {
     if (curNode.id === id) {
         return curNode;
     }
-    debugger;
 
     if (curNode.hasChildren && curNode.isChildrenLoaded) {
         for (let i = 0; i < curNode.children.length; i++) {

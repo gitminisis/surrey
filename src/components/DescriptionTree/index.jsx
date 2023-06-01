@@ -91,7 +91,6 @@ const DescriptionTree = (props) => {
     const expanded = nodeIds.filter((x) => !openKeyPath.includes(x));
     if (expanded[0]) {
       let node = getNodeFromTree(treeData, expanded[0]);
-      debugger;
       if (!node.isChildrenLoaded) {
         fetchNode(session, database, node.id).then((res) => {
           let resTree = addChildrenToNode([treeData], node.id, res.children);

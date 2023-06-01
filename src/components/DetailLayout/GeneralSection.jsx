@@ -106,7 +106,6 @@ const GeneralSection = (props) => {
 
                     if (e.component === "MediaCard") {
                       let ids = deepSearch(xml, "m3_oef_id")[0]
-                      debugger;
                       e.data.recordIds = Array.isArray(ids) ? ids : [ids];
                     }
                     e.data ? (e.data.xml = xml) : (e.data = { ...xml });
