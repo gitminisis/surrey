@@ -69,7 +69,6 @@ const AdminEditPage = (props) => {
                         newData.value = value;
                         let newProp = Object.assign({}, properties);
                         newProp[key] = newData;
-                        debugger;
                         handleChange(newProp, object, i);
                       }}
                     />
