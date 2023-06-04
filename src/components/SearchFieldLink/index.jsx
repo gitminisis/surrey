@@ -57,7 +57,6 @@ const SearchFieldLink = (props) => {
               <Link
                 level="h6"
                 underline="always"
-                target="_blank"
                 href={getJumpURL(session, database, name, v)}
                 sx={{ display: "block" }}
               >

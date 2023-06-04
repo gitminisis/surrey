@@ -21,8 +21,9 @@ const AdminEditPage = (props) => {
   const BASE_URL = process.env.SERVER_BASE_URL || "http://localhost:3001";
   const { data, mutate, error, isLoading } = useSWR(
     `${BASE_URL}/page/${id}`,
-    fetcher
+    fetcher,
   );
+
   const updateData = useRef(false);
   const fieldHandleChange = (value, object, index) => {
     object[index].properties = value;
@@ -51,32 +52,32 @@ const AdminEditPage = (props) => {
       const { component, properties, children, name, description } = o;
       return (
         <Stack spacing={3} key={i}>
-          <MainCard title={name} sx={{ my: 1 }}>
+          <MainCard title={name} sx={{ my: 1 }} >
             <Typography variant="subtitle1" gutterBottom>
               {description}
             </Typography>
 
             {properties
               ? Object.keys(properties)
-                  .map((k) => k)
-                  .map((key, idx) => (
-                    <Grid item sx={{ my: 3 }} key={idx}>
-                      <FieldForm
-                        data={properties[key]}
-                        handleChange={(value, data) => {
-                          let newData = Object.assign({}, data);
-                          newData.value = value;
-                          let newProp = Object.assign({}, properties);
-                          newProp[key] = newData;
-                          handleChange(newProp, object, i);
-                        }}
-                      />
-                    </Grid>
-                  ))
+                .map((k) => k)
+                .map((key, idx) => (
+                  <Grid item sx={{ my: 3 }} key={idx}>
+                    <FieldForm
+                      data={properties[key]}
+                      handleChange={(value, data) => {
+                        let newData = Object.assign({}, data);
+                        newData.value = value;
+                        let newProp = Object.assign({}, properties);
+                        newProp[key] = newData;
+                        handleChange(newProp, object, i);
+                      }}
+                    />
+                  </Grid>
+                ))
               : null}
             {children ? (
               <Grid item spacing={3}>
-                <Typography variant="subtitle1" gutterBottom>
+                <Typography variant="subtitle2" gutterBottom >
                   Children Components
                 </Typography>
                 {renderForm(children, handleChange)}
@@ -94,7 +95,7 @@ const AdminEditPage = (props) => {
       <ToastContainer />
       <Grid container spacing={3}>
         <Grid item xs={12}>
-        
+
           <Formik
             initialValues={{}}
             validationSchema={Yup.object().shape({})}

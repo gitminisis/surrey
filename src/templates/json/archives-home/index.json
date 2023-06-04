@@ -1,0 +1,44 @@
+[{
+        "component": "SimpleSearchBanner",
+        "name": "Page Banner",
+        "description": "This is the banner of the page",
+        "properties": {
+            "heading": {
+                "name": "Banner Heading",
+                "description": "Banner Heading",
+                "type": "string",
+                "value": "Search the Archives",
+                "defaultValue": "Banner Heading",
+                "editable": true
+            },
+            "description": {
+                "name": "Banner Description",
+                "description": "Banner Description",
+                "type": "string",
+                "value": "Surrey Archives is home to Surrey's history. Original photos, maps, manuscripts, city and community records and an extensive reference collection are waiting for you. Search for and view over 100,000 photos on Surrey Online Heritage Search.",
+                "defaultValue": "Banner Description",
+                "editable": true
+            },
+            "searchURL": {
+                "name": "Banner Search URL",
+                "description": "Search bar action URL",
+                "type": "string",
+                "value": "/scripts/mwimain.dll?UNIONSEARCH&SIMPLE_EXP=Y&KEEP=Y&ERRMSG=[MESSAGES]374.htm&APPLICATION=UNION_VIEW&DATABASE=DESCRIPTION&language=144&REPORT=WEB_UNION_SUM_DESC",
+                "defaultValue": "",
+                "editable": false
+            },
+            "bannerCarousel": {
+                "name": "Banner Carousel List",
+                "description": "List of all banner background pictures",
+                "type": "array",
+                "value": [
+                    "https://surreytest.minisisinc.com/assets/images/Archives_Main.png"
+                ],
+                "defaultValue": "",
+                "editable": true
+            }
+        }
+    }
+
+
+]

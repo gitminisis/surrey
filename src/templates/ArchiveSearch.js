@@ -10,7 +10,7 @@ const ArchivesSearch = [{
                 searchURL: "/scripts/mwimain.dll?UNIONSEARCH&SIMPLE_EXP=Y&KEEP=Y&ERRMSG=[MESSAGES]374.htm&APPLICATION=UNION_VIEW&DATABASE=DESCRIPTION&language=144&REPORT=WEB_UNION_SUM_DESC",
                 bannerCarousel: ["/assets/images/Archives_Main.png"],
                 heading: "Search the Archives",
-                description: " Surrey Archives is home to Surrey's history. Original photos, maps, manuscripts, city and community records and an extensive reference collection are waiting for you. Search for and view over 100,000 photos on Surrey Online Heritage Search.",
+                description: "Surrey Archives is home to Surrey's history. Original photos, maps, manuscripts, city and community records and an extensive reference collection are waiting for you. Search for and view over 100,000 photos on Surrey Online Heritage Search.",
 
                 collapseSearchFilter: {
                     data: {

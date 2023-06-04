@@ -14,7 +14,7 @@ import {
     SORT_REPORTS_BY_DATABASE,
 } from "../templates/API";
 const DEFAULT_DETAIL_REPORT = "WEB_UNION_DETAIL";
-const WEB_DNS = "http://surreytest.minisisinc.com";
+const WEB_DNS = "https://surreytest.minisisinc.com";
 const DEFAULT_SUM_REPORT = "WEB_UNION_SUM";
 const SUM_REPORT_BY_DATABASE = {
     COLLECTIONS: "WEB_UNION_SUM_COL",
@@ -35,7 +35,7 @@ export const FILTER_TITLE_BY_FIELD = {
     EARLY: "Date",
     OBJECT_NAME: "Object Name",
     PRIMARY: "Type",
-    PLACES_CL: "Town Centre"
+    PLACES_CL: "Place Names"
 };
 /**
  * send a request to fetch a search from the corresponding database, expression
