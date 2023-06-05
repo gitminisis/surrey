@@ -40,11 +40,17 @@ export const getKeyByValue = (map, searchValue) => {
     if (isEqual(value, searchValue)) return key;
   }
 };
-export const getXMLRecord = (dom = document) => {
-  const xmlDOM = dom.querySelector("#xml_record");
+export const getXMLRecord = (dom = document, id = "#xml_record") => {
+  const xmlDOM = dom.querySelector(id);
   const x2js = new X2JS();
   const xmlString = new XMLSerializer().serializeToString(xmlDOM);
   const json = x2js.xml_str2json(xmlString);
+  return json;
+};
+
+export const getXMLTreeRecord = (xml) => {
+  const x2js = new X2JS();
+  const json = x2js.xml_str2json(xml);
   return json;
 };
 

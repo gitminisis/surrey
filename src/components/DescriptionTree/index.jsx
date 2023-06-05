@@ -7,6 +7,7 @@ import {
   updateNode,
   addChildrenToNode,
   fetchNode,
+  appendChildrenToNode,
 } from "../../utils/tree";
 import Input from "@mui/joy/Input";
 import SearchIcon from "@mui/icons-material/Search";
@@ -61,30 +62,10 @@ const DescriptionTree = (props) => {
           }
           setOpenKeyPath(openKeyPath.reverse());
           setTreeData(tree);
-
         })
-        .then((err) => { });
+        .then((err) => {});
     }
   }, []);
-  const handleContextMenu = (event) => {
-    event.stopPropagation();
-    event.preventDefault();
-    setContextMenu(
-      contextMenu === null
-        ? {
-          mouseX: event.clientX + 2,
-          mouseY: event.clientY - 6,
-        }
-        : // repeated contextmenu when it is already open closes it with Chrome 84 on Ubuntu
-        // Other native context menus might behave different.
-        // With this behavior we prevent contextmenu from the backdrop to re-locale existing context menus.
-        null
-    );
-  };
-
-  const handleClose = () => {
-    setContextMenu(null);
-  };
 
   const handleToggle = (event, nodeIds) => {
     setOpenKeyPath(nodeIds);
@@ -101,24 +82,41 @@ const DescriptionTree = (props) => {
   };
 
   const renderTree = (nodes) => {
-    let { id, children, hasChildren, isLoaded } = nodes;
+    let { id, children, hasChildren, isLoaded, loadMore, parentId } = nodes;
+    console.log(nodes);
     return (
       <StyledTreeItem
         key={id}
         nodeId={id}
-        onClick={e => {
-
-        }}
+        onClick={(e) => {}}
         label={
           <Typography
-
             level="h6"
             component="a"
-            href={getSearchRequestURL('DESCRIPTION', `REFD ${id}`, 'WEB_UNION_DETAIL', 'UNION_VIEW', session)}
-            onClick={e => {
+            href={
+              loadMore === undefined
+                ? getSearchRequestURL(
+                    "DESCRIPTION",
+                    `REFD ${id}`,
+                    "WEB_UNION_DETAIL",
+                    "UNION_VIEW",
+                    session
+                  )
+                : "#"
+            }
+            onClick={(e) => {
+              if (loadMore !== undefined) {
+                console.log(loadMore);
+                appendChildrenToNode(loadMore, treeData, parentId);
+                return;
+              }
               e.stopPropagation();
             }}
-            sx={{ fontWeight: refd === nodes.id ? "bold" : "inherit", textDecoration: refd === nodes.id ? "underline" : "none", color: 'primary.dark' }}
+            sx={{
+              fontWeight: refd === nodes.id ? "bold" : "inherit",
+              textDecoration: refd === nodes.id ? "underline" : "none",
+              color: "primary.dark",
+            }}
           >
             {nodes.title}
           </Typography>
@@ -158,28 +156,30 @@ const DescriptionTree = (props) => {
         </Typography>
       </AccordionSummary>
       <AccordionDetails>
-
-
         {loading ? (
           <div>
-            {treeData.isRoot ? <TreeView
-              multiSelect={false}
-              aria-label={title}
-              defaultCollapseIcon={<MinusSquare />}
-              defaultExpandIcon={<PlusSquare />}
-              defaultEndIcon={<CloseSquare />}
-              onNodeSelect={(e, n) => {
-                // handleClick(session, database, n)
-              }}
-              onNodeToggle={handleToggle}
-              expanded={openKeyPath}
-              sx={{
-                flexGrow: 1,
-                mt: 4,
-              }}
-            >
-              {renderTree(treeData)}
-            </TreeView> : "Description tree is not available for this record"}
+            {treeData.isRoot ? (
+              <TreeView
+                multiSelect={false}
+                aria-label={title}
+                defaultCollapseIcon={<MinusSquare />}
+                defaultExpandIcon={<PlusSquare />}
+                defaultEndIcon={<CloseSquare />}
+                onNodeSelect={(e, n) => {
+                  // handleClick(session, database, n)
+                }}
+                onNodeToggle={handleToggle}
+                expanded={openKeyPath}
+                sx={{
+                  flexGrow: 1,
+                  mt: 4,
+                }}
+              >
+                {renderTree(treeData)}
+              </TreeView>
+            ) : (
+              "Description tree is not available for this record"
+            )}
           </div>
         ) : (
           <TreeLoadingSkeleton />
