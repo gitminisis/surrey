@@ -86,9 +86,9 @@ const Banner = (props) => {
             <Grid
               item
               sm={12}
-              style={{ width: "100%", maxWidth: "900px", margin: "0 auto" }}
+              style={{ width: "100%", maxWidth: "1200px", margin: "0 auto" }}
             >
-              <SiteHeading variant="h1">{heading}</SiteHeading>
+              <SiteHeading variant="h1" style={{fontSize:'4rem'}}>{heading}</SiteHeading>
               <SiteDescription variant="p">{description}</SiteDescription>
             </Grid>
           </Grid>
