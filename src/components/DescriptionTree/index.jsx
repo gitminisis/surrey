@@ -88,7 +88,6 @@ const DescriptionTree = (props) => {
       <StyledTreeItem
         key={id}
         nodeId={id}
-        onClick={(e) => {}}
         label={
           <Typography
             level="h6"
@@ -102,7 +101,7 @@ const DescriptionTree = (props) => {
                     "UNION_VIEW",
                     session
                   )
-                : "#"
+                : ""
             }
             onClick={(e) => {
               if (loadMore !== undefined) {
