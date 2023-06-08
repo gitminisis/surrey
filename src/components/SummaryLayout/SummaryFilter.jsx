@@ -101,7 +101,6 @@ const SummaryFilter = (props) => {
   const { data, xml, sortOptions, application } = props;
   const { enqueueSnackbar } = useSnackbar();
   const filter = deepSearch(xml, "filter")[0];
-  const [filterType, setFilterType] = useState(filter ? getSelectedFilter(filter) : {});
 
   let bookmarkCount = deepSearch(xml, "bookmark_count");
   let numberOfRecords = getNumberOfRecords(xml);
@@ -110,23 +109,8 @@ const SummaryFilter = (props) => {
     let url = getSortReportURL(xml, application, v);
     window.location = url;
   };
-  const handleFilter = (value, field) => {
-    let object = Object.assign({}, filterType);
-    if (!object[field]) {
-      object[field] = [value];
-    } else {
-      let isValueExisted = object[field].indexOf(value) !== -1;
-      object[field] = isValueExisted
-        ? filterType[field].filter((e) => e !== value)
-        : [...object[field], value];
-    }
-    setFilterType(object);
-  };
 
-  const clearFilterType = () => {
-    setFilterType({});
-  };
-  console.log(filterType)
+
   return (
     <Item
       elevation={0}
@@ -211,7 +195,6 @@ const SummaryFilter = (props) => {
 
           {filter.map((item, i) => (
             <FieldFilter
-              handleFilter={handleFilter}
               application={application}
               key={`FieldFilter-${i}`}
               data={item}
