@@ -39,14 +39,30 @@ export const getXMLTree = (session, database, id) => {
 export const mapLowerLevelXMLToNode = (xml, parentId) => {
   return xml
     .filter((e) => deepSearch(e, "lower_security")[0] !== "No")
+
     .map((e) => {
       let hasChildren = deepSearch(e, "has-children")[0] !== "false";
+
       let isNextPage = deepSearch(e, "next-page-link")[0];
+      let isPrevPage = deepSearch(e, "previous-page-link")[0];
       if (isNextPage !== undefined) {
         return {
           id: `${parentId}-next-page-link`,
           key: `${parentId}-next-page-link`,
-          title: "Load more tree records ...",
+          title: "Load next 500 records ...",
+          parentId: parentId,
+          isRoot: false,
+          hasChildren: false,
+          children: null,
+          isChildrenLoaded: true,
+          loadMore: isNextPage,
+        };
+      }
+      if (isPrevPage !== undefined) {
+        return {
+          id: `${parentId}-prev-page-link`,
+          key: `${parentId}-prev-page-link`,
+          title: "Load previous 500 records ...",
           parentId: parentId,
           isRoot: false,
           hasChildren: false,
@@ -80,7 +96,6 @@ export const mapXMLToNode = (xml, id) => {
       ? lower_level_occurrence
       : [lower_level_occurrence];
   }
-  debugger;
   let hasChildren = typeof lower_level_occurrence !== "undefined";
 
   let parentId = deepSearch(xml, "refd_higher")[0];
@@ -189,10 +204,13 @@ export const fetchNode = (session, database, id) => {
  * @param {string} id
  */
 export const appendChildrenToNode = (url, tree, id) => {
-  axios.get(url).then((res) => {
+  return axios.get(url).then((res) => {
     let { data } = res;
-
-    console.log(data, tree);
+    // console.log(data, tree);
+    let { curNode } = getCurNodeFromXML(data, id);
+    let newTree = addChildrenToNode(tree, id, curNode.children);
+    debugger;
+    return newTree;
   });
 };
 export const getCurNodeFromXML = (data, id) => {
@@ -202,9 +220,7 @@ export const getCurNodeFromXML = (data, id) => {
   }
   let xml = getXMLTreeRecord(data, "links");
   let curNode = mapXMLToNode(xml, id);
-  let lower_level_occurrence = _.flatten(
-    deepSearch(xml, "lower_level_occurrence")
-  );
+  let lower_level_occurrence = _.flatten(deepSearch(xml, "link"));
   return {
     xml,
     curNode,
@@ -267,47 +283,4 @@ export const addChildrenToNode = (tree, id, children) => {
     }
     return e;
   });
-};
-
-export const insertNodeToTree = (tree, node) => {};
-
-/**
- * Update the node
- *  * NOT IN USED *
- * @param {} tree
- * @param {*} newNode
- * @param {*} path
- * @returns
- */
-export const updateNode = (tree, newNode, path = []) => {
-  // let curNode = tree;
-  let curNode = _.cloneDeep(tree);
-  if (path.length > 0) {
-    path.map((e) => {
-      curTree = curTree[e];
-    });
-  }
-
-  if (curTree.id === newNode.id) {
-    curTree = newNode;
-    let x = path.reduce(function (o, k, i) {
-      if (i === path.length - 1) {
-        o[k] = newNode;
-      }
-      return o[k];
-    }, tree); // set init
-    return tree;
-  }
-
-  if (curTree.hasChildren && curTree.children.length > 0) {
-    path.push("children");
-    for (let i = 0; i < curTree.children.length; i++) {
-      let res = updateNode(tree, newNode, [...path, i]);
-      if (res !== null) {
-        return tree;
-      }
-    }
-  }
-  // return tree;
-  return null;
 };

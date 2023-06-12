@@ -80,8 +80,7 @@ const FieldFilter = (props) => {
                   overlay
                   sx={{ color: "inherit", textAlign: "left" }}
                   onChange={(e) => {
-                    // console.log(e)
-                    // handleFilter(item.item_value, data._name);
+               
                     window.location =
                       item.item_link.toString() + `${application !== 'UNION_VIEW' ? "&DATABASE=" + application : ''}`;
                   }}
@@ -199,23 +198,11 @@ const SummaryFilter = (props) => {
               key={`FieldFilter-${i}`}
               data={item}
               index={i}
-              selectedValues={filterType[item._name]}
+
             />
           ))}
 
-          {/* <Box sx={{ mt: 2, justifyContent: "right", display: "flex" }}>
-            <Button
-              color="warning"
-              size="sm"
-              sx={{ mr: 1 }}
-              onClick={(_) => clearFilterType()}
-            >
-              Reset
-            </Button>
-            <Button color="success" size="sm" >
-              Apply{" "}
-            </Button>
-          </Box> */}
+     
         </>
       )}
     </Item>

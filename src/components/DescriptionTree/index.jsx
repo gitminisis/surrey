@@ -20,6 +20,7 @@ import Typography from "@mui/joy/Typography";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import { Box, Skeleton } from "@mui/material";
+import CircularProgress from "@mui/material/CircularProgress";
 import {
   Accordion,
   AccordionDetails,
@@ -50,7 +51,7 @@ const DescriptionTree = (props) => {
   const [treeData, setTreeData] = useState([]);
   const [openKeyPath, setOpenKeyPath] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [contextMenu, setContextMenu] = React.useState(null);
+  const [pageLoading, setPageLoading] = useState(false);
   useEffect(() => {
     if (showTree) {
       getJSONTree(session, database, refd)
@@ -89,36 +90,58 @@ const DescriptionTree = (props) => {
         key={id}
         nodeId={id}
         label={
-          <Typography
-            level="h6"
-            component="a"
-            href={
-              loadMore === undefined
-                ? getSearchRequestURL(
-                    "DESCRIPTION",
-                    `REFD ${id}`,
-                    "WEB_UNION_DETAIL",
-                    "UNION_VIEW",
-                    session
-                  )
-                : ""
-            }
-            onClick={(e) => {
-              if (loadMore !== undefined) {
-                console.log(loadMore);
-                appendChildrenToNode(loadMore, treeData, parentId);
-                return;
-              }
-              e.stopPropagation();
-            }}
-            sx={{
-              fontWeight: refd === nodes.id ? "bold" : "inherit",
-              textDecoration: refd === nodes.id ? "underline" : "none",
-              color: "primary.dark",
-            }}
-          >
-            {nodes.title}
-          </Typography>
+          loadMore === undefined ? (
+            <Typography
+              level="h6"
+              component="a"
+              href={getSearchRequestURL(
+                "DESCRIPTION",
+                `REFD ${id}`,
+                "WEB_UNION_DETAIL",
+                "UNION_VIEW",
+                session
+              )}
+              sx={{
+                fontWeight: refd === nodes.id ? "bold" : "inherit",
+                textDecoration: refd === nodes.id ? "underline" : "none",
+                color: "primary.dark",
+              }}
+            >
+              {nodes.title}
+            </Typography>
+          ) : (
+            <Typography
+              level="h6"
+              component="p"
+              onClick={(e) => {
+                if (loadMore !== undefined) {
+                  console.log(loadMore);
+                  setPageLoading(true);
+                  appendChildrenToNode(loadMore, [treeData], parentId).then(
+                    (res) => {
+                      setTreeData(res[0]);
+                      setPageLoading(false);
+                    }
+                  );
+
+                  return;
+                }
+                e.stopPropagation();
+              }}
+              sx={{
+                fontWeight: refd === nodes.id ? "bold" : "inherit",
+                textDecoration: refd === nodes.id ? "underline" : "none",
+                color: "primary.dark",
+              }}
+            >
+              {nodes.title}{" "}
+              {pageLoading ? (
+                <CircularProgress
+                  style={{ fontSize: "10px", width: "15px", height: "15px" }}
+                />
+              ) : null}
+            </Typography>
+          )
         }
       >
         {Array.isArray(children) && children.length > 0 ? (
@@ -163,7 +186,6 @@ const DescriptionTree = (props) => {
                 aria-label={title}
                 defaultCollapseIcon={<MinusSquare />}
                 defaultExpandIcon={<PlusSquare />}
-                defaultEndIcon={<CloseSquare />}
                 onNodeSelect={(e, n) => {
                   // handleClick(session, database, n)
                 }}
