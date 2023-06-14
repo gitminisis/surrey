@@ -24,6 +24,9 @@ const SummaryMasonryView = (props) => {
       >
         {XMLRecord.map((record, i) => {
           let database = record.database_name;
+          if (!record.record_link) {
+            return null;
+          }
           let recordLink = record.record_link.replace(/\n/g, "");
           let recordData = record.record;
           let displayFields = data.find((e) => e.database === database).fields;

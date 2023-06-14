@@ -24,6 +24,7 @@ const SummaryRecordsView = (props) => {
       {XMLRecord.map((record, i) => {
         let database = record.database_name;
         if (!record.record_link) {
+          return null;
         }
         let recordLink = record.record_link.replace(/\n/g, "");
 
@@ -49,19 +50,21 @@ const SummaryRecordsView = (props) => {
               >
                 <Box sx={{ display: "flex" }}>
                   {thumbPic && (
-                    <Typography component="a" href={recordLink}><CardMedia
-                      onClick={(_) => (window.location = recordLink)}
-                      component="img"
-                      sx={{
-                        margin: "0 0",
-                        width: "25vw",
-                        maxWidth: "200px",
-                        cursor: "pointer",
-                        height: "100%",
-                      }}
-                      image={thumbPic}
-                      alt={firstCaption}
-                    /></Typography>
+                    <Typography component="a" href={recordLink}>
+                      <CardMedia
+                        onClick={(_) => (window.location = recordLink)}
+                        component="img"
+                        sx={{
+                          margin: "0 0",
+                          width: "25vw",
+                          maxWidth: "200px",
+                          cursor: "pointer",
+                          height: "100%",
+                        }}
+                        image={thumbPic}
+                        alt={firstCaption}
+                      />
+                    </Typography>
                   )}
                 </Box>
 
@@ -93,13 +96,15 @@ const SummaryRecordsView = (props) => {
                       right: "16px",
                     }}
                   >
-                    {recordAction && <SummaryRecordAction
-                      database={database}
-                      sisn={sisn}
-                      url={bookmarkURL}
-                      updateXML={updateXML}
-                      isBookmarked={isBookmarked}
-                    />}
+                    {recordAction && (
+                      <SummaryRecordAction
+                        database={database}
+                        sisn={sisn}
+                        url={bookmarkURL}
+                        updateXML={updateXML}
+                        isBookmarked={isBookmarked}
+                      />
+                    )}
                   </Box>
                 </Box>
               </Card>
