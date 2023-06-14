@@ -18,7 +18,7 @@ import {
 const MessageModal = (props) => {
   const { message } = props;
   const [open, setOpen] = useState(
-    true && localStorage.getItem("announcement")
+    true && !sessionStorage.getItem("hideAnnouncement")
   );
 
   return (
@@ -73,9 +73,9 @@ const MessageModal = (props) => {
               onChange={(e) => {
                 let check = e.target.checked;
                 if (check) {
-                  localStorage.removeItem("announcement");
+                  sessionStorage.setItem("hideAnnouncement", true);
                 } else {
-                  localStorage.setItem("announcement", true);
+                  sessionStorage.removeItem("hideAnnouncement");
                 }
               }}
               label={
