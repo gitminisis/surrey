@@ -12,6 +12,7 @@ import Section from "../Section";
 import { Button } from "@mui/joy";
 import WarningAmberIcon from "@mui/icons-material/WarningAmber";
 import { sendErrorReport } from "../../utils/functions";
+import MessageModal from "components/MessageModal";
 const MAX_SNACK = 3;
 
 const Layout = ({ active, children }) => {
@@ -32,6 +33,7 @@ const Layout = ({ active, children }) => {
         }}
       >
         <LayoutChildren child={children} />
+        <MessageModal message="Looking for SAMOA? Welcome to our new online database: Surrey Online Heritage Search (SOHS). This site contains all the same content with new user-friendly tools." />
         <BackTop>
           <Fab size="small" aria-label="scroll back to top">
             <KeyboardArrowUpIcon />
@@ -79,7 +81,7 @@ const ErrorFallback = ({ error }) => {
               );
               setTimeout((_) => {
                 window.location = "/";
-              },5000);
+              }, 5000);
             });
           }}
           size="md"
