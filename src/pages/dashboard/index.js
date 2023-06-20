@@ -148,7 +148,7 @@ const DashboardDefault = () => {
             </Grid>
 
             {/* row 3 */}
-            <Grid item xs={12} md={7} lg={8}>
+            {/* <Grid item xs={12} md={7} lg={8}>
                 <Grid container alignItems="center" justifyContent="space-between">
                     <Grid item>
                         <Typography variant="h5">Recent Orders</Typography>
@@ -183,10 +183,10 @@ const DashboardDefault = () => {
                     </List>
                     <ReportAreaChart />
                 </MainCard>
-            </Grid>
+            </Grid> */}
 
             {/* row 4 */}
-            <Grid item xs={12} md={7} lg={8}>
+            {/* <Grid item xs={12} md={7} lg={8}>
                 <Grid container alignItems="center" justifyContent="space-between">
                     <Grid item>
                         <Typography variant="h5">Sales Report</Typography>
@@ -339,7 +339,7 @@ const DashboardDefault = () => {
                         </Button>
                     </Stack>
                 </MainCard>
-            </Grid>
+            </Grid> */}
         </Grid>
     );
 };

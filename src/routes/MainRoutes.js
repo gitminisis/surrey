@@ -30,6 +30,7 @@ const AdminEditPage = Loadable(lazy(() => import("../pages/admin-edit-page")));
 const AdminEditFields = Loadable(
   lazy(() => import("../pages/admin-edit-fields"))
 );
+const AdminEditSite = Loadable(lazy(() => import("../pages/admin-edit-site")));
 const AuthLogout = Loadable(
   lazy(() => import("../pages/authentication/Logout"))
 );
@@ -51,6 +52,7 @@ const MainRoutes = {
       path: "fields/:id",
       element: <AdminEditFields />,
     },
+    { path: "site-layout", element: <AdminEditSite /> },
     {
       path: "color",
       element: <Color />,
@@ -80,7 +82,6 @@ const MainRoutes = {
       path: "icons/ant",
       element: <AntIcons />,
     },
-    
   ],
 };
 
