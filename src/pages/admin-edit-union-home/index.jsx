@@ -53,41 +53,41 @@ const categorySection = {
         },
       },
     },
-    children: {
-      title: "Children Components",
-      type: "array",
-      items: {
-        type: "object",
-        properties: {
-          component: {
-            type: "string",
-          },
+    // children: {
+    //   title: "Children Components",
+    //   type: "array",
+    //   items: {
+    //     type: "object",
+    //     properties: {
+    //       component: {
+    //         type: "string",
+    //       },
 
-          data: {
-            type: "object",
-            properties: {
-              data: {
-                type: "array",
-                items: {
-                  type: "object",
-                  properties: {
-                    thumbnail: {
-                      type: "string",
-                    },
-                    title: {
-                      type: "string",
-                    },
-                    link: {
-                      type: "string",
-                    },
-                  },
-                },
-              },
-            },
-          },
-        },
-      },
-    },
+    //       data: {
+    //         type: "object",
+    //         properties: {
+    //           data: {
+    //             type: "array",
+    //             items: {
+    //               type: "object",
+    //               properties: {
+    //                 thumbnail: {
+    //                   type: "string",
+    //                 },
+    //                 title: {
+    //                   type: "string",
+    //                 },
+    //                 link: {
+    //                   type: "string",
+    //                 },
+    //               },
+    //             },
+    //           },
+    //         },
+    //       },
+    //     },
+    //   },
+    // },
   },
 };
 

@@ -35,17 +35,17 @@ const pages = {
       icon: icons.HomeOutlined,
     },
     {
-      id: "archives-home-page",
-      title: "Archives Search Page",
+      id: "description-home-page",
+      title: "Archives Home",
       type: "item",
-      url: "/page/archives-home",
+      url: "/page/description-home",
       icon: icons.FileOutlined,
     },
     {
-      id: "artifact-home-page",
-      title: "Artifact Search Page",
+      id: "collections-home-page",
+      title: "Artifact Home",
       type: "item",
-      url: "/page/artifact-home",
+      url: "/page/collections-home",
       icon: icons.FileSearchOutlined,
     },
     {

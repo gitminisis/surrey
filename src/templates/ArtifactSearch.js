@@ -1,13 +1,12 @@
-import json from "./json/artifact-home/index.json";
-import { jsonToTemplate } from "utils/functions";
-let data = jsonToTemplate(json);
+import json from "./json/collections-home.json";
+
 const ArtifactSearch = [
   {
     component: "Layout",
     data: {
       active: "Artifacts",
     },
-    children: [...data],
+    children: [...json],
   },
 ];
 

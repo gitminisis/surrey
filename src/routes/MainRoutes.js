@@ -34,6 +34,12 @@ const AdminEditSite = Loadable(lazy(() => import("../pages/admin-edit-site")));
 const AdminEditUnionHome = Loadable(
   lazy(() => import("../pages/admin-edit-union-home"))
 );
+const AdminEditCollectionsHome = Loadable(
+  lazy(() => import("../pages/admin-edit-collections-home"))
+);
+const AdminEditDescriptionHome = Loadable(
+  lazy(() => import("../pages/admin-edit-description-home"))
+);
 const AuthLogout = Loadable(
   lazy(() => import("../pages/authentication/Logout"))
 );
@@ -47,13 +53,15 @@ const MainRoutes = {
       path: "/",
       element: <DashboardDefault />,
     },
- 
+
     {
       path: "fields/:id",
       element: <AdminEditFields />,
     },
     { path: "site-layout", element: <AdminEditSite /> },
     { path: "page/union-home", element: <AdminEditUnionHome /> },
+    { path: "page/collections-home", element: <AdminEditCollectionsHome /> },
+    { path: "page/description-home", element: <AdminEditDescriptionHome /> },
     {
       path: "color",
       element: <Color />,

@@ -7,27 +7,88 @@ import "react-toastify/dist/ReactToastify.css";
 import validator from "@rjsf/validator-ajv8";
 import Form from "@rjsf/mui";
 
-const schema = {
-  title: "Website Settings",
-  description: "",
+const pageBanner = {
+  title: "Page Banner",
   type: "object",
-  required: ["siteName", "logo", "logo2"],
   properties: {
-    siteName: {
-      type: "string",
-      title: "Site Name",
-      default: "",
-    },
-    logo: {
-      type: "string",
-      title: "Site Logo 1",
-    },
-    logo2: {
-      type: "string",
-      title: "Site Logo 2",
+    data: {
+      type: "object",
+      title: " Page Banner Components",
+      properties: {
+        heading: {
+          type: "string",
+          title: "Banner Heading",
+        },
+        description: {
+          type: "string",
+          title: "Banner Description",
+        },
+        searchURL: {
+          type: "string",
+          title: "Search Action URL",
+        },
+        bannerCarousel: {
+          type: "array",
+          title: "Banner Background Carousel",
+          items: {
+            type: "string",
+          },
+        },
+      },
     },
   },
 };
+
+const featureCollectionSection = {
+  title: "Section 1",
+  type: "object",
+  properties: {
+    data: {
+      type: "object",
+      title: "Section Components",
+      properties: {
+        heading: {
+          type: "string",
+          title: "Section Heading",
+        },
+      },
+    },
+    // children: {
+    //   type: "array",
+    //   title: "Children Components",
+    //   items: {
+    //     type: "object",
+    //     properties: {
+    //       data: {
+    //         type: "object",
+    //         title: "Featured Collections Records",
+    //         properties: {
+    //           data: {
+    //             type: "array",
+    //             items: {
+    //               type: "object",
+    //               properties: {
+    //                 thumbnail: {
+    //                   type: "string",
+    //                 },
+    //                 title: {
+    //                   type: "string",
+    //                 },
+    //                 link: {
+    //                   type: "string",
+    //                 },
+    //               },
+    //             },
+    //           },
+    //         },
+    //       },
+    //     },
+    //   },
+    // },
+  },
+};
+
+const schema = [pageBanner, featureCollectionSection];
 
 const log = (type) => console.log.bind(console, type);
 const fetcher = (url) => fetch(url).then((res) => res.json());
@@ -35,12 +96,12 @@ const fetcher = (url) => fetch(url).then((res) => res.json());
 const AdminEditSite = (props) => {
   const BASE_URL = process.env.SERVER_BASE_URL || "http://localhost:3001";
   const { data, mutate, error, isLoading } = useSWR(
-    `${BASE_URL}/site-layout`,
+    `${BASE_URL}/page/description-home`,
     fetcher
   );
   const sendUpdateData = async (newData) => {
     const noti = toast.loading("Please wait for data to be updated ...");
-    await fetch(`${BASE_URL}/site-layout`, {
+    await fetch(`${BASE_URL}/page/description-home`, {
       method: "POST",
       body: JSON.stringify(newData),
       headers: {
@@ -57,30 +118,38 @@ const AdminEditSite = (props) => {
   };
   if (error) return "An error has occurred.";
   if (isLoading) return "Loading...";
+
   return (
     <ComponentSkeleton>
       <ToastContainer />
 
       <Grid container spacing={3}>
         <Grid item xs={12}>
-          <Form
-            formData={data}
-            schema={schema}
-            validator={validator}
-            onChange={log("changed")}
-            onSubmit={({ formData }, e) => {
-              console.log(formData);
-              sendUpdateData(formData);
-            }}
-            onError={log("errors")}
-          />
+          {schema.map((e, i) => (
+            <>
+              <Form
+                key={i}
+                formData={data[i]}
+                schema={e}
+                validator={validator}
+                onChange={log("changed")}
+                onSubmit={({ formData }) => {
+                  console.log(formData);
+                  let newData = data;
+                  data[i] = formData;
+                  sendUpdateData(newData);
+                }}
+                onError={log("errors")}
+              />
+              <br />
+            </>
+          ))}
         </Grid>
       </Grid>
     </ComponentSkeleton>
   );
 };
 
-AdminEditSite.propTypes = {
-};
+AdminEditSite.propTypes = {};
 
 export default AdminEditSite;

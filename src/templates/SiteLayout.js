@@ -1,4 +1,4 @@
-import siteLayout from "./json/site-layout/index.json";
+import siteLayout from "./json/site-layout.json";
 const SiteLayout = {
   ...siteLayout,
   baseURL: "/",

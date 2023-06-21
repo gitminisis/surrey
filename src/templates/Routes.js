@@ -1,5 +1,4 @@
 import HomeTemplate from "./Home";
-import HomeSample from "./HomeSample";
 import ArchivesSearchTemplate from "./ArchiveSearch";
 import ArtifactSearchTemplate from "./ArtifactSearch";
 import NotFoundPageTemplate from "./404";
@@ -31,10 +30,7 @@ const Routes = [{
         path: "",
         template: HomeTemplate
     },
-    {
-        path: "sample",
-        template: HomeSample
-    },
+    
 
     {
         path: "archives",
