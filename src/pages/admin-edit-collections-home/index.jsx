@@ -28,6 +28,7 @@ const schema = {
     },
   },
 };
+
 const log = (type) => console.log.bind(console, type);
 const fetcher = (url) => fetch(url).then((res) => res.json());
 

@@ -28,10 +28,10 @@ const pages = {
   type: "group",
   children: [
     {
-      id: "home-page",
-      title: "Home Page",
+      id: "union-home",
+      title: "Union Home",
       type: "item",
-      url: "/page/home",
+      url: "/page/union-home",
       icon: icons.HomeOutlined,
     },
     {
