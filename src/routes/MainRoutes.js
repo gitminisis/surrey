@@ -40,6 +40,10 @@ const AdminEditDescriptionHome = Loadable(
   lazy(() => import("../pages/admin-edit-description-home"))
 );
 const AdminEditFAQ = Loadable(lazy(() => import("../pages/admin-edit-faq")));
+const AdminEditDetailFields = Loadable(
+  lazy(() => import("../pages/admin-edit-detail-fields"))
+);
+
 const AuthLogout = Loadable(
   lazy(() => import("../pages/authentication/Logout"))
 );
@@ -63,6 +67,7 @@ const MainRoutes = {
     { path: "page/collections-home", element: <AdminEditCollectionsHome /> },
     { path: "page/description-home", element: <AdminEditDescriptionHome /> },
     { path: "page/faq", element: <AdminEditFAQ /> },
+    { path: "detail-fields", element: <AdminEditDetailFields /> },
     {
       path: "color",
       element: <Color />,

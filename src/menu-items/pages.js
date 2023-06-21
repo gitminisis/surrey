@@ -6,7 +6,8 @@ import {
   FileSearchOutlined,
   HomeOutlined,
   SettingOutlined,
-  QuestionCircleOutlined 
+  QuestionCircleOutlined,
+  DatabaseOutlined,
 } from "@ant-design/icons";
 import { SettingsOutlined } from "@mui/icons-material";
 
@@ -19,7 +20,8 @@ const icons = {
   FileSearchOutlined,
   HomeOutlined,
   SettingsOutlined,
-  QuestionCircleOutlined
+  QuestionCircleOutlined,
+  DatabaseOutlined,
 };
 
 // ==============================|| MENU ITEMS - EXTRA PAGES ||============================== //
@@ -56,6 +58,13 @@ const pages = {
       type: "item",
       url: "/page/faq",
       icon: icons.QuestionCircleOutlined,
+    },
+    {
+      id: "detail-fields",
+      title: "Detail Fields",
+      type: "item",
+      url: "/detail-fields",
+      icon: icons.DatabaseOutlined,
     },
     {
       id: "site-layout",

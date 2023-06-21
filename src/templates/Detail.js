@@ -7,7 +7,7 @@ import {
     GENERAL_SEARCHBOX_DBLIST,
 } from "./API";
 
-import detailJson from "../templates/json/detail-fields/index.json";
+import detailJson from "../templates/json/detail-fields.json";
 import { jsonToFields } from "utils/functions";
 let displayFields = jsonToFields(detailJson);
 const Detail = [{
