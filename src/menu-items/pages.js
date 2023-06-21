@@ -6,6 +6,7 @@ import {
   FileSearchOutlined,
   HomeOutlined,
   SettingOutlined,
+  QuestionCircleOutlined 
 } from "@ant-design/icons";
 import { SettingsOutlined } from "@mui/icons-material";
 
@@ -18,6 +19,7 @@ const icons = {
   FileSearchOutlined,
   HomeOutlined,
   SettingsOutlined,
+  QuestionCircleOutlined
 };
 
 // ==============================|| MENU ITEMS - EXTRA PAGES ||============================== //
@@ -47,6 +49,13 @@ const pages = {
       type: "item",
       url: "/page/collections-home",
       icon: icons.FileSearchOutlined,
+    },
+    {
+      id: "faq-page",
+      title: "FAQ Page",
+      type: "item",
+      url: "/page/faq",
+      icon: icons.QuestionCircleOutlined,
     },
     {
       id: "site-layout",

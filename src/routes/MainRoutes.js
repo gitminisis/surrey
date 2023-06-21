@@ -26,7 +26,6 @@ const AntIcons = Loadable(
   lazy(() => import("../pages/components-overview/AntIcons"))
 );
 
-const AdminEditPage = Loadable(lazy(() => import("../pages/admin-edit-page")));
 const AdminEditFields = Loadable(
   lazy(() => import("../pages/admin-edit-fields"))
 );
@@ -40,6 +39,7 @@ const AdminEditCollectionsHome = Loadable(
 const AdminEditDescriptionHome = Loadable(
   lazy(() => import("../pages/admin-edit-description-home"))
 );
+const AdminEditFAQ = Loadable(lazy(() => import("../pages/admin-edit-faq")));
 const AuthLogout = Loadable(
   lazy(() => import("../pages/authentication/Logout"))
 );
@@ -62,6 +62,7 @@ const MainRoutes = {
     { path: "page/union-home", element: <AdminEditUnionHome /> },
     { path: "page/collections-home", element: <AdminEditCollectionsHome /> },
     { path: "page/description-home", element: <AdminEditDescriptionHome /> },
+    { path: "page/faq", element: <AdminEditFAQ /> },
     {
       path: "color",
       element: <Color />,

@@ -1,16 +1,13 @@
-import json from "../templates/json/faq/index.json";
-import {
-    jsonToTemplate
-} from "utils/functions";
-let data = jsonToTemplate(json);
-const FAQ = [{
+import json from "../templates/json/faq.json";
+
+const FAQ = [
+  {
     component: "Layout",
     data: {
-        active: "FAQ",
+      active: "FAQ",
     },
-    children: [
-        ...data
-    ],
-}];
+    children: [...json],
+  },
+];
 
 export default FAQ;
