@@ -7,13 +7,13 @@ const NoBookmark = [{
 
                 heading: "Your bookmark(s) is empty",
                 description: "Please start a new search",
-                bannerCarousel: ["https://surreytest.minisisinc.com/assets/images/Union%20Background%201.png",
-                    "https://surreytest.minisisinc.com/assets/images/Union%20Background%202.png",
-                    "https://surreytest.minisisinc.com/assets/images/Union%20Background%203.png",
-                    "https://surreytest.minisisinc.com/assets/images/Union%20Background%204.png",
-                    "https://surreytest.minisisinc.com/assets/images/Union%20Background%205.png",
-                    "https://surreytest.minisisinc.com/assets/images/Union%20Background%206.png",
-                    "https://surreytest.minisisinc.com/assets/images/Union%20Background%207.png"
+                bannerCarousel: ["/assets/images/Union%20Background%201.png",
+                    "/assets/images/Union%20Background%202.png",
+                    "/assets/images/Union%20Background%203.png",
+                    "/assets/images/Union%20Background%204.png",
+                    "/assets/images/Union%20Background%205.png",
+                    "/assets/images/Union%20Background%206.png",
+                    "/assets/images/Union%20Background%207.png"
                 ]
             },
         },
