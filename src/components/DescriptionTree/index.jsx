@@ -1,5 +1,3 @@
-import React, { useState, useEffect } from "react";
-import PropTypes from "prop-types";
 import {
   getChildrenSearchLink,
   getJSONTree,
@@ -9,18 +7,12 @@ import {
   fetchNode,
   appendChildrenToNode,
 } from "../../utils/tree";
-import Input from "@mui/joy/Input";
-import SearchIcon from "@mui/icons-material/Search";
 
 import { deepSearch } from "../../utils/functions";
 import TreeView from "@mui/lab/TreeView";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import ChevronRightIcon from "@mui/icons-material/ChevronRight";
-import Typography from "@mui/joy/Typography";
-import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
-import { Box, Skeleton } from "@mui/material";
-import CircularProgress from "@mui/material/CircularProgress";
+import { Typography } from "@mui/joy";
+import { Box, Skeleton, CircularProgress } from "@mui/material";
 import {
   Accordion,
   AccordionDetails,
@@ -28,15 +20,18 @@ import {
   StyledTreeItem,
   MinusSquare,
   PlusSquare,
-  CloseSquare,
 } from "./DescriptionTree.style";
 import { getSearchRequestURL } from "utils/record";
 const TreeSkeletonWidth = [100, 90, 80, 70, 70, 70, 60, 60, 60];
 const TreeLoadingSkeleton = () => {
   return (
     <Box sx={{ width: "100%", mt: 4 }}>
-      {TreeSkeletonWidth.map((e) => (
-        <Skeleton width={`${e}%`} style={{ marginLeft: `${100 - e}%` }} />
+      {TreeSkeletonWidth.map((e, i) => (
+        <Skeleton
+          key={i}
+          width={`${e}%`}
+          style={{ marginLeft: `${100 - e}%` }}
+        />
       ))}
     </Box>
   );

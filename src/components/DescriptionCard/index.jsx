@@ -1,9 +1,5 @@
-import React from "react";
 import {
   Typography,
-  Container,
-  Card,
-  CardActions,
   CardMedia,
   CardContent,
   Button,

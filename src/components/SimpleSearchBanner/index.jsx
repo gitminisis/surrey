@@ -1,32 +1,21 @@
 import React, { useState, useEffect } from "react";
 import {
   BannerContainer,
-  BannerBox,
-  ShadowLayerBox,
-  BannerContent,
-  SearchBar,
-  InputSearch,
-  SubmitSearch,
+ 
   SiteHeading,
   SiteDescription,
   HoverLink,
 } from "./SimpleSearchBanner.style";
 import {
-  Typography,
   Button,
   Grid,
   Paper,
   InputBase,
-  IconButton,
   Container,
-  Backdrop,
-  CircularProgress,
 } from "@mui/material";
-import SearchIcon from "@mui/icons-material/Search";
 import PropTypes from "prop-types";
 import CollapseSearchFilter from "../AdvancedSearchBanner/CollapseSearchFilter";
 
-import MobileStepper from "@mui/material/MobileStepper";
 import KeyboardDoubleArrowUpIcon from "@mui/icons-material/KeyboardDoubleArrowUp";
 import KeyboardDoubleArrowDownIcon from "@mui/icons-material/KeyboardDoubleArrowDown";
 import LayoutBackdrop from "../LayoutBackdrop";
