@@ -330,7 +330,7 @@ export const getRecordPermalink = (
     database,
     report = DEFAULT_DETAIL_REPORT
 ) => {
-    let url = `${WEB_DNS}/scripts/mwimain.dll/144/${database}/${report}/SISN%20${sisn}?sessionsearch`;
+    let url = `${WEB_DNS}/scripts/mwimain.dll/144/${database}/${report}/SISN+${sisn}?sessionsearch`;
     return url;
 };
 

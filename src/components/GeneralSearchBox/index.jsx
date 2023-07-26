@@ -26,8 +26,15 @@ export const Item = styled(Paper)(({ theme }) => ({
 }));
 
 const GeneralSearchBox = (props) => {
-  const { breadcrumbs, heading, helpText, databaseList, xml, placeholder } =
-    props;
+  const {
+    breadcrumbs,
+    heading,
+    helpText,
+    databaseList,
+    xml,
+    placeholder,
+    application,
+  } = props;
   const [index, setIndex] = React.useState(0);
   let database = deepSearch(xml, "database_name")[0];
   let toSummary = backToSummary(xml);
@@ -86,7 +93,11 @@ const GeneralSearchBox = (props) => {
               action={session + databaseList[index].searchURL}
               onSubmit={(e) => {
                 e.preventDefault();
-                window.location = `${session}${databaseList[index].searchURL}&EXP=KEYWORD_CL "${document.getElementById('simpleSearchCluster').value}"`
+                window.location = `${session}${
+                  databaseList[index].searchURL
+                }&EXP=KEYWORD_CL "${
+                  document.getElementById("simpleSearchCluster").value
+                }"`;
               }}
             >
               <Input
@@ -108,7 +119,9 @@ const GeneralSearchBox = (props) => {
                   <React.Fragment>
                     <Select
                       variant="plain"
-                      value={index}
+                      value={databaseList.findIndex((e) => {
+                        return e.application === application;
+                      })}
                       onChange={(e, value) => {
                         setIndex(Number.parseInt(value));
                       }}

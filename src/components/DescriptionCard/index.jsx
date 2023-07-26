@@ -11,13 +11,22 @@ import {
 } from "@mui/material";
 import PropTypes from "prop-types";
 import { DescriptionCardItem } from "./DescriptionCard.style";
-const DescriptionCardInfo = ({ description, title, urlTitle, url, textAlign }) => {
+const DescriptionCardInfo = ({
+  description,
+  title,
+  urlTitle,
+  url,
+  textAlign,
+}) => {
   return (
     <div
-      style={{ margin: "40px  auto", padding: "5px 10px", maxWidth: "600px",  }}
+      style={{ margin: "40px  auto", padding: "5px 10px", maxWidth: "600px" }}
     >
       <Typography variant="h3"> {title}</Typography>
-      <Typography component="p" sx={{ marginTop: "20px", fontSize: "1.2rem" , textAlign}}>
+      <Typography
+        component="p"
+        sx={{ marginTop: "20px", fontSize: "1.2rem", textAlign }}
+      >
         {description}
       </Typography>
       {url && (
@@ -36,8 +45,7 @@ const DescriptionCard = ({
   description,
   url,
   urlTitle,
-  textAlign = 'center',
-
+  textAlign = "center",
 }) => {
   return (
     <Grid container xs={12}>
@@ -47,7 +55,9 @@ const DescriptionCard = ({
         md={8}
         order={{ xs: 2, sm: 2, md: position % 2 !== 0 ? 1 : 2 }}
       >
-        <DescriptionCardInfo {...{ title, description, url, urlTitle, textAlign }} />
+        <DescriptionCardInfo
+          {...{ title, description, url, urlTitle, textAlign }}
+        />
       </Grid>
       <Grid
         item
@@ -59,7 +69,7 @@ const DescriptionCard = ({
         <DescriptionCardItem raised={true}>
           <CardMedia
             component="img"
-            height="300"
+            sx={{ objectFit: "contain" }}
             image={thumbnail}
             alt={heading}
           />
@@ -85,6 +95,5 @@ DescriptionCard.propTypes = {
   url: PropTypes.string,
   urlTitle: PropTypes.string,
   textAlign: PropTypes.string,
-
 };
 export default DescriptionCard;
