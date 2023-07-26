@@ -31,6 +31,7 @@
     "copy-to-clipboard": "^3.3.3",
     "css-loader": "^6.7.3",
     "dotenv": "^16.0.3",
+    "esbuild": "^0.18.17",
     "file-loader": "^6.2.0",
     "formik": "^2.2.9",
     "framer-motion": "^7.3.6",
@@ -40,7 +41,6 @@
     "jsonschema": "^1.4.1",
     "leaflet": "^1.9.3",
     "lodash": "^4.17.21",
-
     "notistack": "^3.0.1",
     "path": "^0.12.7",
     "prop-types": "^15.8.1",
@@ -60,7 +60,6 @@
     "react-router": "^6.4.1",
     "react-router-dom": "^6.9.0",
     "react-scripts": "5.0.1",
-
     "react-syntax-highlighter": "^15.5.0",
     "react-to-print": "^2.14.12",
     "react-toastify": "^9.1.2",
@@ -79,6 +78,7 @@
     "yup": "^0.32.11"
   },
   "scripts": {
+    "esbuild": "node ./build.js",
     "build": "webpack --mode production --config webpack.config.js ",
     "start": "webpack --mode development --config webpack.config.js"
   },

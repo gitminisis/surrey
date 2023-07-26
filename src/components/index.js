@@ -26,7 +26,6 @@ export { default as ContactUsModalForm } from "./ContactUsModalForm";
 export { default as DescriptionTree } from "./DescriptionTree";
 export { default as SummaryBookmarkLayout } from "./SummaryBookmarkLayout";
 export { default as GeneralSearchBox } from "./GeneralSearchBox";
-export { default as ShowMoreText } from "./ShowMoreText";
 export { default as SummaryOnlineExhibitionLayout } from "./SummaryOnlineExhibitionLayout";
 export { default as RecordToURLField } from "./RecordToURLField";
 export { default as EmptyComponent } from "./EmptyComponent";
