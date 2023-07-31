@@ -12,7 +12,7 @@ import Section from "../Section";
 import { Button } from "@mui/joy";
 import WarningAmberIcon from "@mui/icons-material/WarningAmber";
 import { sendErrorReport } from "../../utils/functions";
-import MessageModal from "components/MessageModal";
+import MessageModal from "../MessageModal";
 const MAX_SNACK = 3;
 
 const Layout = ({ active, children }) => {

@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import {
   getChildrenSearchLink,
   getJSONTree,
@@ -21,7 +22,7 @@ import {
   MinusSquare,
   PlusSquare,
 } from "./DescriptionTree.style";
-import { getSearchRequestURL } from "utils/record";
+import { getSearchRequestURL } from "../../utils/record";
 const TreeSkeletonWidth = [100, 90, 80, 70, 70, 70, 60, 60, 60];
 const TreeLoadingSkeleton = () => {
   return (

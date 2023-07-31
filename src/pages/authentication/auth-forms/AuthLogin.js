@@ -22,12 +22,11 @@ import {
 import * as Yup from "yup";
 import { Formik } from "formik";
 // project import
-import FirebaseSocial from "./FirebaseSocial";
-import AnimateButton from "components/@extended/AnimateButton";
+import AnimateButton from "../../../components/@extended/AnimateButton";
 
 // assets
 import { EyeOutlined, EyeInvisibleOutlined } from "@ant-design/icons";
-import { authenticateLogin, login, logout } from "utils/authentication";
+import { authenticateLogin, login, logout } from "../../../utils/authentication";
 
 // ============================|| FIREBASE - LOGIN ||============================ //
 

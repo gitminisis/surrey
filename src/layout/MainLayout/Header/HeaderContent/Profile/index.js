@@ -20,20 +20,20 @@ import {
 } from "@mui/material";
 
 // project import
-import MainCard from "components/MainCard";
-import Transitions from "components/@extended/Transitions";
+import MainCard from "../../../../../components/MainCard";
+import Transitions from "../../../../../components/@extended/Transitions";
 import ProfileTab from "./ProfileTab";
 import SettingTab from "./SettingTab";
 
 // assets
-import avatar1 from "assets/images/users/avatar-1.png";
+import avatar1 from "../../../../../assets/images/users/avatar-1.png";
 import {
   LogoutOutlined,
   SettingOutlined,
   UserOutlined,
 } from "@ant-design/icons";
 
-import { readCookie } from "utils/functions";
+import { readCookie } from "../../../../../utils/functions";
 // tab panel wrapper
 
 import { useNavigate } from "react-router";

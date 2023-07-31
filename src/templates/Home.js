@@ -1,5 +1,4 @@
 // import homeJSON from "./json/home/index.json";
-import { jsonToTemplate } from "utils/functions";
 import homeJSON from "./json/union-home.json";
 // let data = jsonToTemplate(homeJSON);
 const Home = [{

@@ -119,7 +119,7 @@ const GeneralSearchBox = (props) => {
                   <React.Fragment>
                     <Select
                       variant="plain"
-                      value={databaseList.findIndex((e) => {
+                      defaultValue={databaseList.findIndex((e) => {
                         return e.application === application;
                       })}
                       onChange={(e, value) => {

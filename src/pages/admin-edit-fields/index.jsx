@@ -1,10 +1,10 @@
 import PropTypes from "prop-types";
 import useSWR, { useSWRConfig } from "swr";
 import { useParams } from "react-router";
-import ComponentSkeleton from "pages/components-overview/ComponentSkeleton";
+import ComponentSkeleton from "../components-overview/ComponentSkeleton";
 import { Grid, Typography, Button, FormHelperText, Stack } from "@mui/material";
-import AnimateButton from "components/@extended/AnimateButton";
-import MainCard from "components/MainCard";
+import AnimateButton from "../../components/@extended/AnimateButton";
+import MainCard from "../../components/MainCard";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import { useState, useRef, useEffect } from "react";

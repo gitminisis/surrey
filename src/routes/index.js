@@ -5,7 +5,6 @@ import LoginRoutes from "./LoginRoutes";
 import MainRoutes from "./MainRoutes";
 import LogoutRoutes from "./LogoutRoutes";
 import { useState } from "react";
-import { isLoggedIn } from "utils/authentication";
 
 // ==============================|| ROUTING RENDER ||============================== //
 

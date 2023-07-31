@@ -1,4 +1,4 @@
-import json from "templates/json/description-home.json";
+import json from "./json/description-home.json";
 const ArchivesSearch = [
   {
     component: "Layout",
