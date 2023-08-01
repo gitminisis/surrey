@@ -81,7 +81,7 @@
         "yup": "^0.32.11"
     },
     "scripts": {
-        "build": "webpack --mode=production --config webpack.config.js ",
+        "build": "webpack --mode production --config webpack.config.js ",
         "start": "webpack --mode development --config webpack.config.js"
     },
     "devDependencies": {
