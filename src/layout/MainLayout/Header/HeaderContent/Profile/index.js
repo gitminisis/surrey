@@ -113,7 +113,7 @@ const Profile = () => {
         <Stack direction="row" spacing={2} alignItems="center" sx={{ p: 0.5 }}>
           <Avatar
             alt="profile user"
-            src={avatar1}
+            src={"https://cdn-icons-png.flaticon.com/512/1077/1077114.png"}
             sx={{ width: 32, height: 32 }}
           />
           <Typography variant="subtitle1">{readCookie("USERNAME")}</Typography>
@@ -167,7 +167,7 @@ const Profile = () => {
                           >
                             <Avatar
                               alt="profile user"
-                              src={avatar1}
+                              src={"https://cdn-icons-png.flaticon.com/512/1077/1077114.png"}
                               sx={{ width: 32, height: 32 }}
                             />
                             <Stack>

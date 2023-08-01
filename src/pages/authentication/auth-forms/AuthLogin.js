@@ -88,7 +88,7 @@ const AuthLogin = () => {
               <Grid item xs={12}>
                 <Stack spacing={1}>
                   <InputLabel htmlFor="username-login">
-                    Email Address
+                    Username
                   </InputLabel>
                   <OutlinedInput
                     id="username-login"
@@ -198,7 +198,7 @@ const AuthLogin = () => {
                     Login
                   </Button>
 
-                
+
                 </AnimateButton>
               </Grid>
             </Grid>
