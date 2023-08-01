@@ -1,4 +1,4 @@
-import React from "react";
+
 import PropTypes from "prop-types";
 import Component from "../Component";
 import { deepSearch } from "../../utils/functions";

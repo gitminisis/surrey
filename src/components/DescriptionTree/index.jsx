@@ -1,9 +1,7 @@
 import { useEffect, useState } from "react";
 import {
-  getChildrenSearchLink,
   getJSONTree,
   getNodeFromTree,
-  updateNode,
   addChildrenToNode,
   fetchNode,
   appendChildrenToNode,

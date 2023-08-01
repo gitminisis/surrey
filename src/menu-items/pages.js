@@ -9,7 +9,6 @@ import {
   QuestionCircleOutlined,
   DatabaseOutlined,
 } from "@ant-design/icons";
-import { SettingsOutlined } from "@mui/icons-material";
 
 // icons
 // icons
@@ -19,7 +18,7 @@ const icons = {
   FileOutlined,
   FileSearchOutlined,
   HomeOutlined,
-  SettingsOutlined,
+  SettingOutlined,
   QuestionCircleOutlined,
   DatabaseOutlined,
 };
@@ -71,7 +70,7 @@ const pages = {
       title: "Site Layout",
       type: "item",
       url: "/site-layout",
-      icon: icons.SettingsOutlined,
+      icon: icons.SettingOutlined,
     },
     // {
     //     id: "summary-fields",

@@ -1,12 +1,9 @@
-import React from "react";
 import {
   Typography,
   Link,
   Box,
   Container,
   Grid,
-  List,
-  ListItem,
   Divider,
 } from "@mui/material";
 import { PropTypes } from "prop-types";

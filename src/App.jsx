@@ -14,17 +14,15 @@ import {
 import { extendTheme as extendJoyTheme } from "@mui/joy/styles";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import { createRoot } from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 // third-party
-import { Provider as ReduxProvider } from "react-redux";
+import { Provider  } from "react-redux";
 
 // apex-chart
 import "./assets/third-party/apex-chart.css";
-import { store } from "store";
+import { store } from "./store";
 import AppDashboard from "./AppDashboard";
 function App() {
-  const theme = baseTheme;
   const joyTheme = extendJoyTheme({ cssVarPrefix: "mui", ...baseTheme });
   const muiTheme = extendMuiTheme(baseTheme);
   const mergedTheme = {
@@ -70,11 +68,11 @@ function App() {
     <CssVarsProvider theme={mergedTheme}>
       <GenericPage template={template} />
 
-      <ReduxProvider store={store}>
+      <Provider store={store}>
         <BrowserRouter basename="/admin">
           <AppDashboard />
         </BrowserRouter>
-      </ReduxProvider>
+      </Provider>
       {/* <Router>
         <Suspense fallback={<Loading />}>
           <Routes>

@@ -1,22 +1,17 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Input from "@mui/joy/Input";
-import Chip from "@mui/joy/Chip";
 import SearchIcon from "@mui/icons-material/Search";
 import {
   Breadcrumbs,
   Link,
   Paper,
-  InputBase,
   Button,
-  Stack,
   Grid,
   Typography,
 } from "@mui/material";
 import { styled } from "@mui/material/styles";
-import Select from "@mui/joy/Select";
-import Option from "@mui/joy/Option";
-import Divider from "@mui/joy/Divider";
+import { Select, Option, Divider, Input } from "@mui/joy";
+
 import { backToSummary } from "../../utils/record";
 import { deepSearch, isSessionSearch } from "../../utils/functions";
 export const Item = styled(Paper)(({ theme }) => ({
