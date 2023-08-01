@@ -8,38 +8,34 @@ import validator from "@rjsf/validator-ajv8";
 import Form from "@rjsf/mui";
 
 const schema = {
-  title: "Website Settings",
+  title: "Site Announcement",
   description: "",
   type: "object",
-  required: ["siteName", "logo", "logo2"],
+  required: ["message", "status"],
   properties: {
-    siteName: {
+    message: {
       type: "string",
-      title: "Site Name",
+      title: "Announcement Content",
       default: "",
     },
-    logo: {
-      type: "string",
-      title: "Header Logo",
-    },
-    logo2: {
-      type: "string",
-      title: "Footer Logo",
+    status: {
+      type: "boolean",
+      title: "Announcement Status",
     },
   },
 };
 const log = (type) => console.log.bind(console, type);
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
-const AdminEditSite = (props) => {
+const AdminEditSiteAnnouncement = (props) => {
   const BASE_URL = process.env.SERVER_BASE_URL || "http://localhost:3001";
   const { data, mutate, error, isLoading } = useSWR(
-    `${BASE_URL}/site-layout`,
+    `${BASE_URL}/site-announcement`,
     fetcher
   );
   const sendUpdateData = async (newData) => {
     const noti = toast.loading("Please wait for data to be updated ...");
-    await fetch(`${BASE_URL}/site-layout`, {
+    await fetch(`${BASE_URL}/site-announcement`, {
       method: "POST",
       body: JSON.stringify(newData),
       headers: {
@@ -79,6 +75,6 @@ const AdminEditSite = (props) => {
   );
 };
 
-AdminEditSite.propTypes = {};
+AdminEditSiteAnnouncement.propTypes = {};
 
-export default AdminEditSite;
+export default AdminEditSiteAnnouncement;

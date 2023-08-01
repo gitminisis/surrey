@@ -12,11 +12,11 @@ const displayFields = {
   properties: {
     database: {
       type: "string",
-      title:"Database Name"
+      title: "Database Name",
     },
     displayFields: {
       type: "array",
-      title:"Display Fields",
+      title: "Display Fields",
       items: {
         type: "object",
         properties: {

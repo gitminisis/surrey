@@ -11,10 +11,11 @@ import {
   Checkbox,
 } from "@mui/joy";
 const MessageModal = (props) => {
-  const { message } = props;
+  const { message, show } = props;
   const [open, setOpen] = useState(
     true && !sessionStorage.getItem("hideAnnouncement")
   );
+  if (!show) return null;
 
   return (
     <Box sx={{ display: "flex", flexDirection: "column", marginTop: 4 }}>
@@ -99,6 +100,7 @@ const MessageModal = (props) => {
 
 MessageModal.propTypes = {
   message: PropTypes.string.isRequired,
+  show: PropTypes.bool.isRequired,
 };
 
 export default MessageModal;

@@ -8,19 +8,22 @@ import {
   SettingOutlined,
   QuestionCircleOutlined,
   DatabaseOutlined,
+  FlagOutlined
 } from "@ant-design/icons";
 
 // icons
 // icons
 const icons = {
   LoginOutlined,
-  ProfileOutlined,
+  FlagOutlined,
   FileOutlined,
   FileSearchOutlined,
   HomeOutlined,
   SettingOutlined,
   QuestionCircleOutlined,
   DatabaseOutlined,
+  ProfileOutlined
+
 };
 
 // ==============================|| MENU ITEMS - EXTRA PAGES ||============================== //
@@ -71,6 +74,13 @@ const pages = {
       type: "item",
       url: "/site-layout",
       icon: icons.SettingOutlined,
+    },
+    {
+      id: "announcement",
+      title: "Site Announcement",
+      type: "item",
+      url: "/site-announcement",
+      icon: icons.FlagOutlined,
     },
     // {
     //     id: "summary-fields",

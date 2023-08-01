@@ -1,11 +1,9 @@
-import logo from "./logo.svg";
 import "./App.css";
 import React, { Suspense, useEffect } from "react";
 import GenericPage from "./pages/GenericPage";
 
-import { CssBaseline } from "@mui/material";
 import Routing from "./templates/Routes";
-import { baseTheme } from "./templates/Theme";
+import { baseTheme } from "./templates/themes/default";
 import { deepmerge } from "@mui/utils";
 import {
   Experimental_CssVarsProvider as CssVarsProvider,
@@ -16,7 +14,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import { BrowserRouter } from "react-router-dom";
 // third-party
-import { Provider  } from "react-redux";
+import { Provider } from "react-redux";
 
 // apex-chart
 import "./assets/third-party/apex-chart.css";
@@ -58,7 +56,7 @@ function App() {
   useEffect(() => {
     AOS.init({
       duration: 700, // values from 0 to 3000, with step 50ms
-      easing: 'ease', // default easing for AOS animations
+      easing: "ease", // default easing for AOS animations
       once: true, // whether animation should happen only once - while scrolling down
       mirror: true,
     });

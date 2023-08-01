@@ -32,7 +32,10 @@ const Layout = ({ active, children }) => {
         }}
       >
         <LayoutChildren child={children} />
-        <MessageModal message={announcement.message} />
+        <MessageModal
+          message={announcement.message}
+          show={announcement.status}
+        />
         <BackTop>
           <Fab size="small" aria-label="scroll back to top">
             <KeyboardArrowUpIcon />
