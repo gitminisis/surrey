@@ -217,26 +217,7 @@ export const jsonToFields = (json) => {
   });
 };
 
-export const getSelectedFilter = (filter) => {
-  let filterType = {};
-  filter.map((data) => {
-    const { item_group } = data;
-    const itemGroups = Array.isArray(item_group) ? item_group : [item_group];
-    const filterName = data._name;
-    itemGroups.map((item) => {
-      let itemSelected = deepSearch(item, "item_selected")[0];
-      if (itemSelected === "Y") {
-        let type = filterType[filterName];
-        if (type) {
-          filterType[filterName].push(item.item_value);
-        } else {
-          filterType[filterName] = [item.item_value];
-        }
-      }
-    });
-  });
-  return filterType;
-};
+
 export const getTrangCuteness = () => {
   let cuteness = 100;
   console.log(`Every second, Trang is becoming cuter `);

@@ -22,7 +22,7 @@ module.exports = smp.wrap({
   ],
   watch: true,
   resolve: {
-    extensions: [".js", ".jsx", ".css"],
+    extensions: [".js", ".jsx"],
   },
 
   module: {

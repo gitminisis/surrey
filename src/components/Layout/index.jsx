@@ -13,7 +13,7 @@ import WarningAmberIcon from "@mui/icons-material/WarningAmber";
 import { sendErrorReport } from "../../utils/functions";
 import MessageModal from "../MessageModal";
 const MAX_SNACK = 3;
-
+import announcement from "../../templates/json/announcement.json";
 const Layout = ({ active, children }) => {
   return (
     <SnackbarProvider
@@ -32,7 +32,7 @@ const Layout = ({ active, children }) => {
         }}
       >
         <LayoutChildren child={children} />
-        <MessageModal message="Looking for SAMOA? Welcome to our new online database: Surrey Online Heritage Search (SOHS). This site contains all the same content with new user-friendly tools." />
+        <MessageModal message={announcement.message} />
         <BackTop>
           <Fab size="small" aria-label="scroll back to top">
             <KeyboardArrowUpIcon />

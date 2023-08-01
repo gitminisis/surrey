@@ -20,11 +20,11 @@ const schema = {
     },
     logo: {
       type: "string",
-      title: "Site Logo 1",
+      title: "Header Logo",
     },
     logo2: {
       type: "string",
-      title: "Site Logo 2",
+      title: "Footer Logo",
     },
   },
 };
