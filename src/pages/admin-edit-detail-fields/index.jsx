@@ -1,5 +1,5 @@
 import useSWR, { useSWRConfig } from "swr";
-import ComponentSkeleton from "pages/components-overview/ComponentSkeleton";
+import ComponentSkeleton from "../components-overview/ComponentSkeleton";
 import { Grid, Typography, Button, FormHelperText, Stack } from "@mui/material";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";

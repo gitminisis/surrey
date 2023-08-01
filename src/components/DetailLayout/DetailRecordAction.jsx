@@ -1,5 +1,3 @@
-import React, { useState } from "react";
-import PropTypes from "prop-types";
 import IconButton from "@mui/joy/IconButton";
 import BookmarkAdd from "@mui/icons-material/BookmarkAddOutlined";
 import LinkIcon from "@mui/icons-material/Link";

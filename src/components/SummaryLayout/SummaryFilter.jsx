@@ -11,11 +11,16 @@ import {
   AccordionSummary,
   AccordionDetails,
   Badge,
-  Collapse,
 } from "@mui/material";
-import Box from "@mui/joy/Box";
-import Select from "@mui/joy/Select";
-import Option from "@mui/joy/Option";
+import {
+  Box,
+  Select,
+  Option,
+  Checkbox,
+  List,
+  ListItem,
+} from "@mui/joy";
+
 import {
   deepSearch,
   printPage,
@@ -28,11 +33,7 @@ import {
   getRecordsPerPageURL,
   viewBookmark,
 } from "../../utils/record";
-import Button from "@mui/joy/Button";
-import Checkbox from "@mui/joy/Checkbox";
-import List from "@mui/joy/List";
-import ListItem from "@mui/joy/ListItem";
-import ExpandLess from "@mui/icons-material/ExpandLess";
+
 import ExpandMore from "@mui/icons-material/ExpandMore";
 import { useSnackbar } from "notistack";
 import { getXMLFilter } from "../../utils/functions";
@@ -62,7 +63,7 @@ const FieldFilter = (props) => {
             let itemSelected = selectedValues
               ? selectedValues.indexOf(item.item_value) !== -1
               : false;
-              console.log(itemSelected, selectedValues)
+            console.log(itemSelected, selectedValues);
             if (item.item_value === "ONLINE_EXHIBITION_VIEW") {
               return null;
             }
@@ -80,9 +81,13 @@ const FieldFilter = (props) => {
                   overlay
                   sx={{ color: "inherit", textAlign: "left" }}
                   onChange={(e) => {
-               
                     window.location =
-                      item.item_link.toString() + `${application !== 'UNION_VIEW' ? "&DATABASE=" + application : ''}`;
+                      item.item_link.toString() +
+                      `${
+                        application !== "UNION_VIEW"
+                          ? "&DATABASE=" + application
+                          : ""
+                      }`;
                   }}
                 />
                 <Typography sx={{ ml: "auto" }}>
@@ -108,7 +113,6 @@ const SummaryFilter = (props) => {
     let url = getSortReportURL(xml, application, v);
     window.location = url;
   };
-
 
   return (
     <Item
@@ -198,11 +202,8 @@ const SummaryFilter = (props) => {
               key={`FieldFilter-${i}`}
               data={item}
               index={i}
-
             />
           ))}
-
-     
         </>
       )}
     </Item>

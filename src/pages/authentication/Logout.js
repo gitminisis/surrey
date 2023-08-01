@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import { logout } from "utils/authentication";
+import { logout } from "../../utils/authentication";
 import { Navigate } from "react-router";
 const Logout = (props) => {
   const [isLoggedOut, setLoggedOut] = useState(false);

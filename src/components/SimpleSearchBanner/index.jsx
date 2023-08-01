@@ -1,32 +1,21 @@
 import React, { useState, useEffect } from "react";
 import {
   BannerContainer,
-  BannerBox,
-  ShadowLayerBox,
-  BannerContent,
-  SearchBar,
-  InputSearch,
-  SubmitSearch,
+ 
   SiteHeading,
   SiteDescription,
   HoverLink,
 } from "./SimpleSearchBanner.style";
 import {
-  Typography,
   Button,
   Grid,
   Paper,
   InputBase,
-  IconButton,
   Container,
-  Backdrop,
-  CircularProgress,
 } from "@mui/material";
-import SearchIcon from "@mui/icons-material/Search";
 import PropTypes from "prop-types";
 import CollapseSearchFilter from "../AdvancedSearchBanner/CollapseSearchFilter";
 
-import MobileStepper from "@mui/material/MobileStepper";
 import KeyboardDoubleArrowUpIcon from "@mui/icons-material/KeyboardDoubleArrowUp";
 import KeyboardDoubleArrowDownIcon from "@mui/icons-material/KeyboardDoubleArrowDown";
 import LayoutBackdrop from "../LayoutBackdrop";
@@ -88,7 +77,7 @@ const Banner = (props) => {
               sm={12}
               style={{ width: "100%", maxWidth: "1200px", margin: "0 auto" }}
             >
-              <SiteHeading variant="h1" style={{fontSize:'4rem'}}>{heading}</SiteHeading>
+              <SiteHeading variant="h1" >{heading}</SiteHeading>
               <SiteDescription variant="p">{description}</SiteDescription>
             </Grid>
           </Grid>

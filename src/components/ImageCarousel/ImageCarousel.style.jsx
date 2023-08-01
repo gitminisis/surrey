@@ -1,5 +1,4 @@
-import React from "react";
-import { Box, Container, Typography } from "@mui/material";
+import { Box,  Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import PropTypes from "prop-types";
 

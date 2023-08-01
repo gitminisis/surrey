@@ -16,6 +16,7 @@ const Summary = [{
         component: "SummaryBookmarkLayout",
         data: {
             generalSearchBox: {
+                application:"UNION_VIEW",
                 breadcrumbs: ["Summary"],
                 heading: "Search the collections",
                 placeholder: "Search By Keyword",

@@ -1,4 +1,3 @@
-import React from "react";
 import PropTypes from "prop-types";
 import { Typography, Divider, Box, Grid, Link } from "@mui/joy";
 import { deepSearch,convertFilePathToURL } from "../../utils/functions";

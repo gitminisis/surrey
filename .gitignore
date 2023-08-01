@@ -6,3 +6,4 @@ package-lock.json
 src/assets/images/
 .env
 web.config
+assets/images/

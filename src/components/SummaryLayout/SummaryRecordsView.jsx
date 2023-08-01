@@ -59,7 +59,7 @@ const SummaryRecordsView = (props) => {
                           width: "25vw",
                           maxWidth: "200px",
                           cursor: "pointer",
-                          height: "100%",
+                          // height: "100%",
                         }}
                         image={thumbPic}
                         alt={firstCaption}

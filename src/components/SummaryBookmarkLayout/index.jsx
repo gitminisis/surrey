@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback, useRef } from "react";
 import PropTypes from "prop-types";
-import { Grid, Drawer, Skeleton, Container } from "@mui/material";
+import { Grid,  Skeleton, Container } from "@mui/material";
 import {
   SummaryContainer,
   Main,

@@ -9,7 +9,6 @@ import {
   Polygon,
 } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
-import L from "leaflet";
 import { getMap } from "../../utils/map";
 import { Link, Typography } from "@mui/material";
 import {

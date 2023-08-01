@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import Box from "@mui/material/Box";
+import  { useState } from "react";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
@@ -10,7 +9,6 @@ import PropTypes from "prop-types";
 import Avatar from "@mui/material/Avatar";
 import Chip from "@mui/material/Chip";
 import TopicIcon from "@mui/icons-material/Topic";
-import AcUnitIcon from "@mui/icons-material/AcUnit";
 const DescriptionBox = (props) => {
   let { heading, description, url, urlTitle, icon, iconLabel } = props;
   const [hover, setHover] = useState(false);

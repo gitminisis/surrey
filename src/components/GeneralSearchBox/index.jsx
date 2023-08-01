@@ -1,22 +1,17 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Input from "@mui/joy/Input";
-import Chip from "@mui/joy/Chip";
 import SearchIcon from "@mui/icons-material/Search";
 import {
   Breadcrumbs,
   Link,
   Paper,
-  InputBase,
   Button,
-  Stack,
   Grid,
   Typography,
 } from "@mui/material";
 import { styled } from "@mui/material/styles";
-import Select from "@mui/joy/Select";
-import Option from "@mui/joy/Option";
-import Divider from "@mui/joy/Divider";
+import { Select, Option, Divider, Input } from "@mui/joy";
+
 import { backToSummary } from "../../utils/record";
 import { deepSearch, isSessionSearch } from "../../utils/functions";
 export const Item = styled(Paper)(({ theme }) => ({
@@ -26,8 +21,15 @@ export const Item = styled(Paper)(({ theme }) => ({
 }));
 
 const GeneralSearchBox = (props) => {
-  const { breadcrumbs, heading, helpText, databaseList, xml, placeholder } =
-    props;
+  const {
+    breadcrumbs,
+    heading,
+    helpText,
+    databaseList,
+    xml,
+    placeholder,
+    application,
+  } = props;
   const [index, setIndex] = React.useState(0);
   let database = deepSearch(xml, "database_name")[0];
   let toSummary = backToSummary(xml);
@@ -86,7 +88,11 @@ const GeneralSearchBox = (props) => {
               action={session + databaseList[index].searchURL}
               onSubmit={(e) => {
                 e.preventDefault();
-                window.location = `${session}${databaseList[index].searchURL}&EXP=KEYWORD_CL "${document.getElementById('simpleSearchCluster').value}"`
+                window.location = `${session}${
+                  databaseList[index].searchURL
+                }&EXP=KEYWORD_CL "${
+                  document.getElementById("simpleSearchCluster").value
+                }"`;
               }}
             >
               <Input
@@ -108,7 +114,9 @@ const GeneralSearchBox = (props) => {
                   <React.Fragment>
                     <Select
                       variant="plain"
-                      value={index}
+                      defaultValue={databaseList.findIndex((e) => {
+                        return e.application === application;
+                      })}
                       onChange={(e, value) => {
                         setIndex(Number.parseInt(value));
                       }}

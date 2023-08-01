@@ -2,18 +2,12 @@ import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import {
   Grid,
-  CardActionArea,
   CardMedia,
   Card,
   CardActions,
   Typography,
-  Button,
   CardContent,
 } from "@mui/material";
-import AspectRatio from "@mui/joy/AspectRatio";
-import Box from "@mui/joy/Box";
-import LocationOnRoundedIcon from "@mui/icons-material/LocationOnRounded";
-import BookmarkAdd from "@mui/icons-material/BookmarkAddOutlined";
 import {
   getFeatureCollectionsFromIDs,
   getSearchRequestURL,

@@ -4,8 +4,6 @@ import ImageViewer from "../ImageViewer";
 import FullscreenIcon from "@mui/icons-material/Fullscreen";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
-import AudioFileIcon from "@mui/icons-material/AudioFile";
-import VideoFileIcon from "@mui/icons-material/VideoFile";
 const ImageGallerySlide = (props) => {
   const { images, audio, video, imageCaptions } = props;
   let data = images.map((e) => {

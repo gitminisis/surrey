@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import {
-  Typography,
-  Box,
   Button,
   Modal,
   ModalDialog,
@@ -18,6 +16,7 @@ import { deepSearch, sendEmailBookmark } from "../../utils/functions";
 import {
   TITLE_BY_DATABASE,
   getRecordPermalink,
+  getEmailPermalink,
   getRecordTitle,
 } from "../../utils/record";
 const FORM_FIELD = [
@@ -76,7 +75,7 @@ const EmailBookmarkForm = (props) => {
               .map((record, i) => {
                 let sisn = deepSearch(record, "link_sisn")[0];
                 let database = deepSearch(record, "database_name")[0];
-                let permarLink = getRecordPermalink(sisn, database);
+                let permarLink = getEmailPermalink(sisn, database);
                 let title = deepSearch(record, TITLE_BY_DATABASE[database])[0];
                 let text = `Record Title: ${title} \nRecord URL: ${permarLink} `;
                 // console.log(record);

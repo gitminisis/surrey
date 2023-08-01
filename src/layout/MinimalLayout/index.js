@@ -1,5 +1,5 @@
 import { Outlet, Navigate } from "react-router-dom";
-import { isLoggedIn } from "utils/authentication";
+import { isLoggedIn } from "../../utils/authentication";
 
 // ==============================|| MINIMAL LAYOUT ||============================== //
 

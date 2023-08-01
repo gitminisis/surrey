@@ -12,6 +12,7 @@ const Summary = [{
         data: {
             application: "UNION_VIEW",
             generalSearchBox: {
+                application: "UNION_VIEW",
                 breadcrumbs: ["Summary"],
                 heading: "Search the collections",
                 placeholder: "Search By Keyword",

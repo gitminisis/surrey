@@ -1,7 +1,5 @@
-import React from "react";
 import PropTypes from "prop-types";
 import { Typography, Divider, Box, Grid } from "@mui/joy";
-import ReactShowMoreText from "react-show-more-text";
 const index = (props) => {
   let { main, value, label, showMore } = props;
   let flattenArrayValue = _.flattenDeep(value).map((e) =>

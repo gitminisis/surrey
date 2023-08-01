@@ -1,5 +1,5 @@
 import { styled } from "@mui/material/styles";
-import { Grid, Paper } from "@mui/material";
+import {  Paper } from "@mui/material";
 
 export const SummaryContainer = styled(Paper)(({ theme }) => ({
   marginTop: "80px",

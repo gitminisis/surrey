@@ -1,6 +1,5 @@
-import React from "react";
 import PropTypes from "prop-types";
-import { Box, Grid, ButtonBase, Typography, Container } from "@mui/material";
+import { Box, Grid,  Typography, Container } from "@mui/material";
 import { Item } from "./DetailLayout.style";
 import Tabs from "@mui/joy/Tabs";
 import TabList from "@mui/joy/TabList";

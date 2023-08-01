@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import { Grid, Paper, Container } from "@mui/material";
-import { styled } from "@mui/material/styles";
-import { DetailContainer, Item } from "./DetailLayout.style";
+import { Grid, } from "@mui/material";
+import { DetailContainer,} from "./DetailLayout.style";
 import GeneralSearchBox from "../GeneralSearchBox";
 import GeneralSection from "./GeneralSection";
 import DetailSection from "./DetailSection";
