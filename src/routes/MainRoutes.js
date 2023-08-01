@@ -47,6 +47,8 @@ const AdminEditDetailFields = Loadable(
 const AuthLogout = Loadable(
   lazy(() => import("../pages/authentication/Logout"))
 );
+
+const AdminEditSiteAnnouncement = Loadable(lazy(() => import("../pages/admin-edit-site-announcement")));
 // ==============================|| MAIN ROUTING ||============================== //
 
 const MainRoutes = {
@@ -68,6 +70,7 @@ const MainRoutes = {
     { path: "page/description-home", element: <AdminEditDescriptionHome /> },
     { path: "page/faq", element: <AdminEditFAQ /> },
     { path: "detail-fields", element: <AdminEditDetailFields /> },
+    { path: "site-announcement", element: <AdminEditSiteAnnouncement /> },
     {
       path: "color",
       element: <Color />,

@@ -12,20 +12,9 @@ import {
   AccordionDetails,
   Badge,
 } from "@mui/material";
-import {
-  Box,
-  Select,
-  Option,
-  Checkbox,
-  List,
-  ListItem,
-} from "@mui/joy";
+import { Box, Select, Option, Checkbox, List, ListItem } from "@mui/joy";
 
-import {
-  deepSearch,
-  printPage,
-  getSelectedFilter,
-} from "../../utils/functions";
+import { deepSearch, printPage } from "../../utils/functions";
 import {
   FILTER_TITLE_BY_FIELD,
   bookmarkAllRecord,
@@ -36,7 +25,6 @@ import {
 
 import ExpandMore from "@mui/icons-material/ExpandMore";
 import { useSnackbar } from "notistack";
-import { getXMLFilter } from "../../utils/functions";
 import { getSortReportURL } from "../../utils/record";
 
 const FieldFilter = (props) => {
@@ -60,10 +48,6 @@ const FieldFilter = (props) => {
       <AccordionDetails>
         <List>
           {itemGroups.map((item, i) => {
-            let itemSelected = selectedValues
-              ? selectedValues.indexOf(item.item_value) !== -1
-              : false;
-            console.log(itemSelected, selectedValues);
             if (item.item_value === "ONLINE_EXHIBITION_VIEW") {
               return null;
             }
@@ -76,7 +60,7 @@ const FieldFilter = (props) => {
             return (
               <ListItem key={`ListItemFilter-${i}`} sx={{}}>
                 <Checkbox
-                  checked={itemSelected}
+                  checked={item.item_selected && item.item_selected.toString() === "Y"}
                   label={item.item_value}
                   overlay
                   sx={{ color: "inherit", textAlign: "left" }}

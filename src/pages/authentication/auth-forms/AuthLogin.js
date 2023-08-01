@@ -46,8 +46,8 @@ const AuthLogin = () => {
     <>
       <Formik
         initialValues={{
-          username: "mike",
-          password: "P@$$w0rd",
+          username: "",
+          password: "",
           submit: null,
         }}
         validationSchema={Yup.object().shape({
@@ -88,7 +88,7 @@ const AuthLogin = () => {
               <Grid item xs={12}>
                 <Stack spacing={1}>
                   <InputLabel htmlFor="username-login">
-                    Email Address
+                    Username
                   </InputLabel>
                   <OutlinedInput
                     id="username-login"
@@ -198,7 +198,7 @@ const AuthLogin = () => {
                     Login
                   </Button>
 
-                
+
                 </AnimateButton>
               </Grid>
             </Grid>
