@@ -28,7 +28,17 @@ import MainCard from '../../components/MainCard';
 import AnalyticEcommerce from '../../components/cards/statistics/AnalyticEcommerce';
 
 // assets
-// import { GiftOutlined, MessageOutlined, SettingOutlined } from '@ant-design/icons';
+import {
+    GiftOutlined, LoginOutlined,
+    ProfileOutlined,
+    FileOutlined,
+    FileSearchOutlined,
+    HomeOutlined,
+    SettingOutlined,
+    QuestionCircleOutlined,
+    DatabaseOutlined,
+    FlagOutlined
+} from '@ant-design/icons';
 // import avatar1 from 'assets/images/users/avatar-1.png';
 // import avatar2 from 'assets/images/users/avatar-2.png';
 // import avatar3 from 'assets/images/users/avatar-3.png';
@@ -217,11 +227,11 @@ const DashboardDefault = () => {
                     </Stack>
                     <SalesColumnChart />
                 </MainCard>
-            </Grid>
+            </Grid> */}
             <Grid item xs={12} md={5} lg={4}>
                 <Grid container alignItems="center" justifyContent="space-between">
                     <Grid item>
-                        <Typography variant="h5">Transaction History</Typography>
+                        <Typography variant="h5">Update Front Pages</Typography>
                     </Grid>
                     <Grid item />
                 </Grid>
@@ -238,7 +248,7 @@ const DashboardDefault = () => {
                             }
                         }}
                     >
-                        <ListItemButton divider>
+                        <ListItemButton divider onClick={_ => window.location = '/admin/page/union-home'}>
                             <ListItemAvatar>
                                 <Avatar
                                     sx={{
@@ -246,70 +256,55 @@ const DashboardDefault = () => {
                                         bgcolor: 'success.lighter'
                                     }}
                                 >
-                                    <GiftOutlined />
+                                    <HomeOutlined />
                                 </Avatar>
                             </ListItemAvatar>
-                            <ListItemText primary={<Typography variant="subtitle1">Order #002434</Typography>} secondary="Today, 2:00 AM" />
-                            <ListItemSecondaryAction>
-                                <Stack alignItems="flex-end">
-                                    <Typography variant="subtitle1" noWrap>
-                                        + $1,430
-                                    </Typography>
-                                    <Typography variant="h6" color="secondary" noWrap>
-                                        78%
-                                    </Typography>
-                                </Stack>
-                            </ListItemSecondaryAction>
+                            <ListItemText primary={<Typography variant="subtitle1">Union Home Page</Typography>} secondary="" />
+
                         </ListItemButton>
-                        <ListItemButton divider>
+                        <ListItemButton divider onClick={_ => window.location = '/admin/page/description-home'}>
                             <ListItemAvatar>
                                 <Avatar
                                     sx={{
-                                        color: 'primary.main',
-                                        bgcolor: 'primary.lighter'
+                                        color: 'success.main',
+                                        bgcolor: 'success.lighter'
                                     }}
                                 >
-                                    <MessageOutlined />
+                                    <FileOutlined />
                                 </Avatar>
                             </ListItemAvatar>
-                            <ListItemText
-                                primary={<Typography variant="subtitle1">Order #984947</Typography>}
-                                secondary="5 August, 1:45 PM"
-                            />
-                            <ListItemSecondaryAction>
-                                <Stack alignItems="flex-end">
-                                    <Typography variant="subtitle1" noWrap>
-                                        + $302
-                                    </Typography>
-                                    <Typography variant="h6" color="secondary" noWrap>
-                                        8%
-                                    </Typography>
-                                </Stack>
-                            </ListItemSecondaryAction>
+                            <ListItemText primary={<Typography variant="subtitle1">Archives Home Page</Typography>} secondary="" />
+
                         </ListItemButton>
-                        <ListItemButton>
+                        <ListItemButton divider onClick={_ => window.location = '/admin/page/collections-home'}>
                             <ListItemAvatar>
                                 <Avatar
                                     sx={{
-                                        color: 'error.main',
-                                        bgcolor: 'error.lighter'
+                                        color: 'success.main',
+                                        bgcolor: 'success.lighter'
                                     }}
                                 >
-                                    <SettingOutlined />
+                                    <FileSearchOutlined />
                                 </Avatar>
                             </ListItemAvatar>
-                            <ListItemText primary={<Typography variant="subtitle1">Order #988784</Typography>} secondary="7 hours ago" />
-                            <ListItemSecondaryAction>
-                                <Stack alignItems="flex-end">
-                                    <Typography variant="subtitle1" noWrap>
-                                        + $682
-                                    </Typography>
-                                    <Typography variant="h6" color="secondary" noWrap>
-                                        16%
-                                    </Typography>
-                                </Stack>
-                            </ListItemSecondaryAction>
+                            <ListItemText primary={<Typography variant="subtitle1">Artifact Home Page</Typography>} secondary="" />
+
                         </ListItemButton>
+                        <ListItemButton divider onClick={_ => window.location = '/admin/page/faq'} >
+                            <ListItemAvatar>
+                                <Avatar
+                                    sx={{
+                                        color: 'success.main',
+                                        bgcolor: 'success.lighter'
+                                    }}
+                                >
+                                    <QuestionCircleOutlined />
+                                </Avatar>
+                            </ListItemAvatar>
+                            <ListItemText primary={<Typography variant="subtitle1">FAQ Page</Typography>} secondary="" />
+
+                        </ListItemButton>
+
                     </List>
                 </MainCard>
                 <MainCard sx={{ mt: 2 }}>
@@ -318,28 +313,18 @@ const DashboardDefault = () => {
                             <Grid item>
                                 <Stack>
                                     <Typography variant="h5" noWrap>
-                                        Help & Support Chat
+                                        Site Maintenance Message
                                     </Typography>
-                                    <Typography variant="caption" color="secondary" noWrap>
-                                        Typical replay within 5 min
-                                    </Typography>
+
                                 </Stack>
                             </Grid>
-                            <Grid item>
-                                <AvatarGroup sx={{ '& .MuiAvatar-root': { width: 32, height: 32 } }}>
-                                    <Avatar alt="Remy Sharp" src={avatar1} />
-                                    <Avatar alt="Travis Howard" src={avatar2} />
-                                    <Avatar alt="Cindy Baker" src={avatar3} />
-                                    <Avatar alt="Agnes Walker" src={avatar4} />
-                                </AvatarGroup>
-                            </Grid>
                         </Grid>
-                        <Button size="small" variant="contained" sx={{ textTransform: 'capitalize' }}>
-                            Need Help?
+                        <Button size="small" variant="contained" sx={{ textTransform: 'capitalize' }} component="a" href="/admin/site-announcement">
+                            Update announcement
                         </Button>
                     </Stack>
                 </MainCard>
-            </Grid> */}
+            </Grid>
         </Grid>
     );
 };
