@@ -32,7 +32,9 @@ export default function SummarySubHeader(props) {
             variant="body1"
             sx={{ fontWeight: "bold", fontSize: "1.2rem" }}
           >
-            {statement ? statement : `${totalRecord} search results for "${searchStatement}"`}
+            {statement
+              ? statement
+              : `${totalRecord} search results for "${searchStatement}"`}
           </Typography>
         </Box>
         <Box sx={{ display: "flex", gap: 2, flexDirection: "row" }}>
@@ -87,4 +89,6 @@ export default function SummarySubHeader(props) {
 SummarySubHeader.propTypes = {
   toggleGrid: PropTypes.func,
   isGrid: PropTypes.bool,
+  toggleFilter: PropTypes.func,
+  toggleMobileFilter: PropTypes.func,
 };

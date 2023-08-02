@@ -41,21 +41,21 @@ const pages = {
       icon: icons.HomeOutlined,
     },
     {
-      id: "description-home-page",
+      id: "description-home",
       title: "Archives Home",
       type: "item",
       url: "/page/description-home",
       icon: icons.FileOutlined,
     },
     {
-      id: "collections-home-page",
+      id: "collections-home",
       title: "Artifact Home",
       type: "item",
       url: "/page/collections-home",
       icon: icons.FileSearchOutlined,
     },
     {
-      id: "faq-page",
+      id: "faq",
       title: "FAQ Page",
       type: "item",
       url: "/page/faq",
@@ -76,7 +76,7 @@ const pages = {
       icon: icons.SettingOutlined,
     },
     {
-      id: "announcement",
+      id: "site-announcement",
       title: "Site Announcement",
       type: "item",
       url: "/site-announcement",

@@ -1,11 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {
-  Card,
-  Button,
   Box,
   Typography,
-  CardMedia,
   CardContent,
   Grid,
   Chip,
