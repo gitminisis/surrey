@@ -39,6 +39,7 @@ import {
     DatabaseOutlined,
     FlagOutlined
 } from '@ant-design/icons';
+import DetailFieldsTable from './DetailFieldsTable';
 // import avatar1 from 'assets/images/users/avatar-1.png';
 // import avatar2 from 'assets/images/users/avatar-2.png';
 // import avatar3 from 'assets/images/users/avatar-3.png';
@@ -228,6 +229,18 @@ const DashboardDefault = () => {
                     <SalesColumnChart />
                 </MainCard>
             </Grid> */}
+
+            <Grid item xs={12} md={7} lg={8}>
+                <Grid container alignItems="center" justifyContent="space-between">
+                    <Grid item>
+                        <Typography variant="h5">Detail Fields List</Typography>
+                    </Grid>
+                    <Grid item />
+                </Grid>
+                <MainCard sx={{ mt: 2 }} content={false}>
+                    <DetailFieldsTable />
+                </MainCard>
+            </Grid>
             <Grid item xs={12} md={5} lg={4}>
                 <Grid container alignItems="center" justifyContent="space-between">
                     <Grid item>
