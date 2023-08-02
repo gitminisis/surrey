@@ -16,7 +16,9 @@ import ShareIcon from "@mui/icons-material/Share";
 import RestoreIcon from "@mui/icons-material/Restore";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
-import { FileUpload } from "@mui/icons-material";
+import ScreenRecording from "./ScreenRecording";
+import CameraRecording from "./CameraRecording";
+import FileUpload from "./FileUpload";
 const actions = [
   { icon: <FileCopyIcon />, name: "Copy" },
   { icon: <SaveIcon />, name: "Save" },
@@ -54,8 +56,9 @@ const Upload = (props) => {
           <Tab value="3" label="Item Three" />
         </Tabs>
         <FileUpload hidden={value !== "1"} />
-
-        <SpeedDial
+        {/* <ScreenRecording hidden={value !== "2"} /> */}
+        {/* <CameraRecording hidden={value !== "3"} /> */}
+        {/* <SpeedDial
           ariaLabel="SpeedDial controlled open example"
           sx={{ position: "absolute", bottom: 16, right: 16 }}
           icon={<SpeedDialIcon />}
@@ -71,7 +74,7 @@ const Upload = (props) => {
               onClick={(e) => handleClose(e, action)}
             />
           ))}
-        </SpeedDial>
+        </SpeedDial> */}
       </Box>
     </MainCard>
   );

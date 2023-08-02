@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { nanoid } from 'nanoid'
+import { Button } from "@mui/material";
 const FileUpload = () => {
   const [Files, SetFiles] = useState([]);
   const [selectedfile, SetSelectedFile] = useState([]);
@@ -150,12 +151,12 @@ const FileUpload = () => {
                     })}
                   </div>
                   <div className="kb-buttons-box">
-                    <button
+                    <Button
+                    variant="contained"
                       type="submit"
-                      className="btn btn-primary form-submit"
                     >
                       Upload
-                    </button>
+                    </Button>
                   </div>
                 </form>
                 {Files.length > 0 ? (
