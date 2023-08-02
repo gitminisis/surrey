@@ -101,7 +101,6 @@ export default function CollapsibleTable() {
     );
     if (error) return "An error has occurred.";
     if (isLoading) return "Loading...";
-    console.log(data);
     return (
         <TableContainer component={Paper}>
             <Table aria-label="collapsible table">

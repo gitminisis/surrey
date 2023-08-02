@@ -9,6 +9,7 @@ import {
   QuestionCircleOutlined,
   DatabaseOutlined,
   FlagOutlined
+  , CloudUploadOutlined
 } from "@ant-design/icons";
 
 // icons
@@ -22,7 +23,8 @@ const icons = {
   SettingOutlined,
   QuestionCircleOutlined,
   DatabaseOutlined,
-  ProfileOutlined
+  ProfileOutlined,
+  CloudUploadOutlined
 
 };
 
@@ -81,6 +83,13 @@ const pages = {
       type: "item",
       url: "/site-announcement",
       icon: icons.FlagOutlined,
+    },
+    {
+      id: "upload",
+      title: "Upload Media",
+      type: "item",
+      url: "/upload",
+      icon: icons.CloudUploadOutlined,
     },
     // {
     //     id: "summary-fields",
