@@ -32,21 +32,16 @@ const RECODING_TYPE = {
 
 const Upload = (props) => {
   const [open, setOpen] = React.useState(false);
-  const [value, setValue] = React.useState("1");
+  const [value, setValue] = React.useState("2");
+  const [permission, setPermission] = useState(false);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
-  };
-
-  const handleOpen = () => setOpen(true);
-  const handleClose = (event, item) => {
-    console.log(item);
-    setOpen(false);
+    setPermission(false);
   };
 
   return (
     <MainCard title="">
- 
       <Box
         sx={{ minHeight: "100vh", transform: "translateZ(0px)", flexGrow: 1 }}
       >
@@ -60,8 +55,15 @@ const Upload = (props) => {
           <Tab value="2" label="Screen Recording" />
           <Tab value="3" label="Camera Recording" />
         </Tabs>
-        <FileUpload hidden={value !== "1"} />
-        <Recording hidden={value === "1"} mediaOption={RECODING_TYPE[value]} />
+        {value === "1" && <FileUpload hidden={value !== "1"} />}
+        {value !== "1" && (
+          <Recording
+            hidden={value === "1"}
+            mediaOption={RECODING_TYPE[value]}
+            permission={permission}
+            setPermission={setPermission}
+          />
+        )}
         {/* <SpeedDial
           ariaLabel="SpeedDial controlled open example"
           sx={{ position: "absolute", bottom: 16, right: 16 }}

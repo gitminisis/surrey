@@ -4,9 +4,8 @@ import {
   useReactMediaRecorder,
   ReactMediaRecorder,
 } from "react-media-recorder";
-export function useUserMedia(
-  requestedMedia = { audio: false, video: { mediaSource: "screen" } }
-) {
+import { Button, Box } from "@mui/material";
+export function useUserMedia(requestedMedia = { video: true, screen: true }) {
   const [mediaStream, setMediaStream] = useState(null);
 
   useEffect(() => {
@@ -17,7 +16,7 @@ export function useUserMedia(
         );
         setMediaStream(stream);
       } catch (err) {
-        // Removed for brevity
+        console.log("useUserMedia error");
       }
     }
 
@@ -57,10 +56,28 @@ const VideoPreview = ({ stream }) => {
     />
   );
 };
-const CameraRecording = ({ hidden, mediaOption }) => {
-  console.log(mediaOption);
+
+const Recording = ({ hidden, mediaOption, permission, setPermission }) => {
+  const { screen } = mediaOption;
 
   if (hidden) return null;
+
+  if (!permission) {
+    const message = screen
+      ? "Allow the browser to access screenshare"
+      : "Allow the browser to use your camera/mic";
+    return (
+      <Box sx={{ textAlign: "center", mt: 4 }}>
+        <Button
+          variant="contained"
+          size="large"
+          onClick={(_) => setPermission(true)}
+        >
+          {message}
+        </Button>
+      </Box>
+    );
+  }
 
   return (
     <div>
@@ -77,10 +94,15 @@ const CameraRecording = ({ hidden, mediaOption }) => {
           previewStream,
         }) => (
           <div>
-            <VideoPreview stream={previewStream} />
+            {!screen && <VideoPreview stream={previewStream} />}
+            {screen && <VideoPreview stream={previewStream} />}
             <p>{status}</p>
-            <button onClick={startRecording}>Start Recording</button>
-            <button onClick={stopRecording}>Stop Recording</button>
+            <Button variant="contained" onClick={startRecording}>
+              Start Recording
+            </Button>
+            <Button variant="contained" onClick={stopRecording}>
+              Stop Recording
+            </Button>
             <video src={mediaBlobUrl} controls autoPlay loop />
           </div>
         )}
@@ -89,9 +111,14 @@ const CameraRecording = ({ hidden, mediaOption }) => {
   );
 };
 
-CameraRecording.propTypes = {
+Recording.propTypes = {
   hidden: PropTypes.bool,
   mediaOption: PropTypes.object,
+  permission: PropTypes.bool,
+  setPermission: PropTypes.func,
+};
+VideoPreview.propTypes = {
+  stream: PropTypes.object,
 };
 
-export default CameraRecording;
+export default Recording;

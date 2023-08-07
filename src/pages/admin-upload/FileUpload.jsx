@@ -25,7 +25,7 @@ const FileUpload = ({ hidden }) => {
 
   if (hidden) return null;
   return (
-    <div className="fileupload-view" style={{ marginTop: "50px" }}>
+    <Box className="fileupload-view" sx={{ mt: 4 }}>
       <FilePond
         allowPaste
         allowReorder={true}
@@ -73,7 +73,7 @@ const FileUpload = ({ hidden }) => {
           </Button>
         </Grid>
       </Grid>
-    </div>
+    </Box>
   );
 };
 
