@@ -16,8 +16,7 @@ import ShareIcon from "@mui/icons-material/Share";
 import RestoreIcon from "@mui/icons-material/Restore";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
-import ScreenRecording from "./ScreenRecording";
-import CameraRecording from "./CameraRecording";
+import Recording from "./Recording";
 import FileUpload from "./FileUpload";
 const actions = [
   { icon: <FileCopyIcon />, name: "Copy" },
@@ -26,9 +25,14 @@ const actions = [
   { icon: <ShareIcon />, name: "Share" },
 ];
 
+const RECODING_TYPE = {
+  2: { screen: true, audio: true, video: true },
+  3: { screen: false, audio: true, video: true },
+};
+
 const Upload = (props) => {
   const [open, setOpen] = React.useState(false);
-  const [value, setValue] = React.useState("1");
+  const [value, setValue] = React.useState("2");
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -49,15 +53,14 @@ const Upload = (props) => {
           centered
           value={value}
           onChange={handleChange}
-          aria-label="main tabs example"
+          aria-label="main tabs"
         >
-          <Tab value="1" label="Item One" />
-          <Tab value="2" label="Item Two" />
-          <Tab value="3" label="Item Three" />
+          <Tab value="1" label="Media Upload" />
+          <Tab value="2" label="Screen Recording" />
+          <Tab value="3" label="Camera Recording" />
         </Tabs>
         <FileUpload hidden={value !== "1"} />
-        {/* <ScreenRecording hidden={value !== "2"} /> */}
-        {/* <CameraRecording hidden={value !== "3"} /> */}
+        <Recording hidden={value === "1"} mediaOption={RECODING_TYPE[value]} />
         {/* <SpeedDial
           ariaLabel="SpeedDial controlled open example"
           sx={{ position: "absolute", bottom: 16, right: 16 }}
