@@ -32,7 +32,7 @@ const RECODING_TYPE = {
 
 const Upload = (props) => {
   const [open, setOpen] = React.useState(false);
-  const [value, setValue] = React.useState("2");
+  const [value, setValue] = React.useState("1");
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -46,6 +46,7 @@ const Upload = (props) => {
 
   return (
     <MainCard title="">
+ 
       <Box
         sx={{ minHeight: "100vh", transform: "translateZ(0px)", flexGrow: 1 }}
       >

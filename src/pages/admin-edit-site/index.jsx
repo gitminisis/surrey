@@ -51,7 +51,6 @@ const AdminEditSite = (props) => {
         type: "success",
         isLoading: false,
       });
-      console.log(res);
     });
   };
   if (error) return "An error has occurred.";

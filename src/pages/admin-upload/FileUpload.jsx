@@ -1,14 +1,13 @@
 import React, { useState, useCallback } from "react";
-import { nanoid } from "nanoid";
-import { Button } from "@mui/material";
+import { Button, Box, Grid } from "@mui/material";
 // Import React FilePond
 import { FilePond, registerPlugin } from "react-filepond";
 import PropTypes from "prop-types";
 import "filepond/dist/filepond.min.css";
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 // Import the Image EXIF Orientation and Image Preview plugins
-// Note: These need to be installed separately
-// `npm i filepond-plugin-image-preview filepond-plugin-image-exif-orientation --save`
+
 import FilePondPluginImageExifOrientation from "filepond-plugin-image-exif-orientation";
 import FilePondPluginImagePreview from "filepond-plugin-image-preview";
 import "filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css";
@@ -26,7 +25,7 @@ const FileUpload = ({ hidden }) => {
 
   if (hidden) return null;
   return (
-    <div className="fileupload-view">
+    <div className="fileupload-view" style={{ marginTop: "50px" }}>
       <FilePond
         allowPaste
         allowReorder={true}
@@ -34,12 +33,46 @@ const FileUpload = ({ hidden }) => {
         onupdatefiles={setFiles}
         allowMultiple={true}
         maxFiles={20}
-        server="/api"
+        // server="/api"
         name="files"
         credits={false}
         acceptedFileTypes={["image/*", "video/*"]}
         labelIdle='Drag & Drop your files or <span class="filepond--label-action">Browse</span>'
       />
+      <Grid container spacing={2}>
+        <Grid item xs={6}>
+          <Button
+            variant="contained"
+            color="secondary"
+            onClick={(_) => {
+              setFiles([]);
+              toast.success("All files have been removed", {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+              });
+            }}
+          >
+            Clear all
+          </Button>
+        </Grid>
+        <Grid item xs={6} sx={{ textAlign: "right" }}>
+          <Button
+            variant="contained"
+            color="success"
+            onClick={(_) => {
+              console.log("all files", files);
+            }}
+          >
+            Upload
+          </Button>
+        </Grid>
+      </Grid>
     </div>
   );
 };
