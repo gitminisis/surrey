@@ -5,7 +5,9 @@ import {
   ReactMediaRecorder,
 } from "react-media-recorder";
 import { Button, Box } from "@mui/material";
-export function useUserMedia(requestedMedia = { video: true, screen: true }) {
+export function useUserMedia(
+  requestedMedia = { video: { mediaSource: "screen" }, audio: false }
+) {
   const [mediaStream, setMediaStream] = useState(null);
 
   useEffect(() => {
@@ -33,10 +35,11 @@ export function useUserMedia(requestedMedia = { video: true, screen: true }) {
   return mediaStream;
 }
 
-const VideoPreview = ({ stream }) => {
+const VideoPreview = ({ stream, screen }) => {
   const preview = useUserMedia();
 
   const videoRef = useRef();
+
   useEffect(() => {
     if (videoRef.current && stream) {
       videoRef.current.srcObject = stream;
@@ -46,11 +49,14 @@ const VideoPreview = ({ stream }) => {
     }
   }, [stream, preview]);
 
+  if (screen && !stream) {
+    return null;
+  }
   return (
     <video
       ref={videoRef}
-      height={600}
-      style={{ borderRadius: "40px" }}
+      height={450}
+      className="recording-video"
       autoPlay
       controls={false}
     />
@@ -58,7 +64,7 @@ const VideoPreview = ({ stream }) => {
 };
 
 const Recording = ({ hidden, mediaOption, permission, setPermission }) => {
-  const { screen } = mediaOption;
+  const { screen, video, audio } = mediaOption;
 
   if (hidden) return null;
 
@@ -83,9 +89,6 @@ const Recording = ({ hidden, mediaOption, permission, setPermission }) => {
     <div>
       <ReactMediaRecorder
         {...mediaOption}
-        video={mediaOption.video}
-        screen={mediaOption.screen}
-        audio={mediaOption.audio}
         render={({
           status,
           startRecording,
@@ -94,8 +97,18 @@ const Recording = ({ hidden, mediaOption, permission, setPermission }) => {
           previewStream,
         }) => (
           <div>
-            {!screen && <VideoPreview stream={previewStream} />}
-            {screen && <VideoPreview stream={previewStream} />}
+            {mediaBlobUrl ? (
+              <video
+                className="recording-video"
+                src={mediaBlobUrl}
+                height={450}
+                controls
+                autoPlay
+                loop
+              />
+            ) : (
+              <VideoPreview stream={previewStream} screen={screen} />
+            )}
             <p>{status}</p>
             <Button variant="contained" onClick={startRecording}>
               Start Recording
@@ -103,7 +116,6 @@ const Recording = ({ hidden, mediaOption, permission, setPermission }) => {
             <Button variant="contained" onClick={stopRecording}>
               Stop Recording
             </Button>
-            <video src={mediaBlobUrl} controls autoPlay loop />
           </div>
         )}
       />
@@ -119,6 +131,7 @@ Recording.propTypes = {
 };
 VideoPreview.propTypes = {
   stream: PropTypes.object,
+  screen: PropTypes.bool,
 };
 
 export default Recording;

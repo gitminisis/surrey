@@ -140,7 +140,7 @@ export const sendEmail = (session, data, body) => {
 
   let bodyContent = `\n${data
     .map((e) => `${e.title}: ${e.value}`)
-    .join("\n")}\n\n ${body}`;
+    .join("\n")}\n\n ${body}`.replace('&','&amp;');
   let receiver = "archives@surrey.ca";
   let sender = "noreply@minisisinc.com";
   let url = `${session}?save_mail_form&async=y&xml=y&subject_default=${subject}&from_default=${sender}&to_default=${receiver}`;
