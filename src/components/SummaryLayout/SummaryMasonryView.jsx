@@ -1,4 +1,3 @@
-import React, { useEffect } from "react";
 import Masonry from "@mui/lab/Masonry";
 import { getAllImageCaptions, getFirstThumbnail } from "../../utils/record";
 import SummaryTextField from "../SummaryTextField";

@@ -1,0 +1,319 @@
+@import "~react-image-gallery/styles/css/image-gallery.css";
+
+/*
+ * The Typekit service used to deliver this font or fonts for use on websites
+ * is provided by Adobe and is subject to these Terms of Use
+ * http://www.adobe.com/products/eulas/tou_typekit. For font license
+ * information, see the list below.
+ *
+ * proxima-nova:
+ *   - http://typekit.com/eulas/00000000000000003b9b3068
+ *   - http://typekit.com/eulas/00000000000000003b9b3069
+ *   - http://typekit.com/eulas/00000000000000003b9b306a
+ *   - http://typekit.com/eulas/00000000000000003b9b3066
+ *   - http://typekit.com/eulas/00000000000000003b9b3062
+ *   - http://typekit.com/eulas/00000000000000003b9b3063
+ *
+ * © 2009-2022 Adobe Systems Incorporated. All Rights Reserved.
+ */
+
+/*{"last_published":"2019-08-23 15:20:13 UTC"}*/
+
+@import url("https://p.typekit.net/p.css?s=1&k=tsf3waj&ht=tk&f=139.140.169.173.175.176&a=383654&app=typekit&e=css");
+@font-face {
+  font-family: "proxima-nova";
+  src: url("https://use.typekit.net/af/949f99/00000000000000003b9b3068/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3")
+      format("woff2"),
+    url("https://use.typekit.net/af/949f99/00000000000000003b9b3068/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3")
+      format("woff"),
+    url("https://use.typekit.net/af/949f99/00000000000000003b9b3068/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3")
+      format("opentype");
+  font-display: auto;
+  font-style: normal;
+  font-weight: 700;
+  font-stretch: normal;
+}
+
+@font-face {
+  font-family: "proxima-nova";
+  src: url("https://use.typekit.net/af/4c4052/00000000000000003b9b3069/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i7&v=3")
+      format("woff2"),
+    url("https://use.typekit.net/af/4c4052/00000000000000003b9b3069/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i7&v=3")
+      format("woff"),
+    url("https://use.typekit.net/af/4c4052/00000000000000003b9b3069/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i7&v=3")
+      format("opentype");
+  font-display: auto;
+  font-style: italic;
+  font-weight: 700;
+  font-stretch: normal;
+}
+
+@font-face {
+  font-family: "proxima-nova";
+  src: url("https://use.typekit.net/af/d82519/00000000000000003b9b306a/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n8&v=3")
+      format("woff2"),
+    url("https://use.typekit.net/af/d82519/00000000000000003b9b306a/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n8&v=3")
+      format("woff"),
+    url("https://use.typekit.net/af/d82519/00000000000000003b9b306a/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n8&v=3")
+      format("opentype");
+  font-display: auto;
+  font-style: normal;
+  font-weight: 800;
+  font-stretch: normal;
+}
+
+@font-face {
+  font-family: "proxima-nova";
+  src: url("https://use.typekit.net/af/576d53/00000000000000003b9b3066/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n6&v=3")
+      format("woff2"),
+    url("https://use.typekit.net/af/576d53/00000000000000003b9b3066/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n6&v=3")
+      format("woff"),
+    url("https://use.typekit.net/af/576d53/00000000000000003b9b3066/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n6&v=3")
+      format("opentype");
+  font-display: auto;
+  font-style: normal;
+  font-weight: 600;
+  font-stretch: normal;
+}
+
+@font-face {
+  font-family: "proxima-nova";
+  src: url("https://use.typekit.net/af/705e94/00000000000000003b9b3062/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3")
+      format("woff2"),
+    url("https://use.typekit.net/af/705e94/00000000000000003b9b3062/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3")
+      format("woff"),
+    url("https://use.typekit.net/af/705e94/00000000000000003b9b3062/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3")
+      format("opentype");
+  font-display: auto;
+  font-style: normal;
+  font-weight: 400;
+  font-stretch: normal;
+}
+
+@font-face {
+  font-family: "proxima-nova";
+  src: url("https://use.typekit.net/af/5c70f2/00000000000000003b9b3063/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i4&v=3")
+      format("woff2"),
+    url("https://use.typekit.net/af/5c70f2/00000000000000003b9b3063/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i4&v=3")
+      format("woff"),
+    url("https://use.typekit.net/af/5c70f2/00000000000000003b9b3063/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i4&v=3")
+      format("opentype");
+  font-display: auto;
+  font-style: italic;
+  font-weight: 400;
+  font-stretch: normal;
+}
+
+body {
+  margin: 0;
+  font-family: "proxima-nova";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+* {
+  font-family: "proxima-nova";
+}
+
+.hideScrollbar::-webkit-scrollbar {
+  display: none;
+  /* Safari and Chrome browsers */
+}
+
+.hideScrollbar {
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* mozilla */
+}
+
+.leaflet-container {
+  height: 600px;
+  width: 100%;
+}
+
+.markercluster-map {
+  height: 600px;
+}
+
+.MuiMobileStepper-dot {
+  background: white !important;
+}
+
+.MuiMobileStepper-dotActive {
+  background: green !important;
+}
+
+.active-link {
+  display: flex !important;
+  height: 100% !important;
+  border-bottom: 3px solid white;
+  align-items: center !important;
+}
+
+img {
+  pointer-events: none;
+}
+
+/* Image Gallery Style */
+
+.image-gallery {
+  max-width: 500px !important;
+}
+
+.image-gallery-slide {
+  height: 400px;
+  display: flex !important;
+  justify-content: center;
+}
+
+.filepond--credits {
+  display: none !important;
+}
+
+/* ------------ */
+
+.card {
+  box-shadow: 0px 4px 8px rgb(0 0 0 / 16%);
+  border-radius: 6px;
+  overflow: hidden;
+  margin-bottom: 30px;
+  background-color: #fff;
+  border: none;
+}
+.card-body {
+  padding: 30px;
+}
+.btn-primary {
+  border-color: #5a8dee !important;
+  background-color: #5a8dee !important;
+  color: #fff;
+}
+.form-submit {
+  padding: 13px 30px;
+  font-size: 15px;
+  letter-spacing: 0.3px;
+  font-weight: 400;
+}
+.kb-data-box {
+  width: 100%;
+  flex: 1;
+}
+
+.kb-modal-data-title {
+  margin-bottom: 10px;
+}
+.kb-data-title h6 {
+  margin-bottom: 0;
+  font-size: 15px;
+  font-weight: 600;
+}
+.kb-file-upload {
+  margin-bottom: 20px;
+}
+.file-upload-box {
+  border: 1px dashed #b6bed1;
+  background-color: #f0f2f7;
+  border-radius: 4px;
+  min-height: 150px;
+  position: relative;
+  overflow: hidden;
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #8194aa;
+  font-weight: 400;
+  font-size: 15px;
+}
+.file-upload-box .file-upload-input {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+.file-link {
+  color: #475f7b;
+  text-decoration: underline;
+  margin-left: 3px;
+}
+.file-upload-box .file-link:hover {
+  text-decoration: none;
+}
+.file-atc-box {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+.file-image {
+  /* width: 130px;
+  min-width: 130px;
+  height: 85px;
+  min-height: 85px; */
+  width: 130px;
+  height: 85px;
+  background-size: cover;
+  border-radius: 5px;
+  margin-right: 15px;
+  background-color: #eaecf1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  color: #475f7b;
+  padding: 3px;
+}
+.file-image img {
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 4px;
+}
+.file-detail {
+  flex: 1;
+  width: calc(100% - 210px);
+}
+.file-detail h6 {
+  word-break: break-all;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 20px;
+  margin-bottom: 8px;
+}
+.file-detail p {
+  font-size: 12px;
+  color: #8194aa;
+  line-height: initial;
+  font-weight: 400;
+  margin-bottom: 8px;
+}
+.file-actions {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.file-action-btn {
+  font-size: 12px;
+  color: #8194aa;
+  line-height: 20px;
+  font-weight: 400;
+  margin-bottom: 0;
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  text-decoration: underline;
+  margin-right: 15px;
+  cursor: pointer;
+}
+.file-action-btn:hover {
+  color: #3d546f;
+  text-decoration: underline;
+}
+.file-atc-box:last-child {
+  margin-bottom: 0;
+}

@@ -14,13 +14,13 @@ import {
   Textarea,
 } from "@mui/joy";
 import { deepSearch, sendEmail } from "../../utils/functions";
-import { getRecordPermalink } from "../../utils/record";
+import { getEmailPermalink, getRecordPermalink } from "../../utils/record";
 import { useSnackbar } from "notistack";
 const ContactUsModalForm = (props) => {
   let { xml, description } = props;
   let sisn = deepSearch(xml, "sisn")[0];
   let database = deepSearch(xml, "database_name")[0];
-  let recordURL = getRecordPermalink(sisn, database);
+  let recordURL = getEmailPermalink(sisn, database);
   let session = deepSearch(xml, "session")[0];
   const { enqueueSnackbar } = useSnackbar();
   const FORM_FIELD = [

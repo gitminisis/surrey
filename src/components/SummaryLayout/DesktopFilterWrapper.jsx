@@ -18,6 +18,6 @@ const DesktopFilterWrapper = (props) => {
   );
 };
 
-DesktopFilterWrapper.propTypes = {};
+DesktopFilterWrapper.propTypes = { openDesktop: PropTypes.bool };
 
 export default DesktopFilterWrapper;

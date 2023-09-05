@@ -20,6 +20,8 @@ const headerSX = {
   "& .MuiCardHeader-action": { m: "0px auto", alignSelf: "center" },
 };
 
+import { ToastContainer } from "react-toastify";
+
 // ==============================|| CUSTOM - MAIN CARD ||============================== //
 
 const MainCard = forwardRef(
@@ -73,6 +75,17 @@ const MainCard = forwardRef(
           },
         }}
       >
+
+        <ToastContainer position="top-right"
+          autoClose={3000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light" />
         {/* card header and action */}
         {!darkTitle && title && (
           <CardHeader
