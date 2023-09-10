@@ -2,7 +2,7 @@ const path = require("path");
 const webpack = require("webpack");
 const dotenv = require("dotenv");
 const SpeedMeasurePlugin = require("speed-measure-webpack-plugin");
-
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const smp = new SpeedMeasurePlugin();
 const env = dotenv.config().parsed;
 
@@ -15,6 +15,7 @@ const envKeys = Object.keys(env).reduce((prev, next) => {
 module.exports = smp.wrap({
   entry: ["babel-polyfill", "./src/index"],
   plugins: [
+    new BundleAnalyzerPlugin(),
     new webpack.DefinePlugin(envKeys),
     new webpack.ProvidePlugin({
       React: "react",

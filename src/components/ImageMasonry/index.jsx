@@ -19,8 +19,8 @@ const ImageMasonryItem = (props) => {
             database,
             `SISN ${sisn}`,
             "WEB_UNION_DETAIL",
-            "UNION_VIEW",
-            getCurrentSession()
+            "UNION_VIEW"
+            // getCurrentSession()
           );
         }}
       >
