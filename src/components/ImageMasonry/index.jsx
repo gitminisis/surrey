@@ -60,7 +60,7 @@ const ImageMasonry = ({ data }) => {
   const [tiles, setTiles] = useState(data || []);
   const [loading, setLoading] = useState(true);
   useEffect((_) => {
-    getRecendAdditions(getCurrentSession()).then((res) => {
+    getRecendAdditions().then((res) => {
       setLoading(false);
       setTiles(res);
     });

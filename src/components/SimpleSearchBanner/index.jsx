@@ -1,18 +1,11 @@
 import React, { useState, useEffect } from "react";
 import {
   BannerContainer,
- 
   SiteHeading,
   SiteDescription,
   HoverLink,
 } from "./SimpleSearchBanner.style";
-import {
-  Button,
-  Grid,
-  Paper,
-  InputBase,
-  Container,
-} from "@mui/material";
+import { Button, Grid, Paper, InputBase, Container } from "@mui/material";
 import PropTypes from "prop-types";
 import CollapseSearchFilter from "../AdvancedSearchBanner/CollapseSearchFilter";
 
@@ -77,7 +70,7 @@ const Banner = (props) => {
               sm={12}
               style={{ width: "100%", maxWidth: "1200px", margin: "0 auto" }}
             >
-              <SiteHeading variant="h1" >{heading}</SiteHeading>
+              <SiteHeading variant="h1">{heading}</SiteHeading>
               <SiteDescription variant="p">{description}</SiteDescription>
             </Grid>
           </Grid>

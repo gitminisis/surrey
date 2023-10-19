@@ -2,7 +2,7 @@ import { Box, Button, Container, Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
 
 const BANNER_HEIGHT = "100vh";
-export const BannerContainer = styled(Container)(({ theme, banner }) => ({
+export const BannerContainer = styled(Container)(({ theme }) => ({
   padding: "0 0",
   height: BANNER_HEIGHT,
   position: "relative",
@@ -32,7 +32,7 @@ export const ShadowLayerBox = styled(Box)(({ banner }) => ({
   backgroundSize: "cover",
 }));
 
-export const SearchBar = styled(Box)(({ theme }) => ({
+export const SearchBar = styled(Box)(() => ({
   height: "10vh",
   maxHeight: "40px",
   display: "flex",
@@ -43,7 +43,7 @@ export const SearchBar = styled(Box)(({ theme }) => ({
   padding: "0",
 }));
 
-export const InputSearch = styled("input")(({ theme }) => ({
+export const InputSearch = styled("input")(() => ({
   height: "100%",
   width: "100%",
   "&:focus": {
@@ -51,7 +51,7 @@ export const InputSearch = styled("input")(({ theme }) => ({
   },
 }));
 
-export const SubmitSearch = styled(Button)((_) => ({
+export const SubmitSearch = styled(Button)(() => ({
   flexGrow: "1",
   borderRadius: 0,
 }));
@@ -75,7 +75,7 @@ export const SiteDescription = styled(Typography)(({ theme }) => ({
   },
 }));
 
-export const HoverLink = styled(Typography)(({ theme }) => ({
+export const HoverLink = styled(Typography)(() => ({
   position: "absolute",
   bottom: "20px",
   left: "0",
