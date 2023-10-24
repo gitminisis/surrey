@@ -85,15 +85,13 @@ const Banner = (props) => {
             <Grid container spacing={2} data-aos="fade-down">
               <Grid item md={12} sm={12} style={{ width: "100%" }}>
                 <Paper
-                  method="GET"
+                  method="POST"
                   component="form"
                   action={url}
                   onSubmit={(e) => {
                     // setBackdrop(true);
                     e.preventDefault();
-                    window.location = `${url}&EXP=KEYWORD_CL "${
-                      document.getElementById("simpleSearchCluster").value
-                    }"`;
+                    window.location = `${url}`;
                   }}
                   sx={{
                     display: "flex",
@@ -105,14 +103,16 @@ const Banner = (props) => {
                     boxShadow: "2px 4px 2px 0px rgba(1,1,1,0.5)",
                   }}
                 >
-                  <InputBase
+                  {/* <InputBase
                     id="simpleSearchCluster"
                     name="KEYWORD_CL"
                     style={{ height: "55px", fontSize: "1.2rem" }}
                     sx={{ ml: 1, flex: 1 }}
                     placeholder="Search By Keyword"
                     inputProps={{ "aria-label": "Search By Keyword" }}
-                  />
+                  /> */}
+
+                  <input name="KEYWORD_CL" />
                   <Button
                     style={{
                       height: "55px",
