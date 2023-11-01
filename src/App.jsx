@@ -17,7 +17,6 @@ import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 
 // apex-chart
-import "./assets/third-party/apex-chart.css";
 import { store } from "./store";
 import AppDashboard from "./AppDashboard";
 function App() {

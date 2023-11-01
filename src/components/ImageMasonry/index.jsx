@@ -56,6 +56,8 @@ const LOADING_SKELETON = [
   { width: "25%", height: "200px" },
   { width: "25%", height: "200px" },
 ];
+
+
 const ImageMasonry = ({ data }) => {
   const [tiles, setTiles] = useState(data || []);
   const [loading, setLoading] = useState(true);
@@ -68,7 +70,6 @@ const ImageMasonry = ({ data }) => {
 
   return (
     <>
-      {" "}
       {loading && (
         <Grid container spacing={4} style={{ margin: "0 auto" }}>
           {LOADING_SKELETON.map((e, i) => (
@@ -90,7 +91,7 @@ const ImageMasonry = ({ data }) => {
           ))}
         </Grid>
       )}
-      <Box sx={{ width: "100%", minHeight: 500, marginTop: "50px" }}>
+      {tiles && tiles.length > 0 && <Box sx={{ width: "100%", minHeight: 500, marginTop: "50px" }}>
         <Masonry
           columns={{ xs: 1, sm: 3, md: 4 }}
           spacing={2}
@@ -100,7 +101,9 @@ const ImageMasonry = ({ data }) => {
             <ImageMasonryItem item={item} key={item.thumbnail + index} />
           ))}
         </Masonry>
-      </Box>
+      </Box>}
+
+      {(!tiles || tiles.length === 0 ) && !loading && <div style={{textAlign:'center', margin: '0 auto'}}><img style={{width:'100%', maxWidth:'300px'}} src="/assets/images/norecordbanner.png" alt="No Record Banner" /><p>No current avaiable records</p></div>}
     </>
   );
 };

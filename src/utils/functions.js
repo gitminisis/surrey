@@ -41,12 +41,18 @@ export const getKeyByValue = (map, searchValue) => {
   }
 };
 export const getXMLRecord = (dom = document, id = "#xml_record") => {
-  const xmlDOM = dom.querySelector(id);
-  const x2js = new X2JS();
-  const xmlString = new XMLSerializer().serializeToString(xmlDOM);
-  const json = x2js.xml_str2json(xmlString);
-  return json;
+  try {
+    const xmlDOM = dom.querySelector(id);
+    const x2js = new X2JS();
+    const xmlString = new XMLSerializer().serializeToString(xmlDOM);
+    const json = x2js.xml_str2json(xmlString);
+    return json;
+  } catch (error) {
+    console.error("Error while processing the XML record:", error);
+    return false;
+  }
 };
+
 
 export const getXMLTreeRecord = (xml) => {
   const x2js = new X2JS();
@@ -140,7 +146,7 @@ export const sendEmail = (session, data, body) => {
 
   let bodyContent = `\n${data
     .map((e) => `${e.title}: ${e.value}`)
-    .join("\n")}\n\n ${body}`.replace('&','&amp;');
+    .join("\n")}\n\n ${body}`.replace('&', '&amp;');
   let receiver = "archives@surrey.ca";
   let sender = "noreply@minisisinc.com";
   let url = `${session}?save_mail_form&async=y&xml=y&subject_default=${subject}&from_default=${sender}&to_default=${receiver}`;
@@ -242,3 +248,21 @@ export const getTrangCuteness = () => {
   }, 1000);
 };
 // getTrangCuteness();
+
+
+export const sanitizeFilterURL = (urlString, application) => {
+  const url = new URL(urlString);
+
+  // Remove the 'DATABASE' search parameter
+  if (application === 'UNION_VIEW') {
+    url.searchParams.delete("DATABASE");
+  }
+
+  const queryParams = url.searchParams;
+
+  // Get the updated URL as a string
+  const updatedUrlString = queryParams.toString();
+
+
+  return getCurrentSession() + "?" + updatedUrlString
+}

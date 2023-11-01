@@ -18,12 +18,7 @@ import {
     Typography
 } from '@mui/material';
 
-// project import
-import OrdersTable from './OrdersTable';
-import IncomeAreaChart from './IncomeAreaChart';
-import MonthlyBarChart from './MonthlyBarChart';
-import ReportAreaChart from './ReportAreaChart';
-import SalesColumnChart from './SalesColumnChart';
+
 import MainCard from '../../components/MainCard';
 import AnalyticEcommerce from '../../components/cards/statistics/AnalyticEcommerce';
 // assets
