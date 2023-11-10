@@ -9,3 +9,5 @@ web.config
 assets/images/
 
 aspnet_client/
+
+# pnpm-lock.yaml
