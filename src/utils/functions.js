@@ -251,6 +251,7 @@ export const getTrangCuteness = () => {
 
 
 export const sanitizeFilterURL = (urlString, application) => {
+  return urlString.replace('&DATABASE=UNION_VIEW','')
   const url = new URL(urlString);
 
   // Remove the 'DATABASE' search parameter
