@@ -78,7 +78,7 @@ const Banner = (props) => {
             <Grid container spacing={2} data-aos="fade-down">
               <Grid item md={12} sm={12} style={{ width: "100%" }}>
                 <Paper
-                  method="GET"
+                  method="POST"
                   component="form"
                   action={url}
                   onSubmit={(e) => {

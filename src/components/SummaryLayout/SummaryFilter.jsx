@@ -14,7 +14,7 @@ import {
 } from "@mui/material";
 import { Box, Select, Option, Checkbox, List, ListItem } from "@mui/joy";
 
-import { deepSearch, printPage } from "../../utils/functions";
+import { deepSearch, printPage,sanitizeFilterURL } from "../../utils/functions";
 import {
   FILTER_TITLE_BY_FIELD,
   bookmarkAllRecord,
@@ -29,6 +29,7 @@ import { getSortReportURL } from "../../utils/record";
 
 const FieldFilter = (props) => {
   const { data, index, application, handleFilter, selectedValues } = props;
+  console.log(application)
   const [open, setOpen] = React.useState(index === 0);
 
   const handleClick = () => {
@@ -66,12 +67,7 @@ const FieldFilter = (props) => {
                   sx={{ color: "inherit", textAlign: "left" }}
                   onChange={(e) => {
                     window.location =
-                      item.item_link.toString() +
-                      `${
-                        application !== "UNION_VIEW"
-                          ? "&DATABASE=" + application
-                          : ""
-                      }`;
+                      sanitizeFilterURL(item.item_link.toString(), application)
                   }}
                 />
                 <Typography sx={{ ml: "auto" }}>
