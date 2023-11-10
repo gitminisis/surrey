@@ -9,7 +9,6 @@ import {
   Grid,
   Chip,
   Divider,
-  Button,
 } from "@mui/material";
 import {
   getIndexList,

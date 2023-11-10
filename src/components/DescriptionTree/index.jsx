@@ -8,7 +8,7 @@ import {
 } from "../../utils/tree";
 
 import { deepSearch } from "../../utils/functions";
-import TreeView from "@mui/lab/TreeView";
+import { TreeView } from "@mui/x-tree-view";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { Typography } from "@mui/joy";
 import { Box, Skeleton, CircularProgress } from "@mui/material";
@@ -146,6 +146,8 @@ const DescriptionTree = (props) => {
       </StyledTreeItem>
     );
   };
+
+  
   if (!showTree) {
     return null;
   }

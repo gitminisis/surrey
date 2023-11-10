@@ -51,9 +51,11 @@ export const getSearchRequestURL = (
   application = "UNION_VIEW",
   session = "/scripts/mwimain.dll"
 ) => {
-  let url = `${session ? session : "/scripts/mwimain.dll"
-    }?UNIONSEARCH&SIMPLE_EXP=Y&KEEP=Y&ERRMSG=[MESSAGES]374.htm&APPLICATION=${application}&DATABASE=${database}&language=144&REPORT=${report || SUM_REPORT_BY_DATABASE[database]
-    }&EXP=${expression}`;
+  let url = `${
+    session ? session : "/scripts/mwimain.dll"
+  }?UNIONSEARCH&SIMPLE_EXP=Y&KEEP=Y&ERRMSG=[MESSAGES]374.htm&APPLICATION=${application}&DATABASE=${database}&language=144&REPORT=${
+    report || SUM_REPORT_BY_DATABASE[database]
+  }&EXP=${expression}`;
   return url;
 };
 
@@ -63,8 +65,9 @@ export const getSimpleSearchRequestURL = (
   application = "UNION_VIEW",
   session = getCurrentSession()
 ) => {
-  let url = `${session ? session : "/scripts/mwimain.dll"
-    }?SEARCH&SIMPLE_EXP=Y&KEEP=Y&ERRMSG=[MESSAGES]374.htm&APPLICATION=${application}&language=144&REPORT=${report}&EXP=${expression}`;
+  let url = `${
+    session ? session : "/scripts/mwimain.dll"
+  }?SEARCH&SIMPLE_EXP=Y&KEEP=Y&ERRMSG=[MESSAGES]374.htm&APPLICATION=${application}&language=144&REPORT=${report}&EXP=${expression}`;
   return url;
 };
 
@@ -82,8 +85,9 @@ export const getUnionSearchRequestURL = (
   application = "UNION_VIEW",
   session = getCurrentSession()
 ) => {
-  let url = `${session ? session : "/scripts/mwimain.dll"
-    }?UNIONSEARCH&SIMPLE_EXP=Y&KEEP=Y&ERRMSG=[MESSAGES]374.htm&APPLICATION=${application}&language=144&REPORT=${report}&EXP=${expression}`;
+  let url = `${
+    session ? session : "/scripts/mwimain.dll"
+  }?UNIONSEARCH&SIMPLE_EXP=Y&KEEP=Y&ERRMSG=[MESSAGES]374.htm&APPLICATION=${application}&language=144&REPORT=${report}&EXP=${expression}`;
   return url;
 };
 
@@ -152,9 +156,8 @@ export const getRecendAdditions = (session = "/scripts/mwimain.dll") => {
     return url;
   });
 
-  return axios.all(searchURL.map((l) => axios.get(l))).then(
+  return Promise.all(searchURL.map((l) => axios.get(l))).then(
     axios.spread(function (...res) {
-
       let jsonData = res.map((e) =>
         getXMLRecord(new DOMParser().parseFromString(e.data, "text/html"))
       );
@@ -182,7 +185,6 @@ export const getRecendAdditions = (session = "/scripts/mwimain.dll") => {
           });
         });
         return acc;
-
       }, []);
 
       return result;
@@ -318,7 +320,7 @@ export const viewBookmark = (xml) => {
   window.location = `${url}?SHOWORDERLIST&COOKIE=BOOKMARK&NEW=Y`;
 };
 
-export const removeBookmarkRecord = () => { };
+export const removeBookmarkRecord = () => {};
 
 export const removeAllBookmarkRecord = () => {
   document.cookie = "BOOKMARK=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";

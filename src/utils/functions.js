@@ -40,6 +40,7 @@ export const getKeyByValue = (map, searchValue) => {
     if (isEqual(value, searchValue)) return key;
   }
 };
+
 export const getXMLRecord = (dom = document, id = "#xml_record") => {
   try {
     const xmlDOM = dom.querySelector(id);
@@ -48,16 +49,26 @@ export const getXMLRecord = (dom = document, id = "#xml_record") => {
     const json = x2js.xml_str2json(xmlString);
     return json;
   } catch (error) {
-    console.error("Error while processing the XML record:", error);
+    console.error(
+      "Error while processing the XML record from getXMLRecord",
+      error
+    );
     return false;
   }
 };
 
-
 export const getXMLTreeRecord = (xml) => {
-  const x2js = new X2JS();
-  const json = x2js.xml_str2json(xml);
-  return json;
+  try {
+    const x2js = new X2JS();
+    const json = x2js.xml_str2json(xml);
+    return json;
+  } catch (error) {
+    console.error(
+      "Error while processing the XML record from getXMLTreeRecord",
+      error
+    );
+    return false;
+  }
 };
 
 export const getXMLFilter = (dom) => {
@@ -74,6 +85,7 @@ export const xmlStrToJson = (str) => {
   let json = x2js.xml_str2json(str);
   return json;
 };
+
 export const getIndexList = (field, database, application) => {
   let url = `/scripts/mwimain.dll/FIRST?INDEXLIST&KEYNAME=${field}&DATABASE=${database}&form=[${VIRTUAL_DIR}]includes/html/cluster.html&TITLE=Browse%20${field}&APPLICATION=${APPLICATION}&LANGUAGE=144`;
   return axios.get(url);
@@ -146,7 +158,7 @@ export const sendEmail = (session, data, body) => {
 
   let bodyContent = `\n${data
     .map((e) => `${e.title}: ${e.value}`)
-    .join("\n")}\n\n ${body}`.replace('&', '&amp;');
+    .join("\n")}\n\n ${body}`.replace("&", "&amp;");
   let receiver = "archives@surrey.ca";
   let sender = "noreply@minisisinc.com";
   let url = `${session}?save_mail_form&async=y&xml=y&subject_default=${subject}&from_default=${sender}&to_default=${receiver}`;
@@ -223,7 +235,6 @@ export const jsonToFields = (json) => {
   });
 };
 
-
 export const getTrangCuteness = () => {
   let cuteness = 100;
   console.log(`Every second, Trang is becoming cuter `);
@@ -249,13 +260,12 @@ export const getTrangCuteness = () => {
 };
 // getTrangCuteness();
 
-
 export const sanitizeFilterURL = (urlString, application) => {
-  return urlString.replace('&DATABASE=UNION_VIEW','')
+  return urlString.replace("&DATABASE=UNION_VIEW", "");
   const url = new URL(urlString);
 
   // Remove the 'DATABASE' search parameter
-  if (application === 'UNION_VIEW') {
+  if (application === "UNION_VIEW") {
     url.searchParams.delete("DATABASE");
   }
 
@@ -264,6 +274,5 @@ export const sanitizeFilterURL = (urlString, application) => {
   // Get the updated URL as a string
   const updatedUrlString = queryParams.toString();
 
-
-  return getCurrentSession() + "?" + updatedUrlString
-}
+  return getCurrentSession() + "?" + updatedUrlString;
+};

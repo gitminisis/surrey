@@ -3,7 +3,6 @@ import ComponentSkeleton from "../components-overview/ComponentSkeleton";
 import { Grid, Typography, Button, FormHelperText, Stack } from "@mui/material";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import validator from "@rjsf/validator-ajv8";
 import Form from "@rjsf/mui";
 
 const displayFields = {
@@ -77,7 +76,6 @@ const AdminEditSite = (props) => {
                 key={i}
                 formData={data[i]}
                 schema={e}
-                validator={validator}
                 onChange={log("changed")}
                 onSubmit={({ formData }) => {
                   console.log(formData);

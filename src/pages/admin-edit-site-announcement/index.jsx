@@ -4,7 +4,6 @@ import ComponentSkeleton from "../components-overview/ComponentSkeleton";
 import { Grid } from "@mui/material";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import validator from "@rjsf/validator-ajv8";
 import Form from "@rjsf/mui";
 
 const schema = {
@@ -61,7 +60,6 @@ const AdminEditSiteAnnouncement = (props) => {
           <Form
             formData={data}
             schema={schema}
-            validator={validator}
             onChange={log("changed")}
             onSubmit={({ formData }, e) => {
               console.log(formData);

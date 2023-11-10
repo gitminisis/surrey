@@ -12,7 +12,6 @@ import {
 } from "@mui/material";
 
 // project import
-// import Highlighter from './third-party/Highlighter';
 
 // header style
 const headerSX = {
@@ -39,7 +38,7 @@ const MainCard = forwardRef(
       shadow,
       sx = {},
       title,
-      codeHighlight,
+      codeHighlight = false,
       ...others
     },
     ref
@@ -75,8 +74,8 @@ const MainCard = forwardRef(
           },
         }}
       >
-
-        <ToastContainer position="top-right"
+        <ToastContainer
+          position="top-right"
           autoClose={3000}
           hideProgressBar={false}
           newestOnTop={false}
@@ -85,7 +84,8 @@ const MainCard = forwardRef(
           pauseOnFocusLoss
           draggable
           pauseOnHover
-          theme="light" />
+          theme="light"
+        />
         {/* card header and action */}
         {!darkTitle && title && (
           <CardHeader
@@ -109,17 +109,6 @@ const MainCard = forwardRef(
         {/* card content */}
         {content && <CardContent sx={contentSX}>{children}</CardContent>}
         {!content && children}
-
-        {/* card footer - clipboard & highlighter  */}
-        {codeHighlight && (
-          <>
-            <Divider sx={{ borderStyle: "dashed" }} />
-            {children}
-            {/* <Highlighter codeHighlight={codeHighlight} main>
-                            {children}
-                        </Highlighter> */}
-          </>
-        )}
       </Card>
     );
   }

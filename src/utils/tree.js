@@ -1,5 +1,5 @@
 import axios from "axios";
-import _ from "lodash";
+import { clone, flatten, findIndex, isEmpty } from "lodash";
 import { deepSearch, getXMLTreeRecord } from "./functions";
 /**
  * Returns the search URL to the record with the corresponding REFD
@@ -150,16 +150,19 @@ export const getJSONTree = (session, database, id) => {
           curNode.id
         );
       }
-      if (_.isEmpty(tree)) {
-        tree = _.clone(curNode);
+      if (isEmpty(tree)) {
+        tree = clone(curNode);
       } else {
-        let clone = _.clone(curNode);
+        debugger;
+        let cloneTree = clone(curNode);
         let curRefd = tree.id;
-        let index = _.findIndex(clone.children, {
+        let index = findIndex(cloneTree.children, {
           id: curRefd,
         });
-        clone.children[index].children = tree.children;
-        tree = clone;
+        if (index !== -1) {
+          cloneTree.children[index].children = tree.children;
+        }
+        tree = cloneTree;
       }
       if (tree.isRoot) {
         return {
@@ -220,7 +223,7 @@ export const getCurNodeFromXML = (data, id) => {
   }
   let xml = getXMLTreeRecord(data, "links");
   let curNode = mapXMLToNode(xml, id);
-  let lower_level_occurrence = _.flatten(deepSearch(xml, "link"));
+  let lower_level_occurrence = flatten(deepSearch(xml, "link"));
   return {
     xml,
     curNode,
@@ -234,7 +237,7 @@ export const getCurNodeFromXML = (data, id) => {
  * @returns
  */
 export const getNodeFromTree = (tree, id) => {
-  let curNode = _.cloneDeep(tree);
+  let curNode = cloneDeep(tree);
   if (curNode.id === id) {
     return curNode;
   }
