@@ -5,7 +5,7 @@ import { Grid } from "@mui/material";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Form from "@rjsf/mui";
-
+import validator from "@rjsf/validator-ajv8";
 const schema = {
   title: "Site Announcement",
   description: "",
@@ -23,6 +23,7 @@ const schema = {
     },
   },
 };
+
 const log = (type) => console.log.bind(console, type);
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
@@ -59,6 +60,7 @@ const AdminEditSiteAnnouncement = (props) => {
         <Grid item xs={12}>
           <Form
             formData={data}
+            validator={validator}
             schema={schema}
             onChange={log("changed")}
             onSubmit={({ formData }, e) => {

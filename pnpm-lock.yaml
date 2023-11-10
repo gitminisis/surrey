@@ -65,6 +65,9 @@ dependencies:
   '@rjsf/utils':
     specifier: ^5.8.1
     version: 5.13.6(react@18.2.0)
+  '@rjsf/validator-ajv8':
+    specifier: ^5.13.6
+    version: 5.13.6(@rjsf/utils@5.13.6)
   aos:
     specifier: ^2.3.4
     version: 2.3.4
@@ -3123,6 +3126,19 @@ packages:
       lodash-es: 4.17.21
       react: 18.2.0
       react-is: 18.2.0
+    dev: false
+
+  /@rjsf/validator-ajv8@5.13.6(@rjsf/utils@5.13.6):
+    resolution: {integrity: sha512-ALLUl1xhBfwEjkslWp5eqJ78uHqCydxvfuE9Bh9jg7cD644d1o1uLJ0Q5b7Bp4ojGi25saTZ605qsT4M2oV62A==}
+    engines: {node: '>=14'}
+    peerDependencies:
+      '@rjsf/utils': ^5.12.x
+    dependencies:
+      '@rjsf/utils': 5.13.6(react@18.2.0)
+      ajv: 8.12.0
+      ajv-formats: 2.1.1(ajv@8.12.0)
+      lodash: 4.17.21
+      lodash-es: 4.17.21
     dev: false
 
   /@rollup/plugin-babel@5.3.1(@babel/core@7.23.3)(rollup@2.79.1):

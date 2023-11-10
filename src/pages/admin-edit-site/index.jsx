@@ -5,7 +5,7 @@ import { Grid } from "@mui/material";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Form from "@rjsf/mui";
-
+import validator from "@rjsf/validator-ajv8";
 const schema = {
   title: "Website Settings",
   description: "",
