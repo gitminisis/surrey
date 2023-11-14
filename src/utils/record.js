@@ -53,7 +53,7 @@ export const getSearchRequestURL = (
 ) => {
   let url = `${
     session ? session : "/scripts/mwimain.dll"
-  }?UNIONSEARCH&SIMPLE_EXP=Y&KEEP=Y&ERRMSG=[MESSAGES]374.htm&APPLICATION=${application}&DATABASE=${database}&language=144&REPORT=${
+  }?UNIONSEARCH&SIMPLE_EXP=Y&ERRMSG=[MESSAGES]374.htm&APPLICATION=${application}&DATABASE=${database}&language=144&REPORT=${
     report || SUM_REPORT_BY_DATABASE[database]
   }&EXP=${expression}`;
   return url;
@@ -67,7 +67,7 @@ export const getSimpleSearchRequestURL = (
 ) => {
   let url = `${
     session ? session : "/scripts/mwimain.dll"
-  }?SEARCH&SIMPLE_EXP=Y&KEEP=Y&ERRMSG=[MESSAGES]374.htm&APPLICATION=${application}&language=144&REPORT=${report}&EXP=${expression}`;
+  }?SEARCH&SIMPLE_EXP=Y&ERRMSG=[MESSAGES]374.htm&APPLICATION=${application}&language=144&REPORT=${report}&EXP=${expression}`;
   return url;
 };
 
@@ -87,7 +87,7 @@ export const getUnionSearchRequestURL = (
 ) => {
   let url = `${
     session ? session : "/scripts/mwimain.dll"
-  }?UNIONSEARCH&SIMPLE_EXP=Y&KEEP=Y&ERRMSG=[MESSAGES]374.htm&APPLICATION=${application}&language=144&REPORT=${report}&EXP=${expression}`;
+  }?UNIONSEARCH&SIMPLE_EXP=Y&ERRMSG=[MESSAGES]374.htm&APPLICATION=${application}&language=144&REPORT=${report}&EXP=${expression}`;
   return url;
 };
 
