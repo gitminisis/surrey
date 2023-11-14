@@ -30,13 +30,16 @@ const GeneralSearchBox = (props) => {
     placeholder,
     application,
   } = props;
-  const [index, setIndex] = React.useState(0);
   let database = deepSearch(xml, "database_name")[0];
+  let databaseIndex = databaseList.findIndex(e=>e.application === database)
+  const [index, setIndex] = React.useState(databaseIndex);
+
   let toSummary = backToSummary(xml);
   let session = deepSearch(xml, "session")[0];
   if (isSessionSearch()) {
     session = "/scripts/mwimain.dll";
   }
+  console.log(databaseList, database)
   return (
     <Item elevation={6} sx={{ padding: "16px" }} className="back-top-anchor">
       <div>
@@ -56,8 +59,8 @@ const GeneralSearchBox = (props) => {
                   i === breadcrumbs.length - 1
                     ? "none"
                     : toSummary
-                    ? "hover"
-                    : "none"
+                      ? "hover"
+                      : "none"
                 }
                 color={
                   i === breadcrumbs.length - 1 ? "text.primary" : "inherit"
@@ -88,11 +91,9 @@ const GeneralSearchBox = (props) => {
               action={session + databaseList[index].searchURL}
               onSubmit={(e) => {
                 e.preventDefault();
-                window.location = `${session}${
-                  databaseList[index].searchURL
-                }&EXP=KEYWORD_CL "${
-                  document.getElementById("simpleSearchCluster").value
-                }"`;
+                window.location = `${session}${databaseList[index].searchURL
+                  }&EXP=KEYWORD_CL "${document.getElementById("simpleSearchCluster").value
+                  }"`;
               }}
             >
               <Input
