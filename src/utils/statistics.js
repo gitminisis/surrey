@@ -11,7 +11,7 @@ export const getStatusReport = () => {
         const json = x2js.xml_str2json(xmlString);
         console.log(json);
         return data;
-        return json
+        // return json
     })
 
 }

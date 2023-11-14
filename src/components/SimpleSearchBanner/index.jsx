@@ -81,13 +81,6 @@ const Banner = (props) => {
                   method="POST"
                   component="form"
                   action={url}
-                  onSubmit={(e) => {
-                    // setBackdrop(true);
-                    e.preventDefault();
-                    window.location = `${url}&EXP=KEYWORD_CL "${
-                      document.getElementById("simpleSearchCluster").value
-                    }"`;
-                  }}
                   sx={{
                     display: "flex",
                     alignItems: "center",

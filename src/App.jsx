@@ -65,11 +65,11 @@ function App() {
     <CssVarsProvider theme={mergedTheme}>
       <GenericPage template={template} />
 
-      <Provider store={store}>
+      {/* <Provider store={store}>
         <BrowserRouter basename="/admin">
           <AppDashboard />
         </BrowserRouter>
-      </Provider>
+      </Provider> */}
       {/* <Router>
         <Suspense fallback={<Loading />}>
           <Routes>
