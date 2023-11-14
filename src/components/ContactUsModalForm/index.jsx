@@ -1,10 +1,8 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import PropTypes from "prop-types";
 import {
   Typography,
-  Divider,
   Box,
-  Grid,
   Button,
   Modal,
   ModalDialog,
@@ -15,17 +13,53 @@ import {
   Input,
   Textarea,
 } from "@mui/joy";
-import { deepSearch } from "../../utils/functions";
-import { getRecordPermalink } from "../../utils/record";
+import { deepSearch, sendEmail } from "../../utils/functions";
+import { getEmailPermalink, getRecordPermalink } from "../../utils/record";
+import { useSnackbar } from "notistack";
 const ContactUsModalForm = (props) => {
   let { xml, description } = props;
-
   let sisn = deepSearch(xml, "sisn")[0];
   let database = deepSearch(xml, "database_name")[0];
-  let recordURL = getRecordPermalink(sisn, database);
-  const DEFAULT_TEXT_BODY = `Record URL: ${recordURL} \n`;
+  let recordURL = getEmailPermalink(sisn, database);
+  let session = deepSearch(xml, "session")[0];
+  const { enqueueSnackbar } = useSnackbar();
+  const FORM_FIELD = [
+    {
+      label: "Full Name*",
+      id: "fullName",
+      title: "Full Name",
+    },
+    {
+      label: "Email Address*",
+      id: "emailAddress",
+      title: "Email Address",
+    },
+    {
+      label: "Phone Number*",
+      id: "phone",
+      title: "Phone Number",
+    },
+    {
+      label: "Subject*",
+      id: "subject",
+      title: "Subject",
+    },
+  ];
+  const DEFAULT_TEXT_BODY = `Record URL: "${recordURL}" \n`;
   const [open, setOpen] = useState(false);
   const [text, setText] = useState(DEFAULT_TEXT_BODY);
+  const [formValue, setFormValue] = useState(FORM_FIELD);
+
+  const handleInputChange = (value, id) => {
+    let newValue = formValue.map((e) => {
+      if (e.id === id) {
+        e.value = value;
+      }
+      return e;
+    });
+    setFormValue(newValue);
+  };
+
   return (
     <Box sx={{ display: "flex", flexDirection: "column", marginTop: 4 }}>
       <Typography
@@ -47,7 +81,7 @@ const ContactUsModalForm = (props) => {
         size="md"
         variant="outlined"
       >
-        Submit an Inquiry
+        Contact Us
       </Button>
 
       <Modal onClose={() => setOpen(false)} open={open} data-aos="fade-down">
@@ -71,26 +105,28 @@ const ContactUsModalForm = (props) => {
           <form
             onSubmit={(event) => {
               event.preventDefault();
-              setOpen(false);
+              sendEmail(session, formValue, text).then((res) => {
+                enqueueSnackbar(`Your request has been sent.`);
+
+                setOpen(false);
+              });
             }}
           >
             <Stack spacing={2}>
-              <FormControl>
-                <FormLabel>Full Name *</FormLabel>
-                <Input aria-label="Full Name" required />
-              </FormControl>
-              <FormControl>
-                <FormLabel>Email Address *</FormLabel>
-                <Input aria-label="Email Address" required />
-              </FormControl>
-              <FormControl>
-                <FormLabel>Phone Number</FormLabel>
-                <Input aria-label="Phone Number" required />
-              </FormControl>
-              <FormControl>
-                <FormLabel>Subject *</FormLabel>
-                <Input aria-label="Subject" required />
-              </FormControl>
+              {formValue.map((field, index) => (
+                <FormControl key={index}>
+                  <FormLabel>{field.label}</FormLabel>
+                  <Input
+                    onChange={(e) => {
+                      handleInputChange(e.target.value, field.id);
+                    }}
+                    id={field.id}
+                    aria-label={field.title}
+                    required
+                  />
+                </FormControl>
+              ))}
+
               <FormControl>
                 <FormLabel>Inquiry *</FormLabel>
                 <Textarea
@@ -117,6 +153,9 @@ const ContactUsModalForm = (props) => {
   );
 };
 
-ContactUsModalForm.propTypes = {};
+ContactUsModalForm.propTypes = {
+  xml: PropTypes.object,
+  description: PropTypes.string,
+};
 
 export default ContactUsModalForm;

@@ -25,6 +25,7 @@ const Section = (props) => {
     urlTitle,
     children,
     btnURL,
+    divider = true,
     btnTitle,
   } = props;
   const [windowDimensions, setWindowDimensions] = useState(
@@ -39,7 +40,7 @@ const Section = (props) => {
   }, []);
   return (
     <SectionContainer maxWidth={"true"} dimension={windowDimensions}>
-      <Divider />
+      {divider && <Divider />}
       <Container maxWidth={"xl"} data-aos="fade-up">
         <div>
           {heading && <SubHeading as="h2">{heading}</SubHeading>}
@@ -55,7 +56,7 @@ const Section = (props) => {
             {btnTitle}
           </ActionButton>
         )}
-        <Grid container spacing={2} sx={{ marginTop: "30px" }}>
+        <Grid container spacing={2} sx={{ margin: "0 auto", width: "100%" }}>
           {children}
         </Grid>
       </Container>
@@ -70,6 +71,7 @@ Section.propTypes = {
   urlTitle: PropTypes.string,
   btnURL: PropTypes.string,
   btnTitle: PropTypes.string,
+  divider: PropTypes.bool,
 };
 
 export default Section;

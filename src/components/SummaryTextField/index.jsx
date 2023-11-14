@@ -1,5 +1,3 @@
-import React from "react";
-import PropTypes from "prop-types";
 import { Typography } from "@mui/material";
 const index = (props) => {
   let { main, label, value, maxLength, recordLink } = props;
@@ -14,6 +12,7 @@ const index = (props) => {
         {...props}
         component="a"
         variant="h3"
+        href={recordLink}
         sx={{
           color: "primary.main",
           fontWeight: "bold",

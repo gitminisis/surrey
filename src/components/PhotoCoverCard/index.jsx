@@ -2,57 +2,64 @@ import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import {
   Grid,
-  CardActionArea,
   CardMedia,
   Card,
   CardActions,
   Typography,
-  Button,
   CardContent,
 } from "@mui/material";
-import AspectRatio from "@mui/joy/AspectRatio";
-import Box from "@mui/joy/Box";
-import LocationOnRoundedIcon from "@mui/icons-material/LocationOnRounded";
-import BookmarkAdd from "@mui/icons-material/BookmarkAddOutlined";
-import { getFeatureCollectionsFromIDs } from "../../utils/record";
-import { deepSearch } from "../../utils/functions";
+import {
+  getFeatureCollectionsFromIDs,
+  getSearchRequestURL,
+} from "../../utils/record";
+import { deepSearch, getCurrentSession } from "../../utils/functions";
 import Skeleton from "@mui/material/Skeleton";
 const PhotoCoverCard = (props) => {
   const { recordIds } = props;
-  const [xml, setXML] = useState([]);
   const [loading, setLoading] = useState(true);
   const [hover, setHover] = useState(false);
-  const [records, setRecords] = useState(new Array(4).fill(null));
+  const [records, setRecords] = useState(
+    new Array(recordIds.length).fill(null)
+  );
 
   useEffect(() => {
     if (recordIds.length === 0) {
       return null;
     }
-    getFeatureCollectionsFromIDs(recordIds).then((res) => {
-      console.log(res);
+    getFeatureCollectionsFromIDs(recordIds, getCurrentSession()).then((res) => {
       let rec = deepSearch(res, "record");
       if (!Array.isArray(rec)) {
         rec = [rec];
       }
-      console.log(rec);
       setRecords(rec);
-      setXML(res);
       setLoading(false);
     });
   }, []);
 
   return records.map((e, i) => {
-    let title, description, thumbnail;
+    let title, description, thumbnail, id;
+
     if (!loading) {
       title = deepSearch(e, "oef_title")[0];
       description = deepSearch(e, "oef_description")[0];
       thumbnail = deepSearch(e, "oef_image_path")[0].replace(/\n/, "");
+      id = deepSearch(e, "oef_ind")[0];
     }
 
     return (
-      <Grid item xs={12} md={6}>
+      <Grid item xs={12} md={6} key={i}>
         <Card
-          style={{ cursor: "pointer", paddingBottom: "20px" }}
+          className="photoCoverCard"
+          onClick={(_) =>
+            (window.location = getSearchRequestURL(
+              "ONLINE_EXHIBITION_VIEW",
+              `OEF_IND ${id}`,
+              "WEB_OE_UNION_SUM",
+              "UNION_VIEW",
+              getCurrentSession()
+            ))
+          }
+          style={{ cursor: "pointer", paddingBottom: "20px", margin: "0 auto" }}
           elevation={3}
         >
           {loading ? (
@@ -65,7 +72,12 @@ const PhotoCoverCard = (props) => {
               />
             </div>
           ) : (
-            <CardMedia sx={{ height: 400 }} image={thumbnail} title={title} />
+            <CardMedia
+             
+              sx={{ height: 400, backgroundSize: "contain" }}
+              image={thumbnail}
+              title={title}
+            />
           )}
 
           <CardContent>
@@ -81,7 +93,11 @@ const PhotoCoverCard = (props) => {
                 title
               )}
             </Typography>
-            <Typography variant="body1" color="text.primary">
+            <Typography
+              variant="body1"
+              color="text.primary"
+              sx={{ height: "80px" }}
+            >
               {loading ? (
                 <React.Fragment>
                   <Skeleton animation="wave" style={{ marginBottom: 6 }} />
@@ -93,14 +109,14 @@ const PhotoCoverCard = (props) => {
             </Typography>
           </CardContent>
           <CardActions>
-            <Button
+            {/* <Button
               style={{ margin: "0 auto" }}
               className="button"
               variant="contained"
               size="large"
             >
               Browse
-            </Button>
+            </Button> */}
           </CardActions>
         </Card>
       </Grid>

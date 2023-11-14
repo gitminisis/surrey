@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 import PropTypes from "prop-types";
-import { Grid, Drawer, Skeleton, Container } from "@mui/material";
+import { Grid,  Skeleton, Container } from "@mui/material";
 import {
   SummaryContainer,
   Main,
@@ -8,19 +8,26 @@ import {
   Item,
 } from "./SummaryBookmarkLayout.style";
 import GeneralSearchBox from "../GeneralSearchBox";
+import { Button } from "@mui/joy";
 import SummaryBookmarkSubHeader from "./SummaryBookmarkSubHeader";
 import { deepSearch, getKeyByValue, getXMLRecord } from "../../utils/functions";
 import {
   fetchJSONRecord,
   getFirstThumbnail,
   removeBookmarkFromKey,
+  getRecordTitle,
   removeBookmarkFromSISN,
 } from "../../utils/record";
 import GeneralSection from "../DetailLayout/GeneralSection";
 import BookmarkDetailAction from "./BookmarkDetailAction";
 import ImageCarousel from "../ImageCarousel";
 import { useSnackbar } from "notistack";
-
+import SummaryMasonryView from "../SummaryLayout/SummaryMasonryView";
+import SummaryRecordsView from "../SummaryLayout/SummaryRecordsView";
+import ReactToPrint from "react-to-print";
+import PrintIcon from "@mui/icons-material/Print";
+import EmailIcon from "@mui/icons-material/Email";
+import EmailBookmarkForm from "../EmailBookmarkForm";
 const BookmarkLoadingSkeleton = (props) => {
   return (
     <Item sx={{ padding: "16px" }} elevation={6}>
@@ -32,12 +39,16 @@ const BookmarkLoadingSkeleton = (props) => {
 };
 const SummaryBookmarkLayout = (props) => {
   const { enqueueSnackbar } = useSnackbar();
-  const { generalSearchBox, generalSection } = props;
+  const { generalSearchBox, generalSection, displayField, thumbnailData } =
+    props;
   const [showSidebar, setShowSidebar] = useState(true);
   const [xml, setXml] = useState(getXMLRecord());
   const [currentDetailXml, setCurrentDetailXml] = useState(null);
   const [bookmarkLoading, setBookmarkLoading] = useState(true);
   const [loadedDetailRecord, setLoadedDetailRecord] = useState(new Map());
+  const [open, setOpen] = useState(false);
+  const SummaryView = SummaryRecordsView;
+  let componentRef = useRef();
   useEffect((_) => {
     fetchRecord(0).then((res) => {
       updateLoadedDetailRecord(0, res);
@@ -53,7 +64,7 @@ const SummaryBookmarkLayout = (props) => {
       let thumbnail = getFirstThumbnail(record, database);
       return {
         thumbnail,
-        title: record.title,
+        title: getRecordTitle(record, database),
       };
     });
     return res;
@@ -109,6 +120,7 @@ const SummaryBookmarkLayout = (props) => {
   };
   return (
     <div>
+      <EmailBookmarkForm open={open} xml={xml} setOpen={setOpen} />
       <SummaryContainer
         elevation={2}
         sx={{ backgroundColor: "rgb(233, 232, 232,0.4)" }}
@@ -121,7 +133,7 @@ const SummaryBookmarkLayout = (props) => {
         ></Grid>
 
         <Grid item xs={12}>
-          <GeneralSearchBox {...generalSearchBox} />
+          <GeneralSearchBox {...generalSearchBox} xml={xml} />
         </Grid>
 
         <Grid container rowSpacing={2} style={{ marginTop: "1rem" }}>
@@ -130,7 +142,27 @@ const SummaryBookmarkLayout = (props) => {
               xml={xml}
               // toggleMobileFilter={toggleMobileFilter}
               // toggleSidebar={toggleSidebar}
-            />
+            >
+              <ReactToPrint
+                trigger={() => (
+                  <Button color="success" sx={{ mx: 1 }} variant="outlined">
+                    <PrintIcon /> Print all
+                  </Button>
+                )}
+                content={() => componentRef}
+              />
+
+              <Button
+                color="success"
+                sx={{ mx: 1 }}
+                variant="outlined"
+                onClick={(_) => {
+                  setOpen(true);
+                }}
+              >
+                <EmailIcon />
+              </Button>
+            </SummaryBookmarkSubHeader>
           </Grid>
 
           <Grid item xs={12}>
@@ -150,7 +182,17 @@ const SummaryBookmarkLayout = (props) => {
               />
             )}
           </Grid>
-
+          <div style={{ display: "none" }}>
+            {" "}
+            <Grid container item xs={12} ref={(el) => (componentRef = el)}>
+              <SummaryView
+                thumbnailData={thumbnailData}
+                data={displayField}
+                xml={xml}
+                updateXML={setXml}
+              />
+            </Grid>
+          </div>
           <Grid item xs={12}>
             <Container maxWidth={"true"}>
               <ImageCarousel

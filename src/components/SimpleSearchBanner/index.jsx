@@ -1,33 +1,19 @@
 import React, { useState, useEffect } from "react";
 import {
   BannerContainer,
-  BannerBox,
-  ShadowLayerBox,
-  BannerContent,
-  SearchBar,
-  InputSearch,
-  SubmitSearch,
   SiteHeading,
   SiteDescription,
   HoverLink,
 } from "./SimpleSearchBanner.style";
-import {
-  Typography,
-  Button,
-  Grid,
-  Paper,
-  InputBase,
-  IconButton,
-  Container,
-} from "@mui/material";
-import SearchIcon from "@mui/icons-material/Search";
+import { Button, Grid, Paper, InputBase, Container } from "@mui/material";
 import PropTypes from "prop-types";
 import CollapseSearchFilter from "../AdvancedSearchBanner/CollapseSearchFilter";
 
-import MobileStepper from "@mui/material/MobileStepper";
 import KeyboardDoubleArrowUpIcon from "@mui/icons-material/KeyboardDoubleArrowUp";
 import KeyboardDoubleArrowDownIcon from "@mui/icons-material/KeyboardDoubleArrowDown";
-
+import LayoutBackdrop from "../LayoutBackdrop";
+import { readCookie } from "../../utils/functions";
+import BannerSlide from "./BannerSlide";
 const Banner = (props) => {
   const {
     bannerURL,
@@ -41,6 +27,10 @@ const Banner = (props) => {
   } = props;
   const [show, setShow] = useState(false);
   const [activeStep, setActiveStep] = React.useState(0);
+  const [backdrop, setBackdrop] = useState(false);
+  const url = readCookie("HOME_SESSID")
+    ? readCookie("HOME_SESSID") + searchURL.replace("/scripts/mwimain.dll", "")
+    : searchURL;
   useEffect(() => {
     const interval = setInterval(() => {
       setActiveStep((prev) => {
@@ -49,32 +39,37 @@ const Banner = (props) => {
         }
         return prev + 1;
       });
-    }, 5000);
+    }, 10000);
 
     return () => clearInterval(interval);
   }, []);
   return (
     <>
+      <LayoutBackdrop open={backdrop} />
       <BannerContainer
         style={{ padding: "0 0" }}
         maxWidth={"true"}
         className="bannerContainer back-top-anchor"
         banner={bannerCarousel[activeStep]}
       >
-        <ShadowLayerBox banner={bannerCarousel[activeStep]} />
+        <BannerSlide banner={bannerCarousel} />
         <Container
           maxWidth={false}
           style={{
             width: "100%",
             height: "100%",
-            paddingTop: "25%",
+            paddingTop: "20%",
             margin: "0 0",
             background: "rgb(0, 0, 0, 0.4)",
             zIndex: "4",
           }}
         >
           <Grid container spacing={2} data-aos="fade-down">
-            <Grid item sm={12}>
+            <Grid
+              item
+              sm={12}
+              style={{ width: "100%", maxWidth: "1200px", margin: "0 auto" }}
+            >
               <SiteHeading variant="h1">{heading}</SiteHeading>
               <SiteDescription variant="p">{description}</SiteDescription>
             </Grid>
@@ -85,7 +80,14 @@ const Banner = (props) => {
                 <Paper
                   method="POST"
                   component="form"
-                  action={searchURL}
+                  action={url}
+                  onSubmit={(e) => {
+                    // setBackdrop(true);
+                    e.preventDefault();
+                    window.location = `${url}&EXP=KEYWORD_CL "${
+                      document.getElementById("simpleSearchCluster").value
+                    }"`;
+                  }}
                   sx={{
                     display: "flex",
                     alignItems: "center",
@@ -97,6 +99,7 @@ const Banner = (props) => {
                   }}
                 >
                   <InputBase
+                    id="simpleSearchCluster"
                     name="KEYWORD_CL"
                     style={{ height: "55px", fontSize: "1.2rem" }}
                     sx={{ ml: 1, flex: 1 }}
@@ -132,7 +135,7 @@ const Banner = (props) => {
             }}
           >
             {collapseSearchFilter.data.description}
-            <br />{" "}
+            <br />
             <span>
               {!show ? (
                 <KeyboardDoubleArrowDownIcon />
@@ -143,21 +146,7 @@ const Banner = (props) => {
           </HoverLink>
         )}
       </BannerContainer>
-      <MobileStepper
-        variant="dots"
-        steps={bannerCarousel.length}
-        position="static"
-        activeStep={activeStep}
-        sx={{
-          textAlign: "center",
-          margin: "0 auto",
-          position: "absolute",
-          bottom: 0,
-          color: "white",
-          right: "0",
-          backgroundColor: "rgba(0, 0, 0, 0.4)",
-        }}
-      />
+
       {collapseSearchFilter && (
         <CollapseSearchFilter show={show} {...collapseSearchFilter.data} />
       )}

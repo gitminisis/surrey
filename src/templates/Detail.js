@@ -5,8 +5,11 @@ import {
   COLLECTIONS_OVERVIEW_DETAIL_FIELD,
   COLLECTIONS_CHENHALL_DETAIL_FIELD,
   GENERAL_SEARCHBOX_DBLIST,
-} from "./DisplayFields";
+} from "./API";
 
+import detailJson from "../templates/json/detail-fields.json";
+import { jsonToFields } from "../utils/functions";
+let displayFields = jsonToFields(detailJson);
 const Detail = [
   {
     component: "Layout",
@@ -15,8 +18,10 @@ const Detail = [
         component: "DetailLayout",
         data: {
           generalSearchBox: {
+            application: "UNION_VIEW",
             breadcrumbs: ["Summary", "Detail"],
             heading: "Search the collections",
+            placeholder: "Search By Keyword",
             databaseList: GENERAL_SEARCHBOX_DBLIST,
             helpText: {
               link: "/faq.html",
@@ -25,16 +30,7 @@ const Detail = [
             },
           },
           generalSection: {
-            displayFields: [
-              {
-                database: "COLLECTIONS",
-                fields: COLLECTIONS_GENERAL_DETAIL_FIELD,
-              },
-              {
-                database: "DESCRIPTION",
-                fields: DESCRIPTION_GENERAL_DETAIL_FIELD,
-              },
-            ],
+            displayFields: [...displayFields],
             children: [
               {
                 component: "DescriptionTree",
@@ -46,8 +42,9 @@ const Detail = [
               {
                 component: "ContactUsModalForm",
                 data: {
+                  displayDatabase: ["DESCRIPTION", "COLLECTIONS"],
                   description:
-                    "We're always looking to improve our records. If you have information about a record or think we've made a mistake, contact us.",
+                    "We’re always looking to improve our records. If you have information about a record or think we’ve made a mistake, contact us. You can also order a copy of the record by clicking the button below.",
                 },
               },
             ],
@@ -80,7 +77,6 @@ const Detail = [
           },
         },
       },
-    
     ],
   },
 ];

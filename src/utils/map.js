@@ -1,5 +1,4 @@
 import { MAP } from "../assets/maps/surrey";
-import _ from "lodash";
 
 export const getMap = () => {
 //   MAP.features = MAP.features.map((e) => {

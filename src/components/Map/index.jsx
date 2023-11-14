@@ -9,18 +9,14 @@ import {
   Polygon,
 } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
-import L from "leaflet";
 import { getMap } from "../../utils/map";
-
+import { Link, Typography } from "@mui/material";
+import {
+  getSearchRequestURL,
+  getUnionSearchRequestURL,
+} from "../../utils/record";
+import { getCurrentSession } from "../../utils/functions";
 const position = [49.110918, -122.778992];
-var myIcon = L.icon({
-  iconSize: [25, 41],
-  iconAnchor: [10, 41],
-  popupAnchor: [2, -40],
-  // specify the path here
-  iconUrl: "https://unpkg.com/leaflet@1.5.1/dist/images/marker-icon.png",
-  shadowUrl: "https://unpkg.com/leaflet@1.5.1/dist/images/marker-shadow.png",
-});
 
 const Map = () => {
   const COLOR = "red"; // Credited to Trang Vo
@@ -36,10 +32,22 @@ const Map = () => {
         scrollWheelZoom={false}
       >
         {map.features.map((el) => {
+          let place = el.properties.name;
           return (
             <>
               <Polygon color={COLOR} positions={el.geometry.coordinates[0]}>
-                <Popup>{el.properties.name}</Popup>
+                <Popup style={{ textAlign: "center" }}>
+                  <Typography variant="h5" as="p">
+                    {place}
+                  </Typography>
+                  <Link
+                    href={getUnionSearchRequestURL(
+                      `INDEXGEO ${place} or PLACE_ASSOC_NAME ${place} or AP_DISTRICT ${place}`
+                    )}
+                  >
+                    Explore area
+                  </Link>
+                </Popup>
               </Polygon>
             </>
           );

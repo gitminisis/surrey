@@ -14,19 +14,26 @@ import PropTypes from "prop-types";
 import SummaryRecordAction from "./SummaryRecordAction";
 import RecordTextField from "../RecordTextField";
 const SummaryRecordsView = (props) => {
-  const { data, thumbnailData, xml, updateXML } = props;
-
+  const { data, thumbnailData, xml, updateXML, recordAction = true } = props;
+  let XMLRecord = deepSearch(xml, "xml_record")[0];
+  if (!Array.isArray(XMLRecord)) {
+    XMLRecord = [XMLRecord];
+  }
   return (
     <>
-      {xml.xml.xml_record.map((record, i) => {
+      {XMLRecord.map((record, i) => {
         let database = record.database_name;
+        if (!record.record_link) {
+          return null;
+        }
         let recordLink = record.record_link.replace(/\n/g, "");
+
         let recordData = record.record;
         let displayFields = data.find((e) => e.database === database).fields;
         let thumbPic = getFirstThumbnail(record, database);
         let sisn = deepSearch(recordData, "sisn")[0];
         let captions = getAllImageCaptions(record);
-        let firstCaption = captions.length > 0 ? captions[0] : sisn;
+        let firstCaption = captions.length > 0 ? captions[0] : "";
         let bookmarkURL = deepSearch(xml, "bookmark_url")[0];
         let isBookmarked = deepSearch(record, "is_bookmarked")[0];
 
@@ -43,18 +50,21 @@ const SummaryRecordsView = (props) => {
               >
                 <Box sx={{ display: "flex" }}>
                   {thumbPic && (
-                    <CardMedia
-                      onClick={(_) => (window.location = recordLink)}
-                      component="img"
-                      sx={{
-                        margin: "0 0",
-                        width: "25vw",
-                        maxWidth: "200px",
-                        cursor: "pointer",
-                      }}
-                      image={thumbPic}
-                      alt={firstCaption}
-                    />
+                    <Typography component="a" href={recordLink}>
+                      <CardMedia
+                        onClick={(_) => (window.location = recordLink)}
+                        component="img"
+                        sx={{
+                          margin: "0 0",
+                          width: "25vw",
+                          maxWidth: "200px",
+                          cursor: "pointer",
+                          // height: "100%",
+                        }}
+                        image={thumbPic}
+                        alt={firstCaption}
+                      />
+                    </Typography>
                   )}
                 </Box>
 
@@ -81,18 +91,20 @@ const SummaryRecordsView = (props) => {
                       alignItems: "center",
                       pl: 1,
                       pb: 1,
-                      position: "absolute",
+                      position: { xs: "inherit", lg: "absolute" },
                       top: "16px",
                       right: "16px",
                     }}
                   >
-                    <SummaryRecordAction
-                      database={database}
-                      sisn={sisn}
-                      url={bookmarkURL}
-                      updateXML={updateXML}
-                      isBookmarked={isBookmarked}
-                    />
+                    {recordAction && (
+                      <SummaryRecordAction
+                        database={database}
+                        sisn={sisn}
+                        url={bookmarkURL}
+                        updateXML={updateXML}
+                        isBookmarked={isBookmarked}
+                      />
+                    )}
                   </Box>
                 </Box>
               </Card>
@@ -106,6 +118,7 @@ const SummaryRecordsView = (props) => {
 SummaryRecordsView.propTypes = {
   data: PropTypes.array,
   isGrid: PropTypes.bool,
+  recordAction: PropTypes.bool,
 };
 
 export default SummaryRecordsView;

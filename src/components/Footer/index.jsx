@@ -1,12 +1,9 @@
-import React from "react";
 import {
   Typography,
   Link,
   Box,
   Container,
   Grid,
-  List,
-  ListItem,
   Divider,
 } from "@mui/material";
 import { PropTypes } from "prop-types";
@@ -113,7 +110,17 @@ const Footer = (props) => {
           </Grid>
         </Grid>
         <Divider flexItem sx={{ marginTop: "40px", marginBottom: "20px" }} />
-
+        <Typography
+          variant="h6"
+          component="div"
+          style={{ textAlign: "center", color: "white" }}
+        >
+          Learn more about {" "}
+          <Link color="inherit" variant="h6" component="a" href={"https://www.surrey.ca/arts-culture/heritage"}>
+          Heritage in Surrey
+          </Link>
+         
+        </Typography>
         <Copyright url={baseURL} copyrightURL={baseURL} siteName={siteName} />
       </Container>
     </Box>

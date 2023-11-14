@@ -2,3 +2,12 @@ dist/
 node_modules/
 scripts/
 package-lock.json
+**/images/
+src/assets/images/
+.env
+web.config
+assets/images/
+
+aspnet_client/
+
+# pnpm-lock.yaml

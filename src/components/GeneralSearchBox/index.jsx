@@ -1,24 +1,19 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Input from "@mui/joy/Input";
-import Chip from "@mui/joy/Chip";
 import SearchIcon from "@mui/icons-material/Search";
 import {
   Breadcrumbs,
   Link,
   Paper,
-  InputBase,
   Button,
-  Stack,
   Grid,
   Typography,
 } from "@mui/material";
 import { styled } from "@mui/material/styles";
-import Select from "@mui/joy/Select";
-import Option from "@mui/joy/Option";
-import Divider from "@mui/joy/Divider";
+import { Select, Option, Divider, Input } from "@mui/joy";
+
 import { backToSummary } from "../../utils/record";
-import { deepSearch } from "../../utils/functions";
+import { deepSearch, isSessionSearch } from "../../utils/functions";
 export const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
   padding: theme.spacing(1),
@@ -26,12 +21,25 @@ export const Item = styled(Paper)(({ theme }) => ({
 }));
 
 const GeneralSearchBox = (props) => {
-  const { breadcrumbs, heading, helpText, databaseList, xml } = props;
-  const [index, setIndex] = React.useState(0);
+  const {
+    breadcrumbs,
+    heading,
+    helpText,
+    databaseList,
+    xml,
+    placeholder,
+    application,
+  } = props;
   let database = deepSearch(xml, "database_name")[0];
+  let databaseIndex = databaseList.findIndex(e=>e.application === database)
+  const [index, setIndex] = React.useState(databaseIndex);
+
   let toSummary = backToSummary(xml);
   let session = deepSearch(xml, "session")[0];
-  console.log(session);
+  if (isSessionSearch()) {
+    session = "/scripts/mwimain.dll";
+  }
+  console.log(databaseList, database)
   return (
     <Item elevation={6} sx={{ padding: "16px" }} className="back-top-anchor">
       <div>
@@ -39,18 +47,31 @@ const GeneralSearchBox = (props) => {
           <Link underline="hover" color="inherit" variant="h6" href="/">
             Home
           </Link>
-          {breadcrumbs.map((e, i) => (
-            <Link
-              key={`breadcrum-link-${i}`}
-              variant="h6"
-              underline={i === breadcrumbs.length - 1 ? "none" : "hover"}
-              color={i === breadcrumbs.length - 1 ? "text.primary" : "inherit"}
-              href={i === 0 && breadcrumbs.length > 1 ? toSummary : "#"}
-              aria-current={`${e} page`}
-            >
-              {e}
-            </Link>
-          ))}
+          {breadcrumbs.map((e, i) => {
+            if (!toSummary && e === "Summary") {
+              return null;
+            }
+            return (
+              <Link
+                key={`breadcrumb-link-${i}`}
+                variant="h6"
+                underline={
+                  i === breadcrumbs.length - 1
+                    ? "none"
+                    : toSummary
+                      ? "hover"
+                      : "none"
+                }
+                color={
+                  i === breadcrumbs.length - 1 ? "text.primary" : "inherit"
+                }
+                href={i === 0 && breadcrumbs.length > 1 ? toSummary : "#"}
+                aria-current={`${e} page`}
+              >
+                {e}
+              </Link>
+            );
+          })}
         </Breadcrumbs>
 
         <Grid
@@ -66,24 +87,41 @@ const GeneralSearchBox = (props) => {
           </Grid>{" "}
           <Grid item xs={12} md={12}>
             <form
-              method="POST"
+              method="GET"
               action={session + databaseList[index].searchURL}
+              onSubmit={(e) => {
+                e.preventDefault();
+                window.location = `${session}${databaseList[index].searchURL
+                  }&EXP=KEYWORD_CL "${document.getElementById("simpleSearchCluster").value
+                  }"`;
+              }}
             >
               <Input
+                id="simpleSearchCluster"
                 variant="soft"
-                placeholder="Search…"
+                sx={{ px: 0 }}
+                placeholder={placeholder}
                 name="KEYWORD_CL"
-                startDecorator={<SearchIcon />}
                 endDecorator={
-                  <React.Fragment>
+                  <>
+                    {" "}
                     <Divider orientation="vertical" />
+                    <Button disableRipple type="submit">
+                      <SearchIcon />
+                    </Button>
+                  </>
+                }
+                startDecorator={
+                  <React.Fragment>
                     <Select
                       variant="plain"
-                      value={index}
+                      defaultValue={databaseList.findIndex((e) => {
+                        return e.application === application;
+                      })}
                       onChange={(e, value) => {
                         setIndex(Number.parseInt(value));
                       }}
-                      sx={{ bgcolor: "transparent", width: 130 }}
+                      sx={{ bgcolor: "transparent" }}
                     >
                       {databaseList.map((e, i) => (
                         <Option value={i} key={`GeneralSearchBoxLink-${i}`}>
@@ -97,13 +135,9 @@ const GeneralSearchBox = (props) => {
             </form>
           </Grid>
           <Grid item xs={12} style={{ textAlign: "center", marginTop: "20px" }}>
-            <a
-              variant="a"
-              href={helpText.link}
-              className="generalSearchBoxLink"
-            >
+            <Link href={helpText.link} className="generalSearchBoxLink">
               {helpText.description}
-            </a>
+            </Link>
           </Grid>
         </Grid>
       </div>

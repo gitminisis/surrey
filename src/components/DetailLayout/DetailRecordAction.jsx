@@ -1,5 +1,3 @@
-import React, { useState } from "react";
-import PropTypes from "prop-types";
 import IconButton from "@mui/joy/IconButton";
 import BookmarkAdd from "@mui/icons-material/BookmarkAddOutlined";
 import LinkIcon from "@mui/icons-material/Link";
@@ -30,7 +28,7 @@ const DetailRecordAction = (props) => {
   let previous = previousRecordURL(xml);
   let toSummary = backToSummary(xml);
   return (
-    <>
+    <div className="recordAction">
       <Tooltip title="Previous Record">
         <IconButton
           disabled={!previous}
@@ -154,7 +152,7 @@ const DetailRecordAction = (props) => {
           <ArrowForwardIcon />
         </IconButton>
       </Tooltip>
-    </>
+    </div>
   );
 };
 

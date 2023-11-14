@@ -3,7 +3,7 @@ import {
   DESCRIPTION_SUMMARY_FIELD,
   MEDIA_THUMBNAIL_FIELD,
   GENERAL_SEARCHBOX_DBLIST,
-} from "./DisplayFields";
+} from "./API";
 
 const Summary = [
   {
@@ -14,8 +14,10 @@ const Summary = [
         data: {
           application: "UNION_VIEW",
           generalSearchBox: {
+            application: "UNION_VIEW",
             breadcrumbs: ["Summary"],
             heading: "Search the collections",
+            placeholder: "Search By Keyword",
             databaseList: GENERAL_SEARCHBOX_DBLIST,
             helpText: {
               link: "/faq.html",
@@ -25,6 +27,7 @@ const Summary = [
           },
           sortOptions: true,
           filter: [],
+          defaultView: "list",
           thumbnailData: MEDIA_THUMBNAIL_FIELD,
           displayField: [
             {

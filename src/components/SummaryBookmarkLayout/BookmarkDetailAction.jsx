@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import IconButton from "@mui/joy/IconButton";
-import BookmarkAdd from "@mui/icons-material/BookmarkAddOutlined";
 import LinkIcon from "@mui/icons-material/Link";
 import {
   bookmarkRecord,
@@ -15,8 +14,6 @@ import { useSnackbar } from "notistack";
 import { printPage, deepSearch } from "../../utils/functions";
 import PrintIcon from "@mui/icons-material/Print";
 import { Tooltip } from "@mui/material";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import BookmarkRemoveIcon from "@mui/icons-material/BookmarkRemove";
 import PreviewIcon from "@mui/icons-material/Preview";
 const BookmarkDetailAction = (props) => {
@@ -31,7 +28,7 @@ const BookmarkDetailAction = (props) => {
   let toSummary = backToSummary(xml);
 
   return (
-    <>
+    <div className="recordAction">
       <Tooltip title="Remove from bookmark">
         <IconButton
           aria-label="remove from bookmark"
@@ -70,7 +67,7 @@ const BookmarkDetailAction = (props) => {
           color="primary"
           size={size || "md"}
           onClick={(_) => {
-            window.open = recordLink;
+            window.open(recordLink);
           }}
         >
           <PreviewIcon />
@@ -90,7 +87,7 @@ const BookmarkDetailAction = (props) => {
           <PrintIcon />
         </IconButton>
       </Tooltip>
-    </>
+    </div>
   );
 };
 

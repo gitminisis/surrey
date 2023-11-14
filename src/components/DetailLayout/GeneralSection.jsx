@@ -1,14 +1,12 @@
-import React from "react";
 import PropTypes from "prop-types";
 import { Item } from "./DetailLayout.style";
-import { Box, Typography, Grid, ButtonBase, Container } from "@mui/material";
+import { Box, Typography, Grid, Container } from "@mui/material";
 import { deepSearch, getXMLRecord } from "../../utils/functions";
 import GeneralDetailTextField from "./GeneralDetailTextField";
 import RecordTextField from "../RecordTextField";
 import ImageGallerySlide from "../ImageGallerySlide";
 import { getAllMedia, getAllImageCaptions } from "../../utils/record";
 import DetailRecordAction from "./DetailRecordAction";
-import Button from "@mui/joy/Button";
 import ImageNotSupportedIcon from "@mui/icons-material/ImageNotSupported";
 import Component from "../Component";
 const GeneralSection = (props) => {
@@ -95,17 +93,25 @@ const GeneralSection = (props) => {
                 />
                 {children &&
                   children.map((e) => {
+                    if (!e.data.displayDatabase.includes(database)) {
+                      return;
+                    }
                     if (e.component === "DescriptionTree") {
                       let isDisplayed =
                         showTree && e.data.displayDatabase.includes(database);
                       e.data.showTree = isDisplayed;
+                    }
+
+                    if (e.component === "MediaCard") {
+                      let ids = deepSearch(xml, "m3_oef_id")[0]
+                      e.data.recordIds = Array.isArray(ids) ? ids : [ids];
                     }
                     e.data ? (e.data.xml = xml) : (e.data = { ...xml });
                     return Component(e);
                   })}
               </Grid>
 
-              <Grid item>
+              <Grid xs>
                 {!recordAction ? (
                   <DetailRecordAction
                     size="lg"

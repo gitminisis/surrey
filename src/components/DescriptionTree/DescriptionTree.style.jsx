@@ -1,10 +1,8 @@
-import React from "react";
-import TreeItem, { treeItemClasses } from "@mui/lab/TreeItem";
+// import TreeItem, { treeItemClasses } from "@mui/lab/TreeItem";
+import { TreeItem } from "@mui/x-tree-view";
 import MuiAccordion from "@mui/material/Accordion";
 import MuiAccordionSummary from "@mui/material/AccordionSummary";
 import MuiAccordionDetails from "@mui/material/AccordionDetails";
-import Typography from "@mui/joy/Typography";
-import ArrowForwardIosSharpIcon from "@mui/icons-material/ArrowForwardIosSharp";
 import Collapse from "@mui/material/Collapse";
 import { useSpring, animated } from "@react-spring/web";
 import { alpha, styled } from "@mui/material/styles";
@@ -76,12 +74,12 @@ TransitionComponent.propTypes = {
 export const StyledTreeItem = styled((props) => (
   <TreeItem {...props} TransitionComponent={TransitionComponent} />
 ))(({ theme }) => ({
-  [`& .${treeItemClasses.iconContainer}`]: {
+  [`& .iconContainer`]: {
     "& .close": {
       opacity: 0.3,
     },
   },
-  [`& .${treeItemClasses.group}`]: {
+  [`& .group`]: {
     marginLeft: 15,
     paddingLeft: 18,
     borderLeft: `1px dashed ${alpha(theme.palette.text.primary, 0.4)}`,

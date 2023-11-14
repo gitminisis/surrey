@@ -12,14 +12,14 @@ const SummaryRecordAction = (props) => {
   const { enqueueSnackbar } = useSnackbar();
   const { database, url, sisn, updateXML, isBookmarked, size } = props;
   return (
-    <>
+    <div >
       <IconButton
         aria-label="bookmark"
         variant={isBookmarked === "true" ? "soft" : "plain"}
         color="primary"
         size={size || "md"}
         onClick={(_) => {
-        if (isBookmarked === "true") {
+          if (isBookmarked === "true") {
             enqueueSnackbar("This record has already been bookmarked");
             return;
           }
@@ -58,7 +58,7 @@ const SummaryRecordAction = (props) => {
           <LinkIcon />
         </Tooltip>
       </IconButton>
-    </>
+    </div>
   );
 };
 

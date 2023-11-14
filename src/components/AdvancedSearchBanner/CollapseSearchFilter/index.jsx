@@ -9,15 +9,16 @@ import {
   Grid,
   Chip,
   Divider,
-  Button,
 } from "@mui/material";
 import {
   getIndexList,
   xmlStrToJson,
   deepSearch,
   buildExpressionFromMap,
+  getMoreIndexList,
+  getAllIndexList,
 } from "../../../utils/functions";
-import { sendSearchRequest } from "../../../utils/record";
+import { getSearchRequestURL } from "../../../utils/record";
 const CollapseSearchFilter = (props) => {
   let { show, data, description, database } = props;
   const [expression, setExpression] = useState({});
@@ -27,7 +28,7 @@ const CollapseSearchFilter = (props) => {
   };
   const submitForm = () => {
     let exp = buildExpressionFromMap(expression);
-    window.location = sendSearchRequest(database, exp);
+    window.location = getSearchRequestURL(database, exp);
   };
 
   return (
@@ -38,12 +39,22 @@ const CollapseSearchFilter = (props) => {
             <Grid container spacing={2}>
               {data.map((e, i) => (
                 <Grid item xs={12} sm={6} xl={3} key={`Autocomplete-${i}`}>
-                  <AutocompleteDropdown
-                    updateInput={updateInput}
-                    database={database}
-                    field={e.field}
-                    label={e.title}
-                  />
+                  {e.dropdown ? (
+                    <AutocompleteDropdown
+                      updateInput={updateInput}
+                      database={database}
+                      defaultList={e.defaultList}
+                      field={e.field}
+                      label={e.title}
+                    />
+                  ) : (
+                    <InputField
+                      updateInput={updateInput}
+                      database={database}
+                      field={e.field}
+                      label={e.title}
+                    />
+                  )}
                 </Grid>
               ))}
             </Grid>
@@ -63,43 +74,55 @@ const CollapseSearchFilter = (props) => {
   );
 };
 
+const InputField = (props) => {
+  const { field, label, database, updateInput } = props;
+  return (
+    <TextField
+      style={{ width: "100%" }}
+      onChange={(e) => updateInput(field, e.target.value)}
+      variant="outlined"
+      name={field}
+      label={label}
+    />
+  );
+};
+
 const AutocompleteDropdown = (props) => {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
-  const [items, setItems] = useState([]);
-  const { field, label, database, updateInput } = props;
+  const [curNext, setCurNext] = useState("");
+  const { field, label, database, updateInput, defaultList } = props;
+  const [items, setItems] = useState(defaultList || []);
+
+  const [value, setValue] = useState("");
   useEffect(() => {
-    getIndexList(field, database).then(
-      (result) => {
-        let { data } = result;
-        let jsonData = xmlStrToJson(data);
-        setIsLoaded(true);
-
-        let options = deepSearch(jsonData, "option")[0];
-        if (!options) {
-          return;
+    if (!defaultList) {
+      getAllIndexList(field, database).then(
+        (res) => {
+          setItems(res);
+          setIsLoaded(true);
+        },
+        (error) => {
+          setIsLoaded(true);
+          setError(error);
         }
-        setItems(options);
-      },
-
-      (error) => {
-        setIsLoaded(true);
-        setError(error);
-      }
-    );
+      );
+    }
   }, []);
+
   return (
     <Autocomplete
       disablePortal
-      onChange={(e, v) => updateInput(field, v)}
+      freeSolo
+      loading={!isLoaded}
+      autoHighlight
+      onChange={(e, v) => {
+        updateInput(field, v);
+        setValue(v);
+      }}
       options={items}
       renderInput={(params) => (
-        <TextField
-          onChange={(e) => updateInput(field, e.target.value)}
-          name={field}
-          {...params}
-          label={label}
-        />
+        <TextField name={field} {...params} label={label} />
       )}
     />
   );

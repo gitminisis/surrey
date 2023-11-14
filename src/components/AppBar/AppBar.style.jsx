@@ -27,7 +27,8 @@ export const AppbarLogoBox = styled(Link)((_) => ({
 }));
 
 export const AppbarLogo = styled(Box)(() => ({
-  maxWidth: "250px",
+  width: "5rem",
+  maxWidth: "150px",
   marginRight: "10px",
 }));
 

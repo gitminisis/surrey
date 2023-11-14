@@ -4,37 +4,32 @@ import { Item } from "./SummaryLayout.style";
 import {
   Divider,
   Typography,
-  FormGroup,
-  FormControlLabel,
-  ListItemButton,
   ListItemText,
   MenuList,
   MenuItem,
-  ListItemIcon,
+  Accordion,
+  AccordionSummary,
+  AccordionDetails,
   Badge,
-  Collapse,
 } from "@mui/material";
-import Box from "@mui/joy/Box";
-import Select from "@mui/joy/Select";
-import Option from "@mui/joy/Option";
-import { deepSearch, printPage } from "../../utils/functions";
+import { Box, Select, Option, Checkbox, List, ListItem } from "@mui/joy";
+
+import { deepSearch, printPage,sanitizeFilterURL } from "../../utils/functions";
 import {
+  FILTER_TITLE_BY_FIELD,
   bookmarkAllRecord,
   getNumberOfRecords,
   getRecordsPerPageURL,
   viewBookmark,
 } from "../../utils/record";
-import Button from "@mui/joy/Button";
-import Checkbox from "@mui/joy/Checkbox";
-import List from "@mui/joy/List";
-import ListItem from "@mui/joy/ListItem";
-import ExpandLess from "@mui/icons-material/ExpandLess";
+
 import ExpandMore from "@mui/icons-material/ExpandMore";
 import { useSnackbar } from "notistack";
-import { getXMLFilter } from "../../utils/functions";
 import { getSortReportURL } from "../../utils/record";
+
 const FieldFilter = (props) => {
-  const { data, index } = props;
+  const { data, index, application, handleFilter, selectedValues } = props;
+  console.log(application)
   const [open, setOpen] = React.useState(index === 0);
 
   const handleClick = () => {
@@ -43,38 +38,37 @@ const FieldFilter = (props) => {
   const { item_group } = data;
   const itemGroups = Array.isArray(item_group) ? item_group : [item_group];
   return (
-    <List
-      variant="outlined"
-      sx={{
-        maxHeight: "400px",
-        overflowY: "scroll",
-        overflowX: "hidden",
-        margin: "4px 4px",
-        border: "none",
-      }}
-    >
-      <ListItemButton
-        onClick={handleClick}
-        sx={{ backgroundColor: "rgb(233,233,233,0.5)" }}
+    <Accordion defaultExpanded={index === 0} disableGutters>
+      <AccordionSummary
+        expandIcon={<ExpandMore />}
+        aria-controls={data._name}
+        id={data._name}
       >
-        <ListItemText primary={data._name} />
-        {open ? <ExpandLess /> : <ExpandMore />}
-      </ListItemButton>
-
-      <Collapse in={open}>
+        <Typography>{FILTER_TITLE_BY_FIELD[data._name]}</Typography>
+      </AccordionSummary>
+      <AccordionDetails>
         <List>
           {itemGroups.map((item, i) => {
-            let itemSelected = deepSearch(item, "item_selected")[0];
+            if (item.item_value === "ONLINE_EXHIBITION_VIEW") {
+              return null;
+            }
+            if (item.item_value === "COLLECTIONS") {
+              item.item_value = "Artifact";
+            }
+            if (item.item_value === "DESCRIPTION") {
+              item.item_value = "Archives";
+            }
             return (
               <ListItem key={`ListItemFilter-${i}`} sx={{}}>
                 <Checkbox
-                  defaultChecked={itemSelected === "Y"}
+                  checked={item.item_selected && item.item_selected.toString() === "Y"}
                   label={item.item_value}
                   overlay
-                  sx={{ color: "inherit" }}
-                  onChange={(_) =>
-                    (window.location = item.item_link.toString())
-                  }
+                  sx={{ color: "inherit", textAlign: "left" }}
+                  onChange={(e) => {
+                    window.location =
+                      sanitizeFilterURL(item.item_link.toString(), application)
+                  }}
                 />
                 <Typography sx={{ ml: "auto" }}>
                   {item.item_frequency}
@@ -83,8 +77,8 @@ const FieldFilter = (props) => {
             );
           })}
         </List>
-      </Collapse>
-    </List>
+      </AccordionDetails>
+    </Accordion>
   );
 };
 const SummaryFilter = (props) => {
@@ -98,17 +92,19 @@ const SummaryFilter = (props) => {
   const sortSelectHandler = (e, v) => {
     let url = getSortReportURL(xml, application, v);
     window.location = url;
-    // console.log(url);
   };
+
   return (
     <Item
       elevation={0}
       sx={{
         height: "auto",
+        maxHeight: "100vh",
         overflowY: "scroll",
         overflowX: "hidden",
         px: "10px",
-        py: 2,
+        paddingTop: "16px",
+        paddingBottom: "150px",
         textAlign: "center",
       }}
     >
@@ -148,7 +144,6 @@ const SummaryFilter = (props) => {
           <TextBox>Sort by</TextBox>
           <Select
             placeholder="Select a sort"
-            defaultValue="default"
             className="filterSelect"
             onChange={sortSelectHandler}
           >
@@ -179,9 +174,15 @@ const SummaryFilter = (props) => {
 
       {filter !== undefined && filter.length > 0 && (
         <>
-          <TextBox>Filter by</TextBox>{" "}
+          <TextBox>Filter by</TextBox>
+
           {filter.map((item, i) => (
-            <FieldFilter key={`FieldFilter-${i}`} data={item} index={i} />
+            <FieldFilter
+              application={application}
+              key={`FieldFilter-${i}`}
+              data={item}
+              index={i}
+            />
           ))}
         </>
       )}
@@ -207,5 +208,10 @@ export const TextBox = ({ children }) => {
   );
 };
 SummaryFilter.propTypes = {};
-
+FieldFilter.propTypes = {
+  data: PropTypes.object,
+  index: PropTypes.number,
+  handleFilter: PropTypes.func,
+  selectedValues: PropTypes.array,
+};
 export default SummaryFilter;

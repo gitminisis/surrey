@@ -1,10 +1,10 @@
-import React from "react";
 import PropTypes from "prop-types";
 import { Typography, Divider, Box, Grid } from "@mui/joy";
-
 const index = (props) => {
-  let { main, value, label } = props;
-  let flattenArrayValue = _.flattenDeep(value);
+  let { main, value, label, showMore } = props;
+  let flattenArrayValue = _.flattenDeep(value).map((e) =>
+    e.replace(/\n/g, " ")
+  );
   if (main) {
     return (
       <Typography {...props} gutterBottom level="h3" sx={{ pb: 2 }}>
@@ -37,17 +37,35 @@ const index = (props) => {
           </Typography>
         </Grid>
         <Grid xs sx={{ alignSelf: { xs: "start", md: "center" } }}>
-          {flattenArrayValue.map((v) => (
-            <Typography level="h6" component="div" sx={{ display: "block" }}>
-              {v}
-            </Typography>
-          ))}
+          {flattenArrayValue.map((v, i) =>
+            showMore === true ? (
+              <Typography
+                key={i}
+                level="h6"
+                component="div"
+                sx={{ display: "block" }}
+              >
+                {v}
+              </Typography>
+            ) : (
+              <Typography
+                key={i}
+                level="h6"
+                component="div"
+                sx={{ display: "block" }}
+              >
+                {v}
+              </Typography>
+            )
+          )}
         </Grid>
       </Grid>
     </>
   );
 };
 
-index.propTypes = {};
+index.propTypes = {
+  showMore: PropTypes.bool,
+};
 
 export default index;

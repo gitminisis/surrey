@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="icon"
+      href="https://www.surrey.ca/themes/custom/surrey/favicon.ico"
+      type="image/vnd.microsoft.icon"
+    />
+    <title>Surrey Online Heritage Search</title>
+  </head>
+
+  <body>
+    <span hidden id="userid">^USERID^</span>
+    <span hidden id="sessid">^SESSID^</span>
+    <span hidden id="saverecord">^saverecord^</span>
+    <div id="root" data-page="admin"></div>
+  </body>
+  <script src="/dist/main.js"></script>
+  
+  <script
+    async
+    src="https://www.googletagmanager.com/gtag/js?id=G-988FJEZ2YJ"
+  ></script>
+  
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag("js", new Date());
+
+    gtag("config", "G-988FJEZ2YJ");
+  </script>
+</html>

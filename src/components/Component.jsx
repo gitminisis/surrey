@@ -10,8 +10,6 @@ import {
   TagCard,
   MediaCard,
   Layout,
-  MultiTabs,
-  ChipStack,
   DescriptionBox,
   Accordion,
   SummaryLayout,
@@ -19,12 +17,15 @@ import {
   SummaryChipTag,
   DetailLayout,
   PhotoCoverCard,
-  CoverFlowCarousel,
   SearchFieldLink,
   ContactUsModalForm,
   DescriptionTree,
   SummaryBookmarkLayout,
-  GeneralSearchBox
+  GeneralSearchBox,
+  SummaryOnlineExhibitionLayout,
+  RecordToURLField,
+  EmptyComponent,
+  MessageModal
 } from "./index";
 
 const KeysToComponentMap = {
@@ -38,8 +39,6 @@ const KeysToComponentMap = {
   TagCard,
   MediaCard,
   Layout,
-  MultiTabs,
-  ChipStack,
   DescriptionBox,
   Accordion,
   SummaryLayout,
@@ -47,12 +46,15 @@ const KeysToComponentMap = {
   SummaryChipTag,
   DetailLayout,
   PhotoCoverCard,
-  CoverFlowCarousel,
   SearchFieldLink,
   ContactUsModalForm,
   DescriptionTree,
   SummaryBookmarkLayout,
-  GeneralSearchBox
+  GeneralSearchBox,
+  SummaryOnlineExhibitionLayout,
+  RecordToURLField,
+  EmptyComponent,
+  MessageModal
 };
 
 function Component(block) {

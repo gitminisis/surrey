@@ -13,11 +13,10 @@ import SummaryRecordsView from "./SummaryRecordsView";
 import GeneralSearchBox from "../GeneralSearchBox";
 import SummaryMasonryView from "./SummaryMasonryView";
 import SummaryPagination from "./SummaryPagination";
-import { deepSearch, getXMLRecord } from "../../utils/functions";
+import { getXMLRecord } from "../../utils/functions";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import MobileFilterWrapper from "./MobileFilterWrapper";
 import DesktopFilterWrapper from "./DesktopFilterWrapper";
-const scrollHeight = 330;
 
 const SummaryLayout = (props) => {
   const isMobileDevice = useMediaQuery((theme) => theme.breakpoints.down("lg"));
@@ -31,8 +30,10 @@ const SummaryLayout = (props) => {
     application,
   } = props;
 
+  const dataPage = document.querySelector("#root").dataset.page;
+  const pageView = sessionStorage.getItem(dataPage)
   const [grid, setGrid] = useState(
-    defaultView ? defaultView === "grid" : false
+    defaultView ? (pageView ? pageView === 'grid' : defaultView === "grid") : false
   );
   const [showFilter, setShowFilter] = useState(filter ? true : false);
   const [showMobileFilter, setShowMobileFilter] = useState(false);
@@ -41,12 +42,12 @@ const SummaryLayout = (props) => {
   const FilterWrapper = isMobileDevice
     ? MobileFilterWrapper
     : DesktopFilterWrapper;
-
   const toggleGrid = (a, b) => {
     if (!b || b === undefined) {
       return;
     }
     setGrid(b === "grid");
+    sessionStorage.setItem(dataPage, b === "grid" ? "grid" : "list")
   };
 
   const toggleFilter = () => {

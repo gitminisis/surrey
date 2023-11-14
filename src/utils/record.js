@@ -6,21 +6,37 @@ import {
   getXMLRecord,
   deepSearch,
   getKeyByValue,
+  getCurrentSession,
 } from "./functions";
 import copy from "copy-to-clipboard";
 import {
   MEDIA_THUMBNAIL_FIELD,
   SORT_REPORTS_BY_DATABASE,
-} from "../templates/DisplayFields";
-import { findKey } from "lodash";
+} from "../templates/API";
 const DEFAULT_DETAIL_REPORT = "WEB_UNION_DETAIL";
-const WEB_DNS = "http://samoa.minisisinc.com";
+const WEB_DNS = "https://surrey.minisisinc.com";
 const DEFAULT_SUM_REPORT = "WEB_UNION_SUM";
 const SUM_REPORT_BY_DATABASE = {
   COLLECTIONS: "WEB_UNION_SUM_COL",
   DESCRIPTION: "WEB_UNION_SUM_DESC",
+  PEOPLE_VAL: "WEB_PEOPLE_SUM",
 };
-
+export const TITLE_BY_DATABASE = {
+  COLLECTIONS: "legal_title",
+  DESCRIPTION: "title",
+};
+export const FILTER_TITLE_BY_FIELD = {
+  $UNION_DBNAME: "Collections",
+  MEDIA_CL: "Media Type",
+  FORM: "Type",
+  DATE_CR_INC: "Date",
+  FORM_CL: "Type",
+  DATE_CL: "Date",
+  EARLY: "Date",
+  OBJECT_NAME: "Object Name",
+  PRIMARY: "Type",
+  PLACES_CL: "Place Names",
+};
 /**
  * send a request to fetch a search from the corresponding database, expression
  * @param {*} database
@@ -28,26 +44,66 @@ const SUM_REPORT_BY_DATABASE = {
  * @param {*} report
  * @param {*} session
  */
-export const sendSearchRequest = (
+export const getSearchRequestURL = (
   database,
   expression,
   report,
   application = "UNION_VIEW",
-  session = "/scripts/mwimains.dll"
+  session = "/scripts/mwimain.dll"
 ) => {
-  let url = `${session}?UNIONSEARCH&KEEP=Y&SIMPLE_EXP=Y&APPLICATION=${application} &DATABASE=${database}&language=144&REPORT=${
+  let url = `${
+    session ? session : "/scripts/mwimain.dll"
+  }?UNIONSEARCH&SIMPLE_EXP=Y&KEEP=Y&ERRMSG=[MESSAGES]374.htm&APPLICATION=${application}&DATABASE=${database}&language=144&REPORT=${
     report || SUM_REPORT_BY_DATABASE[database]
   }&EXP=${expression}`;
   return url;
 };
 
-export const getFeatureCollectionsFromIDs = (ids, fn) => {
+export const getSimpleSearchRequestURL = (
+  expression,
+  report = DEFAULT_SUM_REPORT,
+  application = "UNION_VIEW",
+  session = getCurrentSession()
+) => {
+  let url = `${
+    session ? session : "/scripts/mwimain.dll"
+  }?SEARCH&SIMPLE_EXP=Y&KEEP=Y&ERRMSG=[MESSAGES]374.htm&APPLICATION=${application}&language=144&REPORT=${report}&EXP=${expression}`;
+  return url;
+};
+
+/**
+ * Send a request to search the union database
+ * @param {*} expression
+ * @param {*} report
+ * @param {*} application
+ * @param {*} session
+ * @returns
+ */
+export const getUnionSearchRequestURL = (
+  expression,
+  report = DEFAULT_SUM_REPORT,
+  application = "UNION_VIEW",
+  session = getCurrentSession()
+) => {
+  let url = `${
+    session ? session : "/scripts/mwimain.dll"
+  }?UNIONSEARCH&SIMPLE_EXP=Y&KEEP=Y&ERRMSG=[MESSAGES]374.htm&APPLICATION=${application}&language=144&REPORT=${report}&EXP=${expression}`;
+  return url;
+};
+
+export const getFeatureCollectionsFromIDs = (
+  ids,
+  session = "/scripts/mwimain.dll",
+  fn
+) => {
   let exp = ids
     .map((e) => `OEF_IND ${e}`)
     .join(" or ")
     .trim();
-
-  let url = `/scripts/mwimains.dll?UNIONSEARCH&KEEP=Y&SIMPLE_EXP=Y&APPLICATION=UNION_VIEW&DATABASE=ONLINE_EXHIBITION_VIEW&language=144&REPORT=WEB_OE_SUM&EXP=${exp}`;
+  if (!session) {
+    session = "/scripts/mwimain.dll";
+  }
+  let url = `${session}?UNIONSEARCH&ERRMSG=[MESSAGES]374.htm&APPLICATION=UNION_VIEW&DATABASE=ONLINE_EXHIBITION_VIEW&language=144&REPORT=WEB_OE_SUM&EXP=${exp}`;
   return axios.get(url).then((res) => {
     let { data } = res;
     let dom = new DOMParser().parseFromString(data, "text/html");
@@ -55,60 +111,77 @@ export const getFeatureCollectionsFromIDs = (ids, fn) => {
     if (fn !== undefined) {
       fn(xml);
     }
+
     return xml;
   });
 };
 
-export const getRecendAdditions = (_) => {
+export const getRecendAdditions = (session = "/scripts/mwimain.dll") => {
   let high = getTomorrowDate();
   let low = getDaysBeforeDate();
+  if (!session) {
+    session = "/scripts/mwimain.dll";
+  }
   let searchingField = [
     {
       database: "COLLECTIONS",
       date: "LAST_MODIFIED_TM",
       media: "M_IM_ACCESS",
       report: "WEB_UNION_SUM_COL",
+      mediaReady: "M_IM_OPAC",
     },
     {
       database: "DESCRIPTION",
       date: "MODIFIED_ON",
       media: "A_IM_ACCESS",
       report: "WEB_UNION_SUM_DESC",
+      mediaReady: "A_IM_OPAC",
     },
   ];
   let fieldByDatabase = {
-    COLLECTIONS: { title: "legal_title", thumbnail: "m_im_access_link" },
-    DESCRIPTION: { title: "title", thumbnail: "a_im_access_link" },
+    COLLECTIONS: {
+      title: "legal_title",
+      thumbnail: "m_im_access_link",
+      databaseName: "Artifact",
+    },
+    DESCRIPTION: {
+      title: "title",
+      thumbnail: "a_im_access_link",
+      databaseName: "Archives",
+    },
   };
   let searchURL = searchingField.map((e) => {
-    let exp = `${e.date} > "${low}" and ${e.media} present`;
-    let url = `/scripts/mwimain.dll?UNIONSEARCH&KEEP=Y&SIMPLE_EXP=Y&APPLICATION=UNION_VIEW&language=144&REPORT=WEB_UNION_SUM&EXP=${exp}&database=${e.database}`;
+    let exp = `${e.date} > "${low}" and ${e.mediaReady} "Yes"`;
+    let url = `${session}?UNIONSEARCH&SIMPLE_EXP=Y&SHOWSINGLE=Y&ERRMSG=[MESSAGES]374.htm&APPLICATION=UNION_VIEW&language=144&REPORT=WEB_UNION_SUM&EXP=${exp}&database=${e.database}`;
     return url;
   });
 
-  return axios.all(searchURL.map((l) => axios.get(l))).then(
+  return Promise.all(searchURL.map((l) => axios.get(l))).then(
     axios.spread(function (...res) {
       let jsonData = res.map((e) =>
         getXMLRecord(new DOMParser().parseFromString(e.data, "text/html"))
       );
       let result = jsonData.reduce((acc, record) => {
-        let xml_record = record.xml.xml_record;
+        let xml_record = deepSearch(record, "xml_record");
+        if (Array.isArray(xml_record[0])) {
+          xml_record = xml_record[0];
+        }
         xml_record.map((e) => {
           let database = deepSearch(e, "database_name")[0];
           let thumbnail = deepSearch(e, fieldByDatabase[database].thumbnail)[0];
           if (Array.isArray(thumbnail)) {
             thumbnail = thumbnail[0];
           }
-          thumbnail = thumbnail.replace(
-            "SAMOA.MINISISINC.COM",
-            "surrey.minisisinc.com"
-          );
+          // thumbnail = thumbnail.replace(WEB_DNS, "surrey.minisisinc.com");
 
           acc.push({
+            sisn: deepSearch(e, "sisn")[0],
             thumbnail,
             title: "Library",
             url: deepSearch(e, "record_link")[0],
             urlTitle: deepSearch(e, fieldByDatabase[database].title)[0],
+            database,
+            databaseName: fieldByDatabase[database].databaseName,
           });
         });
         return acc;
@@ -143,6 +216,10 @@ export const getFirstThumbnail = (record, database) => {
   return getAllMedia(record, database)[0];
 };
 
+export const getRecordTitle = (record, database) => {
+  return deepSearch(record, TITLE_BY_DATABASE[database])[0];
+};
+
 export const getAllMedia = (record, database, mediaType = "image") => {
   let field = MEDIA_THUMBNAIL_FIELD.find((e) => e.database === database)[
     mediaType
@@ -154,7 +231,7 @@ export const getAllMedia = (record, database, mediaType = "image") => {
   let array = Array.isArray(mediaURL) ? mediaURL : [mediaURL];
   return array.map((e) =>
     e
-      .replace("SAMOA.MINISISINC.COM", "surrey.minisisinc.com")
+      // .replace("surreytest.minisisinc.COM", "surrey.minisisinc.com")
       .replace(/\n/g, "")
   );
 };
@@ -246,11 +323,7 @@ export const viewBookmark = (xml) => {
 export const removeBookmarkRecord = () => {};
 
 export const removeAllBookmarkRecord = () => {
-  var Cookies = document.cookie.split(";");
-
-  // set 1 Jan, 1970 expiry for every cookies
-  for (var i = 0; i < Cookies.length; i++)
-    document.cookie = Cookies[i] + "=;expires=" + new Date(0).toUTCString();
+  document.cookie = "BOOKMARK=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
 };
 
 export const getRecordPermalink = (
@@ -258,10 +331,18 @@ export const getRecordPermalink = (
   database,
   report = DEFAULT_DETAIL_REPORT
 ) => {
-  let url = `${WEB_DNS}/scripts/mwimain.dll/144/${database}/${report}?sessionsearch&exp=sisn ${sisn}`;
+  let url = `${WEB_DNS}/scripts/mwimain.dll/144/${database}/${report}?sessionsearch&exp=SISN ${sisn}`;
   return url;
 };
 
+export const getEmailPermalink = (
+  sisn,
+  database,
+  report = DEFAULT_DETAIL_REPORT
+) => {
+  let url = `${WEB_DNS}/scripts/mwimain.dll/144/${database}/${report}?sessionsearch%26exp=SISN%2B${sisn}`;
+  return url;
+};
 export const copyToClipboard = (
   sisn,
   database,
@@ -293,15 +374,25 @@ export const getJumpURL = (
   database,
   field,
   value,
-  summary = DEFAULT_SUM_REPORT,
   detail = DEFAULT_DETAIL_REPORT
 ) => {
   return `${session}/${database}/${field}/${value}/${SUM_REPORT_BY_DATABASE[database]}/${detail}?JUMP`;
 };
 
+export const performJumpSearch = (url, fn) => {
+  return axios.get(url).then((res) => {
+    let { data } = res;
+    let dom = new DOMParser().parseFromString(data, "text/html");
+    let xml = getXMLRecord(dom);
+    if (fn !== undefined) {
+      fn(xml);
+    }
+    return xml;
+  });
+};
 export const fetchJSONRecord = (session, database, sisn = [], fn) => {
   let searchExpression = sisn.map((e) => `SISN ${e}`).join(" or ");
-  let url = `${session}/scripts/mwimain.dll?SEARCH&KEEP=Y&SIMPLE_EXP=Y&APPLICATION=UNION_VIEW&DATABASE=${database}&language=144&REPORT=${SUM_REPORT_BY_DATABASE[database]}&EXP=${searchExpression}`;
+  let url = `${session}/scripts/mwimain.dll?SEARCH&SIMPLE_EXP=Y&ERRMSG=[MESSAGES]374.htm&APPLICATION=UNION_VIEW&DATABASE=${database}&language=144&REPORT=${SUM_REPORT_BY_DATABASE[database]}&EXP=${searchExpression}`;
   return axios.get(url).then((res) => {
     let { data } = res;
     let dom = new DOMParser().parseFromString(data, "text/html");
@@ -317,18 +408,12 @@ export const getIDFromBookmarkSummary = (xml) => {
   return xml.xml.xml_record.map((e, i) => {
     return {
       database: e.database_name,
-      sisn,
     };
   });
 };
 
 export const getSortReportURL = (xml, application, sort) => {
-  console.log(sort, application);
   let url = deepSearch(xml, "bookmark_url")[0];
-  // url = url.replace(
-  //   "WEB_UNION_SUM",
-  //   SORT_REPORTS_BY_DATABASE[sort][application]
-  // );
 
   url = `${url}/${SORT_REPORTS_BY_DATABASE[sort][application]}?RECLIST&DATABASE=${application}`;
   return url;
@@ -345,4 +430,8 @@ export const getPageUrlFromPagination = (pagination, index) => {
 
 export const getCurrentPageFromPagination = (pagination) => {
   return Number.parseInt(pagination.filter((e) => e.b !== undefined)[0].b);
+};
+
+export const getPaginationLength = (pagination) => {
+  return pagination.filter((e) => e["__text"] !== "Next").length;
 };

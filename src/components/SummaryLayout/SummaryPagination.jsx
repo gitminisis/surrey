@@ -6,6 +6,7 @@ import {
   getCurrentPageFromPagination,
   getPageUrlFromPagination,
   getPagination,
+  getPaginationLength,
 } from "../../utils/record";
 const SummaryPagination = (props) => {
   const { xml } = props;
@@ -16,15 +17,33 @@ const SummaryPagination = (props) => {
       {pagination && (
         <Stack spacing={2}>
           <Pagination
-            count={pagination.a.length}
+            count={getPaginationLength(pagination.a)}
             shape="rounded"
             defaultPage={getCurrentPageFromPagination(pagination.a)}
             onChange={(e, i) => {
               setClicked(true);
               window.location = getPageUrlFromPagination(pagination.a, i - 1);
             }}
-            disabled={clicked}
-            renderItem={(item) => <PaginationItem {...item} />}
+            renderItem={(item) => {
+              if (item.type === "page") {
+                let index = item.page;
+                let pageItem = pagination.a[index - 1];
+                if (!pageItem) {
+                  return null;
+                }
+                let pageNumb = pageItem["__text"];
+                if (pageNumb && pageNumb === "Next") {
+                  return null;
+                }
+                if (pageItem.b) {
+                  pageNumb = pageItem.b;
+                }
+                return <PaginationItem {...item} page={pageNumb} />
+              }
+
+
+              return <PaginationItem {...item} />;
+            }}
           />
         </Stack>
       )}

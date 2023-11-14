@@ -4,24 +4,38 @@ import Masonry from "@mui/lab/Masonry";
 import Box from "@mui/material/Box";
 import { MasonryBox, MasonryShadow, MasonryAction } from "./ImageMasonry.style";
 import KeyboardDoubleArrowUpIcon from "@mui/icons-material/KeyboardDoubleArrowUp";
-import { getRecendAdditions } from "../../utils/record";
+import { getRecendAdditions, getSearchRequestURL } from "../../utils/record";
 import { Skeleton, Grid } from "@mui/material";
+import { getCurrentSession } from "../../utils/functions";
+
 const ImageMasonryItem = (props) => {
-  let { thumbnail, title, url, urlTitle } = props.item;
+  let { thumbnail, title, url, urlTitle, database, databaseName, sisn } =
+    props.item;
   return (
     <MasonryBox>
-      <MasonryShadow onClick={(_) => (window.location = url ? url : "/")}>
+      <MasonryShadow
+        onClick={(_) => {
+          window.location = getSearchRequestURL(
+            database,
+            `SISN ${sisn}`,
+            "WEB_UNION_DETAIL",
+            "UNION_VIEW"
+            // getCurrentSession()
+          );
+        }}
+      >
         <MasonryAction className="bounce">
           <div>
             <KeyboardDoubleArrowUpIcon />
           </div>
           <div> {urlTitle}</div>
+          <div>{databaseName}</div>
         </MasonryAction>
       </MasonryShadow>
       <img
         src={`${thumbnail}`}
         srcSet={`${thumbnail}`}
-        alt={title}
+        alt={urlTitle}
         loading="lazy"
         style={{
           borderBottomLeftRadius: 4,
@@ -42,6 +56,8 @@ const LOADING_SKELETON = [
   { width: "25%", height: "200px" },
   { width: "25%", height: "200px" },
 ];
+
+
 const ImageMasonry = ({ data }) => {
   const [tiles, setTiles] = useState(data || []);
   const [loading, setLoading] = useState(true);
@@ -51,9 +67,9 @@ const ImageMasonry = ({ data }) => {
       setTiles(res);
     });
   }, []);
+
   return (
     <>
-      {" "}
       {loading && (
         <Grid container spacing={4} style={{ margin: "0 auto" }}>
           {LOADING_SKELETON.map((e, i) => (
@@ -75,17 +91,19 @@ const ImageMasonry = ({ data }) => {
           ))}
         </Grid>
       )}
-      <Box sx={{ width: "100%", minHeight: 500, marginTop: "50px" }}>
+      {tiles && tiles.length > 0 && <Box sx={{ width: "100%", minHeight: 500, marginTop: "50px" }}>
         <Masonry
           columns={{ xs: 1, sm: 3, md: 4 }}
           spacing={2}
           sx={{ margin: "0 auto" }}
         >
           {tiles.map((item, index) => (
-            <ImageMasonryItem item={item}  key={item.thumbnail + index} />
+            <ImageMasonryItem item={item} key={item.thumbnail + index} />
           ))}
         </Masonry>
-      </Box>
+      </Box>}
+
+      {(!tiles || tiles.length === 0 ) && !loading && <div style={{textAlign:'center', margin: '0 auto'}}><img style={{width:'100%', maxWidth:'300px'}} src="/assets/images/norecordbanner.png" alt="No Record Banner" /><p>No current avaiable records</p></div>}
     </>
   );
 };

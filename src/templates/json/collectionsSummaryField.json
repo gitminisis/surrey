@@ -1,0 +1,27 @@
+[
+  {
+    "name": "LEGAL_TITLE",
+    "label": "Title",
+    "main": true
+  },
+  {
+    "name": "EARLY",
+    "label": "Dates",
+    "gridDisplay": false
+  },
+  {
+    "defaultValue": "Artifact",
+    "label": "Type",
+    "gridDisplay": false
+  },
+  {
+    "name": "ACCESSION_NUMBER",
+    "label": "ID"
+  },
+  {
+    "name": "OBJ_DESCRIPTION",
+    "label": "Description",
+    "gridDisplay": false,
+    "maxLength": 200
+  }
+]

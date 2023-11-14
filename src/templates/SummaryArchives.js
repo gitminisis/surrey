@@ -2,21 +2,24 @@ import {
   DESCRIPTION_SUMMARY_FIELD,
   GENERAL_SEARCHBOX_DBLIST,
   MEDIA_THUMBNAIL_FIELD,
-} from "./DisplayFields";
+} from "./API";
 
 const Summmary = [
   {
     component: "Layout",
-  data: {
+    data: {
       active: "Archives",
     },
     children: [
       {
         component: "SummaryLayout",
         data: {
+          application: "DESCRIPTION",
           generalSearchBox: {
+            application: "DESCRIPTION",
             breadcrumbs: ["Summary"],
             heading: "Search the collections",
+            placeholder: "Search By Keyword",
             databaseList: GENERAL_SEARCHBOX_DBLIST,
             helpText: {
               link: "/faq.html",
@@ -25,27 +28,7 @@ const Summmary = [
             },
           },
           sortOptions: true,
-
-          filter: [
-            {
-              item_group: [
-                {
-                  item_value: "Image",
-                  item_frequency: 11,
-                  item_link:
-                    "https://FORDHERITAGEVAULT.COM/SCRIPTS10/MWIMAIN.DLL/1015209066?SEARCH&amp;EXP=KEYWORD_CLUSTER~20~1Dtest~1D~20*~20(A_\nMEDIA_TYPE~20~22Image~22)",
-                  item_selected: "N",
-                },
-                {
-                  item_value: "Textual",
-                  item_frequency: 1054,
-                  item_link:
-                    "https://FORDHERITAGEVAULT.COM/SCRIPTS10/MWIMAIN.DLL/1015209066?SEARCH&amp;EXP=KEYWORD_CLUSTER~20~1Dtest~1D~20*~20(A_\nMEDIA_TYPE~20~22Textual~22)",
-                  item_selected: "N",
-                },
-              ],
-            },
-          ],
+          filter: [],
           thumbnailData: MEDIA_THUMBNAIL_FIELD,
           displayField: [
             {
