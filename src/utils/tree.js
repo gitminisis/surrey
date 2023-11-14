@@ -1,5 +1,5 @@
 import axios from "axios";
-import { clone, flatten, findIndex, isEmpty } from "lodash";
+import { cloneDeep, clone, flatten, findIndex, isEmpty } from "lodash";
 import { deepSearch, getXMLTreeRecord } from "./functions";
 /**
  * Returns the search URL to the record with the corresponding REFD
@@ -237,7 +237,7 @@ export const getCurNodeFromXML = (data, id) => {
  * @returns
  */
 export const getNodeFromTree = (tree, id) => {
-  let curNode = cloneDeep(tree);
+  let curNode = clone(tree);
   if (curNode.id === id) {
     return curNode;
   }
