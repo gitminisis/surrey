@@ -4,6 +4,7 @@ const dotenv = require("dotenv");
 const SpeedMeasurePlugin = require("speed-measure-webpack-plugin");
 const smp = new SpeedMeasurePlugin();
 const env = dotenv.config().parsed;
+const TerserPlugin = require("terser-webpack-plugin");
 const envKeys = Object.keys(env).reduce((prev, next) => {
   prev[`process.env.${next}`] = JSON.stringify(env[next]);
   return prev;
@@ -21,7 +22,21 @@ module.exports = smp.wrap({
   resolve: {
     extensions: [".js", ".jsx"],
   },
-
+  optimization: {
+    minimize: true,
+    minimizer: [
+      new TerserPlugin({
+        parallel: true,
+        terserOptions: {
+          output: {
+            comments: false,
+          },
+        },
+        extractComments: false,
+      }),
+    ],
+  },
+  devtool: "source-map",
   module: {
     rules: [
       {

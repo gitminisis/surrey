@@ -19,14 +19,6 @@ export const Item = styled(Paper)(({ theme }) => ({
   padding: theme.spacing(1),
   textAlign: "center",
 }));
-GeneralSearchBox.propTypes = {
-  breadcrumbs: PropTypes.array,
-  heading: PropTypes.string,
-  helpText: PropTypes.object,
-  databaseList: PropTypes.array,
-  placeholder: PropTypes.string,
-  application: PropTypes.string,
-};
 
 const GeneralSearchBox = (props) => {
   const {
@@ -47,7 +39,6 @@ const GeneralSearchBox = (props) => {
   if (isSessionSearch()) {
     session = "/scripts/mwimain.dll";
   }
-  console.log(databaseList, database);
   return (
     <Item elevation={6} sx={{ padding: "16px" }} className="back-top-anchor">
       <div>
@@ -145,6 +136,14 @@ const GeneralSearchBox = (props) => {
       </div>
     </Item>
   );
+};
+GeneralSearchBox.propTypes = {
+  breadcrumbs: PropTypes.array,
+  heading: PropTypes.string,
+  helpText: PropTypes.object,
+  databaseList: PropTypes.array,
+  placeholder: PropTypes.string,
+  application: PropTypes.string,
 };
 
 export default GeneralSearchBox;
