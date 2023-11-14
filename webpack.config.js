@@ -13,8 +13,9 @@ const envKeys = Object.keys(env).reduce((prev, next) => {
 }, {});
 
 module.exports = smp.wrap({
-  entry: ["babel-polyfill", "./src/index"],
+  entry: ["./src/index"],
   plugins: [
+    new BundleAnalyzerPlugin(),
     new webpack.DefinePlugin(envKeys),
     new webpack.ProvidePlugin({
       React: "react",
@@ -44,7 +45,7 @@ module.exports = smp.wrap({
           {
             loader: "url-loader",
             options: {
-              limit: 10000000, // Convert images < 8kb to base64 strings
+              limit: 100000, // Convert images < 8kb to base64 strings
               name: "images/[hash]-[name].[ext]",
             },
           },

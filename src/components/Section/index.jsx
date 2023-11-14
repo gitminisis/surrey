@@ -8,7 +8,6 @@ import {
   ViewMore,
   ActionButton,
 } from "./Section.style";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 function getWindowDimensions() {
   const { innerWidth: width, innerHeight: height } = window;

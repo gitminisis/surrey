@@ -12,13 +12,7 @@ import {
 import { extendTheme as extendJoyTheme } from "@mui/joy/styles";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import { BrowserRouter } from "react-router-dom";
-// third-party
-import { Provider } from "react-redux";
 
-// apex-chart
-import { store } from "./store";
-import AppDashboard from "./AppDashboard";
 function App() {
   const joyTheme = extendJoyTheme({ cssVarPrefix: "mui", ...baseTheme });
   const muiTheme = extendMuiTheme(baseTheme);
