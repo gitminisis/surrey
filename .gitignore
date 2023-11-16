@@ -11,3 +11,4 @@ assets/images/
 aspnet_client/
 
 # pnpm-lock.yaml
+templates/

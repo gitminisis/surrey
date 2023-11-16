@@ -1,4 +1,4 @@
-import json from "../templates/json/faq.json";
+import json from "../templates/json/faq/data.json";
 
 const FAQ = [
   {

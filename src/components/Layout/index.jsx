@@ -13,7 +13,7 @@ import WarningAmberIcon from "@mui/icons-material/WarningAmber";
 import { sendErrorReport } from "../../utils/functions";
 import MessageModal from "../MessageModal";
 const MAX_SNACK = 3;
-import announcement from "../../templates/json/announcement.json";
+import announcement from "../../templates/json/announcement/data.json";
 const Layout = ({ active, children }) => {
   return (
     <SnackbarProvider
