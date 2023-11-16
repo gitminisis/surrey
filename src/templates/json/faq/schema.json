@@ -1,0 +1,120 @@
+[
+  {
+    "title": "Page Banner",
+    "type": "object",
+    "properties": {
+      "data": {
+        "type": "object",
+        "title": " Page Banner Components",
+        "properties": {
+          "heading": {
+            "type": "string",
+            "title": "Banner Heading"
+          },
+          "description": {
+            "type": "string",
+            "title": "Banner Description"
+          },
+          "searchURL": {
+            "type": "string",
+            "title": "Search Action URL"
+          },
+          "bannerCarousel": {
+            "type": "array",
+            "title": "Banner Background Carousel",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "title": "Section 1",
+    "type": "object",
+    "properties": {
+      "data": {
+        "type": "object",
+        "title": "Section Components",
+        "properties": {
+          "heading": {
+            "type": "string",
+            "title": "Section Heading"
+          }
+        }
+      },
+      "children": {
+        "title": "Children Components",
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "component": {
+              "type": "string"
+            },
+
+            "data": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "title": {
+                        "type": "string"
+                      },
+                      "description": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "title": "Section 3",
+    "type": "object",
+    "properties": {
+      "data": {
+        "type": "object",
+        "title": "Section Components",
+        "properties": {
+          "heading": {
+            "type": "string",
+            "title": "Section Heading"
+          },
+          "description": {
+            "type": "string",
+            "title": "Section Description"
+          }
+        }
+      },
+      "children": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "data": {
+              "type": "object",
+              "properties": {
+                "thumbnail": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+]

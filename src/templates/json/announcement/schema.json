@@ -1,0 +1,19 @@
+[
+  {
+    "title": "Site Announcement",
+    "description": "",
+    "type": "object",
+    "required": ["message", "status"],
+    "properties": {
+      "message": {
+        "type": "string",
+        "title": "Announcement Content",
+        "default": ""
+      },
+      "status": {
+        "type": "boolean",
+        "title": "Announcement Status"
+      }
+    }
+  }
+]

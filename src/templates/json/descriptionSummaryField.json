@@ -1,0 +1,23 @@
+[{
+        "name": "TITLE",
+        "label": "Title",
+        "main": true
+    },
+
+    {
+        "name": "DATE_CR_INC",
+        "label": "Dates",
+        "gridDisplay": false
+    },
+
+    {
+        "name": "form_occurrence",
+        "label": "Type",
+        "gridDisplay": false
+    },
+
+    {
+        "name": "REFD",
+        "label": "ID"
+    }
+]

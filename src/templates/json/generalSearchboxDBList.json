@@ -1,0 +1,17 @@
+[
+  {
+    "database": "Combined Search",
+    "application": "UNION_VIEW",
+    "searchURL": "?UNIONSEARCH&SIMPLE_EXP=Y&ERRMSG=[MESSAGES]374.htm&APPLICATION=UNION_VIEW&language=144&REPORT=WEB_UNION_SUM"
+  },
+  {
+    "database": "Archives",
+    "application": "DESCRIPTION",
+    "searchURL": "?UNIONSEARCH&SIMPLE_EXP=Y&ERRMSG=[MESSAGES]374.htm&APPLICATION=UNION_VIEW&DATABASE=DESCRIPTION&language=144&REPORT=WEB_UNION_SUM_DESC"
+  },
+  {
+    "database": "Artifact",
+    "application": "COLLECTIONS",
+    "searchURL": "?UNIONSEARCH&SIMPLE_EXP=Y&ERRMSG=[MESSAGES]374.htm&APPLICATION=UNION_VIEW&DATABASE=COLLECTIONS&language=144&REPORT=WEB_UNION_SUM_COL"
+  }
+]
