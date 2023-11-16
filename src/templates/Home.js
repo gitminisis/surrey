@@ -1,5 +1,5 @@
 // import homeJSON from "./json/home/index.json";
-import homeJSON from "./json/union-home.json";
+import homeJSON from "./json/union-hom/data.json";
 // let data = jsonToTemplate(homeJSON);
 const Home = [{
     component: "Layout",
