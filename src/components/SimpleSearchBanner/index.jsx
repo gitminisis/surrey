@@ -28,9 +28,7 @@ const Banner = (props) => {
   const [show, setShow] = useState(false);
   const [activeStep, setActiveStep] = React.useState(0);
   const [backdrop, setBackdrop] = useState(false);
-  const url = readCookie("HOME_SESSID")
-    ? readCookie("HOME_SESSID") + searchURL.replace("/scripts/mwimain.dll", "")
-    : searchURL;
+  const url =  searchURL;
   useEffect(() => {
     const interval = setInterval(() => {
       setActiveStep((prev) => {

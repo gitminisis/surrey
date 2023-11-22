@@ -237,6 +237,7 @@ export const getCurNodeFromXML = (data, id) => {
  * @returns
  */
 export const getNodeFromTree = (tree, id) => {
+  console.log({ tree, id })
   let curNode = clone(tree);
   if (curNode.id === id) {
     return curNode;

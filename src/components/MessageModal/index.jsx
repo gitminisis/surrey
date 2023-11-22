@@ -16,7 +16,7 @@ const MessageModal = (props) => {
     true && !sessionStorage.getItem("hideAnnouncement")
   );
   if (!show) return null;
-
+  console.log({ show, open })
   return (
     <Box sx={{ display: "flex", flexDirection: "column", marginTop: 4 }}>
       <Modal

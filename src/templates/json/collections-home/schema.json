@@ -1,0 +1,107 @@
+[
+  {
+    "title": "Page Banner",
+    "type": "object",
+    "properties": {
+      "data": {
+        "type": "object",
+        "title": " Page Banner Components",
+        "properties": {
+          "heading": {
+            "type": "string",
+            "title": "Banner Heading"
+          },
+          "description": {
+            "type": "string",
+            "title": "Banner Description"
+          },
+          "searchURL": {
+            "type": "string",
+            "title": "Search Action URL"
+          },
+          "bannerCarousel": {
+            "type": "array",
+            "title": "Banner Background Carousel",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "title": "Section 1",
+    "type": "object",
+    "properties": {
+      "data": {
+        "type": "object",
+        "title": "Section Components",
+        "properties": {
+          "heading": {
+            "type": "string",
+            "title": "Section Heading"
+          }
+        }
+      },
+      "children": {
+        "type": "array",
+        "title": "Children Components",
+        "items": {
+          "type": "object",
+          "properties": {
+            "data": {
+              "type": "object",
+              "title": "Featured Collections Records",
+              "properties": {
+                "recordIds": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "title": "Section 2",
+    "type": "object",
+    "properties": {
+      "data": {
+        "type": "object",
+        "title": "Section Components",
+        "properties": {
+          "heading": {
+            "type": "string",
+            "title": "Section Heading"
+          }
+        }
+      },
+      "children": {
+        "type": "array",
+        "title": "Children Components",
+        "items": {
+          "type": "object",
+          "properties": {
+            "data": {
+              "type": "object",
+              "title": "Artifacts on Display Records",
+              "properties": {
+                "recordIds": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+]

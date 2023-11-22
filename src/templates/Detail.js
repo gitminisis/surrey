@@ -7,7 +7,7 @@ import {
   GENERAL_SEARCHBOX_DBLIST,
 } from "./API";
 
-import detailJson from "../templates/json/detail-fields.json";
+import detailJson from "../templates/json/detail-fields/data.json";
 import { jsonToFields } from "../utils/functions";
 let displayFields = jsonToFields(detailJson);
 const Detail = [
@@ -29,7 +29,7 @@ const Detail = [
                 "Didn't find what you're looking for? Check our FAQ page for search tips",
             },
           },
-          generalSection: {
+        generalSection: {
             displayFields: [...displayFields],
             children: [
               {

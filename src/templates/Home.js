@@ -1,13 +1,12 @@
-// import homeJSON from "./json/home/index.json";
-import homeJSON from "./json/union-home.json";
+import homeJSON from "./json/union-home/data.json";
 // let data = jsonToTemplate(homeJSON);
-const Home = [{
+const Home = [
+  {
     component: "Layout",
     data: {
-        active: "Home",
+      active: "Home",
     },
-    children: [
-        ...homeJSON,
-    ],
-}, ];
+    children: [...homeJSON],
+  },
+];
 export default Home;

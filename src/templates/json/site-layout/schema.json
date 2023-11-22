@@ -1,0 +1,41 @@
+[
+  {
+    "title": "Website Settings",
+    "description": "",
+    "type": "object",
+    "required": ["siteName", "logo", "logo2"],
+    "properties": {
+      "siteName": {
+        "type": "string",
+        "title": "Site Name",
+        "default": ""
+      },
+      "logo": {
+        "type": "string",
+        "title": "Header Logo"
+      },
+      "logo2": {
+        "type": "string",
+        "title": "Footer Logo"
+      },
+      "links": {
+        "type": "array",
+        "title": "Navigation links",
+        "items": {
+          "type": "object",
+          "title": "Link detail",
+          "properties": {
+            "title": {
+              "type": "string",
+              "title": "Label"
+            },
+            "url": {
+              "type": "string",
+              "title": "Link URL"
+            }
+          }
+        }
+      }
+    }
+  }
+]

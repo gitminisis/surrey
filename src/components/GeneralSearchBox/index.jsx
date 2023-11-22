@@ -31,9 +31,8 @@ const GeneralSearchBox = (props) => {
     application,
   } = props;
   let database = deepSearch(xml, "database_name")[0];
-  let databaseIndex = databaseList.findIndex((e) => e.application === database);
+  let databaseIndex = databaseList.findIndex((e) => e.application === application);
   const [index, setIndex] = React.useState(databaseIndex);
-
   let toSummary = backToSummary(xml);
   let session = deepSearch(xml, "session")[0];
   if (isSessionSearch()) {
@@ -58,8 +57,8 @@ const GeneralSearchBox = (props) => {
                   i === breadcrumbs.length - 1
                     ? "none"
                     : toSummary
-                    ? "hover"
-                    : "none"
+                      ? "hover"
+                      : "none"
                 }
                 color={
                   i === breadcrumbs.length - 1 ? "text.primary" : "inherit"
@@ -108,9 +107,7 @@ const GeneralSearchBox = (props) => {
                   <React.Fragment>
                     <Select
                       variant="plain"
-                      defaultValue={databaseList.findIndex((e) => {
-                        return e.application === application;
-                      })}
+                      defaultValue={databaseIndex}
                       onChange={(e, value) => {
                         setIndex(Number.parseInt(value));
                       }}

@@ -65,6 +65,7 @@ const DescriptionTree = (props) => {
   const handleToggle = (event, nodeIds) => {
     setOpenKeyPath(nodeIds);
     const expanded = nodeIds.filter((x) => !openKeyPath.includes(x));
+    debugger;
     if (expanded[0]) {
       let node = getNodeFromTree(treeData, expanded[0]);
       if (!node.isChildrenLoaded) {
@@ -78,7 +79,6 @@ const DescriptionTree = (props) => {
 
   const renderTree = (nodes) => {
     let { id, children, hasChildren, isLoaded, loadMore, parentId } = nodes;
-    console.log(nodes);
     return (
       <StyledTreeItem
         key={id}

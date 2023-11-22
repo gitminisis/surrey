@@ -1,0 +1,56 @@
+[
+  {
+    "title": "Detail Display Fields",
+    "type": "object",
+    "properties": {
+      "database": {
+        "type": "string",
+        "title": "Database Name"
+      },
+      "displayFields": {
+        "type": "array",
+        "title": "Display Fields",
+        "items": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "title": "Field Mnemonic"
+            },
+            "label": {
+              "type": "string",
+              "title": "Field Label"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "title": "Detail Display Fields",
+    "type": "object",
+    "properties": {
+      "database": {
+        "type": "string",
+        "title": "Database Name"
+      },
+      "displayFields": {
+        "type": "array",
+        "title": "Display Fields",
+        "items": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "title": "Field Mnemonic"
+            },
+            "label": {
+              "type": "string",
+              "title": "Field Label"
+            }
+          }
+        }
+      }
+    }
+  }
+]

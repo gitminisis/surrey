@@ -1,4 +1,4 @@
-import json from "./json/collections-home.json";
+import json from "./json/collections-home/data.json";
 
 const ArtifactSearch = [
   {
